@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificado de autenticidad — Annie Ríos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /*
+      Landscape certificate. No seal. No Para. No hairline. No signature rule.
+      Hyphen-minus only — no em dashes.
+      Bold: fact labels and the inventory number.
+    */
+
+    :root {
+      --paper: #f7f5f1;
+      --ink: #1c1916;
+      --ink-soft: #6a645c;
+      --rule: #d4cfc6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #cfc9bf;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+      font-synthesis: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px 56px;
+    }
+
+    .print-bar {
+      width: 279mm;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .print-bar button {
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      background: transparent;
+      border: 1px solid #8a847a;
+      color: #3a3530;
+      padding: 7px 16px;
+      cursor: pointer;
+    }
+
+    .print-bar button:hover,
+    .print-bar button:focus-visible {
+      background: #3a3530;
+      color: #f7f5f1;
+      outline: none;
+    }
+
+    .sheet {
+      width: 279mm;
+      min-height: 216mm;
+      background: var(--paper);
+      padding: 16mm 20mm 16mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mast {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 5mm;
+      margin-bottom: 7mm;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .mast .studio {
+      font-size: 11pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .mast .place {
+      font-size: 9.5pt;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 8mm;
+    }
+
+    h1 {
+      font-size: 15pt;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.01em;
+    }
+
+    .reg-mark {
+      font-size: 12pt;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .body {
+      display: grid;
+      grid-template-columns: 78mm 1fr;
+      gap: 12mm;
+      flex: 1;
+      align-items: start;
+    }
+
+    .portrait {
+      width: 78mm;
+      height: 92mm;
+      background: #ece9e3;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #ece9e3;
+      display: none;
+    }
+
+    .portrait.has-image img { display: block; }
+
+    .portrait .hint {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9pt;
+      color: var(--ink-soft);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .portrait.has-image .hint,
+    .portrait input { display: none; }
+
+    .col { min-width: 0; }
+
+    .statement {
+      font-size: 11pt;
+      line-height: 1.5;
+      margin-bottom: 7mm;
+      max-width: 62ch;
+    }
+
+    table.spec {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8mm;
+    }
+
+    table.spec th,
+    table.spec td {
+      text-align: left;
+      vertical-align: top;
+      padding: 2.6mm 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 11pt;
+      line-height: 1.35;
+    }
+
+    table.spec th {
+      width: 32mm;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    table.spec td { font-weight: 400; }
+
+    table.spec tr:first-child th,
+    table.spec tr:first-child td { padding-top: 0; }
+
+    .note {
+      font-size: 10pt;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 58ch;
+    }
+
+    .close {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 10mm;
+      padding-top: 6mm;
+    }
+
+    .date-line {
+      font-size: 10.5pt;
+      color: var(--ink-soft);
+    }
+
+    .sign {
+      text-align: right;
+    }
+
+    .printed-name {
+      font-size: 12pt;
+      letter-spacing: 0.02em;
+    }
+
+    .sign-label {
+      font-size: 8.5pt;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      margin-top: 1.5mm;
+    }
+
+    .hint-print {
+      font-size: 8pt;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+
+    [contenteditable="true"]:focus { outline: none; }
+
+    @media screen and (max-width: 1100px) {
+      body { padding: 12px 0 32px; background: var(--paper); }
+      .print-bar, .sheet { width: 100%; }
+      .print-bar { padding: 0 16px; }
+      .sheet { min-height: auto; padding: 24px 20px 36px; }
+      .body { grid-template-columns: 1fr; }
+      .portrait { width: 78mm; height: 92mm; }
+    }
+
+    @media print {
+      html, body { background: white; padding: 0; }
+      .print-bar, .hint-print { display: none; }
+      .sheet {
+        width: auto;
+        min-height: auto;
+        padding: 0;
+      }
+      .portrait { cursor: default; }
+      .portrait .hint { display: none; }
+      @page {
+        size: letter landscape;
+        margin: 14mm 16mm 14mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-bar">
+    <button type="button" onclick="window.print()">Imprimir</button>
+  </div>
+
+  <article class="sheet">
+    <header class="mast">
+      <span class="studio">Annie Ríos</span>
+      <span class="place">Estudio · Panamá</span>
+    </header>
+
+    <div class="head">
+      <h1>Certificado de autenticidad</h1>
+      <p class="reg-mark" id="field-reg">AR-0000-000</p>
+    </div>
+
+    <div class="body">
+      <label class="portrait" id="portrait" title="Fotografía de la obra">
+        <input type="file" accept="image/*" id="photo" />
+        <img id="thumb" alt="Fotografía de la obra" />
+        <span class="hint">Fotografía</span>
+      </label>
+
+      <div class="col">
+        <p class="statement">Certifico que la obra identificada en este documento es original y de mi autoría. El número de registro figura en este certificado y en el reverso del soporte.</p>
+
+        <table class="spec">
+          <tr>
+            <th>Obra</th>
+            <td><span id="field-title" contenteditable="true" spellcheck="false">Título</span></td>
+          </tr>
+          <tr>
+            <th>Año</th>
+            <td><span id="field-year" contenteditable="true" spellcheck="false"></span></td>
+          </tr>
+          <tr>
+            <th>Técnica</th>
+            <td><span id="field-medium" contenteditable="true" spellcheck="false">Acrílico sobre lienzo</span></td>
+          </tr>
+          <tr>
+            <th>Medidas</th>
+            <td><span id="field-dims" contenteditable="true" spellcheck="false">alto x ancho cm</span></td>
+          </tr>
+          <tr>
+            <th>Registro</th>
+            <td><span id="field-reg-row" contenteditable="true" spellcheck="false">AR-0000-000</span></td>
+          </tr>
+        </table>
+
+        <p class="note">El número de registro de este certificado, el inscrito en el reverso y el asiento en el libro de inventario del estudio deben coincidir. Un duplicado puede emitirse a partir del reverso y del libro.</p>
+      </div>
+    </div>
+
+    <footer class="close">
+      <p class="date-line">Panamá, <span id="field-date" contenteditable="true" spellcheck="false">día de mes de 2026</span></p>
+      <div class="sign">
+        <p class="printed-name">Annie Ríos</p>
+        <p class="sign-label">firma</p>
+        <p class="hint-print">Firmar a tinta junto al nombre.</p>
+      </div>
+    </footer>
+  </article>
+
+  <script>
+    const LEDGER = __LEDGER__;
+    const MONTHS = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+    const input = document.getElementById("photo");
+    const portrait = document.getElementById("portrait");
+    const thumb = document.getElementById("thumb");
+    input.addEventListener("change", () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      thumb.src = url;
+      portrait.classList.add("has-image");
+    });
+
+    function dims(w) {
+      const h = w.height_cm || w.h;
+      const wd = w.width_cm || w.w;
+      const d = w.depth_cm || w.d;
+      const parts = [h, wd, d].filter((x) => x != null && x !== "");
+      if (!parts.length) return "alto x ancho cm";
+      return parts.join(" x ") + " cm";
+    }
+    function spanishToday() {
+      const n = new Date();
+      return n.getDate() + " de " + MONTHS[n.getMonth()] + " de " + n.getFullYear();
+    }
+
+    (function fill() {
+      const id = new URLSearchParams(location.search).get("id");
+      if (!id) return;
+      const w = LEDGER.works.find((x) => x.id === id);
+      if (!w) return;
+      document.getElementById("field-title").textContent = w.title;
+      document.getElementById("field-year").textContent = w.year || "";
+      document.getElementById("field-medium").textContent = w.materials || w.medium || "";
+      document.getElementById("field-dims").textContent = dims(w);
+      document.getElementById("field-reg").textContent = w.id;
+      document.getElementById("field-reg-row").textContent = w.id;
+      document.getElementById("field-date").textContent = spanishToday();
+      document.title = "Certificado - " + w.id;
+      const folder = (w.photos && w.photos.folder) || ("photos/" + id + "/");
+      const tries = [folder + "front.png", folder + "front.jpg"];
+      let i = 0;
+      thumb.addEventListener("load", () => portrait.classList.add("has-image"));
+      thumb.addEventListener("error", () => {
+        i += 1;
+        if (i < tries.length) thumb.src = tries[i];
+        else {
+          thumb.removeAttribute("src");
+          portrait.classList.remove("has-image");
+        }
+      });
+      thumb.src = tries[0];
+    })();
+  </script>
+</body>
+</html>

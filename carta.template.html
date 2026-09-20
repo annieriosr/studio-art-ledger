@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Una nota sobre convivir con esta obra — Annie Ríos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ------------------------------------------------------------------
+       Typographic hierarchy — what is bold, and what is not
+
+       BOLD (weight 600 only — never 700, never larger than the body):
+         • The five lemmas that open each consideration, including
+           the period that belongs to them:
+             Sin marco.
+             Espacio.
+             Luz.
+             Clima.
+             Antes de cualquier cambio.
+         These sit on the same line as the sentence they introduce
+         (run-in). They are the only bold marks on the page.
+
+       NOT BOLD:
+         • The title
+         • The dedication line (“Para”)
+         • Both opening paragraphs
+         • Every sentence that follows a lemma
+         • Parentheticals and em-dashes inside those sentences
+         • The closing paragraph
+         • The signature, including the em-dash and the name
+
+       NOTHING is underlined. NOTHING is in all caps.
+       Italics appear only in the title (the work’s quiet announcement)
+       and nowhere else — the letter itself speaks in roman.
+    ------------------------------------------------------------------ */
+
+    :root {
+      --paper: #f4f2ee;
+      --ink: #241f1a;
+      --ink-soft: #5c574f;
+      --rule: #c4bfb4;
+      --page-pad-x: 24mm;
+      --page-pad-y: 20mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      background: #d8d4cc;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", "Ibarra Real Nova", "Palatino Linotype", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+      font-synthesis: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 64px;
+    }
+
+    .sheet {
+      width: 216mm;
+      min-height: 279mm;
+      background: var(--paper);
+      color: var(--ink);
+      padding: var(--page-pad-y) var(--page-pad-x) 22mm;
+      box-shadow: 0 18px 50px rgba(36, 31, 26, 0.12);
+      position: relative;
+    }
+
+    .print-bar {
+      width: 216mm;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .print-bar button {
+      font-family: "Ibarra Real Nova", serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      background: transparent;
+      border: 1px solid #8a847a;
+      color: #3a3530;
+      padding: 8px 18px;
+      cursor: pointer;
+    }
+
+    .print-bar button:hover,
+    .print-bar button:focus-visible {
+      background: #3a3530;
+      color: #f4f2ee;
+      outline: none;
+    }
+
+    .dedication {
+      font-size: 11pt;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      margin-bottom: 11mm;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .dedication .label {
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .dedication .name {
+      font-weight: 400;
+      font-style: normal;
+      color: var(--ink);
+      min-width: 48mm;
+      line-height: 1.4;
+      min-height: 1.15em;
+      display: inline-block;
+    }
+
+    .dedication .name:focus {
+      outline: none;
+    }
+
+    h1 {
+      font-size: 20pt;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.22;
+      letter-spacing: -0.012em;
+      margin-bottom: 8mm;
+    }
+
+    .opening {
+      font-size: 11pt;
+      line-height: 1.52;
+      max-width: 62ch;
+      margin-bottom: 8.5mm;
+    }
+
+    .opening p + p {
+      margin-top: 1.1em;
+    }
+
+    /* Each consideration is given its own boundary of open space. */
+    .considerations {
+      display: flex;
+      flex-direction: column;
+      gap: 6.5mm;
+      max-width: 62ch;
+      margin-bottom: 8.5mm;
+    }
+
+    .considerations p {
+      font-size: 11pt;
+      line-height: 1.52;
+      font-weight: 400;
+    }
+
+    .lemma {
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: 0.01em;
+    }
+
+    .closing {
+      font-size: 11pt;
+      line-height: 1.52;
+      max-width: 54ch;
+      margin-bottom: 12mm;
+    }
+
+    .sign {
+      font-size: 12pt;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .sign .dash {
+      margin-right: 0.35em;
+    }
+
+    .reg-foot {
+      margin-top: 14mm;
+      font-size: 9pt;
+      font-style: italic;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    @media screen and (max-width: 900px) {
+      body {
+        padding: 16px 0 40px;
+        background: var(--paper);
+      }
+
+      .print-bar,
+      .sheet {
+        width: 100%;
+      }
+
+      .print-bar {
+        padding: 0 20px;
+        margin-bottom: 8px;
+      }
+
+      .sheet {
+        min-height: auto;
+        box-shadow: none;
+        padding: 28px 22px 48px;
+      }
+
+      h1 {
+        font-size: 23px;
+        max-width: none;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .print-bar {
+        display: none;
+      }
+
+      .sheet {
+        width: auto;
+        min-height: auto;
+        box-shadow: none;
+        background: white;
+        padding: 0;
+      }
+
+      h1,
+      .opening,
+      .considerations,
+      .closing {
+        break-inside: avoid;
+      }
+
+      .considerations p {
+        break-inside: avoid;
+      }
+
+      @page {
+        size: letter portrait;
+        margin: 18mm 20mm 18mm 22mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-bar">
+    <button type="button" onclick="window.print()">Imprimir</button>
+  </div>
+
+  <article class="sheet">
+    <!--
+      Write the collector’s name between the spans below,
+      or leave the line empty and inscribe it by hand after printing.
+    -->
+    <p class="dedication">
+      <span class="label">Para</span>
+      <span class="name" id="field-para" contenteditable="true" spellcheck="false"></span>
+    </p>
+
+    <h1>Una nota sobre<br />convivir con esta obra</h1>
+
+    <div class="opening">
+      <p>Esta obra sale de mi estudio completa, pero encuentra su plena presencia solo una vez que se le da un lugar con cuidado. Le dejo estas consideraciones para que pueda ofrecerle todo lo que contiene.</p>
+    </div>
+
+    <div class="considerations">
+      <p><span class="lemma">Sin marco.</span> La pieza se presenta sin marco, de manera deliberada. El grosor del bastidor separa el lienzo de la pared, proyectando una línea de sombra silenciosa que le da su presencia dimensional, casi escultórica. Por favor, déjela tal como llegó.</p>
+
+      <p><span class="lemma">Espacio.</span> La obra pide su propio límite de pared abierta. Los muebles son bienvenidos cerca, pero nada (un sofá, un estante) debe sobreponerse o invadir sus bordes. Es una pieza para ser abordada, no obstruida.</p>
+
+      <p><span class="lemma">Luz.</span> Una sola fuente de luz cálida, dirigida hacia la obra en lugar de depender de la iluminación general del espacio, permite que la superficie revele todo su rango de textura y tono. La luz solar directa nunca debe tocarla; la luz natural cotidiana del ambiente no es motivo de inquietud.</p>
+
+      <p><span class="lemma">Clima.</span> El lienzo responde lentamente al aire que lo rodea. Un ambiente estable, alejado de ventanas, paredes exteriores y zonas de humedad cambiante (cocinas, baños), es todo lo que requiere.</p>
+
+      <p><span class="lemma">Antes de cualquier cambio.</span> Si desea enmarcarla, trasladarla, limpiarla o prestarla, le pido que me escriba primero. Permanezco atenta a cómo esta obra continúa viviendo, dondequiera que se encuentre.</p>
+    </div>
+
+    <p class="closing">Cuidada de esta manera, la obra le ofrecerá su intención completa: no un objeto sobre un muro, sino la presencia para la cual fue hecha.</p>
+
+    <p class="sign">Annie Ríos</p>
+    <p class="reg-foot" id="field-reg"></p>
+  </article>
+  <script>
+    const LEDGER = __LEDGER__;
+    const DRAFT_KEY = "annie-studio-ledger-drafts-v1";
+    function drafts() {
+      try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}"); }
+      catch { return {}; }
+    }
+    function lastSoldName(id) {
+      const people = Object.fromEntries(LEDGER.people.map((p) => [p.id, p]));
+      const events = LEDGER.events.concat(drafts().events || []);
+      const sold = events.filter((e) => e.work === id && (e.type === "sold" || e.type === "placed"));
+      const last = sold[sold.length - 1];
+      if (!last || !last.person) return "";
+      return (people[last.person] && people[last.person].name) || "";
+    }
+    (function fill() {
+      const id = new URLSearchParams(location.search).get("id");
+      if (!id) return;
+      const w = LEDGER.works.find((x) => x.id === id);
+      document.getElementById("field-para").textContent = lastSoldName(id);
+      document.getElementById("field-reg").textContent = id;
+      if (w) document.title = "Convivir - " + w.id;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+Libro del estudio — Annie Ríos
+Esto NO es Fitpass. No copiar a fitpass-mvp. No subir al GitHub de Fitpass.
+
+Dónde: C:\Users\annie\studio-ledger
+
+Abrir:
+  index.html                         libro
+  certificado.html?id=AR-2026-006    certificado
+  carta.html?id=AR-2026-006          nota de convivir
+  carta-presentacion.html?id=AR-2026-006   carta de la autora
+
+Fotos: photos\AR-YYYY-NNN\front.png
+Tablas: data\export\
+Hechos: data\ledger.json
+Teléfonos: data\contacts.private.json (créalo tú; está ignorado)
+
+Tras editar ledger.json:
+  python data\_inject.py
+
+Papeles numerados (atajos): papeles\

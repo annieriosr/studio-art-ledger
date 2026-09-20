@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Libro del estudio — Annie Ríos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4f2ee;
+      --ink: #241f1a;
+      --ink-soft: #5c574f;
+      --rule: #c4bfb4;
+      --mark: #241f1a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #d8d4cc;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+    }
+    body { min-height: 100vh; padding: 32px 16px 80px; }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    header { margin-bottom: 28px; }
+    h1 {
+      font-size: 28px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .lede { font-size: 16px; line-height: 1.5; color: var(--ink-soft); max-width: 62ch; }
+    .stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin: 22px 0 26px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .stat b { display: block; font-size: 22px; font-weight: 600; }
+    .stat span { font-size: 13px; color: var(--ink-soft); }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    nav button, .btn {
+      font-family: inherit;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      padding: 7px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    nav button[aria-pressed="true"], .btn-solid {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    .card {
+      background: var(--paper);
+      padding: 22px 24px 20px;
+      margin-bottom: 12px;
+      border-left: 1px solid var(--rule);
+    }
+    .card a.title-link { color: inherit; text-decoration: none; }
+    .id {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .title { font-size: 20px; font-style: italic; font-weight: 400; }
+    .aka { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+    .meta { font-size: 14px; line-height: 1.55; margin-top: 10px; }
+    .meta .lemma { font-weight: 600; }
+    ul.ev { margin-top: 10px; padding-left: 0; list-style: none; }
+    ul.ev li {
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 3px 0;
+      color: var(--ink-soft);
+    }
+    .notes { font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--rule);
+      padding: 2px 8px;
+      margin: 0 6px 4px 0;
+      vertical-align: middle;
+      font-style: normal;
+    }
+    .pill.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      margin: 8px 0 14px;
+    }
+    .person { margin-bottom: 28px; }
+    .person h3 { font-size: 18px; font-weight: 400; font-style: italic; margin-bottom: 4px; }
+    .gap {
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    table.log {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: var(--paper);
+    }
+    table.log th, table.log td {
+      text-align: left;
+      padding: 8px 10px 8px 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    table.log th { font-size: 12px; letter-spacing: 0.06em; font-weight: 600; color: var(--ink-soft); }
+    table.log a { color: inherit; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .form {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+    }
+    .form label { display: block; font-size: 13px; margin: 8px 0 4px; color: var(--ink-soft); }
+    .form input, .form select {
+      font-family: inherit;
+      font-size: 15px;
+      padding: 6px 8px;
+      border: 1px solid var(--rule);
+      background: #fff;
+      width: min(100%, 320px);
+    }
+    .back { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; display: inline-block; }
+    footer { margin-top: 36px; font-size: 13px; color: var(--ink-soft); max-width: 62ch; }
+    footer a { color: inherit; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Libro del estudio</h1>
+      <p class="lede">Tres libros, no una hoja. El catálogo dice qué es cada obra. El movimiento dice dónde ha estado — la ubicación es la última línea. Los documentos se emiten desde esos dos. Las personas son un cuarto libro. Los teléfonos no están aquí.</p>
+    </header>
+    <div class="stats" id="stats"></div>
+    <nav id="nav"></nav>
+    <div id="main"></div>
+    <footer>
+      Número en el reverso, mismo número en la foto, mismo número en el certificado. Si la empresa desaparece un martes, quedan <code>data/export/</code> y <code>photos/AR-…/</code>. Borradores de venta viven solo en este navegador hasta que los pases al constructor. Fuente: Excel 2020, catálogo 2026, y lo dictado el 29 de agosto.
+    </footer>
+  </div>
+  <script>
+    const LEDGER = __LEDGER__;
+    const DRAFT_KEY = "annie-studio-ledger-drafts-v1";
+    const TYPE_ES = {
+      exhibited: "Exhibida",
+      sold: "Vendida",
+      lent: "Prestada",
+      returned: "Devuelta",
+      placed: "Colocada",
+      reserved: "Reservada",
+      finished: "Terminada",
+      selected: "Seleccionada",
+      photographed: "Fotografiada",
+      filmed: "Filmada",
+      broadcast: "Televisión",
+    };
+    const DOC_ES = { coa: "Certificado", care_letter: "Nota de convivir", intro_letter: "Carta de la autora", invoice: "Factura" };
+    function docHref(type, work) {
+      if (type === "coa") return `certificado.html?id=${encodeURIComponent(work)}`;
+      if (type === "care_letter") return `carta.html?id=${encodeURIComponent(work)}`;
+      if (type === "intro_letter") return `carta-presentacion.html?id=${encodeURIComponent(work)}`;
+      return null;
+    }
+    const MONTHS = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+    const people = Object.fromEntries(LEDGER.people.map((p) => [p.id, p]));
+    const worksBy = Object.fromEntries(LEDGER.works.map((w) => [w.id, w]));
+
+    function esc(s) {
+      return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+    }
+
+    function drafts() {
+      try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}"); }
+      catch { return {}; }
+    }
+    function saveDrafts(d) {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+    }
+    function allEvents() {
+      const extra = drafts().events || [];
+      return LEDGER.events.concat(extra);
+    }
+    function eventsByWork() {
+      const map = {};
+      for (const e of allEvents()) {
+        if (!e.work) continue;
+        (map[e.work] ||= []).push(e);
+      }
+      for (const id of Object.keys(map)) {
+        map[id].sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
+      }
+      return map;
+    }
+    function versoMarked(w) {
+      const overlay = (drafts().verso || {})[w.id];
+      if (overlay === true) return true;
+      if (overlay === false) return false;
+      return !!w.verso_marked;
+    }
+
+    function custody(id) {
+      const ev = eventsByWork()[id] || [];
+      for (let i = ev.length - 1; i >= 0; i--) {
+        const e = ev[i];
+        const who = e.person ? people[e.person] : null;
+        if (e.type === "lent") {
+          return { kind: "loan", label: "En préstamo" + (e.place ? " — " + e.place : ""), event: e, person: who };
+        }
+        if (e.type === "returned" || e.type === "finished") {
+          return { kind: "studio", label: "Estudio", event: e, person: null };
+        }
+        if (e.type === "sold" || e.type === "placed") {
+          return {
+            kind: "collector",
+            label: who ? who.name : (e.place || "Coleccionista"),
+            event: e,
+            person: who,
+          };
+        }
+      }
+      const last = ev[ev.length - 1];
+      if (last && last.type === "exhibited") {
+        return { kind: "studio", label: "Estudio (última muestra: " + (last.place || "—") + ")", event: last, person: null };
+      }
+      if (last && last.type === "reserved") {
+        return { kind: "reserved", label: "Reservada" + (last.place ? " — " + last.place : ""), event: last, person: last.person ? people[last.person] : null };
+      }
+      return { kind: "studio", label: ev.length ? "Estudio" : "Estudio — sin movimiento", event: last || null, person: null };
+    }
+
+    function lastSoldPerson(id) {
+      const sold = (eventsByWork()[id] || []).filter((e) => e.type === "sold");
+      const last = sold[sold.length - 1];
+      if (!last || !last.person) return null;
+      return people[last.person] || null;
+    }
+
+    function authenticity(w) {
+      const identified = !!(w.id && w.title && (w.materials || w.medium));
+      const marked = versoMarked(w);
+      const docs = documentsFor(w.id);
+      const issuedCoa = docs.some((d) => d.type === "coa" && (d.status === "issued" || (drafts().issued || {})[d.id]));
+      const loc = custody(w.id);
+      return {
+        identified,
+        marked,
+        certified: issuedCoa,
+        placed: loc.kind === "collector",
+      };
+    }
+
+    function documentsFor(id) {
+      return (LEDGER.documents || []).filter((d) => d.work === id);
+    }
+
+    function dims(w) {
+      const h = w.height_cm || w.h;
+      const wd = w.width_cm || w.w;
+      const d = w.depth_cm || w.d;
+      if (!h && !wd) return "—";
+      return [h, wd, d].filter((x) => x != null && x !== "").join(" × ") + " cm";
+    }
+
+    function authPills(w) {
+      const a = authenticity(w);
+      const bits = [
+        ["Identificada", a.identified],
+        ["Marcada", a.marked],
+        ["Certificada", a.certified],
+        ["Colocada", a.placed],
+      ];
+      return bits.map(([label, on]) => `<span class="pill${on ? " on" : ""}">${label}</span>`).join("");
+    }
+
+    const views = [
+      { id: "catalogo", label: "Catálogo" },
+      { id: "movimiento", label: "Movimiento" },
+      { id: "documentos", label: "Documentos" },
+      { id: "personas", label: "Personas" },
+      { id: "watch", label: "Las que cuido" },
+      { id: "prensa", label: "Prensa y archivo" },
+      { id: "gaps", label: "Por confirmar" },
+    ];
+
+    function parseHash() {
+      const h = (location.hash || "#catalogo").slice(1);
+      if (h.startsWith("obra/")) return { view: "obra", id: decodeURIComponent(h.slice(5)) };
+      return { view: h || "catalogo", id: null };
+    }
+
+    function go(view, id) {
+      location.hash = id ? "obra/" + id : view;
+    }
+
+    function card(w, { compact } = {}) {
+      const loc = custody(w.id);
+      const aka = w.also && w.also.length ? `<p class="aka">también ${esc(w.also.join(", "))}</p>` : "";
+      const ev = compact ? [] : (eventsByWork()[w.id] || []);
+      const evHtml = ev.length
+        ? `<ul class="ev">${ev.map((e) => {
+            const p = e.person ? people[e.person] : null;
+            const bits = [
+              e.date || "fecha por confirmar",
+              TYPE_ES[e.type] || e.type,
+              e.place,
+              p ? p.name : null,
+              e.price != null ? String(e.price) : null,
+            ].filter(Boolean);
+            return `<li>${esc(bits.join(" · "))}</li>`;
+          }).join("")}</ul>`
+        : "";
+      return `<article class="card">
+        <p class="id">${esc(w.id)}</p>
+        <p class="title"><a class="title-link" href="#obra/${esc(w.id)}">${esc(w.title)}</a></p>
+        ${aka}
+        <p class="meta">${authPills(w)}</p>
+        <p class="meta"><span class="lemma">Ahora.</span> ${esc(loc.label)}</p>
+        <p class="meta"><span class="lemma">Año.</span> ${esc(w.year || "por fechar")} · <span class="lemma">Medio.</span> ${esc(w.materials || w.medium || "—")} · <span class="lemma">Medidas.</span> ${esc(dims(w))}</p>
+        ${evHtml}
+      </article>`;
+    }
+
+    function nextId(year) {
+      const nums = LEDGER.works
+        .map((w) => w.id.match(new RegExp("^AR-" + year + "-(\\d+)$")))
+        .filter(Boolean)
+        .map((m) => parseInt(m[1], 10));
+      const n = String(Math.max(0, ...nums) + 1).padStart(3, "0");
+      return "AR-" + year + "-" + n;
+    }
+
+    function csvEscape(v) {
+      const s = String(v ?? "");
+      if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }
+    function downloadCsv(name, headers, rows) {
+      const body = [headers, ...rows].map((r) => r.map(csvEscape).join(",")).join("\n");
+      const blob = new Blob(["\uFEFF" + body], { type: "text/csv;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+    }
+
+    function exportAll() {
+      downloadCsv("catalogo.csv",
+        ["id","title","year","object_type","materials","height_cm","width_cm","depth_cm","inscriptions","verso_marked","maker","photo_folder","watch"],
+        LEDGER.works.map((w) => [w.id, w.title, w.year || "", w.object_type || "", w.materials || "", w.height_cm || "", w.width_cm || "", w.depth_cm || "", w.inscriptions || "", versoMarked(w), w.maker || "", w.photos && w.photos.folder || "", w.watch]));
+      downloadCsv("movimientos.csv",
+        ["date","work","type","place","person","person_name","price","notes"],
+        allEvents().map((e) => [e.date || "", e.work || "", e.type || "", e.place || "", e.person || "", (e.person && people[e.person] && people[e.person].name) || "", e.price != null ? e.price : "", e.notes || ""]));
+      downloadCsv("documentos.csv",
+        ["id","work","type","status","issued","notes"],
+        (LEDGER.documents || []).map((d) => [d.id, d.work, d.type, (drafts().issued || {})[d.id] ? "issued" : d.status, d.issued || "", d.notes || ""]));
+      downloadCsv("personas.csv",
+        ["id","name","place","notes"],
+        LEDGER.people.map((p) => [p.id, p.name, p.place || "", p.notes || ""]));
+    }
+
+    function renderObra(id) {
+      const w = worksBy[id];
+      const main = document.getElementById("main");
+      if (!w) {
+        main.innerHTML = `<p class="gap">No está en el catálogo: ${esc(id)}</p>`;
+        return;
+      }
+      const loc = custody(id);
+      const ev = eventsByWork()[id] || [];
+      const docs = documentsFor(id);
+      const who = lastSoldPerson(id);
+      const year = new Date().getFullYear();
+      const personOpts = LEDGER.people.map((p) =>
+        `<option value="${esc(p.id)}"${who && who.id === p.id ? " selected" : ""}>${esc(p.name)}</option>`
+      ).join("");
+      const log = ev.length
+        ? `<table class="log"><thead><tr><th>Fecha</th><th>Hecho</th><th>Dónde</th><th>Quién</th><th>Emitido</th></tr></thead><tbody>${
+            ev.map((e) => {
+              const p = e.person ? people[e.person] : null;
+              const issued = e.type === "sold" ? "Certificado y nota — imprimir desde aquí" : (e.type === "photographed" ? "Fotos en " + (w.photos && w.photos.folder || "") : "—");
+              return `<tr>
+                <td>${esc(e.date || "—")}</td>
+                <td>${esc(TYPE_ES[e.type] || e.type)}</td>
+                <td>${esc(e.place || "—")}</td>
+                <td>${esc(p ? p.name : "—")}</td>
+                <td>${esc(e.price != null ? String(e.price) : issued)}</td>
+              </tr>`;
+            }).join("")
+          }</tbody></table>`
+        : `<p class="notes">Aún no hay líneas de movimiento. La ubicación no se escribe en el catálogo.</p>`;
+
+      const docHtml = docs.length
+        ? docs.map((d) => {
+            const issued = !!(drafts().issued || {})[d.id] || d.status === "issued";
+            const href = docHref(d.type, id);
+            return `<p class="meta"><span class="lemma">${esc(DOC_ES[d.type] || d.type)}.</span> ${issued ? "emitido" : "pendiente"}${href ? ` · <a href="${href}">abrir</a>` : ""} · ${esc(d.notes || "")}</p>`;
+          }).join("")
+        : `<p class="notes">Nada emitido todavía. El certificado y la nota se generan al vender.</p>`;
+
+      main.innerHTML = `
+        <a class="back" href="#catalogo">← catálogo</a>
+        <article class="card">
+          <p class="id">${esc(w.id)}</p>
+          <p class="title">${esc(w.title)}</p>
+          ${w.also && w.also.length ? `<p class="aka">también ${esc(w.also.join(", "))}</p>` : ""}
+          <p class="meta" style="margin-top:14px">${authPills(w)}</p>
+          <p class="meta"><span class="lemma">Ahora.</span> ${esc(loc.label)} <span class="aka">— última línea, no una celda</span></p>
+          <h2>Identidad — no se sobreescribe</h2>
+          <p class="meta"><span class="lemma">Tipo.</span> ${esc(w.object_type || "Pintura")}</p>
+          <p class="meta"><span class="lemma">Materiales.</span> ${esc(w.materials || w.medium || "—")}</p>
+          <p class="meta"><span class="lemma">Medidas.</span> ${esc(dims(w))}</p>
+          <p class="meta"><span class="lemma">Inscripciones.</span> ${esc(w.inscriptions || "—")}</p>
+          <p class="meta"><span class="lemma">Rasgos.</span> ${esc(w.distinguishing || "—")}</p>
+          <p class="meta"><span class="lemma">Título.</span> ${esc(w.title)}</p>
+          <p class="meta"><span class="lemma">Tema.</span> ${esc(w.subject || "—")}</p>
+          <p class="meta"><span class="lemma">Año.</span> ${esc(w.year || "por fechar")}</p>
+          <p class="meta"><span class="lemma">Autora.</span> ${esc(w.maker || "Annie Ríos")}</p>
+          <p class="meta"><span class="lemma">Fotos.</span> ${esc(w.photos && w.photos.folder || "photos/" + w.id + "/")}</p>
+          ${(w.notes || []).map((n) => `<p class="notes">${esc(n)}</p>`).join("")}
+          <div class="actions">
+            <a class="btn" href="certificado.html?id=${encodeURIComponent(id)}">Certificado</a>
+            <a class="btn" href="carta.html?id=${encodeURIComponent(id)}">Nota de convivir</a>
+            <a class="btn" href="carta-presentacion.html?id=${encodeURIComponent(id)}">Carta de la autora</a>
+            <button type="button" class="btn" id="mark-verso">${versoMarked(w) ? "Verso marcado" : "Marcar verso"}</button>
+          </div>
+          <h2>Movimiento — solo se añaden líneas</h2>
+          ${log}
+          <h2>Documentos — salen del registro</h2>
+          ${docHtml}
+          <form class="form" id="sale-form">
+            <h2>Una acción al vender</h2>
+            <p class="notes">Añade una línea. No toca el título ni el número. Luego abre el certificado, la nota de convivir y la carta de la autora, con Para lleno.</p>
+            <label>Fecha <input name="date" type="date" required /></label>
+            <label>Hecho
+              <select name="type">
+                <option value="sold" selected>Vendida</option>
+                <option value="placed">Colocada en casa</option>
+                <option value="lent">Prestada</option>
+                <option value="returned">Devuelta al estudio</option>
+                <option value="reserved">Reservada</option>
+                <option value="photographed">Fotografiada</option>
+              </select>
+            </label>
+            <label>Dónde <input name="place" value="Estudio" /></label>
+            <label>Persona
+              <select name="person">
+                <option value="">—</option>
+                ${personOpts}
+              </select>
+            </label>
+            <label>Precio <input name="price" type="number" min="0" step="1" /></label>
+            <div class="actions">
+              <button type="submit" class="btn btn-solid">Anotar y abrir papeles</button>
+            </div>
+          </form>
+          <p class="notes">Siguiente número de ${year}: ${esc(nextId(year))}. Al terminar una obra, escríbelo en el reverso, crea el folder de fotos, y añádela en data/_build_ledger.py.</p>
+        </article>
+      `;
+
+      document.getElementById("mark-verso").addEventListener("click", () => {
+        const d = drafts();
+        d.verso = d.verso || {};
+        d.verso[id] = !versoMarked(w);
+        saveDrafts(d);
+        render();
+      });
+
+      document.getElementById("sale-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const type = fd.get("type");
+        const event = {
+          date: fd.get("date"),
+          work: id,
+          type,
+          place: fd.get("place") || "",
+          person: fd.get("person") || null,
+          price: fd.get("price") ? Number(fd.get("price")) : null,
+          notes: "borrador en este navegador — pasar a _build_ledger.py",
+          draft: true,
+        };
+        const d = drafts();
+        d.events = d.events || [];
+        d.events.push(event);
+        d.issued = d.issued || {};
+        if (type === "sold" || type === "placed") {
+          d.issued["coa-" + id] = true;
+          d.issued["letter-" + id] = true;
+          d.issued["intro-" + id] = true;
+        }
+        saveDrafts(d);
+        if (type === "sold" || type === "placed") {
+          window.open("certificado.html?id=" + encodeURIComponent(id), "_blank");
+          window.open("carta.html?id=" + encodeURIComponent(id), "_blank");
+          window.open("carta-presentacion.html?id=" + encodeURIComponent(id), "_blank");
+        }
+        render();
+      });
+    }
+
+    function render() {
+      const { view, id } = parseHash();
+      document.getElementById("nav").innerHTML = views.map((v) =>
+        `<button type="button" aria-pressed="${v.id === view}" data-view="${v.id}">${v.label}</button>`
+      ).join("") + `<button type="button" data-view="export">Exportar CSV</button>`;
+
+      const watch = LEDGER.works.filter((w) => w.watch);
+      const inStudio = LEDGER.works.filter((w) => custody(w.id).kind === "studio");
+      const soldNow = LEDGER.works.filter((w) => custody(w.id).kind === "collector");
+      document.getElementById("stats").innerHTML = `
+        <div class="stat"><b>${LEDGER.works.length}</b><span>obras en el catálogo</span></div>
+        <div class="stat"><b>${watch.length}</b><span>las que cuido</span></div>
+        <div class="stat"><b>${inStudio.length}</b><span>última línea: estudio</span></div>
+        <div class="stat"><b>${LEDGER.people.length}</b><span>personas, teléfonos fuera</span></div>
+      `;
+
+      const main = document.getElementById("main");
+      if (view === "obra") {
+        renderObra(id);
+        return;
+      }
+      if (view === "export") {
+        exportAll();
+        go("catalogo");
+        return;
+      }
+      if (view === "gaps") {
+        main.innerHTML = `<h2>Por confirmar</h2>` + LEDGER.gaps.map((g) => `<p class="gap">${esc(g)}</p>`).join("");
+        return;
+      }
+      if (view === "prensa") {
+        const docs = LEDGER.documentation || [];
+        main.innerHTML = `<h2>Prensa y archivo</h2>` + docs.map((d) => {
+          const p = d.person ? people[d.person] : null;
+          const bits = [d.date, TYPE_ES[d.type] || d.type, d.place, p ? p.name : null].filter(Boolean);
+          return `<article class="card">
+            <p class="title">${esc(d.subject || TYPE_ES[d.type] || d.type)}</p>
+            <p class="meta">${esc(bits.join(" · "))}</p>
+            ${d.notes ? `<p class="notes">${esc(d.notes)}</p>` : ""}
+          </article>`;
+        }).join("");
+        return;
+      }
+      if (view === "movimiento") {
+        const rows = allEvents().filter((e) => e.work).slice().sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
+        main.innerHTML = `<h2>Movimiento</h2>
+          <p class="notes">Cada línea es un hecho. La ubicación actual de una obra es la última. No hay columna Location.</p>
+          <table class="log"><thead><tr><th>Fecha</th><th>Obra</th><th>Hecho</th><th>Dónde</th><th>Quién</th></tr></thead><tbody>${
+            rows.map((e) => {
+              const w = worksBy[e.work];
+              const p = e.person ? people[e.person] : null;
+              return `<tr>
+                <td>${esc(e.date || "—")}</td>
+                <td><a href="#obra/${esc(e.work)}">${esc(e.work)}</a>${w ? `<div class="aka">${esc(w.title)}</div>` : ""}${e.draft ? `<div class="aka">borrador</div>` : ""}</td>
+                <td>${esc(TYPE_ES[e.type] || e.type)}</td>
+                <td>${esc(e.place || "—")}</td>
+                <td>${esc(p ? p.name : "—")}</td>
+              </tr>`;
+            }).join("")
+          }</tbody></table>`;
+        return;
+      }
+      if (view === "documentos") {
+        const docs = LEDGER.documents || [];
+        main.innerHTML = `<h2>Documentos</h2>
+          <p class="notes">No son columnas extra. Salen del catálogo más la última venta. Ninguno está emitido en papel todavía — están pendientes a propósito.</p>` +
+          docs.map((d) => {
+            const w = worksBy[d.work];
+            const issued = !!(drafts().issued || {})[d.id] || d.status === "issued";
+            const href = docHref(d.type, d.work);
+            return `<article class="card">
+              <p class="id">${esc(d.work)}</p>
+              <p class="title">${esc(DOC_ES[d.type] || d.type)} · ${issued ? "en este navegador" : "pendiente"}</p>
+              <p class="meta">${w ? esc(w.title) : ""} · ${esc(d.notes || "")}</p>
+              ${href ? `<div class="actions"><a class="btn" href="${href}">abrir</a></div>` : ""}
+            </article>`;
+          }).join("");
+        return;
+      }
+      if (view === "personas") {
+        const groups = {};
+        for (const w of LEDGER.works) {
+          const loc = custody(w.id);
+          const owner = loc.kind === "collector" || loc.kind === "loan" ? (loc.person || lastSoldPerson(w.id)) : lastSoldPerson(w.id);
+          if (!owner) continue;
+          (groups[owner.id] ||= { person: owner, works: [] }).works.push(w);
+        }
+        const holders = Object.values(groups);
+        const others = LEDGER.people.filter((p) => !groups[p.id]);
+        main.innerHTML = `<h2>Quién vive con la obra</h2>
+          <p class="notes">El dueño no está escrito en la pintura. Es la última línea sold / placed / lent, apuntando a una persona.</p>` +
+          holders.map((g) => `
+            <div class="person">
+              <h3>${esc(g.person.name)}</h3>
+              <p class="aka">${esc([g.person.place, g.person.notes].filter(Boolean).join(" · "))}</p>
+              ${g.works.map((w) => card(w, { compact: true })).join("")}
+            </div>
+          `).join("") +
+          `<h2>Prensa y otras personas</h2>` +
+          others.map((p) => `<article class="card"><p class="title">${esc(p.name)}</p><p class="aka">${esc([p.place, p.notes].filter(Boolean).join(" · "))}</p></article>`).join("");
+        return;
+      }
+
+      let list = LEDGER.works;
+      if (view === "watch") list = watch;
+      const label = (views.find((v) => v.id === view) || { label: "Catálogo" }).label;
+      const extra = view === "catalogo"
+        ? `<p class="notes">Siguiente número ${new Date().getFullYear()}: ${esc(nextId(new Date().getFullYear()))}. Identidad se llena al bajar del caballete. La ubicación no.</p>`
+        : "";
+      main.innerHTML = `<h2>${esc(label)}</h2>${extra}` + list.map((w) => card(w, { compact: true })).join("");
+    }
+
+    document.getElementById("nav").addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      if (b.dataset.view === "export") {
+        exportAll();
+        return;
+      }
+      go(b.dataset.view);
+    });
+    window.addEventListener("hashchange", render);
+    if (!location.hash) location.hash = "catalogo";
+    else render();
+  </script>
+</body>
+</html>
