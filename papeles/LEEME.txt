@@ -1,0 +1,11 @@
+Atajos. El libro vive un nivel arriba, en C:\Users\annie\studio-ledger
+
+  1  libro
+  2  certificado Cost of Love          AR-2026-002
+  3  certificado Sun in an Empty Room  AR-2026-006
+  4  nota de convivir Sun              AR-2026-006
+  5  carta de la autora Cost of Love   AR-2026-002
+  6  nota de convivir Sun              AR-2026-006
+  7  carta de la autora Sun            AR-2026-006
+
+Esto no es Fitpass.

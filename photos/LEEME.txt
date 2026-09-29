@@ -1,0 +1,6 @@
+Un número, un folder, tres fotos.
+El nombre del folder es el inventario: photos/AR-2026-002/
+front.jpg   el frente
+verso.jpg   el reverso con el número visible
+detail.jpg  si hace falta
+Nunca nombrar la foto por el título. El título puede cambiar. El número no.
