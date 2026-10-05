@@ -9,6 +9,7 @@ pairs = [
     ('certificado.template.html', 'certificado.html'),
     ('carta.template.html', 'carta.html'),
     ('carta-presentacion.template.html', 'carta-presentacion.html'),
+    ('tarjeta-exposicion.template.html', 'tarjeta-exposicion.html'),
 ]
 for tmpl, out in pairs:
     html = (root / tmpl).read_text(encoding='utf-8')

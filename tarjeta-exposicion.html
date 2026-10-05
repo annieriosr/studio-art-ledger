@@ -1,0 +1,3490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tarjeta de exposicion — Annie Rios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /*
+      White cube gallery wall label. A5 landscape (210 x 148 mm).
+      Same visual system as certificado. No image — gallery labels are text only.
+    */
+
+    :root {
+      --paper: #f7f5f1;
+      --ink: #1c1916;
+      --ink-soft: #6a645c;
+      --rule: #d4cfc6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #cfc9bf;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+      font-synthesis: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px 56px;
+      gap: 24px;
+    }
+
+    .print-bar {
+      width: 210mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .print-bar span {
+      font-size: 12px;
+      color: #5a544c;
+      letter-spacing: 0.06em;
+    }
+
+    .print-bar button {
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      background: transparent;
+      border: 1px solid #8a847a;
+      color: #3a3530;
+      padding: 7px 16px;
+      cursor: pointer;
+    }
+
+    .print-bar button:hover,
+    .print-bar button:focus-visible {
+      background: #3a3530;
+      color: #f7f5f1;
+      outline: none;
+    }
+
+    /* Card sheet — A5 landscape */
+    .sheet {
+      width: 210mm;
+      min-height: 148mm;
+      background: var(--paper);
+      padding: 12mm 14mm 10mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ── Masthead ── */
+    .mast {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 4mm;
+      margin-bottom: 6mm;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .studio {
+      font-size: 10pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .reg {
+      font-size: 9pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+    }
+
+    /* ── Main block ── */
+    .work-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4mm 0;
+    }
+
+    .work-title {
+      font-size: 20pt;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 4mm;
+      letter-spacing: -0.01em;
+    }
+
+    .work-meta {
+      font-size: 11pt;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .work-meta .year {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ── Exhibition footer ── */
+    .exhibition {
+      margin-top: 5mm;
+      padding-top: 4mm;
+      border-top: 1px solid var(--rule);
+      font-size: 9.5pt;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+
+    [contenteditable="true"]:focus { outline: none; }
+
+    /* ── Print ── */
+    @media screen and (max-width: 900px) {
+      body { background: var(--paper); padding: 0; }
+      .print-bar, .sheet { width: 100%; }
+      .print-bar { padding: 12px 16px; }
+      .sheet { min-height: auto; padding: 24px 20px; }
+    }
+
+    @media print {
+      html, body { background: white; padding: 0; }
+      .print-bar { display: none; }
+      .sheet { width: auto; min-height: auto; padding: 0; }
+      @page {
+        size: A5 landscape;
+        margin: 12mm 14mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <span>Tarjeta de exposicion</span>
+    <button type="button" onclick="window.print()">Imprimir</button>
+  </div>
+
+  <article class="sheet">
+
+    <header class="mast">
+      <span class="studio">Annie Rios</span>
+      <span class="reg" id="field-reg">AR-0000-000</span>
+    </header>
+
+    <div class="work-block">
+      <p class="work-title" id="field-title" contenteditable="true" spellcheck="false">Titulo de la obra</p>
+      <p class="work-meta">
+        <span class="year" id="field-year" contenteditable="true" spellcheck="false">2026</span>
+        &nbsp;&middot;&nbsp;
+        <span id="field-medium" contenteditable="true" spellcheck="false">Tecnica</span>
+        <br>
+        <span id="field-dims" contenteditable="true" spellcheck="false">alto &times; ancho cm</span>
+      </p>
+    </div>
+
+    <footer class="exhibition">
+      <span id="field-exhibition" contenteditable="true" spellcheck="false">Cosas Ecuador &mdash; Aqui, donde la luz nos halla &nbsp;&middot;&nbsp; Booth #16, Guayaquil &nbsp;&middot;&nbsp; Nov 5&ndash;15, 2026</span>
+    </footer>
+
+  </article>
+
+  <script>
+    const LEDGER = {
+  "studio": {
+    "artist": "Annie Ríos",
+    "schema": "three-books-v1",
+    "books": [
+      "catalogue",
+      "movement",
+      "documents",
+      "people"
+    ],
+    "rule": "Identity never overwritten. Location is the last movement line. Documents are issued from both.",
+    "entered": "2026-08-29",
+    "sources": [
+      "INVENTORY ANNIEWITHABRUSH.xlsx",
+      "Annie_Rios_Obras_Catalogo.xlsx",
+      "Studio note 29 Aug 2026 (exhibitions, sales, photography, TV)",
+      "Juannio 2026 public listings (Museo Miraflores, 28 May–12 Jul 2026)",
+      "Eventbrite: All the Ways We Are Humans, BoConcept Panamá, 19 Mar 2026",
+      "Name spellings: Faustino Huembes; Sebastián Hemil / Hispania Media TV; Isabella Fiore"
+    ]
+  },
+  "people": [
+    {
+      "id": "p-reigosa-jose-pablo",
+      "name": "José Pablo Reigosa",
+      "also": [
+        "Jose Pablo Reynosa",
+        "jose pablo reigosa"
+      ],
+      "place": "Panamá",
+      "notes": "Excel spelling is Reigosa. Spoken as Reynosa — treated as the same person pending confirmation."
+    },
+    {
+      "id": "p-reigosa-family",
+      "name": "Familia Reigosa",
+      "place": "Panamá",
+      "notes": "Silent Spirit. Lent the work back for BoConcept 2026."
+    },
+    {
+      "id": "p-cardoso-carolina",
+      "name": "Carolina Cardoso",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-de-leon-victoria",
+      "name": "Victoria de León y familia",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-lezi-isabela",
+      "name": "Isabela Lezi y familia",
+      "also": [
+        "Isabella Alessi?"
+      ],
+      "place": "Panamá",
+      "notes": "Gold Mine 2023. Excel 2020 has Isabella Alessi with a different work — do not merge yet."
+    },
+    {
+      "id": "p-anonymous-juannio",
+      "name": "Anónima (Juannio 2026)",
+      "place": "Guatemala",
+      "notes": "Confirm name. Excel: anonymous buyer."
+    },
+    {
+      "id": "p-anonymous-paris",
+      "name": "Anónima (París)",
+      "place": "París",
+      "notes": "Untitled sold for 500. Name not recalled."
+    },
+    {
+      "id": "p-diaz-carlos",
+      "name": "Carlos Díaz",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-de-pablos-mariana",
+      "name": "Mariana de Pablos",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-zequeira-clara",
+      "name": "Clara Zequeira",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-trejocatala-mariana",
+      "name": "Mariana (@trejocatala)",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-guecera-jaime",
+      "name": "Jaime Guecera",
+      "place": "California, USA"
+    },
+    {
+      "id": "p-alessi-isabella",
+      "name": "Isabella Alessi",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-lacayo-jaime",
+      "name": "Jaime Lacayo",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-chu-marissa",
+      "name": "Marissa Chu",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-gonzalez-cecilia",
+      "name": "Cecilia González",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-garcia-maribel",
+      "name": "Maribel García",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-cambefort-belen",
+      "name": "Belén Cambefort",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-castro-maria-fernanda",
+      "name": "María Fernanda Castro",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-richa-lisa",
+      "name": "Lisa Richa",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-jimenez-karina",
+      "name": "Karina Jiménez",
+      "place": "Panamá"
+    },
+    {
+      "id": "p-velasco-ary",
+      "name": "Ary Velasco",
+      "place": "Asturias, España"
+    },
+    {
+      "id": "p-huembes-faustino",
+      "name": "Faustino Huembes",
+      "also": [
+        "Faustino Wembes"
+      ],
+      "place": "Panamá",
+      "notes": "Fotógrafo y videógrafo documental. Huembes Films. La H es de Huembes."
+    },
+    {
+      "id": "p-hemil-sebastian",
+      "name": "Sebastián Hemil",
+      "also": [
+        "Sebas",
+        "Sebastian Emil",
+        "Sebastián Sandoval"
+      ],
+      "place": "Panamá",
+      "notes": "Dicho como Sebas y Sebastian Emil con H. En público: Sebastián Hemil. Productor y presentador en Hispania Media TV (Live Plus Magazine). También filmmaker. Confirmar si el vídeo de agosto y la TV son la misma persona."
+    },
+    {
+      "id": "p-fiore-isabella",
+      "name": "Isabella Fiore",
+      "place": "Panamá",
+      "notes": "Presentadora, Hispania Media TV."
+    }
+  ],
+  "works": [
+    {
+      "id": "AR-2026-001",
+      "title": "What Remains Below",
+      "year": 2026,
+      "medium": "Díptico, acrílico sobre lienzo, marco de roble",
+      "h": 194,
+      "w": 155,
+      "watch": true,
+      "notes": [
+        "Exhibida en BoConcept Panamá, 2026. No vendida."
+      ],
+      "source": [
+        "catalogue 2026",
+        "studio note"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Díptico, acrílico sobre lienzo, marco de roble",
+      "height_cm": 194,
+      "width_cm": 155,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-001/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2026-002",
+      "title": "Cost of Love",
+      "also": [
+        "Because of Love"
+      ],
+      "year": 2026,
+      "medium": "Acrílico sobre lienzo",
+      "h": 177,
+      "w": 144,
+      "watch": true,
+      "notes": [
+        "Título en catálogo y Excel: Cost of Love. Hablada como Because of Love.",
+        "Seleccionada, expuesta y subastada en Juannio 2026, Museo Miraflores, Ciudad de Guatemala (28 may–12 jul 2026).",
+        "Excel registra venta el 7 oct 2026 a compradora anónima, 3500 (moneda no declarada en la hoja).",
+        "Medidas y medio confirmados desde la obra: 177 × 144 cm, acrílico sobre lienzo. El catálogo 2026 decía 150 × 189 cm, marco de roble."
+      ],
+      "source": [
+        "catalogue 2026",
+        "Excel row 32",
+        "studio note",
+        "Juannio 2026 listings",
+        "photo 29 Aug 2026"
+      ],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo",
+      "height_cm": 177,
+      "width_cm": 144,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-002/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2026-003",
+      "title": "Beauty in the Ruins",
+      "year": null,
+      "medium": null,
+      "watch": true,
+      "notes": [
+        "Exhibida en BoConcept Panamá, 19 mar 2026. Vendida a José Pablo Reigosa, 800. Paleta: navy, naranja, blanco."
+      ],
+      "source": [
+        "Excel row 30",
+        "studio note"
+      ],
+      "also": [],
+      "h": null,
+      "w": null,
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-003/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2026-004",
+      "title": "All the Ways Humans Feel Loved",
+      "year": null,
+      "watch": true,
+      "notes": [
+        "Exhibida en BoConcept Panamá, 2026. Relacionada con la velada All the Ways We Are Humans, 19 mar 2026."
+      ],
+      "source": [
+        "studio note",
+        "Eventbrite BoConcept"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-004/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2026-005",
+      "title": "Untitled (BoConcept)",
+      "year": null,
+      "watch": true,
+      "notes": [
+        "Vendida el 19 mar 2026 a Carolina Cardoso, 450. Paleta: navy, amarillo, nude. Distinta del Untitled de París."
+      ],
+      "source": [
+        "Excel row 31"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-005/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2026-006",
+      "title": "Sun in an Empty Room",
+      "year": 2026,
+      "medium": "Acrílico sobre lienzo",
+      "h": 166,
+      "w": 66,
+      "watch": true,
+      "notes": [
+        "Medidas y foto desde el estudio, 29 ago 2026. Confirmar año si no es 2026."
+      ],
+      "source": [
+        "studio photo 29 Aug 2026"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo",
+      "height_cm": 166,
+      "width_cm": 66,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-006/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2025-001",
+      "title": "All the Ways We Shine",
+      "year": 2025,
+      "medium": "Óleo sobre lienzo",
+      "h": 189,
+      "w": 150,
+      "watch": true,
+      "notes": [
+        "Exhibida en BoConcept Panamá, 2026.",
+        "Seleccionada para Cosas Ecuador 2026, Booth #16 — pieza central suspendida."
+      ],
+      "source": [
+        "catalogue 2026",
+        "studio note"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Óleo sobre lienzo",
+      "height_cm": 189,
+      "width_cm": 150,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-001/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2025-002",
+      "title": "Be the Light",
+      "year": 2025,
+      "medium": "Acrílico sobre lienzo, marco de roble",
+      "h": 150,
+      "w": 189,
+      "watch": true,
+      "notes": [
+        "Exhibida en BoConcept Panamá, 2026. No vendida."
+      ],
+      "source": [
+        "catalogue 2026",
+        "studio note"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo, marco de roble",
+      "height_cm": 150,
+      "width_cm": 189,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-002/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2025-003",
+      "title": "The InBetween Space",
+      "also": [
+        "In Between Space"
+      ],
+      "year": 2025,
+      "medium": "Acrílico sobre lienzo, marco de roble",
+      "h": 114,
+      "w": 94,
+      "watch": true,
+      "notes": [
+        "Exhibida, no vendida.",
+        "Seleccionada para Cosas Ecuador 2026, Booth #16 — pared derecha."
+      ],
+      "source": [
+        "catalogue 2026",
+        "studio note"
+      ],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo, marco de roble",
+      "height_cm": 114,
+      "width_cm": 94,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-003/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2025-004",
+      "title": "Three Elements of a Refraction",
+      "year": null,
+      "watch": true,
+      "notes": [
+        "Exhibida en Centro Espacio Arte, Panamá, septiembre 2025. No vendida.",
+        "Seleccionada en el proyecto Mala Hierba, Fondo de Arte Joven.",
+        "Título: Three Elements of a Refraction. Antes asentado como Three Elements of Art Fraction."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [
+        "Three Elements of Art Fraction",
+        "Three Elements"
+      ],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-004/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2023-001",
+      "title": "De donde venimos",
+      "year": 2020,
+      "medium": null,
+      "h": 10,
+      "w": 70,
+      "watch": true,
+      "notes": [
+        "Vendida en 2020 a Victoria de León y familia. El número AR-2023-001 se asignó al abrir el libro; no cambiarlo.",
+        "10 × 70 cm — confirmar si es 100 × 70."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": 10,
+      "width_cm": 70,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2023-001/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2023-002",
+      "title": "Gold Mine",
+      "year": null,
+      "medium": "Acrílico sobre lienzo",
+      "h": 180,
+      "w": 80,
+      "watch": true,
+      "notes": [
+        "Vendida en 2023 a Isabela Lezi y familia."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo",
+      "height_cm": 180,
+      "width_cm": 80,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2023-002/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2023-003",
+      "title": "Silent Spirit",
+      "year": null,
+      "medium": "Acrílico sobre lienzo",
+      "h": 70,
+      "w": 40,
+      "watch": true,
+      "notes": [
+        "Vendida en 2023 a la familia Reigosa. Prestada de nuevo para BoConcept Panamá 2026."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo",
+      "height_cm": 70,
+      "width_cm": 40,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2023-003/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2023-004",
+      "title": "Howard",
+      "year": null,
+      "medium": null,
+      "h": 100,
+      "w": 88,
+      "watch": true,
+      "notes": [
+        "Vendida en 2023 a José Pablo Reigosa. Exhibida en BoConcept Panamá 2026."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": 100,
+      "width_cm": 88,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2023-004/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2022-001",
+      "title": "Red Thread",
+      "year": null,
+      "watch": true,
+      "notes": [
+        "Exhibida en Madrid. Año recordado como 2022 — confirmar."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2022-001/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-001",
+      "title": "Casa Amarilla",
+      "watch": true,
+      "notes": [
+        "Exhibida en Madrid y en BoConcept Panamá 2026."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-001/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-002",
+      "title": "Casa María",
+      "watch": true,
+      "notes": [
+        "Exhibida en Madrid."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-002/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-003",
+      "title": "El Ocaso",
+      "watch": true,
+      "notes": [
+        "Exhibida en Madrid. En 2020 hay un personalizado para José Pablo Reigosa inspirado en El Ocaso — obra distinta."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-003/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-004",
+      "title": "Blue Mosaics",
+      "watch": true,
+      "notes": [
+        "Exhibida en Visual Gallery."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-004/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-005",
+      "title": "Final de Verano",
+      "watch": true,
+      "notes": [
+        "Exhibida en Visual Gallery."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-005/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-006",
+      "title": "Sink and Ship",
+      "watch": true,
+      "notes": [
+        "Exhibida en Visual Gallery."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-006/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-007",
+      "title": "Amar Ciegamente",
+      "watch": true,
+      "notes": [
+        "Exhibida en París."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-007/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-008",
+      "title": "Untitled (París)",
+      "watch": true,
+      "notes": [
+        "Exhibida en París. Vendida a una señora en París, nombre no recordado, 500."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "year": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-008/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-ND-010",
+      "title": "Point of Incidence",
+      "watch": true,
+      "notes": [
+        "Exhibida en BoConcept Panamá, 19 mar 2026. No vendida.",
+        "Seleccionada para Cosas Ecuador 2026, Booth #16 — pared izquierda."
+      ],
+      "source": [
+        "studio note"
+      ],
+      "also": [],
+      "medium": "Acrílico sobre lienzo, marco de roble",
+      "h": 114,
+      "w": 94,
+      "d": null,
+      "year": 2025,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo, marco de roble",
+      "height_cm": 114,
+      "width_cm": 94,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-ND-010/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2026-WIP-001",
+      "title": "Sin título (en proceso, agosto 2026)",
+      "year": 2026,
+      "watch": true,
+      "notes": [
+        "Una obra en curso fotografiada por Faustino Huembes y por Sebastián (vídeo, agosto 2026). Título por asignar."
+      ],
+      "source": [
+        "studio note 29 Aug 2026"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-WIP-001/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-001",
+      "title": "Movimiento del Cielo",
+      "year": 2020,
+      "notes": [
+        "Carlos Díaz, 50. Excel rows 1–2 look duplicated."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-001/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-002",
+      "title": "Colores del Caudal",
+      "year": 2020,
+      "notes": [
+        "José Pablo Reigosa, 50. Paleta gris, púrpura, azul."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-002/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-003",
+      "title": "Arte personalizado (logo AP)",
+      "year": 2020,
+      "notes": [
+        "José Pablo Reigosa, 30. Cuadro para oficina a partir de un impreso con logo."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-003/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-004",
+      "title": "Movimiento del Cielo",
+      "year": 2020,
+      "notes": [
+        "Mariana de Pablos, paleta suya. Excel lista tres líneas idénticas a 80 — confirmar si son tres obras o un duplicado."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-004/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-005",
+      "title": "País Desvanecido",
+      "year": 2020,
+      "notes": [
+        "Clara Zequeira, 100."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-005/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-006",
+      "title": "Untitled",
+      "year": 2020,
+      "notes": [
+        "Mariana @trejocatala, paleta rojos amarillos rosas. Excel lista tres líneas a 80."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-006/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-007",
+      "title": "Lloviendo Estrellas",
+      "year": 2020,
+      "notes": [
+        "Jaime Guecera, California, 100. Nude en lugar de blanco. Recibido no marcado."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-007/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-008",
+      "title": "Personalizado (dorado, azul, blanco)",
+      "year": 2020,
+      "medium": "Acrílico sobre lienzo",
+      "h": 160,
+      "w": 80,
+      "notes": [
+        "Isabella Alessi, 362. Distinta de Gold Mine 2023."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": "Acrílico sobre lienzo",
+      "height_cm": 160,
+      "width_cm": 80,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-008/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-009",
+      "title": "Personalizado inspirado en El Ocaso",
+      "year": 2020,
+      "h": 150,
+      "w": 110,
+      "notes": [
+        "José Pablo Reigosa, 265. 1,5 × 1,10 m."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": 150,
+      "width_cm": 110,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-009/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-010",
+      "title": "Movimiento del Cielo",
+      "year": 2020,
+      "notes": [
+        "Jaime Lacayo, 150. Mostaza y rosado mexicano. Excel dos líneas."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-010/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-011",
+      "title": "Lloviendo Estrellas",
+      "year": 2020,
+      "notes": [
+        "Marissa Chu, precio 0 en Excel."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-011/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-012",
+      "title": "El Reflejo de la Pradera",
+      "year": 2020,
+      "notes": [
+        "Cecilia González, 140. Excel note: Lloviendo Estrellas available from collection."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-012/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-013",
+      "title": "Movimiento del Cielo",
+      "year": 2020,
+      "notes": [
+        "Maribel García, 55. Giveaway 30%."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-013/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-014",
+      "title": "Lloviendo Estrellas",
+      "year": 2020,
+      "notes": [
+        "Belén Cambefort, 75. Verdes, negro, blanco."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-014/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-015",
+      "title": "Personalizado",
+      "year": 2020,
+      "notes": [
+        "María Fernanda Castro, precio 0. Excel: Lloviendo Estrellas tal cual 30×40 cm."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-015/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-016",
+      "title": "Colores del Caudal",
+      "year": 2020,
+      "notes": [
+        "Lisa Richa, 85. Fondo Movimiento en el Cielo, paleta rosado claro."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-016/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-017",
+      "title": "Vibraciones del Ambiente",
+      "year": 2020,
+      "notes": [
+        "Karina Jiménez, 85. Excel: una línea de la colección y dos de la figura en 3 lienzos horizontales — posible tríptico."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-017/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2020-018",
+      "title": "Reflejo en la Pradera",
+      "year": 2021,
+      "h": 100,
+      "w": 81,
+      "notes": [
+        "Ary Velasco, Asturias, 316. Paleta distinta, orientación vertical. Enviado 17 oct 2021."
+      ],
+      "source": [
+        "Excel"
+      ],
+      "also": [],
+      "medium": null,
+      "d": null,
+      "watch": false,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "materials": null,
+      "height_cm": 100,
+      "width_cm": 81,
+      "depth_cm": null,
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2020-018/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-08-29"
+    },
+    {
+      "id": "AR-2026-007",
+      "title": "Feel My Love",
+      "year": 2026,
+      "medium": "Óleo sobre yute",
+      "materials": "Óleo sobre yute",
+      "h": 90,
+      "w": 210,
+      "d": null,
+      "height_cm": 90,
+      "width_cm": 210,
+      "depth_cm": null,
+      "watch": true,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "notes": [
+        "Formato panorámico horizontal. Seleccionada para Cosas Ecuador 2026, Booth #16 — pared del fondo."
+      ],
+      "source": [
+        "Casas Project 2026",
+        "annieabstracts.com"
+      ],
+      "also": [],
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-007/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-10-05"
+    },
+    {
+      "id": "AR-2026-008",
+      "title": "The Gift of an Abundant Life",
+      "year": 2026,
+      "medium": null,
+      "materials": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "watch": true,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "notes": [
+        "Listada en annieabstracts.com/work/, 2026. Técnica y medidas por confirmar."
+      ],
+      "source": [
+        "annieabstracts.com"
+      ],
+      "also": [],
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2026-008/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-10-05"
+    },
+    {
+      "id": "AR-2025-005",
+      "title": "Composition of a Refraction",
+      "year": 2025,
+      "medium": null,
+      "materials": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "watch": true,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "notes": [
+        "Listada en annieabstracts.com/work/, 2025. Técnica y medidas por confirmar."
+      ],
+      "source": [
+        "annieabstracts.com"
+      ],
+      "also": [],
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-005/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-10-05"
+    },
+    {
+      "id": "AR-2025-006",
+      "title": "Composition of a Refraction 2",
+      "year": 2025,
+      "medium": null,
+      "materials": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "watch": true,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "notes": [
+        "Listada en annieabstracts.com/work/, 2025. Técnica y medidas por confirmar."
+      ],
+      "source": [
+        "annieabstracts.com"
+      ],
+      "also": [],
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-006/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-10-05"
+    },
+    {
+      "id": "AR-2025-007",
+      "title": "Rhythms and Reflections",
+      "year": 2025,
+      "medium": null,
+      "materials": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "watch": true,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "notes": [
+        "Listada en annieabstracts.com/work/, 2025. Técnica y medidas por confirmar."
+      ],
+      "source": [
+        "annieabstracts.com"
+      ],
+      "also": [],
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-007/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-10-05"
+    },
+    {
+      "id": "AR-2025-008",
+      "title": "Rhythms and Reflections 2",
+      "year": 2025,
+      "medium": null,
+      "materials": null,
+      "h": null,
+      "w": null,
+      "d": null,
+      "height_cm": null,
+      "width_cm": null,
+      "depth_cm": null,
+      "watch": true,
+      "maker": "Annie Ríos",
+      "object_type": "Pintura",
+      "notes": [
+        "Listada en annieabstracts.com/work/, 2025. Técnica y medidas por confirmar."
+      ],
+      "source": [
+        "annieabstracts.com"
+      ],
+      "also": [],
+      "inscriptions": "Firma. Número de inventario en el reverso — confirmar si ya está escrito.",
+      "distinguishing": null,
+      "subject": null,
+      "verso_marked": false,
+      "photos": {
+        "folder": "photos/AR-2025-008/",
+        "front": null,
+        "verso": null,
+        "detail": null
+      },
+      "date_documented": "2026-10-05"
+    }
+  ],
+  "events": [
+    {
+      "work": "AR-2026-001",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-002",
+      "date": "2026-05-28",
+      "type": "selected",
+      "place": "Juannio 2026, Museo Miraflores, Ciudad de Guatemala",
+      "notes": "Selección del concurso Juannio. Exposición 28 may–12 jul 2026.",
+      "price": null,
+      "person": null
+    },
+    {
+      "work": "AR-2026-002",
+      "date": "2026-05-28",
+      "type": "exhibited",
+      "place": "Juannio 2026, Museo Miraflores, Ciudad de Guatemala",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-002",
+      "date": "2026-10-07",
+      "type": "sold",
+      "place": "Guatemala",
+      "person": "p-anonymous-juannio",
+      "price": 3500,
+      "notes": "Fecha según Excel. La exposición cerró el 12 jul — confirmar si la subasta o el pago fue en octubre."
+    },
+    {
+      "work": "AR-2026-002",
+      "date": null,
+      "type": "exhibited",
+      "place": "París",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-002",
+      "date": null,
+      "type": "exhibited",
+      "place": "Madrid",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-003",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-003",
+      "date": "2026-03-19",
+      "type": "sold",
+      "place": "Panamá",
+      "person": "p-reigosa-jose-pablo",
+      "price": 800,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-004",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-005",
+      "date": "2026-03-19",
+      "type": "sold",
+      "place": "Panamá",
+      "person": "p-cardoso-carolina",
+      "price": 450,
+      "notes": null
+    },
+    {
+      "work": "AR-2025-001",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2025-002",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2025-003",
+      "date": null,
+      "type": "exhibited",
+      "place": null,
+      "notes": "Exhibida; sede exacta por confirmar.",
+      "price": null,
+      "person": null
+    },
+    {
+      "work": "AR-2025-004",
+      "date": "2025-09",
+      "type": "exhibited",
+      "place": "Centro Espacio Arte, Panamá",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2025-004",
+      "date": "2025",
+      "type": "selected",
+      "place": "Mala Hierba — Fondo de Arte Joven",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2023-001",
+      "date": "2020",
+      "type": "sold",
+      "person": "p-de-leon-victoria",
+      "place": "Panamá",
+      "notes": "Victoria de León y familia.",
+      "price": null
+    },
+    {
+      "work": "AR-2023-002",
+      "date": "2023",
+      "type": "sold",
+      "person": "p-lezi-isabela",
+      "price": null,
+      "place": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2023-003",
+      "date": "2023",
+      "type": "sold",
+      "person": "p-reigosa-family",
+      "price": null,
+      "place": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2023-003",
+      "date": "2026-03-19",
+      "type": "lent",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "person": "p-reigosa-family",
+      "notes": "La familia la prestó para la exposición.",
+      "price": null
+    },
+    {
+      "work": "AR-2023-004",
+      "date": "2023",
+      "type": "sold",
+      "person": "p-reigosa-jose-pablo",
+      "price": null,
+      "place": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2023-004",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2022-001",
+      "date": "2022",
+      "type": "exhibited",
+      "place": "Madrid",
+      "notes": "Año inseguro.",
+      "price": null,
+      "person": null
+    },
+    {
+      "work": "AR-ND-001",
+      "date": null,
+      "type": "exhibited",
+      "place": "Madrid",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-001",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-002",
+      "date": null,
+      "type": "exhibited",
+      "place": "Madrid",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-003",
+      "date": null,
+      "type": "exhibited",
+      "place": "Madrid",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-004",
+      "date": null,
+      "type": "exhibited",
+      "place": "Visual Gallery",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-005",
+      "date": null,
+      "type": "exhibited",
+      "place": "Visual Gallery",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-006",
+      "date": null,
+      "type": "exhibited",
+      "place": "Visual Gallery",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-007",
+      "date": null,
+      "type": "exhibited",
+      "place": "París",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-008",
+      "date": null,
+      "type": "exhibited",
+      "place": "París",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-008",
+      "date": null,
+      "type": "sold",
+      "place": "París",
+      "person": "p-anonymous-paris",
+      "price": 500,
+      "notes": null
+    },
+    {
+      "work": "AR-ND-010",
+      "date": "2026-03-19",
+      "type": "exhibited",
+      "place": "BoConcept Panamá — All the Ways We Are Humans",
+      "price": null,
+      "person": null,
+      "notes": null
+    },
+    {
+      "work": "AR-2026-WIP-001",
+      "date": "2026-08",
+      "type": "photographed",
+      "person": "p-huembes-faustino",
+      "place": "Panamá",
+      "notes": "Fotografía fija. Faustino también fotografió a Annie.",
+      "price": null
+    },
+    {
+      "work": "AR-2026-WIP-001",
+      "date": "2026-08",
+      "type": "filmed",
+      "person": "p-hemil-sebastian",
+      "place": "Panamá",
+      "notes": "Vídeo en cine, agosto 2026. Fotografió varias obras además de esta.",
+      "price": null
+    },
+    {
+      "work": "AR-2020-001",
+      "date": "2020-04-25",
+      "type": "sold",
+      "person": "p-diaz-carlos",
+      "price": 50,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-002",
+      "date": "2020-08-05",
+      "type": "sold",
+      "person": "p-reigosa-jose-pablo",
+      "price": 50,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-003",
+      "date": "2020-08-06",
+      "type": "sold",
+      "person": "p-reigosa-jose-pablo",
+      "price": 30,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-004",
+      "date": "2020-06-15",
+      "type": "sold",
+      "person": "p-de-pablos-mariana",
+      "price": 80,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-005",
+      "date": "2020-06-23",
+      "type": "sold",
+      "person": "p-zequeira-clara",
+      "price": 100,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-006",
+      "date": "2020-07-03",
+      "type": "sold",
+      "person": "p-trejocatala-mariana",
+      "price": 80,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-007",
+      "date": "2020-07-16",
+      "type": "sold",
+      "person": "p-guecera-jaime",
+      "price": 100,
+      "place": "USA — California",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-008",
+      "date": "2020-07-21",
+      "type": "sold",
+      "person": "p-alessi-isabella",
+      "price": 362,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-009",
+      "date": "2020-07-24",
+      "type": "sold",
+      "person": "p-reigosa-jose-pablo",
+      "price": 265,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-010",
+      "date": "2020-07-28",
+      "type": "sold",
+      "person": "p-lacayo-jaime",
+      "price": 150,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-011",
+      "date": "2020-08-04",
+      "type": "sold",
+      "person": "p-chu-marissa",
+      "price": 0,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-012",
+      "date": "2020-08-05",
+      "type": "sold",
+      "person": "p-gonzalez-cecilia",
+      "price": 140,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-013",
+      "date": "2020-08-07",
+      "type": "sold",
+      "person": "p-garcia-maribel",
+      "price": 55,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-014",
+      "date": "2020-08-16",
+      "type": "sold",
+      "person": "p-cambefort-belen",
+      "price": 75,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-015",
+      "date": "2020-08-26",
+      "type": "sold",
+      "person": "p-castro-maria-fernanda",
+      "price": 0,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-016",
+      "date": "2020-08-28",
+      "type": "sold",
+      "person": "p-richa-lisa",
+      "price": 85,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-017",
+      "date": "2020-09-01",
+      "type": "sold",
+      "person": "p-jimenez-karina",
+      "price": 85,
+      "place": "Panamá",
+      "notes": null
+    },
+    {
+      "work": "AR-2020-018",
+      "date": "2021-10-17",
+      "type": "sold",
+      "person": "p-velasco-ary",
+      "price": 316,
+      "place": "Asturias, España",
+      "notes": null
+    },
+    {
+      "work": "AR-2025-001",
+      "date": "2026-11-05",
+      "type": "exhibited",
+      "place": "Cosas Ecuador — Aqui, donde la luz nos halla, Guayaquil",
+      "price": null,
+      "person": null,
+      "notes": "Booth #16. Pieza central suspendida con cables. Nov 5-15, 2026."
+    },
+    {
+      "work": "AR-2026-007",
+      "date": "2026-11-05",
+      "type": "exhibited",
+      "place": "Cosas Ecuador — Aqui, donde la luz nos halla, Guayaquil",
+      "price": null,
+      "person": null,
+      "notes": "Booth #16. Pared del fondo. Nov 5-15, 2026."
+    },
+    {
+      "work": "AR-ND-010",
+      "date": "2026-11-05",
+      "type": "exhibited",
+      "place": "Cosas Ecuador — Aqui, donde la luz nos halla, Guayaquil",
+      "price": null,
+      "person": null,
+      "notes": "Booth #16. Pared izquierda. Nov 5-15, 2026."
+    },
+    {
+      "work": "AR-2025-003",
+      "date": "2026-11-05",
+      "type": "exhibited",
+      "place": "Cosas Ecuador — Aqui, donde la luz nos halla, Guayaquil",
+      "price": null,
+      "person": null,
+      "notes": "Booth #16. Pared derecha. Nov 5-15, 2026."
+    }
+  ],
+  "documentation": [
+    {
+      "date": "2026-08",
+      "type": "photographed",
+      "person": "p-huembes-faustino",
+      "place": "Panamá",
+      "subject": "Obras (incluida una en proceso) y retrato de Annie.",
+      "notes": "Fotografía fija. Títulos concretos de las obras terminadas, por listar."
+    },
+    {
+      "date": "2026-08",
+      "type": "filmed",
+      "person": "p-hemil-sebastian",
+      "place": "Panamá",
+      "subject": "Varias obras, una en proceso, y Annie.",
+      "notes": "Vídeo en cine, agosto 2026. Dicho como Sebas."
+    },
+    {
+      "date": "2026-08",
+      "type": "broadcast",
+      "person": "p-hemil-sebastian",
+      "place": "Hispania Media TV",
+      "subject": "Annie en televisión local.",
+      "notes": "Productor y presentador: Sebastián Hemil. Copresentadora: Isabella Fiore. Canal local digital (Hispania Media TV), no un canal abierto T tradicional — confirmar si el segmento fue Live Plus Magazine."
+    }
+  ],
+  "gaps": [
+    "Nombre de la compradora de Cost of Love (Juannio).",
+    "Nombre de la compradora del Untitled de París.",
+    "De donde venimos: ¿10 × 70 cm o 100 × 70 cm?",
+    "AR-ND-009 se asignó a Oil in Youth, un título que no existe. Número retirado; no reutilizar.",
+    "Red Thread: confirmar el año 2022.",
+    "José Pablo Reynosa vs Reigosa — en Excel es Reigosa; unificado aquí.",
+    "Excel 2020 tiene filas duplicadas (Carlos Díaz, Mariana de Pablos, Mariana trejocatala, Jaime Lacayo, Karina Jiménez).",
+    "Moneda de los precios no está escrita en Excel.",
+    "Cost of Love: Excel dice venta 7 oct 2026; Juannio cerró el 12 jul 2026.",
+    "Isabela Lezi (Gold Mine 2023) e Isabella Alessi (personalizado 2020) — no fusionar todavía.",
+    "Números AR-ND-* son provisionales hasta fechar la obra.",
+    "Obras TBD del catálogo 2026 (filas 6–10) no se metieron: sin título, in progress — salvo AR-2026-WIP-001, la que se fotografió en agosto.",
+    "Cuáles obras terminadas fotografió Faustino Huembes (además de la que está en proceso).",
+    "Cuáles obras salen en el vídeo de agosto de Sebastián. Dijo que fotografió plenty.",
+    "Nombre del programa en Hispania Media TV. ¿Es Live Plus Magazine?",
+    "Feel My Love AR-2026-007: confirmar tecnica exacta (oleo vs acrilico) y numero de inventario en reverso.",
+    "The Gift of an Abundant Life AR-2026-008: tecnica y medidas por confirmar.",
+    "Compositions of a Refraction (AR-2025-005/006) y Rhythms and Reflections (AR-2025-007/008): tecnica y medidas por confirmar.",
+    "Website lista 'The Point of Incidence' — confirmado como AR-ND-010 Point of Incidence."
+  ],
+  "documents": [
+    {
+      "id": "coa-AR-2020-001",
+      "work": "AR-2020-001",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-001",
+      "work": "AR-2020-001",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-001",
+      "work": "AR-2020-001",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-001",
+      "work": "AR-2020-001",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-002",
+      "work": "AR-2020-002",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-002",
+      "work": "AR-2020-002",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-002",
+      "work": "AR-2020-002",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-002",
+      "work": "AR-2020-002",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-003",
+      "work": "AR-2020-003",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-003",
+      "work": "AR-2020-003",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-003",
+      "work": "AR-2020-003",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-003",
+      "work": "AR-2020-003",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-004",
+      "work": "AR-2020-004",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-004",
+      "work": "AR-2020-004",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-004",
+      "work": "AR-2020-004",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-004",
+      "work": "AR-2020-004",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-005",
+      "work": "AR-2020-005",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-005",
+      "work": "AR-2020-005",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-005",
+      "work": "AR-2020-005",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-005",
+      "work": "AR-2020-005",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-006",
+      "work": "AR-2020-006",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-006",
+      "work": "AR-2020-006",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-006",
+      "work": "AR-2020-006",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-006",
+      "work": "AR-2020-006",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-007",
+      "work": "AR-2020-007",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-007",
+      "work": "AR-2020-007",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-007",
+      "work": "AR-2020-007",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-007",
+      "work": "AR-2020-007",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-008",
+      "work": "AR-2020-008",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-008",
+      "work": "AR-2020-008",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-008",
+      "work": "AR-2020-008",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-008",
+      "work": "AR-2020-008",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-009",
+      "work": "AR-2020-009",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-009",
+      "work": "AR-2020-009",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-009",
+      "work": "AR-2020-009",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-009",
+      "work": "AR-2020-009",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-010",
+      "work": "AR-2020-010",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-010",
+      "work": "AR-2020-010",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-010",
+      "work": "AR-2020-010",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-010",
+      "work": "AR-2020-010",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-011",
+      "work": "AR-2020-011",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-011",
+      "work": "AR-2020-011",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-011",
+      "work": "AR-2020-011",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-011",
+      "work": "AR-2020-011",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-012",
+      "work": "AR-2020-012",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-012",
+      "work": "AR-2020-012",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-012",
+      "work": "AR-2020-012",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-012",
+      "work": "AR-2020-012",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-013",
+      "work": "AR-2020-013",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-013",
+      "work": "AR-2020-013",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-013",
+      "work": "AR-2020-013",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-013",
+      "work": "AR-2020-013",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-014",
+      "work": "AR-2020-014",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-014",
+      "work": "AR-2020-014",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-014",
+      "work": "AR-2020-014",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-014",
+      "work": "AR-2020-014",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-015",
+      "work": "AR-2020-015",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-015",
+      "work": "AR-2020-015",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-015",
+      "work": "AR-2020-015",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-015",
+      "work": "AR-2020-015",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-016",
+      "work": "AR-2020-016",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-016",
+      "work": "AR-2020-016",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-016",
+      "work": "AR-2020-016",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-016",
+      "work": "AR-2020-016",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-017",
+      "work": "AR-2020-017",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-017",
+      "work": "AR-2020-017",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-017",
+      "work": "AR-2020-017",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-017",
+      "work": "AR-2020-017",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2020-018",
+      "work": "AR-2020-018",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2020-018",
+      "work": "AR-2020-018",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2020-018",
+      "work": "AR-2020-018",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2020-018",
+      "work": "AR-2020-018",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2023-001",
+      "work": "AR-2023-001",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2023-001",
+      "work": "AR-2023-001",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2023-001",
+      "work": "AR-2023-001",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2023-001",
+      "work": "AR-2023-001",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2023-002",
+      "work": "AR-2023-002",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2023-002",
+      "work": "AR-2023-002",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2023-002",
+      "work": "AR-2023-002",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2023-002",
+      "work": "AR-2023-002",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2023-003",
+      "work": "AR-2023-003",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2023-003",
+      "work": "AR-2023-003",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2023-003",
+      "work": "AR-2023-003",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2023-003",
+      "work": "AR-2023-003",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2023-004",
+      "work": "AR-2023-004",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2023-004",
+      "work": "AR-2023-004",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2023-004",
+      "work": "AR-2023-004",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2023-004",
+      "work": "AR-2023-004",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2026-002",
+      "work": "AR-2026-002",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2026-002",
+      "work": "AR-2026-002",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2026-002",
+      "work": "AR-2026-002",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2026-002",
+      "work": "AR-2026-002",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2026-003",
+      "work": "AR-2026-003",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2026-003",
+      "work": "AR-2026-003",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2026-003",
+      "work": "AR-2026-003",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2026-003",
+      "work": "AR-2026-003",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2026-005",
+      "work": "AR-2026-005",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-2026-005",
+      "work": "AR-2026-005",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2026-005",
+      "work": "AR-2026-005",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2026-005",
+      "work": "AR-2026-005",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-ND-008",
+      "work": "AR-ND-008",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello."
+    },
+    {
+      "id": "letter-AR-ND-008",
+      "work": "AR-ND-008",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-ND-008",
+      "work": "AR-ND-008",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-ND-008",
+      "work": "AR-ND-008",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    }
+  ]
+};
+
+    function dims(w) {
+      const h = w.height_cm || w.h;
+      const wd = w.width_cm || w.w;
+      const parts = [h, wd].filter((x) => x != null && x !== "");
+      if (!parts.length) return "alto × ancho cm";
+      return parts.join(" × ") + " cm";
+    }
+
+    (function fill() {
+      const id = new URLSearchParams(location.search).get("id");
+      if (!id) return;
+      const w = LEDGER.works.find((x) => x.id === id);
+      if (!w) return;
+
+      document.getElementById("field-title").textContent = w.title || "";
+      document.getElementById("field-year").textContent = w.year || "";
+      document.getElementById("field-medium").textContent = w.materials || w.medium || "";
+      document.getElementById("field-dims").textContent = dims(w);
+      document.getElementById("field-reg").textContent = w.id;
+      document.title = "Tarjeta - " + w.id;
+    })();
+  </script>
+
+</body>
+</html>

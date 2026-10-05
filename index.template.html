@@ -448,6 +448,7 @@
           ${(w.notes || []).map((n) => `<p class="notes">${esc(n)}</p>`).join("")}
           <div class="actions">
             <a class="btn" href="certificado.html?id=${encodeURIComponent(id)}">Certificado</a>
+            <a class="btn" href="tarjeta-exposicion.html?id=${encodeURIComponent(id)}">Tarjeta de expo</a>
             <a class="btn" href="carta.html?id=${encodeURIComponent(id)}">Nota de convivir</a>
             <a class="btn" href="carta-presentacion.html?id=${encodeURIComponent(id)}">Carta de la autora</a>
             <button type="button" class="btn" id="mark-verso">${versoMarked(w) ? "Verso marcado" : "Marcar verso"}</button>
