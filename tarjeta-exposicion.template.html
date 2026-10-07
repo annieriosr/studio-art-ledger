@@ -146,6 +146,32 @@
       line-height: 1.5;
     }
 
+
+    /* QR code block */
+    .qr-row {
+      display: flex;
+      align-items: center;
+      gap: 4mm;
+      margin-top: 4mm;
+      padding-top: 3mm;
+      border-top: 0.4pt solid var(--rule);
+    }
+    .qr-img {
+      width: 16mm;
+      height: 16mm;
+      flex-shrink: 0;
+    }
+    .qr-label {
+      font-size: 6.5pt;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+    }
+    .qr-url {
+      font-size: 6pt;
+      color: var(--ink-soft);
+      word-break: break-all;
+    }
     [contenteditable="true"]:focus { outline: none; }
 
     /* ── Print ── */
@@ -194,7 +220,15 @@
 
     <footer class="exhibition">
       <span id="field-exhibition" contenteditable="true" spellcheck="false">Cosas Ecuador &mdash; Aqui, donde la luz nos halla &nbsp;&middot;&nbsp; Booth #16, Guayaquil &nbsp;&middot;&nbsp; Nov 5&ndash;15, 2026</span>
-    </footer>
+    
+      <div class="qr-row" id="qr-row" style="display:none">
+        <img class="qr-img" id="qr-img" src="" alt="QR">
+        <div>
+          <div class="qr-label">Scan to view online</div>
+          <div class="qr-url" id="qr-url"></div>
+        </div>
+      </div>
+  </footer>
 
   </article>
 
@@ -221,6 +255,13 @@
       document.getElementById("field-dims").textContent = dims(w);
       document.getElementById("field-reg").textContent = w.id;
       document.title = "Tarjeta - " + w.id;
+      // QR code
+      if (w.qr_b64 && w.exhibition_url) {
+        document.getElementById('qr-img').src = w.qr_b64;
+        document.getElementById('qr-url').textContent = w.exhibition_url;
+        document.getElementById('qr-row').style.display = 'flex';
+      }
+
     })();
   </script>
 
