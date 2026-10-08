@@ -3597,6 +3597,7 @@
             return `<li>${esc(bits.join(" · "))}</li>`;
           }).join("")}</ul>`
         : "";
+      const encId = encodeURIComponent(w.id);
       return `<article class="card">
         <p class="id">${esc(w.id)}</p>
         <p class="title"><a class="title-link" href="#obra/${esc(w.id)}">${esc(w.title)}</a></p>
@@ -3605,6 +3606,12 @@
         <p class="meta"><span class="lemma">Ahora.</span> ${esc(loc.label)}</p>
         <p class="meta"><span class="lemma">Año.</span> ${esc(w.year || "por fechar")} · <span class="lemma">Medio.</span> ${esc(w.materials || w.medium || "—")} · <span class="lemma">Medidas.</span> ${esc(dims(w))}</p>
         ${evHtml}
+        <div class="actions">
+          <a class="btn" href="certificado.html?id=${encId}" target="_blank">Certificado</a>
+          <a class="btn" href="tarjeta-exposicion.html?id=${encId}" target="_blank">Tarjeta</a>
+          <a class="btn" href="carta.html?id=${encId}" target="_blank">Nota convivir</a>
+          <a class="btn" href="carta-presentacion.html?id=${encId}" target="_blank">Carta autora</a>
+        </div>
       </article>`;
     }
 
