@@ -2399,9 +2399,9 @@
       "type": "sold",
       "place": "Panama",
       "person": "p-estribi-carolina",
-      "price": null,
+      "price": 1600,
       "currency": "USD",
-      "notes": "Vendida a Carolina Estribi Riera, 1 sep 2026. Precio por confirmar."
+      "notes": "Vendida a Carolina Estribi Riera, 1 sep 2026. 1600 USD."
     }
   ],
   "documentation": [
