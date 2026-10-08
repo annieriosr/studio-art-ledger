@@ -148,6 +148,27 @@
     }
     .back { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; display: inline-block; }
     footer { margin-top: 36px; font-size: 13px; color: var(--ink-soft); max-width: 62ch; }
+    /* ── Filters ── */
+    #filters { margin-bottom: 22px; }
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      padding: 14px 0 12px; border-bottom: 1px solid var(--rule);
+    }
+    .filter-bar select {
+      font: inherit; font-size: 13px;
+      background: var(--paper); color: var(--ink);
+      border: 1px solid var(--rule); padding: 5px 10px;
+      cursor: pointer; max-width: 200px;
+    }
+    .filter-bar select:focus { outline: 1px solid var(--ink-soft); }
+    .filter-bar .btn-reset {
+      font: 600 11px/1 system-ui, sans-serif;
+      letter-spacing: .06em; background: transparent;
+      border: 1px solid var(--rule); color: var(--ink-soft);
+      padding: 6px 12px; cursor: pointer;
+    }
+    .filter-bar .btn-reset:hover { border-color: var(--ink); color: var(--ink); }
+    .filter-count { font-size: 13px; color: var(--ink-soft); margin-left: 4px; }
     footer a { color: inherit; }
   </style>
 </head>
@@ -159,6 +180,7 @@
     </header>
     <div class="stats" id="stats"></div>
     <nav id="nav"></nav>
+    <div id="filters"></div>
     <div id="main"></div>
     <footer>
       Número en el reverso, mismo número en la foto, mismo número en el certificado. Si la empresa desaparece un martes, quedan <code>data/export/</code> y <code>photos/AR-…/</code>. Borradores de venta viven solo en este navegador hasta que los pases al constructor. Fuente: Excel 2020, catálogo 2026, y lo dictado el 29 de agosto.
@@ -535,6 +557,73 @@
       });
     }
 
+    // ── Filter state ──────────────────────────────────────────────────────────
+    let F = { collection: '', year: '', exhibition: '', status: '' };
+
+    function applyFilters(works) {
+      return works.filter((w) => {
+        if (F.collection && (w.collection || '') !== F.collection) return false;
+        if (F.year && String(w.year || '') !== F.year) return false;
+        if (F.status) {
+          const kind = custody(w.id).kind;
+          if (F.status === 'studio'    && kind !== 'studio')    return false;
+          if (F.status === 'collector' && kind !== 'collector') return false;
+        }
+        if (F.exhibition) {
+          const evs = eventsByWork()[w.id] || [];
+          if (!evs.some((e) => (e.place || '').toLowerCase().includes(F.exhibition.toLowerCase()))) return false;
+        }
+        return true;
+      });
+    }
+
+    function renderFilters(works) {
+      const bar = document.getElementById('filters');
+      if (!bar) return;
+
+      // Build unique sorted option lists
+      const collections = [...new Set(works.map((w) => w.collection || '').filter(Boolean))].sort();
+      const years       = [...new Set(works.map((w) => String(w.year || '')).filter(Boolean))].sort().reverse();
+      const exhibitions = [...new Set(
+        works.flatMap((w) => (eventsByWork()[w.id] || []).map((e) => e.place || '').filter(Boolean))
+      )].sort();
+
+      function sel(id, label, opts, val) {
+        return `<select id="${id}" title="${label}">
+          <option value="">${label}</option>
+          ${opts.map((o) => `<option value="${esc(o)}"${val === o ? ' selected' : ''}>${esc(o)}</option>`).join('')}
+        </select>`;
+      }
+
+      bar.innerHTML = `<div class="filter-bar">
+        ${sel('f-collection', 'Colección',    collections, F.collection)}
+        ${sel('f-year',       'Año',           years,       F.year)}
+        ${sel('f-exhibition', 'Exposición',    exhibitions, F.exhibition)}
+        <select id="f-status" title="Estado">
+          <option value="">Estado</option>
+          <option value="studio"    ${F.status==='studio'    ?'selected':''}>En estudio</option>
+          <option value="collector" ${F.status==='collector' ?'selected':''}>Con coleccionista</option>
+        </select>
+        <button class="btn-reset" id="f-reset">Limpiar</button>
+        <span class="filter-count" id="filter-count"></span>
+      </div>`;
+
+      document.getElementById('f-collection').onchange  = (e) => { F.collection  = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-year').onchange        = (e) => { F.year        = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-exhibition').onchange  = (e) => { F.exhibition  = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-status').onchange      = (e) => { F.status      = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-reset').onclick        = () => { F = { collection:'', year:'', exhibition:'', status:'' }; renderFilters(LEDGER.works); renderCatalogCards(); };
+    }
+
+    function renderCatalogCards() {
+      const filtered = applyFilters(LEDGER.works);
+      const count = document.getElementById('filter-count');
+      if (count) count.textContent = `${filtered.length} obra${filtered.length !== 1 ? 's' : ''}`;
+      document.getElementById('main').innerHTML =
+        `<p class="notes">Siguiente número ${new Date().getFullYear()}: ${esc(nextId(new Date().getFullYear()))}. Identidad se llena al bajar del caballete. La ubicación no.</p>` +
+        filtered.map((w) => card(w, { compact: true })).join('');
+    }
+
     function render() {
       const { view, id } = parseHash();
       document.getElementById("nav").innerHTML = views.map((v) =>
@@ -638,13 +727,22 @@
         return;
       }
 
+      // Clear filters div for non-catalogue views
+      const filtersDiv = document.getElementById('filters');
+      if (filtersDiv) filtersDiv.innerHTML = '';
+
       let list = LEDGER.works;
       if (view === "watch") list = watch;
       const label = (views.find((v) => v.id === view) || { label: "Catálogo" }).label;
-      const extra = view === "catalogo"
-        ? `<p class="notes">Siguiente número ${new Date().getFullYear()}: ${esc(nextId(new Date().getFullYear()))}. Identidad se llena al bajar del caballete. La ubicación no.</p>`
-        : "";
-      main.innerHTML = `<h2>${esc(label)}</h2>${extra}` + list.map((w) => card(w, { compact: true })).join("");
+
+      if (view === "catalogo") {
+        main.innerHTML = `<h2>${esc(label)}</h2>`;
+        renderFilters(LEDGER.works);
+        renderCatalogCards();
+        return;
+      }
+
+      main.innerHTML = `<h2>${esc(label)}</h2>` + list.map((w) => card(w, { compact: true })).join("");
     }
 
     document.getElementById("nav").addEventListener("click", (e) => {

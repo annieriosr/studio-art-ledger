@@ -148,6 +148,27 @@
     }
     .back { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; display: inline-block; }
     footer { margin-top: 36px; font-size: 13px; color: var(--ink-soft); max-width: 62ch; }
+    /* ── Filters ── */
+    #filters { margin-bottom: 22px; }
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      padding: 14px 0 12px; border-bottom: 1px solid var(--rule);
+    }
+    .filter-bar select {
+      font: inherit; font-size: 13px;
+      background: var(--paper); color: var(--ink);
+      border: 1px solid var(--rule); padding: 5px 10px;
+      cursor: pointer; max-width: 200px;
+    }
+    .filter-bar select:focus { outline: 1px solid var(--ink-soft); }
+    .filter-bar .btn-reset {
+      font: 600 11px/1 system-ui, sans-serif;
+      letter-spacing: .06em; background: transparent;
+      border: 1px solid var(--rule); color: var(--ink-soft);
+      padding: 6px 12px; cursor: pointer;
+    }
+    .filter-bar .btn-reset:hover { border-color: var(--ink); color: var(--ink); }
+    .filter-count { font-size: 13px; color: var(--ink-soft); margin-left: 4px; }
     footer a { color: inherit; }
   </style>
 </head>
@@ -159,6 +180,7 @@
     </header>
     <div class="stats" id="stats"></div>
     <nav id="nav"></nav>
+    <div id="filters"></div>
     <div id="main"></div>
     <footer>
       Número en el reverso, mismo número en la foto, mismo número en el certificado. Si la empresa desaparece un martes, quedan <code>data/export/</code> y <code>photos/AR-…/</code>. Borradores de venta viven solo en este navegador hasta que los pases al constructor. Fuente: Excel 2020, catálogo 2026, y lo dictado el 29 de agosto.
@@ -370,7 +392,8 @@
       },
       "date_documented": "2026-08-29",
       "exhibition_url": "https://annieabstracts.com/casas-ecuador-2026/what-remains-below/",
-      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABoUlEQVR4nM1XMW4EQQjzrNKbH+z/n7U/MC8gMpdIiZIuLjLFnJjC4owx7Bn8PH398gj8j9dzTqGAc9CnasMELmdwVDXqW9ow8y9OgSU56bvkMID7tnerngfQ+ahiCndaqGarUrgXMEKjj9g3IYcB3DMH4JeHBvj8HRfjg6E4EF+hEric4d6vvGkmIvlSAuSsnbIQwgUMhRGd8EBgBFccJ7mNZi1wMrgjQYtOcgjFcCkSkEYDyr8hndEpm2MrzZqL6IymQHS9hpQZSfRbs++2ctUo6AYQ6Te5cq4bQXddqi+AFYGsg5VxhN83DM4UQTTKzfyk/LdU3a/o8LlNdEQPorsM9l77GVP8yvZoeskdQyH9ArJFrizcdxncC5o6wFPnWLnkdKJuMJ9jDvhyCjnxDC5ML2eRTUrIH8Zd5rYzxy5dCBcGtpuNBQd3c2wew8PI3Dr7BL/X7pPaAfdUwZtlYp/Eznl9NMS6TkwP3LJx5LEJRvi99u5zA0Xb+24TKVzaJR8vlJS9LcXv7HpmxbmAKd/B2g1Xcan94XND/3b+8XfWO2EXWQATXGIYAAAAAElFTkSuQmCC"
+      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABoUlEQVR4nM1XMW4EQQjzrNKbH+z/n7U/MC8gMpdIiZIuLjLFnJjC4owx7Bn8PH398gj8j9dzTqGAc9CnasMELmdwVDXqW9ow8y9OgSU56bvkMID7tnerngfQ+ahiCndaqGarUrgXMEKjj9g3IYcB3DMH4JeHBvj8HRfjg6E4EF+hEric4d6vvGkmIvlSAuSsnbIQwgUMhRGd8EBgBFccJ7mNZi1wMrgjQYtOcgjFcCkSkEYDyr8hndEpm2MrzZqL6IymQHS9hpQZSfRbs++2ctUo6AYQ6Te5cq4bQXddqi+AFYGsg5VxhN83DM4UQTTKzfyk/LdU3a/o8LlNdEQPorsM9l77GVP8yvZoeskdQyH9ArJFrizcdxncC5o6wFPnWLnkdKJuMJ9jDvhyCjnxDC5ML2eRTUrIH8Zd5rYzxy5dCBcGtpuNBQd3c2wew8PI3Dr7BL/X7pPaAfdUwZtlYp/Eznl9NMS6TkwP3LJx5LEJRvi99u5zA0Xb+24TKVzaJR8vlJS9LcXv7HpmxbmAKd/B2g1Xcan94XND/3b+8XfWO2EXWQATXGIYAAAAAElFTkSuQmCC",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2026-002",
@@ -414,7 +437,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2026-003",
@@ -449,7 +473,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2026-004",
@@ -484,7 +509,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2026-005",
@@ -521,7 +547,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2026-006",
@@ -556,7 +583,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2025-001",
@@ -594,7 +622,8 @@
       },
       "date_documented": "2026-08-29",
       "exhibition_url": "https://annieabstracts.com/casas-ecuador-2026/all-the-ways-we-shine/",
-      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABoUlEQVR4nNVXQYocQQyTh9zlH/T/n1U/UL1AQR4WFja5ZH3YNEMzroPKyLLsLuPrc19/OAR+xmlVdQONW7dqwhVc2hDuaegxO+EC7i+giPsA9zmnMeEaOw90DOJc/SPCX04vePNS7+E6OXb3wXOpCb+PWy6Anw4uwLNRNwc90CqjJ1zoC5gmQIr5F1RTG7g2IuCoWBINWTv6daNdqRdL0Ip+YYKSRxSmqChiI98rPO8b6gKnjT5b+VofBG/xC9NiWJDDwdCxgqs8YCTBqDj5r+QrzTtyo0FxCddwWoJC8vYaD067Jdkg55IN3Fecxkdu4cAodO30hWMLGpEhwki0ggubkcWoLR23pF9xtBuRBX+rboDCAkOGYQV7hQdFDlFtxDY37PCAKCvCjQ0HfSlfimSaOSy81bEzLzRdjLf1TO1W6iZmxIWGiA5bvpNnXCxjI1es6Pf1XiAf4WjGxiw8O35mJmeN9cTPNnh4AdX53Wk33VlRtvY+3WKrT/bJTKItXAJ9n5u9PaNojV9laYg/pJXXfAeM8c6QzwUrdav/7DvrNxbYUOtmzi6HAAAAAElFTkSuQmCC"
+      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABoUlEQVR4nNVXQYocQQyTh9zlH/T/n1U/UL1AQR4WFja5ZH3YNEMzroPKyLLsLuPrc19/OAR+xmlVdQONW7dqwhVc2hDuaegxO+EC7i+giPsA9zmnMeEaOw90DOJc/SPCX04vePNS7+E6OXb3wXOpCb+PWy6Anw4uwLNRNwc90CqjJ1zoC5gmQIr5F1RTG7g2IuCoWBINWTv6daNdqRdL0Ip+YYKSRxSmqChiI98rPO8b6gKnjT5b+VofBG/xC9NiWJDDwdCxgqs8YCTBqDj5r+QrzTtyo0FxCddwWoJC8vYaD067Jdkg55IN3Fecxkdu4cAodO30hWMLGpEhwki0ggubkcWoLR23pF9xtBuRBX+rboDCAkOGYQV7hQdFDlFtxDY37PCAKCvCjQ0HfSlfimSaOSy81bEzLzRdjLf1TO1W6iZmxIWGiA5bvpNnXCxjI1es6Pf1XiAf4WjGxiw8O35mJmeN9cTPNnh4AdX53Wk33VlRtvY+3WKrT/bJTKItXAJ9n5u9PaNojV9laYg/pJXXfAeM8c6QzwUrdav/7DvrNxbYUOtmzi6HAAAAAElFTkSuQmCC",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2025-002",
@@ -629,7 +658,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2025-003",
@@ -669,7 +699,8 @@
       },
       "date_documented": "2026-08-29",
       "exhibition_url": "https://annieabstracts.com/casas-ecuador-2026/the-inbetween-space/",
-      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABoklEQVR4nM1XwW3EMAyji/vTG3j/sbIBPQEL2i1QoPcrHzWQXOQHw6MoyRnG77U/3mwC/2N3jDGxMW48T9jApY29hmYw9wkLuC9gEBOYxjM9mLCoDrnBbzE6fM96OABh3ajC1wI1IYPYSljAHR4Af2xsgM/fceEsiBQRM2SpgcvAMVrIEQOs4YqyTDIvsEq4FIMc+KQuzBu4siLt8UGsATdwX1jQ8AaGvAe0UnAV/+6pAaw0THE9lgq4cCQ2raQtOezoADNZA3GcAIsl/9qxbiyW8NDu+AEhenkGM5wr+oqMyI6T85KKfz/SdJ5tY+JBMjcr8wIOW51SPnZIMXd0MK0IfAr5PHf8gPz9wOFWdMm/OrUgp/XExelplXlhDGNjaWfGxcWVeYEvrqmLJLE3LwTGELGwskr9wbjpUkSganx9zJVKy9CIO0p9x/Ewb0cL+wbfcc4PD/e87Wyi5Qem4ZzxGeY0an4gk7k8ZKPTf1/3Z2XK5US5166cU1/nzidcp0/VYXVwjamZhOXaE5XzJDLemdyl/+qe/io+e7P5j7+zPgE+70FfR8egfAAAAABJRU5ErkJggg=="
+      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABoklEQVR4nM1XwW3EMAyji/vTG3j/sbIBPQEL2i1QoPcrHzWQXOQHw6MoyRnG77U/3mwC/2N3jDGxMW48T9jApY29hmYw9wkLuC9gEBOYxjM9mLCoDrnBbzE6fM96OABh3ajC1wI1IYPYSljAHR4Af2xsgM/fceEsiBQRM2SpgcvAMVrIEQOs4YqyTDIvsEq4FIMc+KQuzBu4siLt8UGsATdwX1jQ8AaGvAe0UnAV/+6pAaw0THE9lgq4cCQ2raQtOezoADNZA3GcAIsl/9qxbiyW8NDu+AEhenkGM5wr+oqMyI6T85KKfz/SdJ5tY+JBMjcr8wIOW51SPnZIMXd0MK0IfAr5PHf8gPz9wOFWdMm/OrUgp/XExelplXlhDGNjaWfGxcWVeYEvrqmLJLE3LwTGELGwskr9wbjpUkSganx9zJVKy9CIO0p9x/Ewb0cL+wbfcc4PD/e87Wyi5Qem4ZzxGeY0an4gk7k8ZKPTf1/3Z2XK5US5166cU1/nzidcp0/VYXVwjamZhOXaE5XzJDLemdyl/+qe/io+e7P5j7+zPgE+70FfR8egfAAAAABJRU5ErkJggg==",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2023-001",
@@ -705,7 +736,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "This is Abstraction"
     },
     {
       "id": "AR-2023-002",
@@ -740,7 +772,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "This is Abstraction"
     },
     {
       "id": "AR-2023-003",
@@ -777,7 +810,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "This is Abstraction"
     },
     {
       "id": "AR-2023-004",
@@ -814,7 +848,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "This is Abstraction"
     },
     {
       "id": "AR-2022-001",
@@ -850,7 +885,8 @@
       },
       "date_documented": "2026-08-29",
       "exhibition_url": "https://annieabstracts.com/casas-ecuador-2026/red-thread/",
-      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUAQAAAABdRz15AAABcUlEQVR4nM2WzY3dQAyDPw32TnXw+i/LHUgVKOA87CW7QBbRIRkYtkcYE6R+HcPvq88XE/w7W0RkRndC3w0bPEYzmioBupva4H1ACEQz0Xk3Z4F37j2SUuqvvv3Opse8qv507kd6h0QTlVnvzfnm3PmhLSbsvc/V5noWeIwXJZXqvs8qvockA+oBMiKWehk7bUpIVTXFlp9DEDQPLzKpXXyv/6qGcb6Upnb8rPeCjZmNrP2s8DTmVCoNugzPjl+N3AR9L7TWq7HfyrKdhku9MRCokofbEB6t+jODNSJTY59/vIN7c1nXmVu8cQjsRVPEj7PDG4TK2UyJNZ5uJkvSFC6UWvIrzyHjujis+CzwPuDFA8WTPc2+HzDOFCzV+beuDy+EQ6x71U5vOBjtAdyV2Uu9B93x0S44F/B+XobeUy5R+/Hs53k5LnId86otP+4AjnGHcaGwnUcFWdNktuHY4XUEQTZP3QTc/m98Mf1X/7u/AMGk/jxTIsIOAAAAAElFTkSuQmCC"
+      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUAQAAAABdRz15AAABcUlEQVR4nM2WzY3dQAyDPw32TnXw+i/LHUgVKOA87CW7QBbRIRkYtkcYE6R+HcPvq88XE/w7W0RkRndC3w0bPEYzmioBupva4H1ACEQz0Xk3Z4F37j2SUuqvvv3Opse8qv507kd6h0QTlVnvzfnm3PmhLSbsvc/V5noWeIwXJZXqvs8qvockA+oBMiKWehk7bUpIVTXFlp9DEDQPLzKpXXyv/6qGcb6Upnb8rPeCjZmNrP2s8DTmVCoNugzPjl+N3AR9L7TWq7HfyrKdhku9MRCokofbEB6t+jODNSJTY59/vIN7c1nXmVu8cQjsRVPEj7PDG4TK2UyJNZ5uJkvSFC6UWvIrzyHjujis+CzwPuDFA8WTPc2+HzDOFCzV+beuDy+EQ6x71U5vOBjtAdyV2Uu9B93x0S44F/B+XobeUy5R+/Hs53k5LnId86otP+4AjnGHcaGwnUcFWdNktuHY4XUEQTZP3QTc/m98Mf1X/7u/AMGk/jxTIsIOAAAAAElFTkSuQmCC",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2024-001",
@@ -885,7 +921,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2024-003",
@@ -920,7 +957,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2024-004",
@@ -956,7 +994,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2024-005",
@@ -992,7 +1031,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2024-006",
@@ -1030,7 +1070,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2024-007",
@@ -1065,7 +1106,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2024-008",
@@ -1100,7 +1142,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": "Show Me a Feeling"
     },
     {
       "id": "AR-2025-009",
@@ -1140,7 +1183,8 @@
       },
       "date_documented": "2026-08-29",
       "exhibition_url": "https://annieabstracts.com/casas-ecuador-2026/point-of-incidence/",
-      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABnklEQVR4nNVXMXLkMAwDd7YHf+D/P8s/gF6ADOikyV11YXFR4bVUYGAQhLhl/LnO6y+HwP9xWlWNPqez0LP9OS5Mm5ZhmRKz1c9x30ARDTgvF9TFRXUOqmCc0/+K8G2953kEdvPG9Zyu8LVAACIu3sp2AbdcGNivdQDeG37IAuMLjhtsL/gBJkCT9PDOcwP3jfvC3bjR09HtKLHBFxaUcoU4TGGjL+BAPtIKNpDNCq5I0IZjuGG9UzePgSlJJmXt+AEO5vNGQJF4xb+Kf9NlUVqRZAH3hUY11TGwKrHTO/nrEGZskObgJPFO3QCNa5Pr0XhLX0ytonC8EM5LOjAF02PdiLGDy1g3rcZwtZb8a4GB/sy0Nf9qXBDbTvSs6Yt8fr6eyd/ou5QPHCXScsNVW/eFI/LcGeM5aS3P/EmbA7+Fi5QtaRZIAEv6Zj0X5mhgrPi3Zn64idMuZzYDsDI/MHST7rFuqriUv6jOPYzJ3zrFlfx9PT8Hpe56Wm5vnsQl9Q0eXMo8vKWvqDFEknItH/BgZY54JpMN3Ppl/7M+AGsDUfW0DgyjAAAAAElFTkSuQmCC"
+      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkAQAAAAAxzrjsAAABnklEQVR4nNVXMXLkMAwDd7YHf+D/P8s/gF6ADOikyV11YXFR4bVUYGAQhLhl/LnO6y+HwP9xWlWNPqez0LP9OS5Mm5ZhmRKz1c9x30ARDTgvF9TFRXUOqmCc0/+K8G2953kEdvPG9Zyu8LVAACIu3sp2AbdcGNivdQDeG37IAuMLjhtsL/gBJkCT9PDOcwP3jfvC3bjR09HtKLHBFxaUcoU4TGGjL+BAPtIKNpDNCq5I0IZjuGG9UzePgSlJJmXt+AEO5vNGQJF4xb+Kf9NlUVqRZAH3hUY11TGwKrHTO/nrEGZskObgJPFO3QCNa5Pr0XhLX0ytonC8EM5LOjAF02PdiLGDy1g3rcZwtZb8a4GB/sy0Nf9qXBDbTvSs6Yt8fr6eyd/ou5QPHCXScsNVW/eFI/LcGeM5aS3P/EmbA7+Fi5QtaRZIAEv6Zj0X5mhgrPi3Zn64idMuZzYDsDI/MHST7rFuqriUv6jOPYzJ3zrFlfx9PT8Hpe56Wm5vnsQl9Q0eXMo8vKWvqDFEknItH/BgZY54JpMN3Ppl/7M+AGsDUfW0DgyjAAAAAElFTkSuQmCC",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2020-001",
@@ -1176,7 +1220,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-002",
@@ -1211,7 +1256,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-003",
@@ -1245,7 +1291,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-004",
@@ -1279,7 +1326,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-005",
@@ -1313,7 +1361,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-006",
@@ -1347,7 +1396,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-007",
@@ -1382,7 +1432,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-008",
@@ -1416,7 +1467,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-009",
@@ -1450,7 +1502,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-010",
@@ -1484,7 +1537,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-011",
@@ -1518,7 +1572,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-012",
@@ -1552,7 +1607,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-013",
@@ -1586,7 +1642,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-014",
@@ -1620,7 +1677,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-015",
@@ -1654,7 +1712,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-016",
@@ -1688,7 +1747,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-017",
@@ -1722,7 +1782,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2020-018",
@@ -1756,7 +1817,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-08-29"
+      "date_documented": "2026-08-29",
+      "collection": null
     },
     {
       "id": "AR-2026-007",
@@ -1793,7 +1855,8 @@
       },
       "date_documented": "2026-10-05",
       "exhibition_url": "https://annieabstracts.com/casas-ecuador-2026/feel-my-love/",
-      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUAQAAAABdRz15AAABZ0lEQVR4nM1WUW5CMQxzKv7dG3D/Y3ED9wSenAcfbF9bJm1FgtcKLDt2E8r4vM76cgT83VlVbey969S5NmuAB9OmZJHOy9QE7wYUscFjlHuDX6iBoLP5s9++rVu/kyoenHvv1vtXvntm4ezyg2BvMMErF4LzXAfgY6bXQdUdUIGe5hkmQFsUyH7WsH6iTkEbeAjCNM+QGZ00KRIzfjAsS7Klp8NrhgciBGVDivo1wmNuLwMFIa5ohmeZjhFOFTXXK4ZfwmJQw7wgDYrSSzWH/QrJc/v7IjvFCxKlzl8CONVLBazT3CTHehOROOFEO36vER6oxKXTfNFcM35oXilggqh5/SI1cJkj0/tR3kL55Jn7AN6j/gxnsW1pl8f+IhHJGIrmcf9bsQH3XNxoVt7WiB/D6jIlc26cP6I7i7tV9d1bA7x1fRyXiGJlzq0ZnhPmYibw4R7XDxkgusYclOE0y/OXo3/1f/cD3w0IQukYPTsAAAAASUVORK5CYII="
+      "qr_b64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUAQAAAABdRz15AAABZ0lEQVR4nM1WUW5CMQxzKv7dG3D/Y3ED9wSenAcfbF9bJm1FgtcKLDt2E8r4vM76cgT83VlVbey969S5NmuAB9OmZJHOy9QE7wYUscFjlHuDX6iBoLP5s9++rVu/kyoenHvv1vtXvntm4ezyg2BvMMErF4LzXAfgY6bXQdUdUIGe5hkmQFsUyH7WsH6iTkEbeAjCNM+QGZ00KRIzfjAsS7Klp8NrhgciBGVDivo1wmNuLwMFIa5ohmeZjhFOFTXXK4ZfwmJQw7wgDYrSSzWH/QrJc/v7IjvFCxKlzl8CONVLBazT3CTHehOROOFEO36vER6oxKXTfNFcM35oXilggqh5/SI1cJkj0/tR3kL55Jn7AN6j/gxnsW1pl8f+IhHJGIrmcf9bsQH3XNxoVt7WiB/D6jIlc26cP6I7i7tV9d1bA7x1fRyXiGJlzq0ZnhPmYibw4R7XDxkgusYclOE0y/OXo3/1f/cD3w0IQukYPTsAAAAASUVORK5CYII=",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2026-008",
@@ -1832,7 +1895,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-10-05"
+      "date_documented": "2026-10-05",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2025-005",
@@ -1866,7 +1930,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-10-05"
+      "date_documented": "2026-10-05",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2025-006",
@@ -1900,7 +1965,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-10-05"
+      "date_documented": "2026-10-05",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2025-007",
@@ -1934,7 +2000,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-10-05"
+      "date_documented": "2026-10-05",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2025-008",
@@ -1968,7 +2035,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-10-05"
+      "date_documented": "2026-10-05",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2026-009",
@@ -2002,7 +2070,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-10-07"
+      "date_documented": "2026-10-07",
+      "collection": "Three Elements of a Refraction"
     },
     {
       "id": "AR-2024-009",
@@ -2036,7 +2105,8 @@
         "verso": null,
         "detail": null
       },
-      "date_documented": "2026-10-07"
+      "date_documented": "2026-10-07",
+      "collection": "Show Me a Feeling"
     }
   ],
   "events": [
@@ -3774,6 +3844,73 @@
       });
     }
 
+    // ── Filter state ──────────────────────────────────────────────────────────
+    let F = { collection: '', year: '', exhibition: '', status: '' };
+
+    function applyFilters(works) {
+      return works.filter((w) => {
+        if (F.collection && (w.collection || '') !== F.collection) return false;
+        if (F.year && String(w.year || '') !== F.year) return false;
+        if (F.status) {
+          const kind = custody(w.id).kind;
+          if (F.status === 'studio'    && kind !== 'studio')    return false;
+          if (F.status === 'collector' && kind !== 'collector') return false;
+        }
+        if (F.exhibition) {
+          const evs = eventsByWork()[w.id] || [];
+          if (!evs.some((e) => (e.place || '').toLowerCase().includes(F.exhibition.toLowerCase()))) return false;
+        }
+        return true;
+      });
+    }
+
+    function renderFilters(works) {
+      const bar = document.getElementById('filters');
+      if (!bar) return;
+
+      // Build unique sorted option lists
+      const collections = [...new Set(works.map((w) => w.collection || '').filter(Boolean))].sort();
+      const years       = [...new Set(works.map((w) => String(w.year || '')).filter(Boolean))].sort().reverse();
+      const exhibitions = [...new Set(
+        works.flatMap((w) => (eventsByWork()[w.id] || []).map((e) => e.place || '').filter(Boolean))
+      )].sort();
+
+      function sel(id, label, opts, val) {
+        return `<select id="${id}" title="${label}">
+          <option value="">${label}</option>
+          ${opts.map((o) => `<option value="${esc(o)}"${val === o ? ' selected' : ''}>${esc(o)}</option>`).join('')}
+        </select>`;
+      }
+
+      bar.innerHTML = `<div class="filter-bar">
+        ${sel('f-collection', 'Colección',    collections, F.collection)}
+        ${sel('f-year',       'Año',           years,       F.year)}
+        ${sel('f-exhibition', 'Exposición',    exhibitions, F.exhibition)}
+        <select id="f-status" title="Estado">
+          <option value="">Estado</option>
+          <option value="studio"    ${F.status==='studio'    ?'selected':''}>En estudio</option>
+          <option value="collector" ${F.status==='collector' ?'selected':''}>Con coleccionista</option>
+        </select>
+        <button class="btn-reset" id="f-reset">Limpiar</button>
+        <span class="filter-count" id="filter-count"></span>
+      </div>`;
+
+      document.getElementById('f-collection').onchange  = (e) => { F.collection  = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-year').onchange        = (e) => { F.year        = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-exhibition').onchange  = (e) => { F.exhibition  = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-status').onchange      = (e) => { F.status      = e.target.value; renderCatalogCards(); };
+      document.getElementById('f-reset').onclick        = () => { F = { collection:'', year:'', exhibition:'', status:'' }; renderFilters(LEDGER.works); renderCatalogCards(); };
+    }
+
+    function renderCatalogCards() {
+      const filtered = applyFilters(LEDGER.works);
+      const count = document.getElementById('filter-count');
+      if (count) count.textContent = `${filtered.length} obra${filtered.length !== 1 ? 's' : ''}`;
+      document.getElementById('main').innerHTML =
+        `<p class="notes">Siguiente número ${new Date().getFullYear()}: ${esc(nextId(new Date().getFullYear()))}. Identidad se llena al bajar del caballete. La ubicación no.</p>` +
+        filtered.map((w) => card(w, { compact: true })).join('');
+    }
+
     function render() {
       const { view, id } = parseHash();
       document.getElementById("nav").innerHTML = views.map((v) =>
@@ -3877,13 +4014,22 @@
         return;
       }
 
+      // Clear filters div for non-catalogue views
+      const filtersDiv = document.getElementById('filters');
+      if (filtersDiv) filtersDiv.innerHTML = '';
+
       let list = LEDGER.works;
       if (view === "watch") list = watch;
       const label = (views.find((v) => v.id === view) || { label: "Catálogo" }).label;
-      const extra = view === "catalogo"
-        ? `<p class="notes">Siguiente número ${new Date().getFullYear()}: ${esc(nextId(new Date().getFullYear()))}. Identidad se llena al bajar del caballete. La ubicación no.</p>`
-        : "";
-      main.innerHTML = `<h2>${esc(label)}</h2>${extra}` + list.map((w) => card(w, { compact: true })).join("");
+
+      if (view === "catalogo") {
+        main.innerHTML = `<h2>${esc(label)}</h2>`;
+        renderFilters(LEDGER.works);
+        renderCatalogCards();
+        return;
+      }
+
+      main.innerHTML = `<h2>${esc(label)}</h2>` + list.map((w) => card(w, { compact: true })).join("");
     }
 
     document.getElementById("nav").addEventListener("click", (e) => {
