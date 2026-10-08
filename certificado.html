@@ -3633,7 +3633,11 @@
       document.getElementById("field-date").textContent = spanishToday();
       document.title = "Certificado - " + w.id;
       const folder = (w.photos && w.photos.folder) || ("photos/" + id + "/");
-      const tries = [folder + "front.png", folder + "front.jpg"];
+      const front  = (w.photos && w.photos.front)  || null;
+      // Use stored filename if known; otherwise try common extensions
+      const tries  = front
+        ? [folder + front]
+        : [folder + "front.jpg", folder + "front.JPG", folder + "front.png"];
       let i = 0;
       thumb.addEventListener("load", () => portrait.classList.add("has-image"));
       thumb.addEventListener("error", () => {
