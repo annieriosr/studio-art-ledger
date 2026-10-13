@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Booth tracker · Casajet / Cosas</title>
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--ink:#1c1c1a;--mute:#74726c;--line:#dedbd3;--acc:#2b4a3f;--accsoft:#e3ece8;--warn:#b5651d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171716;--card:#222220;--ink:#eeece6;--mute:#9b988f;--line:#383733;--acc:#8fc2ae;--accsoft:#23332d;--warn:#e0954f}}
+:root[data-theme="dark"]{--bg:#171716;--card:#222220;--ink:#eeece6;--mute:#9b988f;--line:#383733;--acc:#8fc2ae;--accsoft:#23332d;--warn:#e0954f}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Helvetica Neue",Arial,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+h1{font:600 28px/1.2 Georgia,"Times New Roman",serif;margin:0 0 4px}
+.sub{color:var(--mute);margin:0 0 18px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.stat b{display:block;font:600 22px Georgia,serif}.stat span{color:var(--mute);font-size:13px}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+button,select,input,textarea{font:inherit;color:var(--ink)}
+.chip,.btn{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:13px}
+.chip.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.btn{border-radius:6px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+section{margin:22px 0}
+section h2{font:600 19px Georgia,serif;margin:0 0 2px}
+.cnt{color:var(--mute);font-size:13px;margin-bottom:8px}
+.t{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+.t.done .tt{text-decoration:line-through;color:var(--mute)}
+.row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px}
+.row input[type=checkbox]{width:20px;height:20px;margin-top:2px;accent-color:var(--acc);flex:none}
+.tt{flex:1;min-width:0}.tt small{display:block;color:var(--mute);font-size:13px}
+.st{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:3px 6px;font-size:13px}
+.st.s1{border-color:var(--warn)}.st.s2,.st.s3{border-color:var(--acc);background:var(--accsoft)}
+details{border-top:1px solid var(--line)}
+summary{cursor:pointer;padding:6px 12px;color:var(--mute);font-size:13px}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding:4px 12px 12px}
+.f label{font-size:12px;color:var(--mute);display:block}
+.f input,.f textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:6px 8px}
+.f .w{grid-column:1/-1}.free{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink)!important}
+.add{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.add input,.add select{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:7px 9px}.add input{flex:1;min-width:180px}
+.del{margin-left:auto;color:var(--warn);background:none;border:0;cursor:pointer;font-size:12px}
+.note{color:var(--mute);font-size:13px;margin-top:30px}
+[hidden]{display:none!important}
+.tabs{display:flex;gap:8px;margin:0 0 16px}
+.ct{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.ct td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+.ct tr:first-child td{border-top:0}
+.ct small{display:block;color:var(--mute);font-size:12px}
+.am{text-align:right;white-space:nowrap;width:130px}
+.am input{width:100px;text-align:right;border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:5px 8px}
+.sb td{font-weight:600}.fr{color:var(--acc)}
+.stat input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:4px 8px;margin-bottom:2px}
+#vC details ul{margin:0;padding:0 12px 10px 30px;color:var(--mute);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>Booth tracker</h1>
+<p class="sub">Casajet · Cosas magazine · Wayaco · 12 m² conceptual gallery booth</p>
+<div class="tabs"><button class="chip on" id="tabT">Tasks</button><button class="chip" id="tabC">Costs</button></div>
+<div id="vT">
+<div class="stats">
+<div class="stat"><b id="sDone">0/0</b><span>tasks done</span><div class="bar"><i id="bar"></i></div></div>
+<div class="stat"><b id="sQuoted">0</b><span>quotes received</span></div>
+<div class="stat"><b id="sCost">$0</b><span>quoted cost (paid items)</span></div>
+<div class="stat"><b id="sFree">0</b><span>items sponsored / free</span></div>
+</div>
+<div class="tools" id="filters"></div>
+<div id="list"></div>
+<section>
+<h2>Add your own task</h2>
+<div class="add"><input id="newT" placeholder="e.g. Ask Knauf about wall panels"><select id="newC"></select><button class="btn" id="addB">Add task</button></div>
+</section>
+</div>
+<div id="vC" hidden></div>
+<div class="tools"><button class="btn" id="exp">Copy summary</button><button class="btn" id="rst">Reset everything</button></div>
+<p class="note">Saved automatically in this browser only. Open each task's details to add the supplier, contact, quote, due date and notes. Tick "Free / sponsored" when a supplier is giving it to you in exchange for being part of the project.</p>
+</main>
+<script>
+var ST=["To do","Contacted","Quoted","Confirmed","Done"];
+var CATS=["Build & install","Suppliers & quotes","Artworks & framing","Digital & audio","Print","Booth day"];
+var SEED=[
+[0,"Mount the main suspended piece (1.7 × 1.5 m) from the ceiling","Check ceiling/structure rules with the venue first. Rigging, weight, safety."],
+[0,"Hang the other artworks on the walls","Handiwork + hardware. Decide the wall layout first."],
+[0,"LED light for each canvas","Count the works, pick warm color temperature, plan power points."],
+[0,"Mount the lights","Installer or electrician. Ask the venue about power."],
+[0,"Paint the walls","Choose the color, number of coats, and the paint supplier."],
+[0,"Floor / carpet","Get a quote for the 12 m² floor."],
+[0,"Mount the canvases","Who installs, how long it takes, and what tools they bring."],
+[0,"Mount the benches in the booth","Delivery + placement. Confirm the circle fits around the central piece."],
+[1,"Follow up: lights","Seguimiento. Ask for price per unit and mounting."],
+[1,"Follow up: framing (enmarcaciones)","Seguimiento. Quote per work, timing, and shipping to the site."],
+[1,"Follow up: Modena","Seguimiento. Ask what they can give or discount."],
+[1,"Follow up: Knauf","Seguimiento. Wall / paint materials."],
+[1,"Call BG (Franklin)","Llamar a BG."],
+[1,"Find which artisans (G&C) have chairs, and where","Can feed the bench plan or be a backup seating option."],
+[1,"Quote the floor (cotizar piso)","Ask at least two suppliers."],
+[1,"Write personally to each supplier offering free supplies","Short pitch: project, dates, audience, how you will credit them."],
+[1,"Collect quotes for: carpet, paint, lights, light mounting, canvas mounting, bench mounting","Use the cost field in each task."],
+[2,"Buy hooks to hang the sheets (ganchos)","Count the works first, then add spares."],
+[2,"Draft the agreement for sending the works","I send the works, they frame them, then they ship them to the site. Needs a signature before anything moves."],
+[2,"Confirm shipping and insurance for the works","Dates, packaging, who is responsible."],
+[3,"QR code for each work","One QR per work, pointing to its own page."],
+[3,"Web pages (one per work)","Story, place, time, and context for each canvas."],
+[3,"Write the information for each work","Title, size, medium, and the story behind it."],
+[3,"Record the audio story for each canvas","For the headphones. Keep each one short."],
+[3,"Headphones and audio player","Number of sets, how they connect, charging."],
+[4,"Card for each work (QR + name + size + medium)","Pasted beside the work."],
+[4,"Flyer for the expo (expo written down)","Write the exhibition text first."],
+[4,"Posters","Size and quantity."],
+[4,"Invitations for galleries","Hacer invitaciones para galerías."],
+[4,"Sticker: Annie Rios, letter by letter","White Cube style entrance sticker. Choose font, size, and material."],
+[5,"Final site visit and measurements","Confirm the 12 m² layout against the plan."],
+[5,"Pack list: tools, ladders, tape, spare bulbs, cables","Make it a checklist the night before."],
+[5,"Install schedule","Who arrives when, and what gets done first (walls, floor, lights, works)."]
+];
+var KEY="boothTracker.v1",S;
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!S.tasks){S={tasks:SEED.map(function(s,i){return{id:"t"+i,c:s[0],t:s[1],h:s[2],s:0,sup:"",con:"",cost:"",due:"",n:"",free:false}}),next:1000}}
+S.tasks=S.tasks.filter(function(t){return t.t.indexOf("Carve the two curved benches")!==0});S.extras=S.extras||[];S.budget=S.budget||'';}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var filter=-1;
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function render(){
+var f=document.getElementById("filters");f.innerHTML="";
+["All"].concat(CATS).forEach(function(n,i){var b=document.createElement("button");b.className="chip"+(filter===i-1?" on":"");b.textContent=n;b.onclick=function(){filter=i-1;render()};f.appendChild(b)});
+var h="";
+CATS.forEach(function(cn,ci){if(filter>-1&&filter!==ci)return;
+var ts=S.tasks.filter(function(t){return t.c===ci});if(!ts.length)return;
+var d=ts.filter(function(t){return t.s===4}).length;
+h+='<section><h2>'+cn+'</h2><div class="cnt">'+d+' of '+ts.length+' done</div>';
+ts.forEach(function(t){
+h+='<div class="t'+(t.s===4?" done":"")+'" data-id="'+t.id+'"><div class="row"><input type="checkbox" aria-label="Done" '+(t.s===4?"checked":"")+' data-a="chk"><div class="tt">'+esc(t.t)+(t.h?'<small>'+esc(t.h)+'</small>':'')+'</div><select class="st s'+t.s+'" data-a="st" aria-label="Status">'+ST.map(function(x,i){return'<option value="'+i+'"'+(i===t.s?" selected":"")+'>'+x+'</option>'}).join("")+'</select></div>'
++'<details><summary>Supplier, quote and notes'+(t.sup||t.cost?' · '+esc(t.sup)+(t.cost?' · $'+esc(t.cost):''):'')+'</summary><div class="f">'
++'<div><label>Supplier</label><input data-k="sup" value="'+esc(t.sup)+'"></div>'
++'<div><label>Contact (phone / email)</label><input data-k="con" value="'+esc(t.con)+'"></div>'
++'<div><label>Quote ($)</label><input data-k="cost" inputmode="decimal" value="'+esc(t.cost)+'"></div>'
++'<div><label>Due date</label><input type="date" data-k="due" value="'+esc(t.due)+'"></div>'
++'<div class="w"><label class="free"><input type="checkbox" data-k="free" '+(t.free?"checked":"")+'> Free / sponsored</label></div>'
++'<div class="w"><label>Notes</label><textarea rows="2" data-k="n">'+esc(t.n)+'</textarea></div>'
++'<div class="w"><button class="del" data-a="del">Delete task</button></div></div></details></div>'});
+h+='</section>'});
+document.getElementById("list").innerHTML=h;stats()}
+function stats(){var T=S.tasks,d=T.filter(function(t){return t.s===4}).length;
+document.getElementById("sDone").textContent=d+"/"+T.length;
+document.getElementById("bar").style.width=(T.length?d/T.length*100:0)+"%";
+document.getElementById("sQuoted").textContent=T.filter(function(t){return t.s>=2||t.cost}).length;
+var c=0;T.forEach(function(t){var v=parseFloat(String(t.cost).replace(/[^0-9.]/g,""));if(!t.free&&v)c+=v});
+document.getElementById("sCost").textContent="$"+c.toLocaleString();
+document.getElementById("sFree").textContent=T.filter(function(t){return t.free}).length}
+function find(el){var n=el.closest(".t");return n?S.tasks.filter(function(t){return t.id===n.dataset.id})[0]:null}
+var L=document.getElementById("list");
+L.addEventListener("change",function(e){var t=find(e.target);if(!t)return;var a=e.target.dataset.a,k=e.target.dataset.k;
+if(a==="chk")t.s=e.target.checked?4:0;else if(a==="st")t.s=+e.target.value;
+else if(k==="free")t.free=e.target.checked;else if(k)t[k]=e.target.value;
+save();if(a){var o=L.querySelectorAll("details[open]"),ids=[];o.forEach(function(x){ids.push(x.closest(".t").dataset.id)});render();ids.forEach(function(i){var q=L.querySelector('[data-id="'+i+'"] details');if(q)q.open=true})}else stats()});
+L.addEventListener("input",function(e){var t=find(e.target),k=e.target.dataset.k;if(t&&k&&k!=="free"){t[k]=e.target.value;save();stats()}});
+L.addEventListener("click",function(e){if(e.target.dataset.a==="del"){var t=find(e.target);if(t&&confirm("Delete this task?")){S.tasks=S.tasks.filter(function(x){return x!==t});save();render()}}});
+var sel=document.getElementById("newC");CATS.forEach(function(c,i){var o=document.createElement("option");o.value=i;o.textContent=c;sel.appendChild(o)});
+document.getElementById("addB").onclick=function(){var v=document.getElementById("newT").value.trim();if(!v)return;
+S.tasks.push({id:"t"+(S.next++),c:+sel.value,t:v,h:"",s:0,sup:"",con:"",cost:"",due:"",n:"",free:false});document.getElementById("newT").value="";save();render()};
+document.getElementById("rst").onclick=function(){if(confirm("Reset all tasks, quotes and notes?")){try{localStorage.removeItem(KEY)}catch(e){}load();save();render()}};
+document.getElementById("exp").onclick=function(){var s="";CATS.forEach(function(cn,ci){s+="\n"+cn+"\n";S.tasks.filter(function(t){return t.c===ci}).forEach(function(t){s+="["+ST[t.s]+"] "+t.t+(t.sup?" | "+t.sup:"")+(t.free?" | FREE":t.cost?" | $"+t.cost:"")+(t.due?" | due "+t.due:"")+"\n"})});
+try{navigator.clipboard.writeText(s.trim());this.textContent="Copied"}catch(e){this.textContent="Copy not available"}var b=this;setTimeout(function(){b.textContent="Copy summary"},1500)};
+function num(v){var x=parseFloat(String(v).replace(/[^0-9.]/g,''));return x||0}
+function money(n){return '$'+n.toLocaleString(undefined,{maximumFractionDigits:2})}
+function costTotals(){var q=0,c=0,e=0;S.tasks.forEach(function(t){if(t.free)return;var v=num(t.cost);if(!v)return;if(t.s>=3)c+=v;else q+=v});S.extras.forEach(function(x){e+=num(x.a)});return{q:q,c:c,e:e,all:q+c+e}}
+function catSub(ci){var s=0;S.tasks.forEach(function(t){if(t.c===ci&&!t.free)s+=num(t.cost)});return s}
+function card(i,l){return '<div class="stat"><b id="'+i+'">$0</b><span>'+l+'</span></div>'}
+function updateCosts(){var t=costTotals();function s(i,v){var e=document.getElementById(i);if(e)e.textContent=money(v)}s('cT',t.all);s('cC',t.c);s('cQ',t.q);s('cE',t.e);CATS.forEach(function(c,i){s('sub'+i,catSub(i))});var b=num(S.budget),r=document.getElementById('cR');if(r)r.textContent=b?(b>=t.all?money(b-t.all)+' left':money(t.all-b)+' over budget'):'Set a budget to see what is left'}
+function renderCosts(){var h='<div class="stats">'+card('cT','Total spend')+card('cC','Confirmed or done')+card('cQ','Quoted, not confirmed')+card('cE','Other expenses')+'<div class="stat"><span>Budget ($)</span><input id="bud" inputmode="decimal" aria-label="Budget" value="'+esc(S.budget)+'"><span id="cR"></span></div></div>';
+CATS.forEach(function(cn,ci){var r=S.tasks.filter(function(t){return t.c===ci&&(t.free||num(t.cost)>0)});if(!r.length)return;h+='<section><h2>'+cn+'</h2><table class="ct">';r.forEach(function(t){h+='<tr><td>'+esc(t.t)+'<small>'+(t.sup?esc(t.sup)+' · ':'')+ST[t.s]+'</small></td><td class="am">'+(t.free?'<span class="fr">Free</span>':'<input data-cid="'+t.id+'" inputmode="decimal" aria-label="Amount" value="'+esc(t.cost)+'">')+'</td></tr>'});h+='<tr class="sb"><td>Subtotal</td><td class="am" id="sub'+ci+'"></td></tr></table></section>'});
+h+='<section><h2>Other expenses</h2><div class="cnt">Things not tied to a task: transport, tape, a meal for the installers.</div><table class="ct">';S.extras.forEach(function(x){h+='<tr><td>'+esc(x.n)+'</td><td class="am"><input data-xid="'+x.id+'" inputmode="decimal" aria-label="Amount" value="'+esc(x.a)+'"><button class="del" data-xdel="'+x.id+'">Delete</button></td></tr>'});h+='</table><div class="add"><input id="xn" placeholder="Expense"><input id="xa" inputmode="decimal" placeholder="Amount" style="flex:0 0 110px;min-width:0"><button class="btn" id="xadd">Add expense</button></div></section>';
+var nq=S.tasks.filter(function(t){return !t.free&&!num(t.cost)}),fr=S.tasks.filter(function(t){return t.free});
+h+='<details class="t"><summary>'+nq.length+' tasks have no cost yet</summary><ul>'+nq.map(function(t){return '<li>'+esc(t.t)+'</li>'}).join('')+'</ul></details>';
+if(fr.length)h+='<details class="t" style="margin-top:8px"><summary>'+fr.length+' free or sponsored items</summary><ul>'+fr.map(function(t){return '<li>'+esc(t.t)+(t.sup?' ('+esc(t.sup)+')':'')+'</li>'}).join('')+'</ul></details>';
+vC.innerHTML=h;updateCosts()}
+var vC=document.getElementById('vC');
+vC.addEventListener('input',function(e){var d=e.target.dataset;if(d.cid){S.tasks.forEach(function(t){if(t.id===d.cid)t.cost=e.target.value})}else if(d.xid){S.extras.forEach(function(x){if(x.id===d.xid)x.a=e.target.value})}else if(e.target.id==='bud'){S.budget=e.target.value}else return;save();updateCosts();stats()});
+vC.addEventListener('click',function(e){var d=e.target.dataset;if(e.target.id==='xadd'){var n=document.getElementById('xn').value.trim(),a=document.getElementById('xa').value;if(!n)return;S.extras.push({id:'x'+(S.next++),n:n,a:a});save();renderCosts()}else if(d.xdel){S.extras=S.extras.filter(function(x){return x.id!==d.xdel});save();renderCosts()}});
+function show(v){document.getElementById('vT').hidden=v!=='T';vC.hidden=v!=='C';document.getElementById('tabT').classList.toggle('on',v==='T');document.getElementById('tabC').classList.toggle('on',v==='C');if(v==='C')renderCosts();else render()}
+document.getElementById('tabT').onclick=function(){show('T')};document.getElementById('tabC').onclick=function(){show('C')};
+load();render();
+</script>
+</body>
+</html>
