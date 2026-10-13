@@ -228,7 +228,7 @@
     </div>
 
     <footer class="exhibition">
-      <span id="field-exhibition" contenteditable="true" spellcheck="false">Stillness &amp; Refractions &nbsp;&middot;&nbsp; Cosas Ecuador &nbsp;&middot;&nbsp; Booth #16, Guayaquil &nbsp;&middot;&nbsp; Nov 5&ndash;15, 2026</span>
+      <span id="field-exhibition" contenteditable="true" spellcheck="false"></span>
   </footer>
 
   </article>
@@ -3543,11 +3543,13 @@
       document.getElementById("field-dims").textContent = dims(w);
       document.getElementById("field-reg").textContent = w.id;
       document.title = "Tarjeta - " + w.id;
-      // QR code
+      // QR + exhibition — only for works with an exhibition_url (Cosas Ecuador)
       if (w.qr_b64 && w.exhibition_url) {
         document.getElementById('qr-img').src = w.qr_b64;
         document.getElementById('qr-url').textContent = w.exhibition_url;
         document.getElementById('qr-row').style.display = 'flex';
+        document.getElementById('field-exhibition').textContent =
+          'Stillness & Refractions · Cosas Ecuador · Booth #16, Guayaquil · Nov 5–15, 2026';
       }
 
     })();
