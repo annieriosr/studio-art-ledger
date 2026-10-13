@@ -151,21 +151,22 @@
     .qr-row {
       display: flex;
       align-items: center;
-      gap: 4mm;
-      margin-top: 4mm;
-      padding-top: 3mm;
+      gap: 5mm;
+      margin-top: 5mm;
+      padding-top: 4mm;
       border-top: 0.4pt solid var(--rule);
     }
     .qr-img {
-      width: 16mm;
-      height: 16mm;
+      width: 26mm;
+      height: 26mm;
       flex-shrink: 0;
     }
     .qr-label {
-      font-size: 6.5pt;
+      font-size: 7pt;
       color: var(--ink-soft);
       line-height: 1.6;
       letter-spacing: 0.02em;
+      font-weight: 600;
     }
     .qr-url {
       font-size: 6pt;
@@ -216,11 +217,7 @@
         <br>
         <span id="field-dims" contenteditable="true" spellcheck="false">alto &times; ancho cm</span>
       </p>
-    </div>
 
-    <footer class="exhibition">
-      <span id="field-exhibition" contenteditable="true" spellcheck="false">Cosas Ecuador &mdash; Aqui, donde la luz nos halla &nbsp;&middot;&nbsp; Booth #16, Guayaquil &nbsp;&middot;&nbsp; Nov 5&ndash;15, 2026</span>
-    
       <div class="qr-row" id="qr-row" style="display:none">
         <img class="qr-img" id="qr-img" src="" alt="QR">
         <div>
@@ -228,6 +225,10 @@
           <div class="qr-url" id="qr-url"></div>
         </div>
       </div>
+    </div>
+
+    <footer class="exhibition">
+      <span id="field-exhibition" contenteditable="true" spellcheck="false">Stillness &amp; Refractions &nbsp;&middot;&nbsp; Cosas Ecuador &nbsp;&middot;&nbsp; Booth #16, Guayaquil &nbsp;&middot;&nbsp; Nov 5&ndash;15, 2026</span>
   </footer>
 
   </article>
