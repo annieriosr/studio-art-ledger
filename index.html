@@ -4,9 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Libro del estudio — Annie Ríos</title>
-  <meta name="description" content="Tres libros, no una hoja. El catálogo dice qué es cada obra. El movimiento dice dónde ha estado. Los documentos se emiten desde esos dos. Las personas son un cuarto libro." />
-  <meta property="og:title" content="Libro del estudio — Annie Ríos" />
-  <meta property="og:description" content="Tres libros, no una hoja. El catálogo dice qué es cada obra. El movimiento dice dónde ha estado. Los documentos se emiten desde esos dos. Las personas son un cuarto libro." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
@@ -3839,13 +3836,9 @@
         }
         saveDrafts(d);
         if (type === "sold" || type === "placed") {
-          try {
-            window.open("certificado.html?id=" + encodeURIComponent(id), "_blank");
-            window.open("carta.html?id=" + encodeURIComponent(id), "_blank");
-            window.open("carta-presentacion.html?id=" + encodeURIComponent(id), "_blank");
-          } catch (e) {
-            console.warn("Popup blocked or not allowed in this environment", e);
-          }
+          window.open("certificado.html?id=" + encodeURIComponent(id), "_blank");
+          window.open("carta.html?id=" + encodeURIComponent(id), "_blank");
+          window.open("carta-presentacion.html?id=" + encodeURIComponent(id), "_blank");
         }
         render();
       });
