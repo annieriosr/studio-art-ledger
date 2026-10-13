@@ -1,0 +1,8 @@
+{
+  "name": "Libro del estudio — Annie Ríos",
+  "description": "Tres libros, no una hoja. El catálogo dice qué es cada obra. El movimiento dice dónde ha estado. Los documentos se emiten desde esos dos. Las personas son un cuarto libro.",
+  "requestFramePermissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
