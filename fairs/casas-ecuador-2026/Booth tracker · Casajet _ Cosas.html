@@ -76,8 +76,14 @@ summary{cursor:pointer;padding:6px 12px;color:var(--mute);font-size:13px}
 </section>
 </div>
 <div id="vC" hidden></div>
-<div class="tools"><button class="btn" id="exp">Copy summary</button><button class="btn" id="rst">Reset everything</button></div>
-<p class="note">Saved automatically in this browser only. Open each task's details to add the supplier, contact, quote, due date and notes. Tick "Free / sponsored" when a supplier is giving it to you in exchange for being part of the project.</p>
+<div class="tools">
+<button class="btn" id="exp">Copy summary</button>
+<button class="btn" id="expJson" type="button">Download backup (JSON)</button>
+<button class="btn" id="impJson" type="button">Import backup</button>
+<input id="impFile" type="file" accept="application/json,.json" hidden>
+<button class="btn" id="rst">Reset everything</button>
+</div>
+<p class="note">Saved automatically in <strong>this browser only</strong> (not on the server, and not shared across phones or other browsers). Download a JSON backup after big updates, and import it if this page ever looks empty again. Open each task's details to add the supplier, contact, quote, due date and notes. Tick "Free / sponsored" when a supplier is giving it to you in exchange for being part of the project.</p>
 </main>
 <script>
 var ST=["To do","Contacted","Quoted","Confirmed","Done"];
@@ -118,10 +124,45 @@ var SEED=[
 [5,"Install schedule","Who arrives when, and what gets done first (walls, floor, lights, works)."]
 ];
 var KEY="boothTracker.v1",S;
-function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
-if(!S||!S.tasks){S={tasks:SEED.map(function(s,i){return{id:"t"+i,c:s[0],t:s[1],h:s[2],s:0,sup:"",con:"",cost:"",due:"",n:"",free:false}}),next:1000}}
-S.tasks=S.tasks.filter(function(t){return t.t.indexOf("Carve the two curved benches")!==0});S.extras=S.extras||[];S.budget=S.budget||'';}
+function seedState(){return{tasks:SEED.map(function(s,i){return{id:"t"+i,c:s[0],t:s[1],h:s[2],s:0,sup:"",con:"",cost:"",due:"",n:"",free:false}}),next:1000,extras:[],budget:""}}
+function normalize(state){
+if(!state||!Array.isArray(state.tasks))return null;
+state.tasks=state.tasks.filter(function(t){return t&&typeof t.t==="string"&&t.t.indexOf("Carve the two curved benches")!==0});
+state.extras=Array.isArray(state.extras)?state.extras:[];
+state.budget=state.budget||"";
+state.next=state.next||1000;
+return state}
+function load(){
+var raw=null,parsed=null,ok=false;
+try{raw=localStorage.getItem(KEY)}catch(e){raw=null}
+if(raw){try{parsed=JSON.parse(raw);ok=true}catch(e){parsed=null}}
+var before=ok&&parsed?JSON.stringify(parsed):null;
+S=normalize(parsed)||seedState();
+/* Never wipe an existing key on load. Write only on first visit, or after the one-time task filter. */
+if(!raw)save();
+else if(ok&&before!==JSON.stringify(S))save();
+}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function downloadBackup(){
+var blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});
+var a=document.createElement("a");
+var d=new Date();var stamp=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+a.href=URL.createObjectURL(blob);
+a.download="booth-tracker-casajet-backup-"+stamp+".json";
+document.body.appendChild(a);a.click();
+setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)}
+function importBackup(file){
+var reader=new FileReader();
+reader.onload=function(){
+var next=null;
+try{next=normalize(JSON.parse(String(reader.result||"")))}catch(e){next=null}
+if(!next||!next.tasks.length){alert("That file is not a valid booth-tracker backup.");return}
+if(!confirm("Replace all tasks, quotes and notes on this page with the backup?"))return;
+S=next;save();render();if(!document.getElementById("vC").hidden)renderCosts();
+alert("Backup imported ("+S.tasks.length+" tasks).");
+};
+reader.onerror=function(){alert("Could not read that file.")};
+reader.readAsText(file)}
 var filter=-1;
 function esc(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function render(){
@@ -162,9 +203,12 @@ L.addEventListener("click",function(e){if(e.target.dataset.a==="del"){var t=find
 var sel=document.getElementById("newC");CATS.forEach(function(c,i){var o=document.createElement("option");o.value=i;o.textContent=c;sel.appendChild(o)});
 document.getElementById("addB").onclick=function(){var v=document.getElementById("newT").value.trim();if(!v)return;
 S.tasks.push({id:"t"+(S.next++),c:+sel.value,t:v,h:"",s:0,sup:"",con:"",cost:"",due:"",n:"",free:false});document.getElementById("newT").value="";save();render()};
-document.getElementById("rst").onclick=function(){if(confirm("Reset all tasks, quotes and notes?")){try{localStorage.removeItem(KEY)}catch(e){}load();save();render()}};
+document.getElementById("rst").onclick=function(){if(confirm("Reset all tasks, quotes and notes? Download a JSON backup first if you might need them.")){try{localStorage.removeItem(KEY)}catch(e){}S=seedState();save();render();if(!document.getElementById("vC").hidden)renderCosts()}};
 document.getElementById("exp").onclick=function(){var s="";CATS.forEach(function(cn,ci){s+="\n"+cn+"\n";S.tasks.filter(function(t){return t.c===ci}).forEach(function(t){s+="["+ST[t.s]+"] "+t.t+(t.sup?" | "+t.sup:"")+(t.free?" | FREE":t.cost?" | $"+t.cost:"")+(t.due?" | due "+t.due:"")+"\n"})});
 try{navigator.clipboard.writeText(s.trim());this.textContent="Copied"}catch(e){this.textContent="Copy not available"}var b=this;setTimeout(function(){b.textContent="Copy summary"},1500)};
+document.getElementById("expJson").onclick=function(){downloadBackup();var b=this,t=b.textContent;b.textContent="Downloaded";setTimeout(function(){b.textContent=t},1500)};
+document.getElementById("impJson").onclick=function(){document.getElementById("impFile").click()};
+document.getElementById("impFile").onchange=function(){var f=this.files&&this.files[0];this.value="";if(f)importBackup(f)};
 function num(v){var x=parseFloat(String(v).replace(/[^0-9.]/g,''));return x||0}
 function money(n){return '$'+n.toLocaleString(undefined,{maximumFractionDigits:2})}
 function costTotals(){var q=0,c=0,e=0;S.tasks.forEach(function(t){if(t.free)return;var v=num(t.cost);if(!v)return;if(t.s>=3)c+=v;else q+=v});S.extras.forEach(function(x){e+=num(x.a)});return{q:q,c:c,e:e,all:q+c+e}}
