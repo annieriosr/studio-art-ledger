@@ -18,7 +18,7 @@ Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 | **booth-render-3d.html** | Interactive 3D booth render (Three.js). Open in Chrome, drag to orbit, scroll to zoom. Real artwork photos embedded. |
 | **booth-render-overview.pdf** | A4 landscape PDF — single isometric view with work labels. |
 | **booth-render-three-views.pdf** | A4 landscape PDF — 3 pages: frontal · right wall · left wall. |
-| **price-list.html** | Triptych price list voucher. Open in Chrome, click prices to edit, print → A4 portrait → cut the strip. |
+| **price-list.html** | Price list vouchers (booth triptych + additional works). Open in Chrome; prices link to Cuanto (USD). Print → A4 portrait → cut the strips. |
 | **cotizacion-mano-de-obra.html** | Labor quote request in Spanish — wall paint, rigging, hanging, lighting, bench fabrication. |
 
 ## Key dates
