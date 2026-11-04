@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cosas Ecuador 2026 — preparativos · Annie Ríos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4f2ee;
+      --ink: #241f1a;
+      --ink-soft: #5c574f;
+      --rule: #c4bfb4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #d8d4cc;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+    }
+    body { min-height: 100vh; padding: 32px 16px 80px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    header { margin-bottom: 28px; padding-bottom: 22px; border-bottom: 1px solid var(--rule); }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+      text-decoration: none;
+      margin-bottom: 18px;
+      border-bottom: 1px solid transparent;
+    }
+    .back:hover { border-bottom-color: var(--rule); color: var(--ink); }
+    h1 {
+      font-size: 28px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .lede { font-size: 16px; line-height: 1.5; color: var(--ink-soft); max-width: 58ch; }
+    .meta-line {
+      margin-top: 12px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      margin: 28px 0 12px;
+    }
+    .card {
+      background: var(--paper);
+      padding: 18px 22px 16px;
+      margin-bottom: 10px;
+      border-left: 1px solid var(--rule);
+    }
+    .card a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card a:hover .title { border-bottom: 1px solid var(--ink); }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+    .title {
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      display: inline;
+      border-bottom: 1px solid transparent;
+    }
+    .note {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+    .file {
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      word-break: break-all;
+    }
+    .actions { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn {
+      font-family: inherit;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      padding: 6px 12px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover, .btn-solid {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    footer {
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+    footer a { color: inherit; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="back" href="../../index.html">← Libro del estudio</a>
+      <h1>Cosas Ecuador 2026 — preparativos</h1>
+      <p class="lede">
+        Hub de documentos para el stand: lista de precios, impresión 12×18″, tracker,
+        renders del booth, cotización de mano de obra y fichas de obra.
+        Todo vive en este repositorio.
+      </p>
+      <p class="meta-line">Stillness &amp; Refractions · Booth #16 · Guayaquil · 5–15 nov 2026</p>
+    </header>
+
+    <h2>Listas de precios e impresión</h2>
+
+    <article class="card">
+      <p class="eyebrow">Digital / A4</p>
+      <p class="title"><a href="price-list.html">Lista de precios</a></p>
+      <p class="note">Dos tiras 297×95&nbsp;mm (8 obras). Precios en USD con enlaces a Cuanto.</p>
+      <p class="file">price-list.html</p>
+      <div class="actions"><a class="btn" href="price-list.html">Abrir</a></div>
+    </article>
+
+    <article class="card">
+      <p class="eyebrow">Imprenta · Papel satinado</p>
+      <p class="title"><a href="price-list-print-12x18.html">Impresión 12×18″ duplex</a></p>
+      <p class="note">FRONT Strip A ×4 · BACK Strip B ×4 · 4 listas completas por hoja. Imprimir al 100% / tamaño real.</p>
+      <p class="file">price-list-print-12x18.html · price-list-print-12x18.pdf · PRINT-12x18.md</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="price-list-print-12x18.html">HTML</a>
+        <a class="btn" href="price-list-print-12x18.pdf">PDF</a>
+        <a class="btn" href="PRINT-12x18.md">Notas para la imprenta</a>
+      </div>
+    </article>
+
+    <h2>Booth y logística</h2>
+
+    <article class="card">
+      <p class="eyebrow">Operaciones</p>
+      <p class="title"><a href="Booth%20tracker%20%C2%B7%20Casajet%20_%20Cosas.html">Booth tracker</a></p>
+      <p class="note">Seguimiento Casajet / Cosas: checklist y estado del stand.</p>
+      <p class="file">Booth tracker · Casajet _ Cosas.html</p>
+      <div class="actions"><a class="btn" href="Booth%20tracker%20%C2%B7%20Casajet%20_%20Cosas.html">Abrir</a></div>
+    </article>
+
+    <article class="card">
+      <p class="eyebrow">3D</p>
+      <p class="title"><a href="booth-render-3d.html">Render 3D del booth</a></p>
+      <p class="note">Vista interactiva (Three.js). Abrir en Chrome; arrastrar para orbitar.</p>
+      <p class="file">booth-render-3d.html</p>
+      <div class="actions"><a class="btn" href="booth-render-3d.html">Abrir</a></div>
+    </article>
+
+    <article class="card">
+      <p class="eyebrow">PDF</p>
+      <p class="title">Renders estáticos</p>
+      <p class="note">Overview isométrico y tres vistas (frontal · pared derecha · pared izquierda).</p>
+      <p class="file">booth-render-overview.pdf · booth-render-three-views.pdf</p>
+      <div class="actions">
+        <a class="btn" href="booth-render-overview.pdf">Overview</a>
+        <a class="btn" href="booth-render-three-views.pdf">Tres vistas</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <p class="eyebrow">Cotización</p>
+      <p class="title"><a href="cotizacion-mano-de-obra.html">Cotización de mano de obra</a></p>
+      <p class="note">Pintura, izaje, colgado, iluminación, banca — solicitud en español.</p>
+      <p class="file">cotizacion-mano-de-obra.html</p>
+      <div class="actions"><a class="btn" href="cotizacion-mano-de-obra.html">Abrir</a></div>
+    </article>
+
+    <h2>Fichas de obra</h2>
+
+    <article class="card">
+      <p class="title"><a href="works/all-the-ways-we-shine.html">All the Ways We Shine</a></p>
+      <p class="note">AR-2025-001 · pieza central suspendida</p>
+      <div class="actions"><a class="btn" href="works/all-the-ways-we-shine.html">Abrir</a></div>
+    </article>
+    <article class="card">
+      <p class="title"><a href="works/feel-my-love.html">Feel My Love</a></p>
+      <p class="note">AR-2026-007 · pared del fondo</p>
+      <div class="actions"><a class="btn" href="works/feel-my-love.html">Abrir</a></div>
+    </article>
+    <article class="card">
+      <p class="title"><a href="works/point-of-incidence.html">Point of Incidence</a></p>
+      <p class="note">AR-ND-010 · pared izquierda</p>
+      <div class="actions"><a class="btn" href="works/point-of-incidence.html">Abrir</a></div>
+    </article>
+    <article class="card">
+      <p class="title"><a href="works/the-inbetween-space.html">The InBetween Space</a></p>
+      <p class="note">AR-2025-003 · pared derecha</p>
+      <div class="actions"><a class="btn" href="works/the-inbetween-space.html">Abrir</a></div>
+    </article>
+    <article class="card">
+      <p class="title"><a href="works/red-thread.html">Red Thread</a></p>
+      <p class="note">AR-2022-001 · obra adicional</p>
+      <div class="actions"><a class="btn" href="works/red-thread.html">Abrir</a></div>
+    </article>
+    <article class="card">
+      <p class="title"><a href="works/what-remains-below.html">What Remains Below</a></p>
+      <p class="note">Ficha en carpeta works/</p>
+      <div class="actions"><a class="btn" href="works/what-remains-below.html">Abrir</a></div>
+    </article>
+
+    <h2>Índice del folder</h2>
+    <article class="card">
+      <p class="title"><a href="README.md">README del fair</a></p>
+      <p class="note">Obras exhibidas, archivos y fechas clave.</p>
+      <p class="file">README.md</p>
+      <div class="actions"><a class="btn" href="README.md">Abrir</a></div>
+    </article>
+
+    <footer>
+      Carpeta del repo: <code>fairs/casas-ecuador-2026/</code>.
+      Volver al <a href="../../index.html">libro del estudio</a>.
+    </footer>
+  </div>
+</body>
+</html>

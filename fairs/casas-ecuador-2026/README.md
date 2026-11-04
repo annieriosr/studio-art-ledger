@@ -2,6 +2,8 @@
 **Stillness & Refractions**
 Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 
+**Hub de preparativos:** open [`index.html`](./index.html) (also linked from the estudio ledger as *Cosas Ecuador 2026 — preparativos*).
+
 ## Works exhibited
 
 | ID | Title | Medium | Dimensions | Placement |
@@ -15,6 +17,7 @@ Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 
 | File | Description |
 |---|---|
+| **index.html** | Hub **Cosas Ecuador 2026 — preparativos** — links to every prep doc in this folder. Also reachable from the estudio ledger nav. |
 | **booth-render-3d.html** | Interactive 3D booth render (Three.js). Open in Chrome, drag to orbit, scroll to zoom. Real artwork photos embedded. |
 | **booth-render-overview.pdf** | A4 landscape PDF — single isometric view with work labels. |
 | **booth-render-three-views.pdf** | A4 landscape PDF — 3 pages: frontal · right wall · left wall. |
