@@ -1,5 +1,5 @@
 # Cosas Ecuador 2026
-**Aquí, donde la luz nos halla**
+**Stillness & Refractions**
 Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 
 ## Works exhibited
