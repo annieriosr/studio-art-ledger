@@ -19,6 +19,9 @@ Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 | **booth-render-overview.pdf** | A4 landscape PDF — single isometric view with work labels. |
 | **booth-render-three-views.pdf** | A4 landscape PDF — 3 pages: frontal · right wall · left wall. |
 | **price-list.html** | Price list vouchers (booth triptych + additional works). Open in Chrome; prices link to Cuanto (USD). Print → A4 portrait → cut the strips. |
+| **price-list-print-12x18.html** | **Print-shop form** — Papel satinado **12×18″**, duplex. Page 1 FRONT = Strip A ×4; Page 2 BACK = Strip B ×4. Cut 297×95 mm → **4 complete lists per sheet**. Print at 100% / actual size. |
+| **price-list-print-12x18.pdf** | Same 12×18″ duplex layout exported for the shop (optional; HTML is the source of truth). |
+| **PRINT-12x18.md** | Short instructions for the print shop (paper, duplex flip, scale, cut, yield). |
 | **cotizacion-mano-de-obra.html** | Labor quote request in Spanish — wall paint, rigging, hanging, lighting, bench fabrication. |
 
 ## Key dates
