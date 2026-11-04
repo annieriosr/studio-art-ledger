@@ -628,7 +628,9 @@
       const { view, id } = parseHash();
       document.getElementById("nav").innerHTML = views.map((v) =>
         `<button type="button" aria-pressed="${v.id === view}" data-view="${v.id}">${v.label}</button>`
-      ).join("") + `<button type="button" data-view="export">Exportar CSV</button>`;
+      ).join("")
+        + `<button type="button" data-view="export">Exportar CSV</button>`
+        + `<a class="btn btn-solid" href="fairs/casas-ecuador-2026/">Cosas Ecuador 2026 — preparativos</a>`;
 
       const watch = LEDGER.works.filter((w) => w.watch);
       const inStudio = LEDGER.works.filter((w) => custody(w.id).kind === "studio");
