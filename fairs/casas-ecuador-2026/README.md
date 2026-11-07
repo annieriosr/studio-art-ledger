@@ -4,6 +4,8 @@ Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 
 **Hub de preparativos:** open [`index.html`](./index.html) (also linked from the estudio ledger as *Cosas Ecuador 2026 — preparativos*).
 
+**Contactos (outreach):** [`contactos.html`](./contactos.html) — circuito Guayaquil / Ecuador (teléfonos donde se conocen).
+
 ## Works exhibited
 
 | ID | Title | Medium | Dimensions | Placement |
@@ -26,6 +28,7 @@ Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 | **price-list-print-12x18.pdf** | Same 12×18″ duplex layout exported for the shop (optional; HTML is the source of truth). |
 | **PRINT-12x18.md** | Short instructions for the print shop (paper, duplex flip, scale, cut, yield). |
 | **cotizacion-mano-de-obra.html** | Labor quote request in Spanish — wall paint, rigging, hanging, lighting, bench fabrication. |
+| **contactos.html** | Guayaquil / Ecuador art-world outreach list (galeristas, advisors, críticos, instituciones). Phones where known. Printable. |
 
 ## Key dates
 
