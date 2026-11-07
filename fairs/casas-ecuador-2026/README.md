@@ -2,9 +2,11 @@
 **Stillness & Refractions**
 Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 
-**Hub de preparativos:** open [`index.html`](./index.html) (also linked from the estudio ledger as *Cosas Ecuador 2026 — preparativos*).
+**Hub de preparativos:** open [`index.html`](./index.html) — also from the estudio ledger tab **Preparativos** (`#preparativos`).
 
-**Contactos (outreach):** [`contactos.html`](./contactos.html) — circuito Guayaquil / Ecuador (teléfonos donde se conocen).
+**Contactos (lista):** [`contactos.html`](./contactos.html) — circuito Guayaquil / Ecuador (teléfonos donde se conocen).
+
+**Outreach inauguración (tracker):** [`invitados-inauguracion.html`](./invitados-inauguracion.html) + seed/state [`invitados-inauguracion.json`](./invitados-inauguracion.json). localStorage + Export/Import; use **Guardar para commit** to download the JSON and commit it so state survives deploys.
 
 ## Works exhibited
 
@@ -19,16 +21,20 @@ Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
 
 | File | Description |
 |---|---|
-| **index.html** | Hub **Cosas Ecuador 2026 — preparativos** — links to every prep doc in this folder. Also reachable from the estudio ledger nav. |
-| **booth-render-3d.html** | Interactive 3D booth render (Three.js). Open in Chrome, drag to orbit, scroll to zoom. Real artwork photos embedded. |
+| **index.html** | Hub **Cosas Ecuador 2026 — preparativos** — links to every prep doc in this folder. Reachable from ledger → Preparativos. |
+| **Booth tracker · Casajet _ Cosas.html** | Booth ops tracker (localStorage + Download/Import JSON backup). |
+| **booth-render-3d.html** | Interactive 3D booth render (Three.js). Open in Chrome, drag to orbit, scroll to zoom. |
 | **booth-render-overview.pdf** | A4 landscape PDF — single isometric view with work labels. |
 | **booth-render-three-views.pdf** | A4 landscape PDF — 3 pages: frontal · right wall · left wall. |
-| **price-list.html** | Price list vouchers (booth triptych + additional works). Open in Chrome; prices link to Cuanto (USD). Print → A4 portrait → cut the strips. |
-| **price-list-print-12x18.html** | **Print-shop form** — Papel satinado **12×18″**, duplex. Page 1 FRONT = Strip A ×4; Page 2 BACK = Strip B ×4. Cut 297×95 mm → **4 complete lists per sheet**. Print at 100% / actual size. |
-| **price-list-print-12x18.pdf** | Same 12×18″ duplex layout exported for the shop (optional; HTML is the source of truth). |
-| **PRINT-12x18.md** | Short instructions for the print shop (paper, duplex flip, scale, cut, yield). |
-| **cotizacion-mano-de-obra.html** | Labor quote request in Spanish — wall paint, rigging, hanging, lighting, bench fabrication. |
-| **contactos.html** | Guayaquil / Ecuador art-world outreach list (galeristas, advisors, críticos, instituciones). Phones where known. Printable. |
+| **price-list.html** | Price list vouchers (booth triptych + additional works). Prices link to Cuanto (USD). |
+| **price-list-print-12x18.html** | Print-shop form — Papel satinado **12×18″**, duplex. |
+| **price-list-print-12x18.pdf** | Same 12×18″ duplex layout for the shop. |
+| **PRINT-12x18.md** | Short instructions for the print shop. |
+| **cotizacion-mano-de-obra.html** | Labor quote request in Spanish. |
+| **contactos.html** | Guayaquil / Ecuador art-world contact list. Phones where known. Printable. |
+| **invitados-inauguracion.html** | Inauguration outreach tracker (strata, channel, draft, status, notes). Persistence: localStorage + Export/Import JSON. |
+| **invitados-inauguracion.json** | Seed + durable outreach state. Download via “Guardar para commit” and commit to persist across machines/deploys. |
+| **works/** | Per-work info pages for the booth. |
 
 ## Key dates
 

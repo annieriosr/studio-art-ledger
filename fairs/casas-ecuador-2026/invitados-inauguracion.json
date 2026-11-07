@@ -1,0 +1,582 @@
+{
+  "version": 1,
+  "fair": "Cosas Ecuador 2026",
+  "show": "Stillness & Refractions",
+  "booth": "#16",
+  "city": "Guayaquil",
+  "updated": "2026-11-07",
+  "note": "Seed + outreach state. Edit in the tracker page, then Download / Guardar para commit and commit this file. Phones from Annie are marked source=annie; public handles/emails marked source=public. Blank means unknown — never invent.",
+  "nextId": 40,
+  "people": [
+    {
+      "id": "p1",
+      "name": "David Pérez-MacCollum",
+      "role": "Fundador / director",
+      "org": "DPM Gallery",
+      "stratum": "galerista",
+      "instagram": "@dpmgallery",
+      "email": "dpm@dpmgallery.com",
+      "phone": "+593 99 960 9410",
+      "channel": "email",
+      "draft": "Hola David — Annie Ríos aquí. Te escribo para invitarte a la inauguración de Stillness & Refractions, mi booth (#16) en Cosas Ecuador, Guayaquil (5 nov). Me encantaría que vieses la instalación en persona. ¿Puedes venir?",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "public · dpmgallery.com",
+        "email": "public · dpmgallery.com / dpm@dpmgallery.com",
+        "phone": "public · WhatsApp listado en dpmgallery.com (galería)"
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Pily Estrada",
+      "role": "Directora / gestora cultural (ex NoMíNIMO)",
+      "org": "NoMíNIMO / circuito Guayaquil",
+      "stratum": "galerista",
+      "instagram": "",
+      "email": "",
+      "phone": "+593 99 404 3197",
+      "channel": "whatsapp",
+      "draft": "Hola Pily — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Sería un gusto tenerte. ¿Te animo por aquí?",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": "annie · lista 7 nov 2026"
+      }
+    },
+    {
+      "id": "p3",
+      "name": "Eliana Hidalgo Vilaseca",
+      "role": "Fundadora y directora",
+      "org": "Fundación Eacheve",
+      "stratum": "mecenas",
+      "instagram": "@eacheve",
+      "email": "info@eacheve.com",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimada Eliana — Annie Ríos. Quisiera invitarte a la inauguración de Stillness & Refractions, mi exposición en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Tu mirada sobre el arte ecuatoriano sería muy valiosa esa noche.",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "public · eacheve.com",
+        "email": "public · eacheve.com / info@eacheve.com",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p4",
+      "name": "Directores / fundadores Espacio Violenta",
+      "role": "Colectivo, taller y galería independiente",
+      "org": "Espacio Violenta (Barrio Orellana / Villavicencio)",
+      "stratum": "emergente",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "instagram",
+      "draft": "Hola — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Quiero que la escena independiente también esté esa noche. ¿Me ayudan a correr la voz?",
+      "status": 0,
+      "notes": "Fundadores históricos: Juan Carlos Vargas, David Orbea, Leonardo Moyano, Tyrone Luna (prensa). Espacio físico cerró; confirmar canal digital vigente antes de contactar.",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p5",
+      "name": "Mauricio Aguirre",
+      "role": "Director / fundador",
+      "org": "Proyecto N.A.S.A.L.",
+      "stratum": "advisor",
+      "instagram": "@proyectonasal",
+      "email": "mao@nasal.pe",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola Mauricio — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Me gustaría mucho que vieses el montaje. ¿Te llega bien por correo o preferís WhatsApp?",
+      "status": 0,
+      "notes": "Alt. email institucional: info@nasal.pe · Tel. sede GYE público: +593 4 4619 971 (no celular personal).",
+      "sources": {
+        "instagram": "public · nasal.pe / Art of NOMA",
+        "email": "public · Art Basel gallery listing (mao@nasal.pe)",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p6",
+      "name": "Colecciona.Art",
+      "role": "Consultora de art advisors",
+      "org": "Colecciona.Art (Samborondón)",
+      "stratum": "advisor",
+      "instagram": "",
+      "email": "",
+      "phone": "+593 99 409 0999",
+      "channel": "whatsapp",
+      "draft": "Hola — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Si tienen interioristas/arquitectos del radar que debieran venir, me encantaría que los sumen.",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": "annie · lista 7 nov 2026"
+      }
+    },
+    {
+      "id": "p7",
+      "name": "Diana Luna",
+      "role": "Contacto vinculado",
+      "org": "Fundación Proarte / Colecciona.Art",
+      "stratum": "advisor",
+      "instagram": "",
+      "email": "info@fundacionproarte.ec",
+      "phone": "+593 99 924 2503",
+      "channel": "whatsapp",
+      "draft": "Hola Diana — Annie Ríos. Te escribo para invitarte a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). ¿Puedes venir y, si te parece, traer a alguien del círculo Proarte?",
+      "status": 0,
+      "notes": "Email institucional Proarte verificado en proarte.ec — confirmar si es el canal personal de Diana.",
+      "sources": {
+        "instagram": "",
+        "email": "public · proarte.ec (institucional)",
+        "phone": "annie · lista 7 nov 2026 (nota Colecciona)"
+      }
+    },
+    {
+      "id": "p8",
+      "name": "Rodolfo Kronfle Chambers",
+      "role": "Crítico y curador («Papa Rody»)",
+      "org": "Independiente / Paralaje",
+      "stratum": "curador",
+      "instagram": "",
+      "email": "paralajexyz@gmail.com",
+      "phone": "+593 99 951 5270",
+      "channel": "whatsapp",
+      "draft": "Hola Rodolfo — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Me gustaría mucho tu mirada esa noche.",
+      "status": 0,
+      "notes": "Email es de la plataforma Paralaje (cofundador), no necesariamente personal.",
+      "sources": {
+        "instagram": "",
+        "email": "public · paralaje.xyz",
+        "phone": "annie · lista 7 nov 2026"
+      }
+    },
+    {
+      "id": "p9",
+      "name": "Lupe Álvarez",
+      "role": "Historiadora y crítica",
+      "org": "MAAC / circuito institucional",
+      "stratum": "curador",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimada Lupe — Annie Ríos. Quisiera invitarte a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Sería un honor contar con tu presencia.",
+      "status": 0,
+      "notes": "Completar email/IG cuando Annie tenga el dato.",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p10",
+      "name": "Eduardo Albert",
+      "role": "Curador e investigador",
+      "org": "Museo del Cacao / MAAC",
+      "stratum": "curador",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola Eduardo — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Hay un diálogo con formatos abstractos que creo te puede interesar.",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p11",
+      "name": "Oswaldo Terreros",
+      "role": "Artista, diseñador y curador",
+      "org": "Independiente",
+      "stratum": "mid-career",
+      "instagram": "@oswaldoterreros",
+      "email": "",
+      "phone": "",
+      "channel": "instagram",
+      "draft": "Hola Oswaldo — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Me encantaría que vieses el montaje.",
+      "status": 0,
+      "notes": "Handle citado en loimposible.net; confirmar perfil activo antes de DM.",
+      "sources": {
+        "instagram": "public · loimposible.net (perfil autor)",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p12",
+      "name": "Alexandra Kennedy-Troya",
+      "role": "Investigadora, docente y curadora",
+      "org": "Circuito institucional / academia",
+      "stratum": "curador",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimada Alexandra — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p13",
+      "name": "Carolina Velasco Domo",
+      "role": "Investigadora, docente y curadora",
+      "org": "Circuito institucional / academia",
+      "stratum": "curador",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimada Carolina — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p14",
+      "name": "Jorge Aycart",
+      "role": "Artista, docente y curador; fundador La Limpia",
+      "org": "UArtes / La Limpia",
+      "stratum": "mid-career",
+      "instagram": "",
+      "email": "jorge.aycart@uartes.edu.ec",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola Jorge — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). También bienvenido el entorno de La Limpia si quieres correr la voz.",
+      "status": 0,
+      "notes": "Email institucional UArtes (uartes.edu.ec).",
+      "sources": {
+        "instagram": "",
+        "email": "public · uartes.edu.ec ficha docente",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p15",
+      "name": "Ivanna Santoro",
+      "role": "Jefa de Proyectos Curatoriales",
+      "org": "Fundación Eacheve",
+      "stratum": "curador",
+      "instagram": "@ivannasantoro",
+      "email": "info@eacheve.com",
+      "phone": "",
+      "channel": "instagram",
+      "draft": "Hola Ivanna — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). ¿Te parece si coordinamos también con Eacheve?",
+      "status": 0,
+      "notes": "IG listado en eacheve.com/contacto.",
+      "sources": {
+        "instagram": "public · eacheve.com",
+        "email": "public · eacheve.com (institucional)",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p16",
+      "name": "Juan Felipe Paredes",
+      "role": "Curador independiente / curador asistente",
+      "org": "Museo Municipal / MAAC",
+      "stratum": "emergente",
+      "instagram": "",
+      "email": "contacto@maac.gob.ec",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola Juan Felipe — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Me gustaría que la generación emergente de curaduría esté presente.",
+      "status": 0,
+      "notes": "Email MAAC institucional (prensa Expreso); confirmar canal personal.",
+      "sources": {
+        "instagram": "",
+        "email": "public · contacto@maac.gob.ec (institucional)",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p17",
+      "name": "Hugo Calle Forrest",
+      "role": "Director Ejecutivo",
+      "org": "MAAC",
+      "stratum": "institucion",
+      "instagram": "@maacec",
+      "email": "contacto@maac.gob.ec",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimado Hugo — Annie Ríos. Quisiera invitarlo a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Será un gusto recibirlo en el booth.",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "public · @maacec (cuenta institucional MAAC)",
+        "email": "public · contacto@maac.gob.ec",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p18",
+      "name": "Equipo de curaduría del MAAC",
+      "role": "Curaduría / investigación",
+      "org": "MAAC",
+      "stratum": "institucion",
+      "instagram": "@maacec",
+      "email": "exposiciones@maac.gob.ec",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola equipo MAAC — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Hay un diálogo con la abstracción ecuatoriana que creo les interesa.",
+      "status": 0,
+      "notes": "Mid-level: no solo dirección. Email de propuestas expuesto en prensa.",
+      "sources": {
+        "instagram": "public · @maacec",
+        "email": "public · exposiciones@maac.gob.ec",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p19",
+      "name": "Dra. Martha Rizzo",
+      "role": "Directora provincial",
+      "org": "Casa de la Cultura Núcleo Guayas",
+      "stratum": "institucion",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimada Dra. Rizzo — Annie Ríos. Quisiera invitarla a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "Completar canal CCENG cuando Annie tenga el correo directo.",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p20",
+      "name": "Daniel Merchán",
+      "role": "Director de Patrimonio Cultural",
+      "org": "Municipio de Guayaquil",
+      "stratum": "institucion",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimado Daniel — Annie Ríos. Quisiera invitarlo a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p21",
+      "name": "Dirección Museo Nahim Isaías",
+      "role": "Dirección / programación",
+      "org": "Museo Nahim Isaías",
+      "stratum": "institucion",
+      "instagram": "@museonahimisaias",
+      "email": "contacto.mnahimisaias@maac.gob.ec",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimados — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "public · directorios / @museonahimisaias",
+        "email": "public · listados museo",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p22",
+      "name": "Dirección Museo Luis Noboa Naranjo",
+      "role": "Dirección",
+      "org": "Museo Luis Noboa Naranjo",
+      "stratum": "institucion",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimados — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "Completar contacto público cuando Annie lo tenga.",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p23",
+      "name": "Dirección Mz14",
+      "role": "Plataforma cultural UArtes",
+      "org": "Mz14 — Universidad de las Artes",
+      "stratum": "academia",
+      "instagram": "@mz14ec",
+      "email": "mz14@uartes.edu.ec",
+      "phone": "",
+      "channel": "instagram",
+      "draft": "Hola Mz14 — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Bienvenidos docentes y estudiantes avanzados.",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "public · mz14.uartes.edu.ec",
+        "email": "public · mz14@uartes.edu.ec",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p24",
+      "name": "Decanato de Artes — UArtes",
+      "role": "Decanato",
+      "org": "Universidad de las Artes",
+      "stratum": "academia",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimado Decanato — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p25",
+      "name": "Fundación Eacheve (institución)",
+      "role": "Institución",
+      "org": "Fundación Eacheve",
+      "stratum": "institucion",
+      "instagram": "@eacheve",
+      "email": "info@eacheve.com",
+      "phone": "",
+      "channel": "instagram",
+      "draft": "Hola Eacheve — Annie Ríos. Invito al equipo y círculo de la fundación a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "Complementa a Eliana e Ivanna; útil para corrida institucional.",
+      "sources": {
+        "instagram": "public · eacheve.com",
+        "email": "public · info@eacheve.com",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p26",
+      "name": "Martina Avilés",
+      "role": "Coordinadora de Comunicación y Redes",
+      "org": "Fundación Eacheve",
+      "stratum": "mid-career",
+      "instagram": "@eacheve",
+      "email": "info@eacheve.com",
+      "phone": "",
+      "channel": "instagram",
+      "draft": "Hola Martina — Annie Ríos. Te escribo por la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). ¿Me ayudas a correr la invitación en el círculo Eacheve?",
+      "status": 0,
+      "notes": "Listada en eacheve.com/contacto — estrato mid-level comunicación.",
+      "sources": {
+        "instagram": "public · eacheve.com (vía @eacheve)",
+        "email": "public · info@eacheve.com",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p27",
+      "name": "Galería Madeleine Hollaender",
+      "role": "Dirección / programación",
+      "org": "Galería Madeleine Hollaender",
+      "stratum": "galerista",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Estimados — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).",
+      "status": 0,
+      "notes": "Galería histórica Guayaquil. Completar contacto cuando Annie lo confirme — no inventar handle.",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p28",
+      "name": "Docentes de artes visuales (UArtes)",
+      "role": "Docencia mid-career",
+      "org": "Universidad de las Artes",
+      "stratum": "academia",
+      "instagram": "@mz14ec",
+      "email": "mz14@uartes.edu.ec",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola — Annie Ríos. Invito a docentes de artes visuales a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Bienvenidos con estudiantes avanzados.",
+      "status": 0,
+      "notes": "Slot de estrato; Annie puede clonar/añadir nombres concretos.",
+      "sources": {
+        "instagram": "public · vía Mz14",
+        "email": "public · mz14@uartes.edu.ec",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p29",
+      "name": "Interioristas / arquitectos (radar Colecciona)",
+      "role": "Aliados de mercado",
+      "org": "Circuito Colecciona.Art",
+      "stratum": "aliado",
+      "instagram": "",
+      "email": "",
+      "phone": "+593 99 409 0999",
+      "channel": "whatsapp",
+      "draft": "Hola — Annie Ríos (vía Colecciona). Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Hay pieza a escala residencial/oficina que puede interesarles.",
+      "status": 0,
+      "notes": "Pedir shortlist nominal a Colecciona / Diana; teléfono es de la consultora, no de cada estudio.",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": "annie · vía Colecciona.Art"
+      }
+    },
+    {
+      "id": "p30",
+      "name": "Prensa cultura Guayaquil",
+      "role": "Periodismo cultural",
+      "org": "Medios locales",
+      "stratum": "prensa",
+      "instagram": "",
+      "email": "",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola — Annie Ríos. Los invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Puedo enviar press kit y fotos del montaje.",
+      "status": 0,
+      "notes": "Completar nombres de reporteros del estudio — no inventar.",
+      "sources": {
+        "instagram": "",
+        "email": "",
+        "phone": ""
+      }
+    }
+  ]
+}
