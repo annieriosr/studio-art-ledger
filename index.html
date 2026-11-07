@@ -3659,6 +3659,7 @@
       { id: "personas", label: "Personas" },
       { id: "watch", label: "Las que cuido" },
       { id: "prensa", label: "Prensa y archivo" },
+      { id: "preparativos", label: "Preparativos" },
       { id: "gaps", label: "Por confirmar" },
     ];
 
@@ -3957,7 +3958,8 @@
       const { view, id } = parseHash();
       document.getElementById("nav").innerHTML = views.map((v) =>
         `<button type="button" aria-pressed="${v.id === view}" data-view="${v.id}">${v.label}</button>`
-      ).join("") + `<button type="button" data-view="export">Exportar CSV</button>`;
+      ).join("")
+        + `<button type="button" data-view="export">Exportar CSV</button>`;
 
       const watch = LEDGER.works.filter((w) => w.watch);
       const inStudio = LEDGER.works.filter((w) => custody(w.id).kind === "studio");
@@ -3994,6 +3996,23 @@
             ${d.notes ? `<p class="notes">${esc(d.notes)}</p>` : ""}
           </article>`;
         }).join("");
+        return;
+      }
+      if (view === "preparativos") {
+        const filtersDivPrep = document.getElementById("filters");
+        if (filtersDivPrep) filtersDivPrep.innerHTML = "";
+        main.innerHTML = `<h2>Preparativos de exposiciones</h2>
+          <p class="notes">Documentos de feria y stand — un hub por exposición para no cazar URLs sueltas.</p>
+          <article class="card">
+            <p class="id">Cosas Ecuador 2026 · Guayaquil · 5–15 nov</p>
+            <p class="title">Stillness &amp; Refractions · Booth #16</p>
+            <p class="meta">Hub: precios, impresión 12×18″, booth tracker, renders, cotización, contactos, outreach de inauguración, fichas de obra, README.</p>
+            <div class="actions">
+              <a class="btn btn-solid" href="fairs/casas-ecuador-2026/">Abrir hub Cosas Ecuador</a>
+              <a class="btn" href="fairs/casas-ecuador-2026/invitados-inauguracion.html">Outreach inauguración</a>
+              <a class="btn" href="fairs/casas-ecuador-2026/contactos.html">Contactos</a>
+            </div>
+          </article>`;
         return;
       }
       if (view === "movimiento") {

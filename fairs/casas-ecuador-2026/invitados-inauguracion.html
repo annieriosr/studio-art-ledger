@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Outreach inauguración · Cosas Ecuador 2026 · Annie Ríos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4f2ee;
+      --ink: #241f1a;
+      --ink-soft: #5c574f;
+      --rule: #c4bfb4;
+      --mark: #3d5a45;
+      --mark-bg: #e6ebe4;
+      --warn: #7a4e2d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #d8d4cc;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+    }
+    body { min-height: 100vh; padding: 24px 14px 80px; }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    header {
+      background: var(--paper);
+      padding: 28px 28px 22px;
+      margin-bottom: 14px;
+      border-left: 1px solid var(--rule);
+    }
+    .nav-row { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-bottom: 16px; }
+    .back {
+      font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft);
+      text-decoration: none; border-bottom: 1px solid transparent;
+    }
+    .back:hover { border-bottom-color: var(--rule); color: var(--ink); }
+    .artist {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 8px;
+    }
+    h1 { font-size: 26px; font-weight: 400; font-style: italic; line-height: 1.2; margin-bottom: 8px; }
+    .lede { font-size: 15px; line-height: 1.5; color: var(--ink-soft); max-width: 62ch; }
+    .meta-line { margin-top: 10px; font-size: 13px; letter-spacing: 0.05em; color: var(--ink-soft); }
+    .save-note {
+      margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule);
+      font-size: 13px; line-height: 1.5; color: var(--ink-soft);
+    }
+    .save-note strong { color: var(--ink); font-weight: 600; }
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      background: var(--paper); padding: 12px 14px; margin-bottom: 10px;
+      border-left: 1px solid var(--rule);
+    }
+    .btn {
+      font-family: inherit; font-size: 13px; letter-spacing: 0.03em;
+      background: transparent; border: 1px solid var(--rule); color: var(--ink);
+      padding: 6px 12px; cursor: pointer; text-decoration: none; display: inline-block;
+    }
+    .btn:hover, .btn.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .btn-solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .toolbar select, .toolbar input[type="search"] {
+      font-family: inherit; font-size: 13px; padding: 6px 8px;
+      border: 1px solid var(--rule); background: #fff; color: var(--ink); min-width: 0;
+    }
+    .toolbar input[type="search"] { flex: 1 1 160px; }
+    .stats {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;
+    }
+    .stat {
+      background: var(--paper); padding: 10px 14px; min-width: 88px;
+      border-left: 1px solid var(--rule);
+    }
+    .stat b { display: block; font-size: 18px; font-weight: 400; font-style: italic; }
+    .stat span { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+    .toast {
+      display: none; position: sticky; top: 8px; z-index: 5;
+      background: var(--mark-bg); color: var(--mark); border: 1px solid var(--mark);
+      padding: 8px 12px; margin-bottom: 10px; font-size: 13px;
+    }
+    .toast.show { display: block; }
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .card {
+      background: var(--paper); padding: 16px 18px 14px;
+      border-left: 1px solid var(--rule);
+    }
+    .card-top {
+      display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline;
+      justify-content: space-between; margin-bottom: 6px;
+    }
+    .name { font-size: 18px; font-style: italic; font-weight: 400; }
+    .stratum {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-soft); border: 1px solid var(--rule); padding: 2px 8px;
+    }
+    .role { font-size: 14px; color: var(--ink-soft); line-height: 1.4; margin-bottom: 10px; }
+    .grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px;
+    }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+    label.field { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 3px; }
+    .field-wrap { min-width: 0; }
+    .field-wrap.full { grid-column: 1 / -1; }
+    input, select, textarea {
+      width: 100%; font-family: inherit; font-size: 14px; padding: 7px 8px;
+      border: 1px solid var(--rule); background: #fff; color: var(--ink);
+    }
+    textarea { resize: vertical; min-height: 64px; line-height: 1.4; }
+    .src {
+      font-size: 11px; color: var(--ink-soft); margin-top: 3px; line-height: 1.35;
+    }
+    .src.ok { color: var(--mark); }
+    .src.empty { color: var(--warn); }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .status-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; margin-top: 8px; }
+    .status-bar .field-wrap { flex: 1 1 160px; }
+    .add-box {
+      background: var(--paper); padding: 16px 18px; margin-top: 14px;
+      border-left: 1px solid var(--rule);
+    }
+    .add-box h2 { font-size: 13px; letter-spacing: 0.12em; text-transform: lowercase; margin-bottom: 10px; }
+    footer {
+      margin-top: 24px; font-size: 13px; line-height: 1.5; color: var(--ink-soft);
+      padding: 0 4px;
+    }
+    footer code { font-size: 12px; }
+    @media print {
+      .toolbar, .nav-row, .row-actions, .add-box, .toast { display: none !important; }
+      body { background: #fff; padding: 0; }
+      .card { break-inside: avoid; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="nav-row">
+        <a class="back" href="index.html">← Preparativos Cosas</a>
+        <a class="back" href="contactos.html">Contactos (lista)</a>
+        <a class="back" href="../../index.html#preparativos">Libro · Preparativos</a>
+      </div>
+      <p class="artist">Annie Ríos · Cosas Ecuador 2026</p>
+      <h1>Outreach — inauguración</h1>
+      <p class="lede">
+        Tracker de invitados a <em>Stillness &amp; Refractions</em> (Booth #16, Guayaquil).
+        Por estrato, con canal sugerido, borrador de mensaje y estado.
+        Teléfonos de Annie + contactos públicos verificados; campos vacíos = desconocido (no inventar).
+      </p>
+      <p class="meta-line">Apertura 5 nov 2026 · semilla en <code>invitados-inauguracion.json</code></p>
+      <p class="save-note">
+        <strong>Cómo guardar:</strong> los cambios se guardan solos en <em>este navegador</em> (localStorage).
+        Tras actualizar estados, pulsa <strong>Guardar para commit</strong> (o Descargar respaldo) e importa ese JSON
+        en otra máquina / tras un deploy. Para dejarlo permanente en el repo: descarga
+        <code>invitados-inauguracion.json</code> y haz commit del archivo.
+        Importar restaura un respaldo completo.
+      </p>
+    </header>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <div class="toolbar">
+      <button type="button" class="btn btn-solid" id="btnSaveCommit">Guardar para commit</button>
+      <button type="button" class="btn" id="btnExport">Descargar respaldo</button>
+      <button type="button" class="btn" id="btnImport">Importar respaldo</button>
+      <input id="impFile" type="file" accept="application/json,.json" hidden />
+      <button type="button" class="btn" id="btnReloadSeed">Recargar semilla del repo</button>
+      <button type="button" class="btn" id="btnReset">Resetear a semilla</button>
+      <select id="fStratum" aria-label="Filtrar estrato"><option value="">Todos los estratos</option></select>
+      <select id="fStatus" aria-label="Filtrar estado"><option value="">Todos los estados</option></select>
+      <input type="search" id="fSearch" placeholder="Buscar nombre / org…" />
+    </div>
+
+    <div class="stats" id="stats"></div>
+    <div class="list" id="list"></div>
+
+    <section class="add-box">
+      <h2>Añadir persona</h2>
+      <div class="grid">
+        <div class="field-wrap"><label class="field">Nombre</label><input id="newName" /></div>
+        <div class="field-wrap"><label class="field">Estrato</label>
+          <select id="newStratum"></select>
+        </div>
+        <div class="field-wrap"><label class="field">Rol</label><input id="newRole" /></div>
+        <div class="field-wrap"><label class="field">Organización</label><input id="newOrg" /></div>
+      </div>
+      <div class="row-actions">
+        <button type="button" class="btn btn-solid" id="btnAdd">Añadir</button>
+      </div>
+    </section>
+
+    <footer>
+      Semilla: lista Annie 7 nov 2026 + handles/emails públicos (DPM, N.A.S.A.L., Eacheve, MAAC, Mz14, UArtes, etc.).
+      Fuentes por campo aparecen bajo cada input. Carpeta: <code>fairs/casas-ecuador-2026/</code>.
+    </footer>
+  </div>
+
+<script>
+(function () {
+  var KEY = "cosasOutreach.v1";
+  var JSON_FILE = "invitados-inauguracion.json";
+  var ST = ["No contactado", "Contactado", "Respondió", "Confirmado", "Declinado"];
+  var STRATA = [
+    ["galerista", "Galerista"],
+    ["advisor", "Advisor / dealer"],
+    ["mecenas", "Mecenas / coleccionista"],
+    ["curador", "Crítico / curador"],
+    ["institucion", "Institución"],
+    ["mid-career", "Mid-career"],
+    ["emergente", "Emergente / independiente"],
+    ["academia", "Academia"],
+    ["prensa", "Prensa"],
+    ["aliado", "Aliado de mercado"]
+  ];
+  var CHANNELS = [
+    ["whatsapp", "WhatsApp"],
+    ["instagram", "Instagram"],
+    ["email", "Email"]
+  ];
+  var S = null;
+  var filterStratum = "";
+  var filterStatus = "";
+  var filterQ = "";
+
+  function esc(x) {
+    return String(x == null ? "" : x).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function toast(msg) {
+    var t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toast._tm);
+    toast._tm = setTimeout(function () { t.classList.remove("show"); }, 2800);
+  }
+
+  function blankPerson() {
+    return {
+      id: "", name: "", role: "", org: "", stratum: "emergente",
+      instagram: "", email: "", phone: "", channel: "whatsapp",
+      draft: "", status: 0, notes: "",
+      sources: { instagram: "", email: "", phone: "" }
+    };
+  }
+
+  function normalizePerson(p) {
+    var b = blankPerson();
+    if (!p || typeof p !== "object") return null;
+    b.id = String(p.id || "");
+    b.name = String(p.name || "");
+    if (!b.name) return null;
+    b.role = String(p.role || "");
+    b.org = String(p.org || "");
+    b.stratum = String(p.stratum || "emergente");
+    b.instagram = String(p.instagram || "");
+    b.email = String(p.email || "");
+    b.phone = String(p.phone || "");
+    b.channel = String(p.channel || "whatsapp");
+    b.draft = String(p.draft || "");
+    b.status = Math.max(0, Math.min(4, +p.status || 0));
+    b.notes = String(p.notes || "");
+    var src = p.sources && typeof p.sources === "object" ? p.sources : {};
+    b.sources = {
+      instagram: String(src.instagram || ""),
+      email: String(src.email || ""),
+      phone: String(src.phone || "")
+    };
+    return b;
+  }
+
+  function normalize(state) {
+    if (!state || !Array.isArray(state.people)) return null;
+    var people = [];
+    state.people.forEach(function (p) {
+      var n = normalizePerson(p);
+      if (n) people.push(n);
+    });
+    return {
+      version: 1,
+      fair: state.fair || "Cosas Ecuador 2026",
+      show: state.show || "Stillness & Refractions",
+      booth: state.booth || "#16",
+      city: state.city || "Guayaquil",
+      updated: state.updated || "",
+      note: state.note || "",
+      nextId: state.nextId || 1000,
+      people: people
+    };
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+  }
+
+  function loadLocal() {
+    var raw = null, parsed = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) { raw = null; }
+    if (!raw) return null;
+    try { parsed = JSON.parse(raw); } catch (e) { return null; }
+    return normalize(parsed);
+  }
+
+  function mergeSeed(saved, seed) {
+    if (!seed) return saved;
+    if (!saved) return seed;
+    var byId = {};
+    saved.people.forEach(function (p) { byId[p.id] = p; });
+    seed.people.forEach(function (sp) {
+      if (!byId[sp.id]) {
+        saved.people.push(sp);
+        byId[sp.id] = sp;
+      } else {
+        // Fill empty contact fields from seed without overwriting Annie's edits / status / notes / draft
+        var cur = byId[sp.id];
+        ["instagram", "email", "phone", "role", "org", "stratum"].forEach(function (k) {
+          if (!cur[k] && sp[k]) cur[k] = sp[k];
+        });
+        if (!cur.draft && sp.draft) cur.draft = sp.draft;
+        if (!cur.channel && sp.channel) cur.channel = sp.channel;
+        if (sp.sources) {
+          ["instagram", "email", "phone"].forEach(function (k) {
+            if (!cur.sources[k] && sp.sources[k]) cur.sources[k] = sp.sources[k];
+          });
+        }
+      }
+    });
+    if (seed.nextId && seed.nextId > saved.nextId) saved.nextId = seed.nextId;
+    return saved;
+  }
+
+  function fetchSeed() {
+    return fetch(JSON_FILE + "?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error("no json"); return r.json(); })
+      .then(function (j) { return normalize(j); })
+      .catch(function () { return null; });
+  }
+
+  function defaultDraft(name, channel) {
+    var who = name || "";
+    if (channel === "whatsapp") {
+      return "Hola" + (who ? " " + who.split(" ")[0] : "") + " — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). ¿Puedes venir?";
+    }
+    if (channel === "instagram") {
+      return "Hola — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Me encantaría verte en el booth.";
+    }
+    return "Hola" + (who ? " " + who.split(",")[0] : "") + " — Annie Ríos. Quisiera invitarte a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).";
+  }
+
+  function downloadJson(filename, obj) {
+    var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  function stamp() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  function find(id) {
+    for (var i = 0; i < S.people.length; i++) if (S.people[i].id === id) return S.people[i];
+    return null;
+  }
+
+  function srcLabel(val, src) {
+    if (val && src) return '<p class="src ok">Fuente: ' + esc(src) + "</p>";
+    if (val && !src) return '<p class="src ok">Dato presente (sin fuente anotada)</p>';
+    return '<p class="src empty">Vacío — no inventar; completar cuando haya dato real</p>';
+  }
+
+  function stratumLabel(id) {
+    for (var i = 0; i < STRATA.length; i++) if (STRATA[i][0] === id) return STRATA[i][1];
+    return id || "—";
+  }
+
+  function renderStats() {
+    var n = S.people.length;
+    var counts = [0, 0, 0, 0, 0];
+    S.people.forEach(function (p) { counts[p.status] = (counts[p.status] || 0) + 1; });
+    var h = '<div class="stat"><b>' + n + '</b><span>personas</span></div>';
+    ST.forEach(function (label, i) {
+      h += '<div class="stat"><b>' + counts[i] + '</b><span>' + esc(label) + "</span></div>";
+    });
+    document.getElementById("stats").innerHTML = h;
+  }
+
+  function renderFilters() {
+    var ss = document.getElementById("fStratum");
+    var cur = ss.value;
+    ss.innerHTML = '<option value="">Todos los estratos</option>' +
+      STRATA.map(function (s) {
+        return '<option value="' + esc(s[0]) + '"' + (filterStratum === s[0] ? " selected" : "") + ">" + esc(s[1]) + "</option>";
+      }).join("");
+    if (cur) ss.value = cur;
+    var st = document.getElementById("fStatus");
+    var cur2 = st.value;
+    st.innerHTML = '<option value="">Todos los estados</option>' +
+      ST.map(function (label, i) {
+        return '<option value="' + i + '"' + (String(filterStatus) === String(i) ? " selected" : "") + ">" + esc(label) + "</option>";
+      }).join("");
+    if (cur2 !== "") st.value = cur2;
+    var ns = document.getElementById("newStratum");
+    ns.innerHTML = STRATA.map(function (s) {
+      return '<option value="' + esc(s[0]) + '">' + esc(s[1]) + "</option>";
+    }).join("");
+  }
+
+  function visiblePeople() {
+    var q = filterQ.trim().toLowerCase();
+    return S.people.filter(function (p) {
+      if (filterStratum && p.stratum !== filterStratum) return false;
+      if (filterStatus !== "" && String(p.status) !== String(filterStatus)) return false;
+      if (q) {
+        var hay = (p.name + " " + p.org + " " + p.role + " " + p.instagram + " " + p.email).toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+  }
+
+  function render() {
+    renderStats();
+    var list = document.getElementById("list");
+    var people = visiblePeople();
+    if (!people.length) {
+      list.innerHTML = '<p class="lede" style="padding:12px 4px">Nadie coincide con el filtro.</p>';
+      return;
+    }
+    list.innerHTML = people.map(function (p) {
+      var channelOpts = CHANNELS.map(function (c) {
+        return '<option value="' + c[0] + '"' + (p.channel === c[0] ? " selected" : "") + ">" + c[1] + "</option>";
+      }).join("");
+      var statusOpts = ST.map(function (label, i) {
+        return '<option value="' + i + '"' + (p.status === i ? " selected" : "") + ">" + label + "</option>";
+      }).join("");
+      var stratumOpts = STRATA.map(function (s) {
+        return '<option value="' + s[0] + '"' + (p.stratum === s[0] ? " selected" : "") + ">" + s[1] + "</option>";
+      }).join("");
+      return (
+        '<article class="card" data-id="' + esc(p.id) + '">' +
+          '<div class="card-top">' +
+            '<p class="name">' + esc(p.name) + "</p>" +
+            '<span class="stratum">' + esc(stratumLabel(p.stratum)) + "</span>" +
+          "</div>" +
+          '<p class="role">' + esc([p.role, p.org].filter(Boolean).join(" · ")) + "</p>" +
+          '<div class="grid">' +
+            '<div class="field-wrap"><label class="field">Nombre</label><input data-k="name" value="' + esc(p.name) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Estrato</label><select data-k="stratum">' + stratumOpts + "</select></div>" +
+            '<div class="field-wrap"><label class="field">Rol</label><input data-k="role" value="' + esc(p.role) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Organización</label><input data-k="org" value="' + esc(p.org) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Instagram</label><input data-k="instagram" placeholder="@handle" value="' + esc(p.instagram) + '" />' + srcLabel(p.instagram, p.sources.instagram) + "</div>" +
+            '<div class="field-wrap"><label class="field">Email</label><input data-k="email" type="email" value="' + esc(p.email) + '" />' + srcLabel(p.email, p.sources.email) + "</div>" +
+            '<div class="field-wrap"><label class="field">Teléfono</label><input data-k="phone" value="' + esc(p.phone) + '" />' + srcLabel(p.phone, p.sources.phone) + "</div>" +
+            '<div class="field-wrap"><label class="field">Canal sugerido</label><select data-k="channel">' + channelOpts + "</select></div>" +
+            '<div class="field-wrap full"><label class="field">Borrador de invitación (según canal)</label><textarea data-k="draft" rows="3">' + esc(p.draft) + "</textarea></div>" +
+            '<div class="field-wrap full"><label class="field">Notas</label><textarea data-k="notes" rows="2">' + esc(p.notes) + "</textarea></div>" +
+          "</div>" +
+          '<div class="status-bar">' +
+            '<div class="field-wrap"><label class="field">Estado</label><select data-k="status">' + statusOpts + "</select></div>" +
+            '<div class="row-actions">' +
+              '<button type="button" class="btn" data-a="copy">Copiar borrador</button>' +
+              '<button type="button" class="btn" data-a="regen">Regenerar borrador</button>' +
+              '<button type="button" class="btn" data-a="del">Eliminar</button>' +
+            "</div>" +
+          "</div>" +
+        "</article>"
+      );
+    }).join("");
+  }
+
+  function persistFromInput(el) {
+    var card = el.closest(".card");
+    if (!card) return;
+    var p = find(card.dataset.id);
+    if (!p) return;
+    var k = el.dataset.k;
+    if (!k) return;
+    if (k === "status") p.status = +el.value;
+    else p[k] = el.value;
+    if (k === "name") card.querySelector(".name").textContent = p.name;
+    if (k === "stratum") card.querySelector(".stratum").textContent = stratumLabel(p.stratum);
+    if (k === "role" || k === "org") {
+      card.querySelector(".role").textContent = [p.role, p.org].filter(Boolean).join(" · ");
+    }
+    S.updated = stamp();
+    save();
+    renderStats();
+  }
+
+  document.getElementById("list").addEventListener("input", function (e) {
+    if (e.target.dataset && e.target.dataset.k) persistFromInput(e.target);
+  });
+  document.getElementById("list").addEventListener("change", function (e) {
+    if (e.target.dataset && e.target.dataset.k) {
+      persistFromInput(e.target);
+      if (e.target.dataset.k === "status" || e.target.dataset.k === "stratum") render();
+    }
+  });
+  document.getElementById("list").addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-a]");
+    if (!btn) return;
+    var card = btn.closest(".card");
+    var p = find(card.dataset.id);
+    if (!p) return;
+    if (btn.dataset.a === "copy") {
+      var text = p.draft || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { toast("Borrador copiado"); }).catch(function () { toast("No se pudo copiar"); });
+      } else { toast("Copia manual desde el campo"); }
+    } else if (btn.dataset.a === "regen") {
+      if (!confirm("¿Regenerar el borrador para este canal? Se pierde el texto actual.")) return;
+      p.draft = defaultDraft(p.name, p.channel);
+      save();
+      render();
+      toast("Borrador regenerado");
+    } else if (btn.dataset.a === "del") {
+      if (!confirm("¿Eliminar a " + p.name + " de la lista?")) return;
+      S.people = S.people.filter(function (x) { return x.id !== p.id; });
+      save();
+      render();
+    }
+  });
+
+  document.getElementById("fStratum").onchange = function () { filterStratum = this.value; render(); };
+  document.getElementById("fStatus").onchange = function () { filterStatus = this.value; render(); };
+  document.getElementById("fSearch").oninput = function () { filterQ = this.value; render(); };
+
+  document.getElementById("btnExport").onclick = function () {
+    S.updated = stamp();
+    save();
+    downloadJson("outreach-inauguracion-backup-" + stamp() + ".json", S);
+    toast("Respaldo descargado");
+  };
+  document.getElementById("btnSaveCommit").onclick = function () {
+    S.updated = stamp();
+    save();
+    downloadJson(JSON_FILE, S);
+    toast("Descargado " + JSON_FILE + " — reemplázalo en el repo y haz commit");
+  };
+  document.getElementById("btnImport").onclick = function () {
+    document.getElementById("impFile").click();
+  };
+  document.getElementById("impFile").onchange = function () {
+    var f = this.files && this.files[0];
+    this.value = "";
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var next = null;
+      try { next = normalize(JSON.parse(String(reader.result || ""))); } catch (e) { next = null; }
+      if (!next || !next.people.length) { alert("Ese archivo no es un respaldo válido del tracker."); return; }
+      if (!confirm("¿Reemplazar la lista actual (" + S.people.length + ") con el respaldo (" + next.people.length + " personas)?")) return;
+      S = next;
+      save();
+      renderFilters();
+      render();
+      toast("Respaldo importado (" + S.people.length + " personas)");
+    };
+    reader.onerror = function () { alert("No se pudo leer el archivo."); };
+    reader.readAsText(f);
+  };
+  document.getElementById("btnReloadSeed").onclick = function () {
+    fetchSeed().then(function (seed) {
+      if (!seed) { alert("No se pudo leer " + JSON_FILE + " del repo."); return; }
+      S = mergeSeed(S, seed);
+      save();
+      renderFilters();
+      render();
+      toast("Semilla del repo fusionada (sin pisar estados/notas)");
+    });
+  };
+  document.getElementById("btnReset").onclick = function () {
+    if (!confirm("¿Resetear a la semilla del repo? Descarga un respaldo antes si necesitas los estados actuales.")) return;
+    fetchSeed().then(function (seed) {
+      if (!seed) { alert("No se pudo leer la semilla."); return; }
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      S = seed;
+      save();
+      renderFilters();
+      render();
+      toast("Lista restablecida desde la semilla");
+    });
+  };
+  document.getElementById("btnAdd").onclick = function () {
+    var name = document.getElementById("newName").value.trim();
+    if (!name) return;
+    var p = blankPerson();
+    p.id = "p" + (S.nextId++);
+    p.name = name;
+    p.role = document.getElementById("newRole").value.trim();
+    p.org = document.getElementById("newOrg").value.trim();
+    p.stratum = document.getElementById("newStratum").value;
+    p.channel = "whatsapp";
+    p.draft = defaultDraft(p.name, p.channel);
+    S.people.push(p);
+    document.getElementById("newName").value = "";
+    document.getElementById("newRole").value = "";
+    document.getElementById("newOrg").value = "";
+    save();
+    render();
+    toast("Añadida: " + name);
+  };
+
+  function boot() {
+    renderFilters();
+    var local = loadLocal();
+    fetchSeed().then(function (seed) {
+      if (local) S = mergeSeed(local, seed);
+      else if (seed) S = seed;
+      else {
+        S = normalize({ version: 1, nextId: 1000, people: [] });
+        toast("Sin semilla JSON — añade personas o importa un respaldo");
+      }
+      if (!local) save();
+      else save();
+      render();
+    });
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>
