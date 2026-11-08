@@ -1,6 +1,6 @@
 # Cosas Ecuador 2026
 **Stillness & Refractions**
-Booth #16 · Guayaquil, Ecuador · Nov 5–15, 2026
+Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · Nov 12–22, 2026 (inauguración 12 nov)
 
 **Hub de preparativos:** open [`index.html`](./index.html) — also from the estudio ledger tab **Preparativos** (`#preparativos`).
 

@@ -149,7 +149,7 @@
         Por estrato, con canal sugerido, borrador de mensaje y estado.
         Teléfonos de Annie + contactos públicos verificados; campos vacíos = desconocido (no inventar).
       </p>
-      <p class="meta-line">Apertura 5 nov 2026 · semilla en <code>invitados-inauguracion.json</code></p>
+      <p class="meta-line">Inauguración 12 nov 2026 · exposición 12–22 nov · Casas Project GYE · Booth #16 · Batán Business Park · semilla en <code>invitados-inauguracion.json</code></p>
       <p class="save-note">
         <strong>Cómo guardar:</strong> los cambios se guardan solos en <em>este navegador</em> (localStorage).
         Tras actualizar estados, pulsa <strong>Guardar para commit</strong> (o Descargar respaldo) e importa ese JSON
@@ -339,15 +339,36 @@
       .catch(function () { return null; });
   }
 
-  function defaultDraft(name, channel) {
-    var who = name || "";
-    if (channel === "whatsapp") {
-      return "Hola" + (who ? " " + who.split(" ")[0] : "") + " — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). ¿Puedes venir?";
+  function greetingName(name) {
+    var who = String(name || "").trim();
+    if (!who) return "";
+    // Titles: Dra. Martha Rizzo → Dra. Rizzo
+    if (/^Dra?\.\s+/i.test(who)) {
+      var titleBits = who.split(/\s+/);
+      return titleBits[0] + " " + titleBits[titleBits.length - 1];
     }
-    if (channel === "instagram") {
-      return "Hola — Annie Ríos. Te invito a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov). Me encantaría verte en el booth.";
-    }
-    return "Hola" + (who ? " " + who.split(",")[0] : "") + " — Annie Ríos. Quisiera invitarte a la inauguración de Stillness & Refractions en Cosas Ecuador (Booth #16, Guayaquil, 5 nov).";
+    // Compound given name used in prior outreach
+    if (/^Juan Felipe\b/i.test(who)) return "Juan Felipe";
+    // Institutional / role labels → short preferred greeting
+    if (/Mz14/i.test(who)) return "Mz14";
+    if (/\bMAAC\b/i.test(who)) return "equipo MAAC";
+    if (/Eacheve/i.test(who)) return "Eacheve";
+    if (/^Decanato\b/i.test(who)) return "Decanato";
+    if (/Colecciona/i.test(who)) return "Colecciona";
+    if (/^(Directores|Dirección|Docentes|Interioristas|Prensa|Galería)\b/i.test(who)) return "";
+    // Person pattern (David Pérez-MacCollum → David)
+    return who.split(/\s+/)[0].replace(/[.,]$/, "");
+  }
+
+  function defaultDraft(name) {
+    var who = greetingName(name);
+    var hello = who ? ("Hola " + who + ",") : "Hola,";
+    return (
+      hello + " ¿cómo estás?\n\n" +
+      "Soy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n" +
+      "¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \n" +
+      "RSVP"
+    );
   }
 
   function downloadJson(filename, obj) {
@@ -460,7 +481,7 @@
             '<div class="field-wrap"><label class="field">Email</label><input data-k="email" type="email" value="' + esc(p.email) + '" />' + srcLabel(p.email, p.sources.email) + "</div>" +
             '<div class="field-wrap"><label class="field">Teléfono</label><input data-k="phone" value="' + esc(p.phone) + '" />' + srcLabel(p.phone, p.sources.phone) + "</div>" +
             '<div class="field-wrap"><label class="field">Canal sugerido</label><select data-k="channel">' + channelOpts + "</select></div>" +
-            '<div class="field-wrap full"><label class="field">Borrador de invitación (según canal)</label><textarea data-k="draft" rows="3">' + esc(p.draft) + "</textarea></div>" +
+            '<div class="field-wrap full"><label class="field">Borrador de invitación</label><textarea data-k="draft" rows="8">' + esc(p.draft) + "</textarea></div>" +
             '<div class="field-wrap full"><label class="field">Notas</label><textarea data-k="notes" rows="2">' + esc(p.notes) + "</textarea></div>" +
           "</div>" +
           '<div class="status-bar">' +
@@ -516,8 +537,8 @@
         navigator.clipboard.writeText(text).then(function () { toast("Borrador copiado"); }).catch(function () { toast("No se pudo copiar"); });
       } else { toast("Copia manual desde el campo"); }
     } else if (btn.dataset.a === "regen") {
-      if (!confirm("¿Regenerar el borrador para este canal? Se pierde el texto actual.")) return;
-      p.draft = defaultDraft(p.name, p.channel);
+      if (!confirm("¿Regenerar el borrador con el guion RSVP? Se pierde el texto actual.")) return;
+      p.draft = defaultDraft(p.name);
       save();
       render();
       toast("Borrador regenerado");
@@ -599,7 +620,7 @@
     p.org = document.getElementById("newOrg").value.trim();
     p.stratum = document.getElementById("newStratum").value;
     p.channel = "whatsapp";
-    p.draft = defaultDraft(p.name, p.channel);
+    p.draft = defaultDraft(p.name);
     S.people.push(p);
     document.getElementById("newName").value = "";
     document.getElementById("newRole").value = "";
