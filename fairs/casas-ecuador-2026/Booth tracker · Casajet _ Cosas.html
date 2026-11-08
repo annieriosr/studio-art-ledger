@@ -81,50 +81,465 @@ summary{cursor:pointer;padding:6px 12px;color:var(--mute);font-size:13px}
 <button class="btn" id="expJson" type="button">Download backup (JSON)</button>
 <button class="btn" id="impJson" type="button">Import backup</button>
 <input id="impFile" type="file" accept="application/json,.json" hidden>
-<button class="btn" id="rst">Reset everything</button>
+<button class="btn" id="rst">Reset to published plan</button>
 </div>
-<p class="note">Saved automatically in <strong>this browser only</strong> (not on the server, and not shared across phones or other browsers). Download a JSON backup after big updates, and import it if this page ever looks empty again. Open each task's details to add the supplier, contact, quote, due date and notes. Tick "Free / sponsored" when a supplier is giving it to you in exchange for being part of the project.</p>
+<p class="note">Default data is the published Cosas Ecuador booth plan (suppliers, quotes, statuses). Your edits then save in <strong>this browser only</strong>. Download a JSON backup after big updates, or use Reset to published plan / Import backup if needed. Open each task's details to add the supplier, contact, quote, due date and notes. Tick "Free / sponsored" when a supplier is giving it to you in exchange for being part of the project.</p>
 </main>
 <script>
 var ST=["To do","Contacted","Quoted","Confirmed","Done"];
 var CATS=["Build & install","Suppliers & quotes","Artworks & framing","Digital & audio","Print","Booth day"];
-var SEED=[
-[0,"Mount the main suspended piece (1.7 × 1.5 m) from the ceiling","Check ceiling/structure rules with the venue first. Rigging, weight, safety."],
-[0,"Hang the other artworks on the walls","Handiwork + hardware. Decide the wall layout first."],
-[0,"LED light for each canvas","Count the works, pick warm color temperature, plan power points."],
-[0,"Mount the lights","Installer or electrician. Ask the venue about power."],
-[0,"Paint the walls","Choose the color, number of coats, and the paint supplier."],
-[0,"Floor / carpet","Get a quote for the 12 m² floor."],
-[0,"Mount the canvases","Who installs, how long it takes, and what tools they bring."],
-[0,"Mount the benches in the booth","Delivery + placement. Confirm the circle fits around the central piece."],
-[1,"Follow up: lights","Seguimiento. Ask for price per unit and mounting."],
-[1,"Follow up: framing (enmarcaciones)","Seguimiento. Quote per work, timing, and shipping to the site."],
-[1,"Follow up: Modena","Seguimiento. Ask what they can give or discount."],
-[1,"Follow up: Knauf","Seguimiento. Wall / paint materials."],
-[1,"Call BG (Franklin)","Llamar a BG."],
-[1,"Find which artisans (G&C) have chairs, and where","Can feed the bench plan or be a backup seating option."],
-[1,"Quote the floor (cotizar piso)","Ask at least two suppliers."],
-[1,"Write personally to each supplier offering free supplies","Short pitch: project, dates, audience, how you will credit them."],
-[1,"Collect quotes for: carpet, paint, lights, light mounting, canvas mounting, bench mounting","Use the cost field in each task."],
-[2,"Buy hooks to hang the sheets (ganchos)","Count the works first, then add spares."],
-[2,"Draft the agreement for sending the works","I send the works, they frame them, then they ship them to the site. Needs a signature before anything moves."],
-[2,"Confirm shipping and insurance for the works","Dates, packaging, who is responsible."],
-[3,"QR code for each work","One QR per work, pointing to its own page."],
-[3,"Web pages (one per work)","Story, place, time, and context for each canvas."],
-[3,"Write the information for each work","Title, size, medium, and the story behind it."],
-[3,"Record the audio story for each canvas","For the headphones. Keep each one short."],
-[3,"Headphones and audio player","Number of sets, how they connect, charging."],
-[4,"Card for each work (QR + name + size + medium)","Pasted beside the work."],
-[4,"Flyer for the expo (expo written down)","Write the exhibition text first."],
-[4,"Posters","Size and quantity."],
-[4,"Invitations for galleries","Hacer invitaciones para galerías."],
-[4,"Sticker: Annie Rios, letter by letter","White Cube style entrance sticker. Choose font, size, and material."],
-[5,"Final site visit and measurements","Confirm the 12 m² layout against the plan."],
-[5,"Pack list: tools, ladders, tape, spare bulbs, cables","Make it a checklist the night before."],
-[5,"Install schedule","Who arrives when, and what gets done first (walls, floor, lights, works)."]
-];
+/* Published Cosas Ecuador booth plan (Annie's filled tracker) — public default seed for all visitors. */
+var PUBLIC_SEED={
+  "tasks": [
+    {
+      "id": "t0",
+      "c": 0,
+      "t": "Mount the main suspended piece (1.7 × 1.5 m) from the ceiling",
+      "h": "Check ceiling/structure rules with the venue first. Rigging, weight, safety.",
+      "s": 2,
+      "sup": "Alfredo Gamboa",
+      "con": "969559689",
+      "cost": "30",
+      "due": "2026-11-02",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t1",
+      "c": 0,
+      "t": "Hang the other artworks on the walls",
+      "h": "Handiwork + hardware. Decide the wall layout first.",
+      "s": 2,
+      "sup": "Alfredo Gamboa",
+      "con": "969559689",
+      "cost": "30",
+      "due": "2026-11-02",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t2",
+      "c": 0,
+      "t": "LED light for each canvas",
+      "h": "Count the works, pick warm color temperature, plan power points.",
+      "s": 2,
+      "sup": "Ledvance",
+      "con": "593 981136824",
+      "cost": "0",
+      "due": "2026-10-24",
+      "n": "",
+      "free": true
+    },
+    {
+      "id": "t3",
+      "c": 0,
+      "t": "Mount the lights",
+      "h": "Installer or electrician. Ask the venue about power.",
+      "s": 2,
+      "sup": "Alfredo Gamboa",
+      "con": "969559689",
+      "cost": "140",
+      "due": "2026-10-24",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t4",
+      "c": 0,
+      "t": "Paint the walls",
+      "h": "Choose the color, number of coats, and the paint supplier.",
+      "s": 2,
+      "sup": "Ruben",
+      "con": "939873727",
+      "cost": "150",
+      "due": "2026-10-31",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t5",
+      "c": 0,
+      "t": "Floor / carpet",
+      "h": "Get a quote for the 12 m² floor.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t6",
+      "c": 0,
+      "t": "Mount the canvases",
+      "h": "Who installs, how long it takes, and what tools they bring.",
+      "s": 2,
+      "sup": "Alfredo Gamboa",
+      "con": "969559689",
+      "cost": "30",
+      "due": "2026-11-02",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t7",
+      "c": 0,
+      "t": "Mount the benches in the booth",
+      "h": "Delivery + placement. Confirm the circle fits around the central piece.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t8",
+      "c": 1,
+      "t": "Follow up: lights",
+      "h": "Seguimiento. Ask for price per unit and mounting.",
+      "s": 2,
+      "sup": "Ledvance",
+      "con": "593 981136824",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": true
+    },
+    {
+      "id": "t9",
+      "c": 1,
+      "t": "Follow up: framing (enmarcaciones)",
+      "h": "Seguimiento. Quote per work, timing, and shipping to the site.",
+      "s": 3,
+      "sup": "Nunez Nunez",
+      "con": "967488330",
+      "cost": "193",
+      "due": "2026-10-28",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t10",
+      "c": 1,
+      "t": "Follow up: Modena",
+      "h": "Seguimiento. Ask what they can give or discount.",
+      "s": 2,
+      "sup": "Modena",
+      "con": "990151300",
+      "cost": "",
+      "due": "2026-10-24",
+      "n": "",
+      "free": true
+    },
+    {
+      "id": "t11",
+      "c": 1,
+      "t": "Follow up: Knauf",
+      "h": "Seguimiento. Wall / paint materials.",
+      "s": 0,
+      "sup": "Kauf",
+      "con": "992014441",
+      "cost": "",
+      "due": "2026-10-24",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t12",
+      "c": 1,
+      "t": "Call BG (Franklin)",
+      "h": "Llamar a BG.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t13",
+      "c": 1,
+      "t": "Find which artisans (G&C) have chairs, and where",
+      "h": "Can feed the bench plan or be a backup seating option.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t14",
+      "c": 1,
+      "t": "Quote the floor (cotizar piso)",
+      "h": "Ask at least two suppliers.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t15",
+      "c": 1,
+      "t": "Write personally to each supplier offering free supplies",
+      "h": "Short pitch: project, dates, audience, how you will credit them.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t16",
+      "c": 1,
+      "t": "Collect quotes for: carpet, paint, lights, light mounting, canvas mounting, bench mounting",
+      "h": "Use the cost field in each task.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t17",
+      "c": 2,
+      "t": "Buy hooks to hang the sheets (ganchos)",
+      "h": "Count the works first, then add spares.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t18",
+      "c": 2,
+      "t": "Draft the agreement for sending the works",
+      "h": "I send the works, they frame them, then they ship them to the site. Needs a signature before anything moves.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t19",
+      "c": 2,
+      "t": "Confirm shipping and insurance for the works",
+      "h": "Dates, packaging, who is responsible.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t20",
+      "c": 3,
+      "t": "QR code for each work",
+      "h": "One QR per work, pointing to its own page.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t21",
+      "c": 3,
+      "t": "Web pages (one per work)",
+      "h": "Story, place, time, and context for each canvas.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t22",
+      "c": 3,
+      "t": "Write the information for each work",
+      "h": "Title, size, medium, and the story behind it.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t23",
+      "c": 3,
+      "t": "Record the audio story for each canvas",
+      "h": "For the headphones. Keep each one short.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t24",
+      "c": 3,
+      "t": "Headphones and audio player",
+      "h": "Number of sets, how they connect, charging.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t25",
+      "c": 4,
+      "t": "Card for each work (QR + name + size + medium)",
+      "h": "Pasted beside the work.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t26",
+      "c": 4,
+      "t": "Flyer for the expo (expo written down)",
+      "h": "Write the exhibition text first.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t27",
+      "c": 4,
+      "t": "Posters",
+      "h": "Size and quantity.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t28",
+      "c": 4,
+      "t": "Invitations for galleries",
+      "h": "Hacer invitaciones para galerías.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t29",
+      "c": 4,
+      "t": "Sticker: Annie Rios, letter by letter",
+      "h": "White Cube style entrance sticker. Choose font, size, and material.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t30",
+      "c": 5,
+      "t": "Final site visit and measurements",
+      "h": "Confirm the 12 m² layout against the plan.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t31",
+      "c": 5,
+      "t": "Pack list: tools, ladders, tape, spare bulbs, cables",
+      "h": "Make it a checklist the night before.",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    },
+    {
+      "id": "t32",
+      "c": 5,
+      "t": "Install schedule",
+      "h": "Who arrives when, and what gets done first (walls, floor, lights, works).",
+      "s": 0,
+      "sup": "",
+      "con": "",
+      "cost": "",
+      "due": "",
+      "n": "",
+      "free": false
+    }
+  ],
+  "next": 1000,
+  "extras": [],
+  "budget": ""
+};
 var KEY="boothTracker.v1",S;
-function seedState(){return{tasks:SEED.map(function(s,i){return{id:"t"+i,c:s[0],t:s[1],h:s[2],s:0,sup:"",con:"",cost:"",due:"",n:"",free:false}}),next:1000,extras:[],budget:""}}
+function cloneState(x){return JSON.parse(JSON.stringify(x))}
+function seedState(){return normalize(cloneState(PUBLIC_SEED))}
+function isBlankSeed(state){
+if(!state||!Array.isArray(state.tasks)||!state.tasks.length)return true;
+if(state.budget)return false;
+if(Array.isArray(state.extras)&&state.extras.length)return false;
+for(var i=0;i<state.tasks.length;i++){
+var t=state.tasks[i];
+if(!t)continue;
+if(t.s)return false;
+if(t.sup||t.con||t.cost||t.due||t.n||t.free)return false;
+}
+return true;
+}
 function normalize(state){
 if(!state||!Array.isArray(state.tasks))return null;
 state.tasks=state.tasks.filter(function(t){return t&&typeof t.t==="string"&&t.t.indexOf("Carve the two curved benches")!==0});
@@ -136,11 +551,16 @@ function load(){
 var raw=null,parsed=null,ok=false;
 try{raw=localStorage.getItem(KEY)}catch(e){raw=null}
 if(raw){try{parsed=JSON.parse(raw);ok=true}catch(e){parsed=null}}
-var before=ok&&parsed?JSON.stringify(parsed):null;
-S=normalize(parsed)||seedState();
-/* Never wipe an existing key on load. Write only on first visit, or after the one-time task filter. */
-if(!raw)save();
-else if(ok&&before!==JSON.stringify(S))save();
+var next=ok?normalize(parsed):null;
+/* First visit, corrupt JSON, or old empty template → bake in the published Cosas plan. Keep richer local edits. */
+if(!next||isBlankSeed(next)){
+S=seedState();
+save();
+return;
+}
+var before=JSON.stringify(next);
+S=next;
+if(before!==JSON.stringify(S))save();
 }
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function downloadBackup(){
@@ -203,7 +623,7 @@ L.addEventListener("click",function(e){if(e.target.dataset.a==="del"){var t=find
 var sel=document.getElementById("newC");CATS.forEach(function(c,i){var o=document.createElement("option");o.value=i;o.textContent=c;sel.appendChild(o)});
 document.getElementById("addB").onclick=function(){var v=document.getElementById("newT").value.trim();if(!v)return;
 S.tasks.push({id:"t"+(S.next++),c:+sel.value,t:v,h:"",s:0,sup:"",con:"",cost:"",due:"",n:"",free:false});document.getElementById("newT").value="";save();render()};
-document.getElementById("rst").onclick=function(){if(confirm("Reset all tasks, quotes and notes? Download a JSON backup first if you might need them.")){try{localStorage.removeItem(KEY)}catch(e){}S=seedState();save();render();if(!document.getElementById("vC").hidden)renderCosts()}};
+document.getElementById("rst").onclick=function(){if(confirm("Reset to the published Cosas Ecuador booth plan? Local edits will be replaced. Download a JSON backup first if you might need them.")){try{localStorage.removeItem(KEY)}catch(e){}S=seedState();save();render();if(!document.getElementById("vC").hidden)renderCosts()}};
 document.getElementById("exp").onclick=function(){var s="";CATS.forEach(function(cn,ci){s+="\n"+cn+"\n";S.tasks.filter(function(t){return t.c===ci}).forEach(function(t){s+="["+ST[t.s]+"] "+t.t+(t.sup?" | "+t.sup:"")+(t.free?" | FREE":t.cost?" | $"+t.cost:"")+(t.due?" | due "+t.due:"")+"\n"})});
 try{navigator.clipboard.writeText(s.trim());this.textContent="Copied"}catch(e){this.textContent="Copy not available"}var b=this;setTimeout(function(){b.textContent="Copy summary"},1500)};
 document.getElementById("expJson").onclick=function(){downloadBackup();var b=this,t=b.textContent;b.textContent="Downloaded";setTimeout(function(){b.textContent=t},1500)};

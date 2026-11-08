@@ -22,7 +22,7 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 | File | Description |
 |---|---|
 | **index.html** | Hub **Cosas Ecuador 2026 — preparativos** — links to every prep doc in this folder. Reachable from ledger → Preparativos. |
-| **Booth tracker · Casajet _ Cosas.html** | Booth ops tracker (localStorage + Download/Import JSON backup). |
+| **Booth tracker · Casajet _ Cosas.html** | Published Cosas booth plan (suppliers/quotes/statuses) as public default seed; local edits + Download/Import/Reset. |
 | **booth-render-3d.html** | Interactive 3D booth render (Three.js). Open in Chrome, drag to orbit, scroll to zoom. |
 | **booth-render-overview.pdf** | A4 landscape PDF — single isometric view with work labels. |
 | **booth-render-three-views.pdf** | A4 landscape PDF — 3 pages: frontal · right wall · left wall. |
