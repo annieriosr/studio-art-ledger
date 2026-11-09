@@ -33,6 +33,7 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 | **booth-render-overview.pdf** | A4 landscape PDF — single isometric view with work labels. |
 | **booth-render-three-views.pdf** | A4 landscape PDF — 3 pages: frontal · right wall · left wall. |
 | **price-list.html** | Price list vouchers (booth triptych + additional works). Prices link to Cuanto (USD). |
+| **price-list-three.html** | Three-work price strip: AR-2026-008 ($4,400) · AR-2026-001 ($2,200) · AR-2026-010 ($600). Cuanto links pending. |
 | **price-list-print-12x18.html** | Print-shop form — Papel satinado **12×18″**, duplex. |
 | **price-list-print-12x18.pdf** | Same 12×18″ duplex layout for the shop. |
 | **PRINT-12x18.md** | Short instructions for the print shop. |
