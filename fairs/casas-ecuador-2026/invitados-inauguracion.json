@@ -4,7 +4,7 @@
   "show": "Stillness & Refractions",
   "booth": "#16",
   "city": "Guayaquil",
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "note": "Seed + outreach state. Edit in the tracker page, then Download / Guardar para commit and commit this file. Phones from Annie are marked source=annie; public handles/emails marked source=public. Blank means unknown — never invent.",
   "nextId": 40,
   "people": [
@@ -38,7 +38,7 @@
       "phone": "+593 99 404 3197",
       "channel": "whatsapp",
       "draft": "Hola Pily, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "",
@@ -114,7 +114,7 @@
       "phone": "+593 99 409 0999",
       "channel": "whatsapp",
       "draft": "Hola Colecciona, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "",
@@ -133,7 +133,7 @@
       "phone": "+593 99 924 2503",
       "channel": "whatsapp",
       "draft": "Hola Diana, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Email institucional Proarte verificado en proarte.ec — confirmar si es el canal personal de Diana.",
       "sources": {
         "instagram": "",
@@ -152,7 +152,7 @@
       "phone": "+593 99 951 5270",
       "channel": "whatsapp",
       "draft": "Hola Rodolfo, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 3,
       "notes": "Email es de la plataforma Paralaje (cofundador), no necesariamente personal.",
       "sources": {
         "instagram": "",
