@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Price List (3 works) — Annie Ríos · Cosas Ecuador 2026</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #dedad4;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 14px;
+}
+
+.print-bar {
+  width: 297mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.print-bar span {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+}
+.print-bar button {
+  font: 10px/1 'Helvetica Neue', Helvetica, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid #999;
+  color: #333;
+  padding: 6px 16px;
+  cursor: pointer;
+}
+.print-bar button:hover { background: #111; color: #fff; border-color: #111; }
+
+/* Voucher strip: elongated horizontal rectangle — A4 cut to 297 × 95 mm */
+.voucher {
+  width: 297mm;
+  height: 95mm;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.v-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3.2mm 7mm 2.8mm;
+  border-bottom: 0.35pt solid #111;
+  flex-shrink: 0;
+}
+.v-artist {
+  font-size: 7.5pt;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.v-show {
+  font-size: 7pt;
+  letter-spacing: 0.06em;
+  color: #666;
+}
+.v-web {
+  font-size: 7pt;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+.panels-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  flex: 1;
+  overflow: hidden;
+}
+
+.panel-x {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 5mm 5mm;
+  gap: 4mm;
+  overflow: hidden;
+}
+.panel-x + .panel-x {
+  border-left: 0.35pt solid #e0e0e0;
+}
+
+.thumb-x {
+  flex-shrink: 0;
+  width: 32mm;
+  height: 100%;
+  background: #f5f4f2;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.thumb-x img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.thumb-empty {
+  font-size: 6pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+  padding: 2mm;
+  text-align: center;
+}
+
+.info-x {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2mm;
+  flex: 1;
+  min-width: 0;
+}
+
+.ref {
+  font-size: 6pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+
+.title-x {
+  font-size: 8.5pt;
+  font-style: italic;
+  font-weight: 300;
+  color: #111;
+  line-height: 1.2;
+}
+
+.meta-x {
+  font-size: 6pt;
+  color: #999;
+  line-height: 1.65;
+}
+
+.price-line {
+  margin-top: 2mm;
+  padding-top: 2mm;
+  border-top: 0.3pt solid #e8e8e8;
+  font-size: 8pt;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #111;
+}
+
+.pay-link {
+  color: inherit;
+  text-decoration: none;
+}
+.pay-link:hover {
+  text-decoration: underline;
+}
+
+.pay-pending {
+  color: inherit;
+  font-style: normal;
+}
+
+[contenteditable]:focus { outline: none; }
+
+.v-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5mm 7mm;
+  border-top: 0.35pt solid #111;
+  flex-shrink: 0;
+}
+.v-footer span {
+  font-size: 6.2pt;
+  letter-spacing: 0.06em;
+  color: #888;
+}
+
+@media print {
+  html, body { background: #fff; padding: 0; margin: 0; }
+  .print-bar { display: none; }
+  .voucher { width: 100%; height: auto; }
+  @page { size: A4 portrait; margin: 12mm 10mm; }
+}
+</style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>Price List (3 works) &nbsp;&middot;&nbsp; Annie Rios &nbsp;&middot;&nbsp; Cosas Ecuador 2026</span>
+  <button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div class="voucher">
+
+  <div class="v-header">
+    <span class="v-artist">Annie Rios</span>
+    <span class="v-show">Stillness &amp; Refractions &nbsp;&middot;&nbsp; Cosas Ecuador &nbsp;&middot;&nbsp; Booth #16, Guayaquil &nbsp;&middot;&nbsp; Nov 5&ndash;15, 2026</span>
+    <span class="v-web">annieabstracts.com</span>
+  </div>
+
+  <div class="panels-3">
+
+    <!-- AR-2026-008 · A Gift of an Abundant Life · $4,400 -->
+    <div class="panel-x">
+      <div class="thumb-x">
+        <img src="../../photos/AR-2026-008/front.jpg" alt="A Gift of an Abundant Life">
+      </div>
+      <div class="info-x">
+        <p class="ref">AR-2026-008</p>
+        <p class="title-x">A Gift of an Abundant Life</p>
+        <p class="meta-x">
+          2026<br>
+          Diluted acrylic on canvas<br>
+          236 &times; 140 cm
+        </p>
+        <!-- Cuanto: pending — mint link for $4,400 (no existing Cuanto URL for this work/amount) -->
+        <p class="price-line" contenteditable="true" spellcheck="false"><span class="pay-pending">$ 4,400</span></p>
+      </div>
+    </div>
+
+    <!-- AR-2026-001 · What Remains Below · $2,200 -->
+    <div class="panel-x">
+      <div class="thumb-x">
+        <img src="../../photos/AR-2026-001/front.jpg" alt="What Remains Below">
+      </div>
+      <div class="info-x">
+        <p class="ref">AR-2026-001</p>
+        <p class="title-x">What Remains Below</p>
+        <p class="meta-x">
+          2026<br>
+          Diptych, acrylic on canvas, oak frame<br>
+          197 &times; 156 cm
+        </p>
+        <!-- Cuanto: pending — mint link for $2,200 (do not reuse Feel My Love /c/29e45a) -->
+        <p class="price-line" contenteditable="true" spellcheck="false"><span class="pay-pending">$ 2,200</span></p>
+      </div>
+    </div>
+
+    <!-- AR-2026-010 · I Still Can See a Refraction · $600 -->
+    <div class="panel-x">
+      <div class="thumb-x">
+        <span class="thumb-empty">Image forthcoming</span>
+      </div>
+      <div class="info-x">
+        <p class="ref">AR-2026-010</p>
+        <p class="title-x">I Still Can See a Refraction</p>
+        <p class="meta-x">
+          2026<br>
+          Acrylic on canvas, oak frame<br>
+          114 &times; 90 cm
+        </p>
+        <!-- Cuanto: pending — mint link for $600 (do not reuse InBetween /c/ac05da) -->
+        <p class="price-line" contenteditable="true" spellcheck="false"><span class="pay-pending">$ 600</span></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="v-footer">
+    <span>Inquiries &nbsp;&middot;&nbsp; annieabstracts@gmail.com &nbsp;&middot;&nbsp; +507 6357 8064</span>
+    <span>Prices in USD &nbsp;&middot;&nbsp; Cuanto links pending &nbsp;&middot;&nbsp; Shipping arranged worldwide</span>
+  </div>
+
+</div>
+
+</body>
+</html>
