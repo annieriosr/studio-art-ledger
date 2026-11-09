@@ -14,14 +14,16 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 |---|---|---|---|---|
 | AR-2025-001 | All the Ways We Shine | Oil on canvas | 150 × 189 cm | Suspended centerpiece |
 | AR-2025-002 | Be the Light | Acrylic on canvas, oak frame | 189 × 150 cm | Tarjeta / booth |
-| AR-2026-008 | A Gift of an Abundant Life | Diluted acrylic on canvas, oak frame | 236 × 140 cm | Tarjeta + ficha |
-| AR-2026-001 | What Remains Below | Diptych, acrylic on canvas, oak frame | 197 × 156 cm | Tarjeta + ficha |
-| AR-2026-010 | I Still Can See a Refraction | Acrylic on canvas, oak frame | 114 × 90 cm | Tarjeta + ficha |
+| AR-2026-008 | A Gift of an Abundant Life | Diluted acrylic on canvas, oak frame | 236 × 140 cm | Tarjeta + certificado + ficha |
+| AR-2026-001 | What Remains Below | Diptych, acrylic on canvas, oak frame | 197 × 156 cm | Tarjeta + certificado + ficha |
+| AR-2026-010 | I Still Can See a Refraction | Acrylic on canvas, oak frame | 114 × 90 cm | Tarjeta + certificado + ficha |
 | AR-2026-007 | Feel My Love | Oil on jute | 210 × 90 cm | Back wall |
 | AR-ND-010 | Point of Incidence | Acrylic on canvas, oak frame | 94 × 114 cm | Left wall |
 | AR-2025-003 | The InBetween Space | Acrylic on canvas, oak frame | 94 × 114 cm | Right wall |
 
 **Tarjetas de exposición (print):** `tarjeta-exposicion.html?id=AR-…` — QR codes for Gift / What Remains / I Still Can See point at the live Vercel work pages under `works/`.
+
+**Certificados de autenticidad (print):** `certificado.html?id=AR-…` — same three works; ledger `documents` entries (`coa-AR-…`) + hub / ficha links.
 
 ## Files
 

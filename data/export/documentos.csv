@@ -1,4 +1,4 @@
-﻿id,work,type,status,issued,notes
+id,work,type,status,issued,notes
 coa-AR-2020-001,AR-2020-001,coa,due,,Generar desde el catálogo. Firmar a tinta. Estampar el sello.
 letter-AR-2020-001,AR-2020-001,care_letter,due,,Misma voz que la nota de convivir. Para se llena del último sold.
 intro-AR-2020-001,AR-2020-001,intro_letter,due,,Carta de febrero de 2024. Para se llena del último sold.
@@ -99,7 +99,19 @@ coa-AR-2026-005,AR-2026-005,coa,due,,Generar desde el catálogo. Firmar a tinta.
 letter-AR-2026-005,AR-2026-005,care_letter,due,,Misma voz que la nota de convivir. Para se llena del último sold.
 intro-AR-2026-005,AR-2026-005,intro_letter,due,,Carta de febrero de 2024. Para se llena del último sold.
 invoice-AR-2026-005,AR-2026-005,invoice,due,,Número de factura por asignar. No inventar.
-coa-AR-ND-008,AR-ND-008,coa,due,,Generar desde el catálogo. Firmar a tinta. Estampar el sello.
-letter-AR-ND-008,AR-ND-008,care_letter,due,,Misma voz que la nota de convivir. Para se llena del último sold.
-intro-AR-ND-008,AR-ND-008,intro_letter,due,,Carta de febrero de 2024. Para se llena del último sold.
-invoice-AR-ND-008,AR-ND-008,invoice,due,,Número de factura por asignar. No inventar.
+coa-AR-2024-008,AR-2024-008,coa,due,,Generar desde el catálogo. Firmar a tinta. Estampar el sello.
+letter-AR-2024-008,AR-2024-008,care_letter,due,,Misma voz que la nota de convivir. Para se llena del último sold.
+intro-AR-2024-008,AR-2024-008,intro_letter,due,,Carta de febrero de 2024. Para se llena del último sold.
+invoice-AR-2024-008,AR-2024-008,invoice,due,,Número de factura por asignar. No inventar.
+coa-AR-2026-008,AR-2026-008,coa,due,,Generar desde el catálogo. Firmar a tinta. Estampar el sello. Cosas Ecuador 2026.
+letter-AR-2026-008,AR-2026-008,care_letter,due,,Misma voz que la nota de convivir. Para se llena del último sold.
+intro-AR-2026-008,AR-2026-008,intro_letter,due,,Carta de febrero de 2024. Para se llena del último sold.
+invoice-AR-2026-008,AR-2026-008,invoice,due,,Número de factura por asignar. No inventar.
+coa-AR-2026-001,AR-2026-001,coa,due,,Generar desde el catálogo. Firmar a tinta. Estampar el sello. Cosas Ecuador 2026.
+letter-AR-2026-001,AR-2026-001,care_letter,due,,Misma voz que la nota de convivir. Para se llena del último sold.
+intro-AR-2026-001,AR-2026-001,intro_letter,due,,Carta de febrero de 2024. Para se llena del último sold.
+invoice-AR-2026-001,AR-2026-001,invoice,due,,Número de factura por asignar. No inventar.
+coa-AR-2026-010,AR-2026-010,coa,due,,Generar desde el catálogo. Firmar a tinta. Estampar el sello. Cosas Ecuador 2026.
+letter-AR-2026-010,AR-2026-010,care_letter,due,,Misma voz que la nota de convivir. Para se llena del último sold.
+intro-AR-2026-010,AR-2026-010,intro_letter,due,,Carta de febrero de 2024. Para se llena del último sold.
+invoice-AR-2026-010,AR-2026-010,invoice,due,,Número de factura por asignar. No inventar.
