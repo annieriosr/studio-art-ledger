@@ -3396,6 +3396,102 @@
       "status": "due",
       "issued": null,
       "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2026-008",
+      "work": "AR-2026-008",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello. Cosas Ecuador 2026."
+    },
+    {
+      "id": "letter-AR-2026-008",
+      "work": "AR-2026-008",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2026-008",
+      "work": "AR-2026-008",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2026-008",
+      "work": "AR-2026-008",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2026-001",
+      "work": "AR-2026-001",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello. Cosas Ecuador 2026."
+    },
+    {
+      "id": "letter-AR-2026-001",
+      "work": "AR-2026-001",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2026-001",
+      "work": "AR-2026-001",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2026-001",
+      "work": "AR-2026-001",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
+    },
+    {
+      "id": "coa-AR-2026-010",
+      "work": "AR-2026-010",
+      "type": "coa",
+      "status": "due",
+      "issued": null,
+      "notes": "Generar desde el catálogo. Firmar a tinta. Estampar el sello. Cosas Ecuador 2026."
+    },
+    {
+      "id": "letter-AR-2026-010",
+      "work": "AR-2026-010",
+      "type": "care_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Misma voz que la nota de convivir. Para se llena del último sold."
+    },
+    {
+      "id": "intro-AR-2026-010",
+      "work": "AR-2026-010",
+      "type": "intro_letter",
+      "status": "due",
+      "issued": null,
+      "notes": "Carta de febrero de 2024. Para se llena del último sold."
+    },
+    {
+      "id": "invoice-AR-2026-010",
+      "work": "AR-2026-010",
+      "type": "invoice",
+      "status": "due",
+      "issued": null,
+      "notes": "Número de factura por asignar. No inventar."
     }
   ]
 }
