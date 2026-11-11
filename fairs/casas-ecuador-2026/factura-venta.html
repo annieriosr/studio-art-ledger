@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Factura de venta · Cosas Ecuador 2026 · Annie Ríos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4f2ee;
+      --ink: #241f1a;
+      --ink-soft: #5c574f;
+      --rule: #c4bfb4;
+      --mark: #3d5a45;
+      --mark-bg: #e6ebe4;
+      --warn: #7a4e2d;
+      --sheet: #faf8f4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #d8d4cc;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+    }
+    body { min-height: 100vh; padding: 20px 12px 72px; }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    .nav-row { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-bottom: 14px; }
+    .back {
+      font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft);
+      text-decoration: none; border-bottom: 1px solid transparent;
+    }
+    .back:hover { border-bottom-color: var(--rule); color: var(--ink); }
+    header {
+      background: var(--paper);
+      padding: 22px 24px 18px;
+      margin-bottom: 12px;
+      border-left: 1px solid var(--rule);
+    }
+    .artist {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 8px;
+    }
+    h1 { font-size: 26px; font-weight: 400; font-style: italic; line-height: 1.2; margin-bottom: 8px; }
+    .lede { font-size: 15px; line-height: 1.5; color: var(--ink-soft); max-width: 70ch; }
+    .meta-line { margin-top: 10px; font-size: 13px; letter-spacing: 0.05em; color: var(--ink-soft); }
+    .save-note {
+      margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule);
+      font-size: 13px; line-height: 1.45; color: var(--ink-soft);
+    }
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      background: var(--paper); padding: 10px 12px; margin-bottom: 12px;
+      border-left: 1px solid var(--rule);
+    }
+    .btn {
+      font-family: inherit; font-size: 13px; letter-spacing: 0.03em;
+      background: transparent; border: 1px solid var(--rule); color: var(--ink);
+      padding: 6px 12px; cursor: pointer; text-decoration: none; display: inline-block;
+    }
+    .btn:hover, .btn.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .btn-solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .toast {
+      display: none; position: sticky; top: 8px; z-index: 5;
+      background: var(--mark-bg); color: var(--mark); border: 1px solid var(--mark);
+      padding: 8px 12px; margin-bottom: 10px; font-size: 13px;
+    }
+    .toast.show { display: block; }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    @media (max-width: 920px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+    .panel {
+      background: var(--paper);
+      padding: 16px 16px 14px;
+      border-left: 1px solid var(--rule);
+    }
+    .panel h2 {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: lowercase; margin: 16px 0 10px;
+    }
+    .panel h2:first-child { margin-top: 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
+    .grid .full { grid-column: 1 / -1; }
+    @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+    label.field {
+      display: block; font-size: 11px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-soft); margin-bottom: 3px;
+    }
+    input, select, textarea {
+      width: 100%; font-family: inherit; font-size: 14px; padding: 7px 8px;
+      border: 1px solid var(--rule); background: #fff; color: var(--ink);
+    }
+    textarea { resize: vertical; min-height: 56px; line-height: 1.4; }
+    .hint { font-size: 12px; color: var(--ink-soft); margin-top: 4px; line-height: 1.4; }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .preview-wrap { overflow: auto; }
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      max-width: 100%;
+      margin: 0 auto;
+      background: var(--sheet);
+      color: var(--ink);
+      padding: 16mm 16mm 18mm;
+      box-shadow: 0 1px 0 rgba(36,31,26,0.06);
+    }
+    .sheet .mast {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 16px; padding-bottom: 8px; margin-bottom: 14px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .sheet .studio-name {
+      font-size: 13pt; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .sheet .studio-meta {
+      margin-top: 6px; font-size: 9.5pt; line-height: 1.55; color: var(--ink-soft);
+    }
+    .sheet .doc-mark {
+      text-align: right; font-size: 9.5pt; line-height: 1.5; color: var(--ink-soft);
+    }
+    .sheet .doc-mark strong {
+      display: block; font-size: 12pt; font-weight: 600; color: var(--ink);
+      letter-spacing: 0.04em; margin-bottom: 4px;
+    }
+    .sheet h3 {
+      font-size: 16pt; font-weight: 400; font-style: italic;
+      margin: 4px 0 16px;
+    }
+    .sheet .bilingual {
+      font-size: 9pt; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 18px;
+    }
+    .sheet .cols {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px;
+    }
+    .sheet .block-label {
+      font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 6px;
+    }
+    .sheet .block-body { font-size: 10.5pt; line-height: 1.55; }
+    .sheet .block-body .name { font-size: 12pt; font-style: italic; }
+    .facts {
+      width: 100%; border-collapse: collapse; margin: 8px 0 18px;
+      font-size: 10.5pt;
+    }
+    .facts th, .facts td {
+      text-align: left; vertical-align: top;
+      padding: 8px 0; border-bottom: 1px solid var(--rule);
+    }
+    .facts th {
+      width: 34%; font-weight: 600; font-size: 9pt;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+    }
+    .price-box {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 12px; padding: 12px 0; margin: 8px 0 18px;
+      border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    }
+    .price-box .label {
+      font-size: 9pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+    }
+    .price-box .amount { font-size: 18pt; font-style: italic; }
+    .attest {
+      font-size: 10pt; line-height: 1.6; margin-bottom: 22px;
+    }
+    .sign-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px;
+    }
+    .sign-line {
+      border-top: 1px solid var(--ink); padding-top: 8px;
+      font-size: 9.5pt; line-height: 1.45; color: var(--ink-soft);
+    }
+    .foot-note {
+      margin-top: 28px; font-size: 8.5pt; line-height: 1.5; color: var(--ink-soft);
+    }
+    .drafts {
+      margin-top: 12px; background: var(--paper); padding: 14px 16px;
+      border-left: 1px solid var(--rule);
+    }
+    .drafts h2 {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: lowercase; margin-bottom: 10px;
+    }
+    .draft-list { display: flex; flex-direction: column; gap: 8px; }
+    .draft-item {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--rule);
+    }
+    .draft-item:last-child { border-bottom: none; }
+    .draft-meta { font-size: 14px; line-height: 1.4; }
+    .draft-meta span { color: var(--ink-soft); font-size: 12px; }
+    footer {
+      margin-top: 18px; font-size: 13px; line-height: 1.5; color: var(--ink-soft); padding: 0 2px;
+    }
+    footer a { color: inherit; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .no-print { display: none !important; }
+      .layout { display: block; }
+      .preview-wrap { overflow: visible; }
+      .sheet {
+        width: auto; min-height: auto; margin: 0; box-shadow: none;
+        padding: 12mm 14mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav-row no-print">
+      <a class="back" href="index.html">← Preparativos Cosas</a>
+      <a class="back" href="price-list-three.html">Lista 3 obras</a>
+      <a class="back" href="price-list.html">Lista completa</a>
+      <a class="back" href="../../index.html#preparativos">Libro · Preparativos</a>
+    </div>
+
+    <header class="no-print">
+      <p class="artist">Annie Ríos · Cosas Ecuador 2026</p>
+      <h1>Factura de venta / Invoice</h1>
+      <p class="lede">
+        Generá una factura / certificado de venta para obras de
+        <em>Stillness &amp; Refractions</em> (Casas Project GYE, Booth #16).
+        Editá en el sitio, imprimí o guardá PDF desde el navegador, y enviá por email o WhatsApp.
+        No inventa RUC/tax ID ni datos bancarios: esos campos quedan editables en blanco.
+      </p>
+      <p class="meta-line">Stillness &amp; Refractions · Booth #16 · Guayaquil · Nov 2026 · USD</p>
+      <p class="save-note">Borradores en <strong>localStorage</strong>. Usá Exportar / Importar JSON para respaldar o pasar de máquina.</p>
+    </header>
+
+    <div id="toast" class="toast no-print" role="status"></div>
+
+    <div class="toolbar no-print">
+      <button type="button" class="btn btn-solid" id="btnPrint">Imprimir / PDF</button>
+      <button type="button" class="btn" id="btnNew">Nueva factura</button>
+      <button type="button" class="btn" id="btnSaveDraft">Guardar borrador</button>
+      <button type="button" class="btn" id="btnExport">Exportar JSON</button>
+      <button type="button" class="btn" id="btnImport">Importar JSON</button>
+      <input type="file" id="impFile" accept="application/json,.json" hidden />
+      <a class="btn" id="btnMailto" href="#">Email comprador + Annie</a>
+      <a class="btn" id="btnWhatsApp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="layout">
+      <aside class="panel no-print" id="formPanel">
+        <h2>Obra</h2>
+        <div class="grid">
+          <div class="full">
+            <label class="field" for="workId">Obra (lista Cosas)</label>
+            <select id="workId"></select>
+            <p class="hint">Incluye las 3 obras destacadas + el resto de la lista de precios Cosas.</p>
+          </div>
+          <div class="full">
+            <label class="field" for="workTitle">Título</label>
+            <input id="workTitle" />
+          </div>
+          <div>
+            <label class="field" for="inventoryId">Inventory ID</label>
+            <input id="inventoryId" />
+          </div>
+          <div>
+            <label class="field" for="workYear">Año</label>
+            <input id="workYear" />
+          </div>
+          <div class="full">
+            <label class="field" for="workMedium">Medio / materials</label>
+            <input id="workMedium" />
+          </div>
+          <div>
+            <label class="field" for="workDims">Dimensiones</label>
+            <input id="workDims" placeholder="h × w cm" />
+          </div>
+          <div>
+            <label class="field" for="salePrice">Precio USD</label>
+            <input id="salePrice" inputmode="decimal" />
+          </div>
+          <div class="full">
+            <label class="field" for="workNotes">Notas de la obra (opcional)</label>
+            <textarea id="workNotes" rows="2"></textarea>
+          </div>
+        </div>
+
+        <h2>Comprador</h2>
+        <div class="grid">
+          <div class="full">
+            <label class="field" for="buyerName">Nombre completo</label>
+            <input id="buyerName" autocomplete="name" />
+          </div>
+          <div>
+            <label class="field" for="buyerEmail">Email</label>
+            <input id="buyerEmail" type="email" autocomplete="email" />
+          </div>
+          <div>
+            <label class="field" for="buyerPhone">Teléfono</label>
+            <input id="buyerPhone" placeholder="+593…" autocomplete="tel" />
+          </div>
+          <div>
+            <label class="field" for="buyerTaxId">ID / tax ID / RUC (opcional)</label>
+            <input id="buyerTaxId" />
+          </div>
+          <div>
+            <label class="field" for="buyerCountry">País</label>
+            <input id="buyerCountry" value="Ecuador" />
+          </div>
+          <div class="full">
+            <label class="field" for="buyerAddress">Dirección (opcional)</label>
+            <textarea id="buyerAddress" rows="2"></textarea>
+          </div>
+        </div>
+
+        <h2>Venta</h2>
+        <div class="grid">
+          <div>
+            <label class="field" for="invoiceNumber">Nº factura / bill</label>
+            <input id="invoiceNumber" />
+          </div>
+          <div>
+            <label class="field" for="saleDate">Fecha</label>
+            <input id="saleDate" type="date" />
+          </div>
+          <div class="full">
+            <label class="field" for="exhibition">Contexto de exposición</label>
+            <input id="exhibition" />
+          </div>
+          <div>
+            <label class="field" for="paymentMethod">Método de pago</label>
+            <input id="paymentMethod" value="Cuanto / transferencia" />
+          </div>
+          <div>
+            <label class="field" for="currency">Moneda</label>
+            <input id="currency" value="USD" />
+          </div>
+          <div class="full">
+            <label class="field" for="paymentLink">Link de pago (Cuanto, editable)</label>
+            <input id="paymentLink" placeholder="https://www.cuanto.app/…" />
+          </div>
+          <div class="full">
+            <label class="field" for="saleNotes">Notas de venta / entrega (opcional)</label>
+            <textarea id="saleNotes" rows="2"></textarea>
+          </div>
+        </div>
+
+        <h2>Vendedor (estudio)</h2>
+        <div class="grid">
+          <div class="full">
+            <label class="field" for="sellerName">Nombre / studio</label>
+            <input id="sellerName" />
+          </div>
+          <div>
+            <label class="field" for="sellerLocation">Ubicación</label>
+            <input id="sellerLocation" />
+          </div>
+          <div>
+            <label class="field" for="sellerEmail">Email</label>
+            <input id="sellerEmail" type="email" />
+          </div>
+          <div>
+            <label class="field" for="sellerPhone">Teléfono</label>
+            <input id="sellerPhone" />
+          </div>
+          <div>
+            <label class="field" for="sellerWeb">Web</label>
+            <input id="sellerWeb" />
+          </div>
+          <div class="full">
+            <label class="field" for="sellerTaxId">Tax ID / RUC del estudio (editable, vacío)</label>
+            <input id="sellerTaxId" placeholder="Completar si se necesita" />
+          </div>
+          <div class="full">
+            <label class="field" for="sellerBank">Datos bancarios (editable, vacío — no inventados)</label>
+            <textarea id="sellerBank" rows="2" placeholder="Banco, cuenta, SWIFT… solo si Annie los completa"></textarea>
+          </div>
+        </div>
+
+        <div class="row-actions">
+          <button type="button" class="btn btn-solid" id="btnApply">Actualizar vista</button>
+          <button type="button" class="btn" id="btnRegenNumber">Nuevo número</button>
+        </div>
+      </aside>
+
+      <div class="preview-wrap">
+        <article class="sheet" id="sheet" aria-label="Factura de venta">
+          <div class="mast">
+            <div>
+              <div class="studio-name" id="pSellerName">Annie Ríos</div>
+              <div class="studio-meta" id="pSellerMeta"></div>
+            </div>
+            <div class="doc-mark">
+              <strong id="pInvoiceNumber">—</strong>
+              <div id="pSaleDate">—</div>
+              <div>USD</div>
+            </div>
+          </div>
+
+          <p class="bilingual">Invoice · Factura de venta · Certificate of sale</p>
+          <h3>Proof of sale / Comprobante de venta de obra</h3>
+
+          <div class="cols">
+            <div>
+              <div class="block-label">Seller / Vendedor</div>
+              <div class="block-body" id="pSellerBlock"></div>
+            </div>
+            <div>
+              <div class="block-label">Buyer / Comprador</div>
+              <div class="block-body" id="pBuyerBlock"></div>
+            </div>
+          </div>
+
+          <table class="facts">
+            <tr><th>Work / Obra</th><td id="pWorkTitle">—</td></tr>
+            <tr><th>Inventory ID</th><td id="pInventoryId">—</td></tr>
+            <tr><th>Year / Año</th><td id="pWorkYear">—</td></tr>
+            <tr><th>Medium</th><td id="pWorkMedium">—</td></tr>
+            <tr><th>Dimensions</th><td id="pWorkDims">—</td></tr>
+            <tr><th>Exhibition</th><td id="pExhibition">—</td></tr>
+            <tr><th>Payment</th><td id="pPayment">—</td></tr>
+            <tr><th>Notes</th><td id="pNotes">—</td></tr>
+          </table>
+
+          <div class="price-box">
+            <div class="label">Sale price / Precio de venta</div>
+            <div class="amount" id="pPrice">$ —</div>
+          </div>
+
+          <p class="attest" id="pAttest"></p>
+
+          <div class="sign-row">
+            <div class="sign-line">
+              Seller signature / Firma del vendedor<br />
+              Annie Ríos
+            </div>
+            <div class="sign-line">
+              Buyer acknowledgment / Acuse del comprador<br />
+              <span id="pBuyerSignName">—</span>
+            </div>
+          </div>
+
+          <p class="foot-note">
+            This document is issued as a studio invoice / certificate of sale for payment processors and banks.
+            It is not legal advice and does not replace tax filings required in the buyer’s or seller’s jurisdiction.
+            Documento emitido por el estudio como factura / certificado de venta. No constituye asesoría legal ni tributaria.
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <section class="drafts no-print">
+      <h2>Borradores guardados en este navegador</h2>
+      <div class="draft-list" id="draftList"></div>
+    </section>
+
+    <footer class="no-print">
+      Archivo: <code>fairs/casas-ecuador-2026/factura-venta.html</code>.
+      Volver al <a href="index.html">hub Cosas</a>
+      o a <a href="../../index.html#preparativos">Preparativos</a>.
+    </footer>
+  </div>
+
+  <script>
+(function () {
+  "use strict";
+
+  var KEY = "cosasSaleInvoice-v1";
+  var LIVE_PATH = "https://studio-art-ledger.vercel.app/fairs/casas-ecuador-2026/factura-venta.html";
+  var ANNIE_EMAIL = "annieabstracts@gmail.com";
+
+  var WORKS = [
+    {
+      id: "AR-2026-008",
+      title: "A Gift of an Abundant Life",
+      year: 2026,
+      medium: "Acrílico diluido sobre lienzo, marco de roble",
+      dims: "236 × 140 cm",
+      price: 4400,
+      cuanto: "",
+      featured: true
+    },
+    {
+      id: "AR-2026-001",
+      title: "What Remains Below",
+      year: 2026,
+      medium: "Díptico, acrílico sobre lienzo, marco de roble",
+      dims: "197 × 156 cm",
+      price: 2200,
+      cuanto: "",
+      featured: true
+    },
+    {
+      id: "AR-2026-010",
+      title: "I Still Can See a Refraction",
+      year: 2026,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "114 × 90 cm",
+      price: 600,
+      cuanto: "",
+      featured: true
+    },
+    {
+      id: "AR-2025-001",
+      title: "All the Ways We Shine",
+      year: 2025,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "189 × 150 cm",
+      price: 2500,
+      cuanto: "https://www.cuanto.app/c/efe08d"
+    },
+    {
+      id: "AR-2025-002",
+      title: "Be the Light",
+      year: 2025,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "189 × 150 cm",
+      price: 2500,
+      cuanto: "https://cuanto.app/annierios/p/294f71"
+    },
+    {
+      id: "AR-2026-007",
+      title: "Feel My Love",
+      year: 2026,
+      medium: "Óleo sobre yute",
+      dims: "90 × 210 cm",
+      price: 2200,
+      cuanto: "https://www.cuanto.app/c/29e45a"
+    },
+    {
+      id: "AR-2025-009",
+      title: "Point of Incidence",
+      year: 2025,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "114 × 94 cm",
+      price: 700,
+      cuanto: "https://www.cuanto.app/c/af1ec6",
+      note: "Lista Cosas aún etiqueta AR-ND-010; inventario ledger: AR-2025-009"
+    },
+    {
+      id: "AR-2025-003",
+      title: "The InBetween Space",
+      year: 2025,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "114 × 94 cm",
+      price: 600,
+      cuanto: "https://www.cuanto.app/c/ac05da"
+    },
+    {
+      id: "AR-2024-001",
+      title: "Casa Amarilla",
+      year: 2024,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "70 × 40 cm",
+      price: 350,
+      cuanto: "https://cuanto.app/annierios/p/af5fb5"
+    },
+    {
+      id: "AR-2024-003",
+      title: "El Ocaso",
+      year: 2024,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "110 × 92 cm",
+      price: 450,
+      cuanto: "https://www.cuanto.app/c/ecfdda"
+    },
+    {
+      id: "AR-2022-001",
+      title: "Red Thread",
+      year: 2022,
+      medium: "Acrílico sobre lienzo, marco de roble",
+      dims: "115 × 96 cm",
+      price: 450,
+      cuanto: "https://www.cuanto.app/c/a169fb"
+    }
+  ];
+
+  var DEFAULT_SELLER = {
+    name: "Annie Ríos",
+    location: "Panamá",
+    email: ANNIE_EMAIL,
+    phone: "+507 6357 8064",
+    web: "annieabstracts.com",
+    taxId: "",
+    bank: ""
+  };
+
+  var DEFAULT_EXHIBITION =
+    "Stillness & Refractions · Cosas Ecuador 2026 · Casas Project GYE · Booth #16 · Batán Business Park, Guayaquil · Nov 2026";
+
+  var FIELDS = [
+    "workId", "workTitle", "inventoryId", "workYear", "workMedium", "workDims",
+    "salePrice", "workNotes",
+    "buyerName", "buyerEmail", "buyerPhone", "buyerTaxId", "buyerCountry", "buyerAddress",
+    "invoiceNumber", "saleDate", "exhibition", "paymentMethod", "currency", "paymentLink", "saleNotes",
+    "sellerName", "sellerLocation", "sellerEmail", "sellerPhone", "sellerWeb", "sellerTaxId", "sellerBank"
+  ];
+
+  var state = emptyState();
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function toast(msg) {
+    var el = document.getElementById("toast");
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove("show"); }, 2800);
+  }
+
+  function stamp() {
+    var d = new Date();
+    function p(n) { return String(n).padStart(2, "0"); }
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) +
+      "T" + p(d.getHours()) + ":" + p(d.getMinutes()) + ":" + p(d.getSeconds());
+  }
+
+  function todayISO() {
+    var d = new Date();
+    function p(n) { return String(n).padStart(2, "0"); }
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+  }
+
+  function money(n) {
+    var x = Number(String(n).replace(/[^0-9.]/g, ""));
+    if (!isFinite(x)) return String(n || "");
+    return x.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  }
+
+  function nextInvoiceNumber(store) {
+    var seq = (store && store.seq) || 1;
+    var y = new Date().getFullYear();
+    return "AR-CE-" + y + "-" + String(seq).padStart(3, "0");
+  }
+
+  function emptyState() {
+    return {
+      draftId: null,
+      workId: WORKS[0].id,
+      workTitle: WORKS[0].title,
+      inventoryId: WORKS[0].id,
+      workYear: String(WORKS[0].year),
+      workMedium: WORKS[0].medium,
+      workDims: WORKS[0].dims,
+      salePrice: String(WORKS[0].price),
+      workNotes: WORKS[0].note || "",
+      buyerName: "",
+      buyerEmail: "",
+      buyerPhone: "",
+      buyerTaxId: "",
+      buyerCountry: "Ecuador",
+      buyerAddress: "",
+      invoiceNumber: "",
+      saleDate: todayISO(),
+      exhibition: DEFAULT_EXHIBITION,
+      paymentMethod: "Cuanto / transferencia",
+      currency: "USD",
+      paymentLink: WORKS[0].cuanto || "",
+      saleNotes: "",
+      sellerName: DEFAULT_SELLER.name,
+      sellerLocation: DEFAULT_SELLER.location,
+      sellerEmail: DEFAULT_SELLER.email,
+      sellerPhone: DEFAULT_SELLER.phone,
+      sellerWeb: DEFAULT_SELLER.web,
+      sellerTaxId: "",
+      sellerBank: ""
+    };
+  }
+
+  function loadStore() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return { version: 1, seq: 1, current: null, drafts: [] };
+      var s = JSON.parse(raw);
+      if (!s || typeof s !== "object") return { version: 1, seq: 1, current: null, drafts: [] };
+      if (!Array.isArray(s.drafts)) s.drafts = [];
+      if (!s.seq) s.seq = 1;
+      s.version = 1;
+      return s;
+    } catch (e) {
+      return { version: 1, seq: 1, current: null, drafts: [] };
+    }
+  }
+
+  function saveStore(store) {
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+  }
+
+  function readForm() {
+    var o = {};
+    FIELDS.forEach(function (k) {
+      var el = document.getElementById(k);
+      o[k] = el ? el.value : "";
+    });
+    o.draftId = state.draftId;
+    return o;
+  }
+
+  function writeForm(o) {
+    state = Object.assign(emptyState(), o || {});
+    FIELDS.forEach(function (k) {
+      var el = document.getElementById(k);
+      if (el) el.value = state[k] == null ? "" : state[k];
+    });
+  }
+
+  function findWork(id) {
+    for (var i = 0; i < WORKS.length; i++) if (WORKS[i].id === id) return WORKS[i];
+    return null;
+  }
+
+  function applyWork(id, forcePrice) {
+    var w = findWork(id);
+    if (!w) return;
+    document.getElementById("workId").value = w.id;
+    document.getElementById("workTitle").value = w.title;
+    document.getElementById("inventoryId").value = w.id;
+    document.getElementById("workYear").value = String(w.year || "");
+    document.getElementById("workMedium").value = w.medium || "";
+    document.getElementById("workDims").value = w.dims || "";
+    if (forcePrice || !document.getElementById("salePrice").value) {
+      document.getElementById("salePrice").value = String(w.price);
+    } else {
+      document.getElementById("salePrice").value = String(w.price);
+    }
+    document.getElementById("paymentLink").value = w.cuanto || "";
+    document.getElementById("workNotes").value = w.note || "";
+  }
+
+  function fillWorkSelect() {
+    var sel = document.getElementById("workId");
+    sel.innerHTML = WORKS.map(function (w) {
+      var tag = w.featured ? " ★" : "";
+      return '<option value="' + esc(w.id) + '">' +
+        esc(w.title) + " — " + esc(w.id) + " — $" + money(w.price) + tag +
+        "</option>";
+    }).join("");
+  }
+
+  function lines(arr) {
+    return arr.filter(Boolean).map(function (x) { return esc(x); }).join("<br>");
+  }
+
+  function renderPreview() {
+    var s = readForm();
+    state = s;
+    document.getElementById("pSellerName").textContent = s.sellerName || "Annie Ríos";
+    document.getElementById("pSellerMeta").innerHTML = lines([
+      s.sellerLocation,
+      s.sellerEmail,
+      s.sellerPhone,
+      s.sellerWeb
+    ]);
+    document.getElementById("pInvoiceNumber").textContent = s.invoiceNumber || "—";
+    document.getElementById("pSaleDate").textContent = s.saleDate || "—";
+
+    var sellerBits = [
+      '<div class="name">' + esc(s.sellerName || "Annie Ríos") + "</div>",
+      esc(s.sellerLocation || ""),
+      esc(s.sellerEmail || ""),
+      esc(s.sellerPhone || ""),
+      esc(s.sellerWeb || "")
+    ];
+    if (s.sellerTaxId) sellerBits.push("Tax ID / RUC: " + esc(s.sellerTaxId));
+    if (s.sellerBank) sellerBits.push(esc(s.sellerBank));
+    document.getElementById("pSellerBlock").innerHTML = sellerBits.filter(Boolean).join("<br>");
+
+    var buyerBits = [
+      '<div class="name">' + esc(s.buyerName || "—") + "</div>",
+      esc(s.buyerEmail || ""),
+      esc(s.buyerPhone || ""),
+      esc(s.buyerCountry || ""),
+      esc(s.buyerAddress || "")
+    ];
+    if (s.buyerTaxId) buyerBits.push("ID / tax ID: " + esc(s.buyerTaxId));
+    document.getElementById("pBuyerBlock").innerHTML = buyerBits.filter(Boolean).join("<br>");
+    document.getElementById("pBuyerSignName").textContent = s.buyerName || "—";
+
+    document.getElementById("pWorkTitle").textContent = s.workTitle || "—";
+    document.getElementById("pInventoryId").textContent = s.inventoryId || "—";
+    document.getElementById("pWorkYear").textContent = s.workYear || "—";
+    document.getElementById("pWorkMedium").textContent = s.workMedium || "—";
+    document.getElementById("pWorkDims").textContent = s.workDims || "—";
+    document.getElementById("pExhibition").textContent = s.exhibition || "—";
+
+    var pay = [s.paymentMethod, s.currency || "USD"];
+    if (s.paymentLink) pay.push(s.paymentLink);
+    document.getElementById("pPayment").textContent = pay.filter(Boolean).join(" · ") || "—";
+
+    var notes = [s.workNotes, s.saleNotes].filter(Boolean).join(" · ");
+    document.getElementById("pNotes").textContent = notes || "—";
+    document.getElementById("pPrice").textContent = "$ " + money(s.salePrice || 0) + " " + (s.currency || "USD");
+
+    document.getElementById("pAttest").textContent =
+      "I, " + (s.sellerName || "Annie Ríos") +
+      ", confirm the sale of the artwork listed above to " +
+      (s.buyerName || "[buyer]") +
+      " for the stated price in " + (s.currency || "USD") +
+      ", in connection with the exhibition " +
+      (s.exhibition || "Stillness & Refractions") +
+      ". Title and possession of the work transfer according to the payment and delivery terms agreed by the parties. " +
+      "Confirmo la venta de la obra arriba descrita al comprador indicado, por el precio en USD indicado, en el marco de la exposición Cosas Ecuador 2026.";
+
+    updateShareLinks(s);
+    persistCurrent(s);
+  }
+
+  function persistCurrent(s) {
+    var store = loadStore();
+    store.current = s;
+    saveStore(store);
+  }
+
+  function phoneDigits(phone) {
+    return String(phone || "").replace(/[^\d]/g, "");
+  }
+
+  function billUrl() {
+    try {
+      return location.href.split("#")[0];
+    } catch (e) {
+      return LIVE_PATH;
+    }
+  }
+
+  function messageBody(s) {
+    var linesMsg = [
+      "Hola" + (s.buyerName ? " " + s.buyerName : "") + ",",
+      "",
+      "Te envío la factura / certificate of sale de la obra:",
+      (s.workTitle || "—") + " (" + (s.inventoryId || "—") + ")",
+      "Precio: $ " + money(s.salePrice || 0) + " " + (s.currency || "USD"),
+      "Factura: " + (s.invoiceNumber || "—") + " · Fecha: " + (s.saleDate || "—"),
+      "Exposición: Stillness & Refractions · Cosas Ecuador 2026 · Booth #16 · Guayaquil",
+      ""
+    ];
+    if (s.paymentLink) {
+      linesMsg.push("Pago (Cuanto): " + s.paymentLink);
+      linesMsg.push("");
+    }
+    linesMsg.push(
+      "Abrí / imprimí la factura aquí:",
+      billUrl(),
+      "",
+      "También podés usar Imprimir → Guardar como PDF en el navegador.",
+      "",
+      "— " + (s.sellerName || "Annie Ríos"),
+      s.sellerEmail || ANNIE_EMAIL,
+      s.sellerPhone || ""
+    );
+    return linesMsg.filter(function (x, i, a) {
+      return !(x === "" && a[i - 1] === "");
+    }).join("\n");
+  }
+
+  function updateShareLinks(s) {
+    var subject = "Factura / Invoice " + (s.invoiceNumber || "") + " — " +
+      (s.workTitle || "obra") + " · Annie Ríos";
+    var body = messageBody(s);
+    var to = [];
+    if (s.buyerEmail) to.push(s.buyerEmail);
+    var sellerMail = s.sellerEmail || ANNIE_EMAIL;
+    if (sellerMail && to.indexOf(sellerMail) < 0) to.push(sellerMail);
+    var mailto = "mailto:" + encodeURIComponent(to.join(",")) +
+      "?subject=" + encodeURIComponent(subject.trim()) +
+      "&body=" + encodeURIComponent(body);
+    var aMail = document.getElementById("btnMailto");
+    aMail.href = mailto;
+    aMail.classList.toggle("on", !!s.buyerEmail);
+
+    var wa = document.getElementById("btnWhatsApp");
+    var digits = phoneDigits(s.buyerPhone);
+    var text = encodeURIComponent(body);
+    if (digits) {
+      wa.href = "https://wa.me/" + digits + "?text=" + text;
+      wa.removeAttribute("aria-disabled");
+      wa.classList.add("on");
+    } else {
+      wa.href = "https://wa.me/?text=" + text;
+      wa.classList.remove("on");
+    }
+  }
+
+  function renderDrafts() {
+    var store = loadStore();
+    var box = document.getElementById("draftList");
+    if (!store.drafts.length) {
+      box.innerHTML = '<p class="hint">Todavía no hay borradores guardados.</p>';
+      return;
+    }
+    box.innerHTML = store.drafts.slice().reverse().map(function (d) {
+      return (
+        '<div class="draft-item" data-id="' + esc(d.id) + '">' +
+          '<div class="draft-meta">' +
+            '<strong>' + esc(d.invoiceNumber || "sin número") + "</strong> · " +
+            esc(d.workTitle || "—") + " · $" + money(d.salePrice || 0) +
+            "<br><span>" + esc(d.buyerName || "sin comprador") + " · " + esc(d.updated || "") + "</span>" +
+          "</div>" +
+          '<div class="row-actions">' +
+            '<button type="button" class="btn" data-a="load">Abrir</button>' +
+            '<button type="button" class="btn" data-a="del">Borrar</button>' +
+          "</div>" +
+        "</div>"
+      );
+    }).join("");
+  }
+
+  function ensureInvoiceNumber(bump) {
+    var store = loadStore();
+    var current = document.getElementById("invoiceNumber").value.trim();
+    if (!current || bump) {
+      document.getElementById("invoiceNumber").value = nextInvoiceNumber(store);
+      if (bump) {
+        store.seq = (store.seq || 1) + 1;
+        saveStore(store);
+      }
+    }
+  }
+
+  function saveDraft() {
+    var s = readForm();
+    if (!s.invoiceNumber) {
+      ensureInvoiceNumber(true);
+      s = readForm();
+    }
+    var store = loadStore();
+    var id = s.draftId || ("d" + Date.now());
+    s.draftId = id;
+    s.updated = stamp();
+    var found = false;
+    store.drafts = store.drafts.map(function (d) {
+      if (d.id === id) { found = true; return Object.assign({}, s, { id: id }); }
+      return d;
+    });
+    if (!found) store.drafts.push(Object.assign({}, s, { id: id }));
+    var m = String(s.invoiceNumber || "").match(/AR-CE-\d{4}-(\d+)/);
+    if (m) {
+      var n = parseInt(m[1], 10);
+      if (n >= (store.seq || 1)) store.seq = n + 1;
+    }
+    store.current = s;
+    saveStore(store);
+    state.draftId = id;
+    writeForm(s);
+    renderPreview();
+    renderDrafts();
+    toast("Borrador guardado (" + s.invoiceNumber + ")");
+  }
+
+  function downloadJson(filename, obj) {
+    var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 500);
+  }
+
+  document.getElementById("workId").addEventListener("change", function () {
+    applyWork(this.value, true);
+    renderPreview();
+  });
+
+  FIELDS.forEach(function (k) {
+    var el = document.getElementById(k);
+    if (!el) return;
+    el.addEventListener("input", function () { renderPreview(); });
+    el.addEventListener("change", function () { renderPreview(); });
+  });
+
+  document.getElementById("btnApply").onclick = function () { renderPreview(); toast("Vista actualizada"); };
+  document.getElementById("btnRegenNumber").onclick = function () {
+    ensureInvoiceNumber(true);
+    renderPreview();
+    toast("Nuevo número asignado");
+  };
+  document.getElementById("btnPrint").onclick = function () {
+    renderPreview();
+    window.print();
+  };
+  document.getElementById("btnNew").onclick = function () {
+    if (!confirm("¿Empezar una factura nueva? El borrador actual queda en localStorage si ya lo guardaste.")) return;
+    var store = loadStore();
+    var fresh = emptyState();
+    fresh.invoiceNumber = nextInvoiceNumber(store);
+    store.seq = (store.seq || 1) + 1;
+    store.current = fresh;
+    saveStore(store);
+    writeForm(fresh);
+    applyWork(fresh.workId, true);
+    document.getElementById("invoiceNumber").value = fresh.invoiceNumber;
+    renderPreview();
+    toast("Nueva factura");
+  };
+  document.getElementById("btnSaveDraft").onclick = saveDraft;
+  document.getElementById("btnExport").onclick = function () {
+    var store = loadStore();
+    store.current = readForm();
+    store.exportedAt = stamp();
+    downloadJson("cosas-factura-venta-" + stamp().replace(/[:T]/g, "-") + ".json", store);
+    toast("JSON exportado");
+  };
+  document.getElementById("btnImport").onclick = function () {
+    document.getElementById("impFile").click();
+  };
+  document.getElementById("impFile").onchange = function () {
+    var f = this.files && this.files[0];
+    this.value = "";
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var next = null;
+      try { next = JSON.parse(String(reader.result || "")); } catch (e) { next = null; }
+      if (!next || typeof next !== "object") {
+        alert("Ese archivo no es un JSON válido de facturas.");
+        return;
+      }
+      var store = loadStore();
+      if (Array.isArray(next.drafts)) store.drafts = next.drafts;
+      if (next.seq) store.seq = next.seq;
+      if (next.current) store.current = next.current;
+      else if (next.invoiceNumber || next.workId) store.current = next;
+      saveStore(store);
+      if (store.current) writeForm(store.current);
+      renderPreview();
+      renderDrafts();
+      toast("JSON importado");
+    };
+    reader.readAsText(f);
+  };
+
+  document.getElementById("draftList").addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-a]");
+    if (!btn) return;
+    var item = btn.closest(".draft-item");
+    if (!item) return;
+    var id = item.dataset.id;
+    var store = loadStore();
+    if (btn.dataset.a === "load") {
+      var d = null;
+      for (var i = 0; i < store.drafts.length; i++) if (store.drafts[i].id === id) d = store.drafts[i];
+      if (!d) return;
+      writeForm(d);
+      renderPreview();
+      toast("Borrador abierto");
+    } else if (btn.dataset.a === "del") {
+      if (!confirm("¿Borrar este borrador?")) return;
+      store.drafts = store.drafts.filter(function (x) { return x.id !== id; });
+      saveStore(store);
+      renderDrafts();
+      toast("Borrador borrado");
+    }
+  });
+
+  function boot() {
+    fillWorkSelect();
+    var store = loadStore();
+    if (store.current) {
+      writeForm(store.current);
+    } else {
+      var fresh = emptyState();
+      fresh.invoiceNumber = nextInvoiceNumber(store);
+      writeForm(fresh);
+      applyWork(fresh.workId, true);
+      document.getElementById("invoiceNumber").value = fresh.invoiceNumber;
+    }
+    renderPreview();
+    renderDrafts();
+  }
+
+  boot();
+})();
+  </script>
+</body>
+</html>
