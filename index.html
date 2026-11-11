@@ -256,16 +256,33 @@
     @media (max-width: 640px) {
       body { padding-top: max(16px, env(safe-area-inset-top, 0px)); }
       h1 { font-size: 24px; }
+      h2 { margin: 22px 0 10px; }
       .card { padding: 14px 14px 12px; }
-      .actions { gap: 10px; }
+      .actions { gap: 8px; }
       .actions .btn {
         flex: 1 1 100%;
-        min-height: 48px;
+        min-height: 44px;
         font-size: 15px;
-        padding: 12px 14px;
+        padding: 10px 14px;
       }
-      .link-list a { flex-direction: column; align-items: flex-start; gap: 2px; }
-      .create-panel a { flex-direction: column; align-items: flex-start; gap: 2px; }
+      /* Column stack: don't let flex-basis: 12rem inflate link height */
+      .link-list a {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 8px 2px;
+        min-height: 44px;
+      }
+      .link-meta {
+        flex: 0 1 auto;
+      }
+      .create-panel a {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 10px 14px;
+        min-height: 44px;
+      }
     }
   </style>
 </head>
