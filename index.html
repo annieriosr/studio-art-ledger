@@ -71,10 +71,13 @@
       text-transform: lowercase;
       margin: 28px 0 12px;
     }
-    .create {
+    .create,
+    .fold {
       margin-bottom: 8px;
     }
-    .create-toggle {
+    .create-toggle,
+    .fold-toggle,
+    a.fold-link {
       width: 100%;
       font-family: inherit;
       font-size: 16px;
@@ -90,30 +93,62 @@
       gap: 12px;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+      box-sizing: border-box;
     }
-    .create-toggle:hover { background: rgba(36, 31, 26, 0.06); }
-    .create-toggle[aria-expanded="true"] {
+    .create-toggle:hover,
+    .fold-toggle:hover,
+    a.fold-link:hover {
+      background: rgba(36, 31, 26, 0.06);
+    }
+    .create-toggle[aria-expanded="true"],
+    .fold-toggle[aria-expanded="true"] {
       border-bottom-color: transparent;
       background: var(--paper);
     }
-    .create-chevron {
+    .create-chevron,
+    .fold-chevron {
       font-style: normal;
       font-size: 14px;
       opacity: 0.75;
       transition: transform 0.2s ease;
+      flex: 0 0 auto;
     }
-    .create-toggle[aria-expanded="true"] .create-chevron {
+    .create-toggle[aria-expanded="true"] .create-chevron,
+    .fold-toggle[aria-expanded="true"] .fold-chevron {
       transform: rotate(180deg);
     }
-    .create-panel {
+    .fold-label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      text-align: left;
+      min-width: 0;
+    }
+    .fold-title {
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+    .fold-sub {
+      font-size: 13px;
+      letter-spacing: 0;
+      color: var(--ink-soft);
+      line-height: 1.35;
+    }
+    .create-panel,
+    .fold-panel {
       display: none;
       background: var(--paper);
       border: 1px solid var(--ink);
       border-top: none;
       padding: 4px 0 6px;
     }
-    .create-panel.is-open { display: block; }
-    .create-panel a {
+    .create-panel.is-open,
+    .fold-panel.is-open { display: block; }
+    .create-panel a,
+    .fold-panel a {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
@@ -124,23 +159,30 @@
       color: inherit;
       min-height: 48px;
     }
-    .create-panel a:hover .create-name {
+    .create-panel a:hover .create-name,
+    .fold-panel a:hover .fold-name {
       border-bottom-color: var(--ink);
     }
-    .create-name {
+    .create-name,
+    .fold-name {
       font-size: 17px;
       font-style: italic;
       border-bottom: 1px solid transparent;
     }
-    .create-meta {
+    .create-meta,
+    .fold-meta {
       font-size: 13px;
       color: var(--ink-soft);
     }
-    .create-hint {
+    .create-hint,
+    .fold-hint {
       margin-top: 8px;
       font-size: 13px;
       line-height: 1.4;
       color: var(--ink-soft);
+    }
+    .cosas-folds {
+      margin-top: 4px;
     }
     .card {
       background: var(--paper);
@@ -287,12 +329,18 @@
       .link-meta {
         flex: 0 1 auto;
       }
-      .create-panel a {
+      .create-panel a,
+      .fold-panel a {
         flex-direction: column;
         align-items: flex-start;
         gap: 2px;
         padding: 10px 14px;
         min-height: 44px;
+      }
+      .fold-toggle,
+      a.fold-link {
+        min-height: 48px;
+        padding: 12px 14px;
       }
     }
   </style>
@@ -392,144 +440,193 @@
     <article class="card">
       <p class="eyebrow">Hub · Booth #16</p>
       <p class="title"><a href="fairs/casas-ecuador-2026/">Hub Cosas Ecuador</a></p>
-      <p class="note">Stillness &amp; Refractions — precios, booth, outreach, fichas y README.</p>
+      <p class="note">Stillness &amp; Refractions — abrí un menú abajo según lo que necesités.</p>
       <div class="actions">
         <a class="btn btn-solid" href="fairs/casas-ecuador-2026/">Abrir hub</a>
-        <a class="btn" href="fairs/casas-ecuador-2026/factura-venta.html">Factura / bills</a>
       </div>
     </article>
-    <ul class="link-list">
-      <li>
-        <a href="fairs/casas-ecuador-2026/factura-venta.html">
-          <span class="link-name">Factura de venta</span>
-          <span class="link-meta">Bill · PDF · WhatsApp · marcar vendida</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/Booth%20tracker%20%C2%B7%20Casajet%20_%20Cosas.html">
-          <span class="link-name">Booth tracker</span>
-          <span class="link-meta">Tareas, proveedores, presupuesto</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/invitados-inauguracion.html">
-          <span class="link-name">Outreach inauguración</span>
-          <span class="link-meta">Invitados y estados</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/contactos.html">
-          <span class="link-name">Contactos</span>
-          <span class="link-meta">Circuito Guayaquil</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/price-list.html">
-          <span class="link-name">Lista de precios</span>
-          <span class="link-meta">8 obras · A4</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/price-list-three.html">
-          <span class="link-name">Lista de precios — tres obras</span>
-          <span class="link-meta">Abundant Life · What Remains · Refraction</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/price-list-print-12x18.html">
-          <span class="link-name">Impresión 12×18″</span>
-          <span class="link-meta">HTML duplex</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/price-list-print-12x18.pdf">
-          <span class="link-name">Impresión 12×18″ PDF</span>
-          <span class="link-meta">Listo para imprenta</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/booth-render-3d.html">
-          <span class="link-name">Render 3D del booth</span>
-          <span class="link-meta">Vista interactiva</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/booth-render-overview.pdf">
-          <span class="link-name">Booth overview PDF</span>
-          <span class="link-meta">Render estático</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/booth-render-three-views.pdf">
-          <span class="link-name">Booth tres vistas PDF</span>
-          <span class="link-meta">Render estático</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/cotizacion-mano-de-obra.html">
-          <span class="link-name">Cotización de mano de obra</span>
-          <span class="link-meta">Presupuesto stand</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/README.md">
-          <span class="link-name">README del fair</span>
-          <span class="link-meta">Índice y fechas</span>
-        </a>
-      </li>
-    </ul>
 
-    <h2>fichas (cosas)</h2>
-    <ul class="link-list">
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/a-gift-of-an-abundant-life.html">
-          <span class="link-name">A Gift of an Abundant Life</span>
-          <span class="link-meta">Ficha · AR-2026-008</span>
+    <div class="cosas-folds" id="cosasMenus">
+      <div class="fold">
+        <a class="fold-link" href="fairs/casas-ecuador-2026/factura-venta.html">
+          <span class="fold-label">
+            <span class="fold-title">Factura de venta</span>
+            <span class="fold-sub">Bill · PDF · WhatsApp · marcar vendida</span>
+          </span>
+          <span class="fold-chevron" aria-hidden="true">→</span>
         </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/what-remains-below.html">
-          <span class="link-name">What Remains Below</span>
-          <span class="link-meta">Ficha · AR-2026-001</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/i-still-can-see-a-refraction.html">
-          <span class="link-name">I Still Can See a Refraction</span>
-          <span class="link-meta">Ficha · AR-2026-010</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/all-the-ways-we-shine.html">
-          <span class="link-name">All the Ways We Shine</span>
-          <span class="link-meta">Ficha · AR-2025-001</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/feel-my-love.html">
-          <span class="link-name">Feel My Love</span>
-          <span class="link-meta">Ficha · AR-2026-007</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/point-of-incidence.html">
-          <span class="link-name">Point of Incidence</span>
-          <span class="link-meta">Ficha · AR-2025-009</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/the-inbetween-space.html">
-          <span class="link-name">The InBetween Space</span>
-          <span class="link-meta">Ficha · AR-2025-003</span>
-        </a>
-      </li>
-      <li>
-        <a href="fairs/casas-ecuador-2026/works/red-thread.html">
-          <span class="link-name">Red Thread</span>
-          <span class="link-meta">Ficha · AR-2022-001</span>
-        </a>
-      </li>
-    </ul>
+      </div>
+
+      <div class="fold">
+        <button
+          type="button"
+          class="fold-toggle"
+          id="btnBooth"
+          aria-expanded="false"
+          aria-controls="panelBooth"
+        >
+          <span class="fold-label">
+            <span class="fold-title">Booth</span>
+            <span class="fold-sub">Tracker, renders, cotización y README</span>
+          </span>
+          <span class="fold-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="fold-panel" id="panelBooth" role="region" aria-label="Booth Cosas" hidden>
+          <a href="fairs/casas-ecuador-2026/Booth%20tracker%20%C2%B7%20Casajet%20_%20Cosas.html">
+            <span class="fold-name">Booth tracker</span>
+            <span class="fold-meta">Tareas, proveedores, presupuesto</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/booth-render-3d.html">
+            <span class="fold-name">Render 3D del booth</span>
+            <span class="fold-meta">Vista interactiva</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/booth-render-overview.pdf">
+            <span class="fold-name">Booth overview PDF</span>
+            <span class="fold-meta">Render estático</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/booth-render-three-views.pdf">
+            <span class="fold-name">Booth tres vistas PDF</span>
+            <span class="fold-meta">Render estático</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/cotizacion-mano-de-obra.html">
+            <span class="fold-name">Cotización de mano de obra</span>
+            <span class="fold-meta">Presupuesto stand</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/README.md">
+            <span class="fold-name">README del fair</span>
+            <span class="fold-meta">Índice y fechas</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="fold">
+        <button
+          type="button"
+          class="fold-toggle"
+          id="btnOutreach"
+          aria-expanded="false"
+          aria-controls="panelOutreach"
+        >
+          <span class="fold-label">
+            <span class="fold-title">Outreach y contactos</span>
+            <span class="fold-sub">Invitados y circuito Guayaquil</span>
+          </span>
+          <span class="fold-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="fold-panel" id="panelOutreach" role="region" aria-label="Outreach y contactos" hidden>
+          <a href="fairs/casas-ecuador-2026/invitados-inauguracion.html">
+            <span class="fold-name">Outreach inauguración</span>
+            <span class="fold-meta">Invitados y estados</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/contactos.html">
+            <span class="fold-name">Contactos</span>
+            <span class="fold-meta">Circuito Guayaquil</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="fold">
+        <button
+          type="button"
+          class="fold-toggle"
+          id="btnPrecios"
+          aria-expanded="false"
+          aria-controls="panelPrecios"
+        >
+          <span class="fold-label">
+            <span class="fold-title">Listas de precios</span>
+            <span class="fold-sub">8 obras · tres obras</span>
+          </span>
+          <span class="fold-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="fold-panel" id="panelPrecios" role="region" aria-label="Listas de precios" hidden>
+          <a href="fairs/casas-ecuador-2026/price-list.html">
+            <span class="fold-name">Lista de precios</span>
+            <span class="fold-meta">8 obras · A4</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/price-list-three.html">
+            <span class="fold-name">Lista de precios — tres obras</span>
+            <span class="fold-meta">Abundant Life · What Remains · Refraction</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="fold">
+        <button
+          type="button"
+          class="fold-toggle"
+          id="btnImpresion"
+          aria-expanded="false"
+          aria-controls="panelImpresion"
+        >
+          <span class="fold-label">
+            <span class="fold-title">Impresión 12×18″</span>
+            <span class="fold-sub">HTML duplex y PDF de imprenta</span>
+          </span>
+          <span class="fold-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="fold-panel" id="panelImpresion" role="region" aria-label="Impresión 12×18" hidden>
+          <a href="fairs/casas-ecuador-2026/price-list-print-12x18.html">
+            <span class="fold-name">Impresión 12×18″</span>
+            <span class="fold-meta">HTML duplex</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/price-list-print-12x18.pdf">
+            <span class="fold-name">Impresión 12×18″ PDF</span>
+            <span class="fold-meta">Listo para imprenta</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="fold">
+        <button
+          type="button"
+          class="fold-toggle"
+          id="btnFichas"
+          aria-expanded="false"
+          aria-controls="panelFichas"
+        >
+          <span class="fold-label">
+            <span class="fold-title">Obras exhibidas en Cosas</span>
+            <span class="fold-sub">8 fichas · Stillness &amp; Refractions</span>
+          </span>
+          <span class="fold-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="fold-panel" id="panelFichas" role="region" aria-label="Obras exhibidas en Cosas" hidden>
+          <a href="fairs/casas-ecuador-2026/works/a-gift-of-an-abundant-life.html">
+            <span class="fold-name">A Gift of an Abundant Life</span>
+            <span class="fold-meta">Ficha · AR-2026-008</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/works/what-remains-below.html">
+            <span class="fold-name">What Remains Below</span>
+            <span class="fold-meta">Ficha · AR-2026-001</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/works/i-still-can-see-a-refraction.html">
+            <span class="fold-name">I Still Can See a Refraction</span>
+            <span class="fold-meta">Ficha · AR-2026-010</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/works/all-the-ways-we-shine.html">
+            <span class="fold-name">All the Ways We Shine</span>
+            <span class="fold-meta">Ficha · AR-2025-001</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/works/feel-my-love.html">
+            <span class="fold-name">Feel My Love</span>
+            <span class="fold-meta">Ficha · AR-2026-007</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/works/point-of-incidence.html">
+            <span class="fold-name">Point of Incidence</span>
+            <span class="fold-meta">Ficha · AR-2025-009</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/works/the-inbetween-space.html">
+            <span class="fold-name">The InBetween Space</span>
+            <span class="fold-meta">Ficha · AR-2025-003</span>
+          </a>
+          <a href="fairs/casas-ecuador-2026/works/red-thread.html">
+            <span class="fold-name">Red Thread</span>
+            <span class="fold-meta">Ficha · AR-2022-001</span>
+          </a>
+        </div>
+      </div>
+    </div>
 
     <h2>en el teléfono</h2>
     <article class="card install" id="instalar">
@@ -555,22 +652,48 @@
 
   <script>
     (function () {
-      var btnCrear = document.getElementById("btnCrear");
-      var panel = document.getElementById("crearPanel");
-      if (btnCrear && panel) {
+      function bindFold(btn, panel, onOpen) {
+        if (!btn || !panel) return null;
         function setOpen(open) {
-          btnCrear.setAttribute("aria-expanded", open ? "true" : "false");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
           panel.classList.toggle("is-open", open);
           panel.hidden = !open;
+          if (open && typeof onOpen === "function") onOpen();
         }
-        btnCrear.addEventListener("click", function () {
-          setOpen(btnCrear.getAttribute("aria-expanded") !== "true");
+        btn.addEventListener("click", function () {
+          setOpen(btn.getAttribute("aria-expanded") !== "true");
         });
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") setOpen(false);
-        });
-        if (location.hash === "#crear") setOpen(true);
+        return { setOpen: setOpen, btn: btn, panel: panel };
       }
+
+      var crear = bindFold(
+        document.getElementById("btnCrear"),
+        document.getElementById("crearPanel")
+      );
+      if (crear && location.hash === "#crear") crear.setOpen(true);
+
+      var cosasFolds = [];
+      var cosasRoot = document.getElementById("cosasMenus");
+      if (cosasRoot) {
+        var toggles = cosasRoot.querySelectorAll(".fold-toggle");
+        Array.prototype.forEach.call(toggles, function (btn) {
+          var panel = document.getElementById(btn.getAttribute("aria-controls"));
+          var fold = bindFold(btn, panel, function () {
+            cosasFolds.forEach(function (other) {
+              if (other.btn !== btn) other.setOpen(false);
+            });
+          });
+          if (fold) cosasFolds.push(fold);
+        });
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape") return;
+        if (crear) crear.setOpen(false);
+        cosasFolds.forEach(function (fold) {
+          fold.setOpen(false);
+        });
+      });
 
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
