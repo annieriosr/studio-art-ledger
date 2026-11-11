@@ -3,6 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import salesHandler from "./api/sales.js";
 import confirmSaleHandler from "./api/confirm-sale.js";
+import siteStateHandler from "./api/site-state.js";
+import publishDraftsHandler from "./api/publish-drafts.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,7 +12,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json({ limit: "2mb" }));
+app.use(express.json({ limit: "4mb" }));
 
 function adapt(handler) {
   return (req, res) => handler(req, res);
@@ -18,6 +20,8 @@ function adapt(handler) {
 
 app.all("/api/sales", adapt(salesHandler));
 app.all("/api/confirm-sale", adapt(confirmSaleHandler));
+app.all("/api/site-state", adapt(siteStateHandler));
+app.all("/api/publish-drafts", adapt(publishDraftsHandler));
 
 // Serve all static files from root directory
 app.use(express.static(__dirname));

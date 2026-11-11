@@ -12,7 +12,13 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 
 **Phone app (PWA):** open the factura URL on the phone → iPhone Safari Share → Add to Home Screen, or Android Chrome Install app. Manifest [`manifest.webmanifest`](./manifest.webmanifest) (`Cosas bills`), icons + [`sw-cosas-bills.js`](./sw-cosas-bills.js). `start_url` = factura page; hub also registers the same SW.
 
-**Site-wide save (not local-only):** bills auto-save via `/api/sales` into [`data/cosas-sales.json`](../../data/cosas-sales.json). **Confirmar venta → libro** calls `/api/confirm-sale`, adds buyer + `sold` event in [`data/ledger.json`](../../data/ledger.json), issues the invoice document, reinjects catalogue HTML, and commits (GitHub on Vercel / disk locally). Production needs Vercel env `LEDGER_WRITE_TOKEN` + `GITHUB_TOKEN` (see root `.env.example`).
+**Site-wide save (not local-only):** one studio save key (`LEDGER_WRITE_TOKEN`) syncs:
+- Bills → `/api/sales` + `data/cosas-sales.json` (confirm → ledger sold)
+- Outreach → `/api/site-state?key=outreach` → `invitados-inauguracion.json`
+- Booth tracker → `/api/site-state?key=booth` → `booth-tracker-state.json`
+- Catalogue drafts → `/api/site-state?key=drafts` → `data/ledger-drafts.json`; **Publicar borradores al libro** → `/api/publish-drafts`
+
+Production needs Vercel env `LEDGER_WRITE_TOKEN` + `LEDGER_GITHUB_TOKEN` (see root `.env.example`). Shared helper: [`site-save.js`](./site-save.js).
 
 ## Works exhibited
 

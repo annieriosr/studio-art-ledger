@@ -177,15 +177,22 @@
     <header>
       <h1>Libro del estudio</h1>
       <p class="lede">Tres libros, no una hoja. El catálogo dice qué es cada obra. El movimiento dice dónde ha estado — la ubicación es la última línea. Los documentos se emiten desde esos dos. Las personas son un cuarto libro. Los teléfonos no están aquí.</p>
+      <p class="lede" style="margin-top:12px;font-size:14px">
+        Borradores (ventas, verso, etc.) se auto-guardan en el <strong style="color:var(--ink);font-weight:600">sitio</strong>.
+        Clave: <input id="studioToken" type="password" placeholder="LEDGER_WRITE_TOKEN" style="padding:6px 8px;border:1px solid var(--rule);font:inherit;max-width:200px" />
+        <button type="button" class="btn" id="btnPublishDrafts" style="margin-left:6px">Publicar borradores al libro</button>
+        <span id="siteSync" style="margin-left:8px;color:var(--ink-soft)"></span>
+      </p>
     </header>
     <div class="stats" id="stats"></div>
     <nav id="nav"></nav>
     <div id="filters"></div>
     <div id="main"></div>
     <footer>
-      Número en el reverso, mismo número en la foto, mismo número en el certificado. Si la empresa desaparece un martes, quedan <code>data/export/</code> y <code>photos/AR-…/</code>. Borradores de venta viven solo en este navegador hasta que los pases al constructor. Fuente: Excel 2020, catálogo 2026, y lo dictado el 29 de agosto.
+      Número en el reverso, mismo número en la foto, mismo número en el certificado. Si la empresa desaparece un martes, quedan <code>data/export/</code> y <code>photos/AR-…/</code>. Borradores se sincronizan al sitio; <em>Publicar borradores al libro</em> los escribe en <code>ledger.json</code>. Fuente: Excel 2020, catálogo 2026, y lo dictado el 29 de agosto.
     </footer>
   </div>
+  <script src="fairs/casas-ecuador-2026/site-save.js"></script>
   <script>
     const LEDGER = {
   "studio": {
@@ -3721,8 +3728,19 @@
       try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}"); }
       catch { return {}; }
     }
+    function setSiteSync(msg) {
+      const el = document.getElementById("siteSync");
+      if (el) el.textContent = msg;
+    }
     function saveDrafts(d) {
       localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+      if (window.StudioSiteSave) {
+        setSiteSync("guardando borradores…");
+        StudioSiteSave.saveDebounced("drafts", d, 2000).then((x) => {
+          if (x && x.ok) setSiteSync("borradores en el sitio");
+          else setSiteSync("sitio: " + ((x && x.j && x.j.error) || "revisá la clave"));
+        });
+      }
     }
     function allEvents() {
       const extra = drafts().events || [];
@@ -4174,7 +4192,7 @@
           <article class="card">
             <p class="id">Cosas Ecuador 2026 · Guayaquil · 5–15 nov</p>
             <p class="title">Stillness &amp; Refractions · Booth #16</p>
-            <p class="meta">Hub: precios, factura de venta, impresión 12×18″, booth tracker, renders, cotización, contactos, outreach de inauguración, fichas de obra, README.</p>
+            <p class="meta">Hub: precios, factura, booth tracker, outreach, fichas — todo auto-guarda en el sitio (misma clave de estudio).</p>
             <div class="actions">
               <a class="btn btn-solid" href="fairs/casas-ecuador-2026/">Abrir hub Cosas Ecuador</a>
               <a class="btn" href="fairs/casas-ecuador-2026/factura-venta.html">Factura de venta</a>
@@ -4272,6 +4290,91 @@
       }
       go(b.dataset.view);
     });
+
+    (function wireSiteDrafts() {
+      const tok = document.getElementById("studioToken");
+      if (tok && window.StudioSiteSave) {
+        tok.value = StudioSiteSave.getToken() || "";
+        tok.addEventListener("change", () => {
+          StudioSiteSave.setToken(tok.value || "");
+          setSiteSync("clave guardada en este dispositivo");
+        });
+      }
+      const pub = document.getElementById("btnPublishDrafts");
+      if (pub) {
+        pub.addEventListener("click", () => {
+          const d = drafts();
+          const n =
+            (d.events || []).length +
+            (d.people || []).length +
+            (d.works || []).length +
+            Object.keys(d.issued || {}).length;
+          if (!n && !(d.verso && Object.keys(d.verso).length)) {
+            alert("No hay borradores nuevos para publicar.");
+            return;
+          }
+          if (!confirm("¿Publicar borradores al libro del estudio? Esto escribe en ledger.json y redespliega el catálogo.")) return;
+          setSiteSync("publicando…");
+          const headers = { "Content-Type": "application/json" };
+          const t = window.StudioSiteSave ? StudioSiteSave.getToken() : "";
+          if (t) headers["X-Ledger-Token"] = t;
+          fetch("/api/publish-drafts", {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ drafts: d }),
+          })
+            .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
+            .then((x) => {
+              if (!x.ok || !x.j.ok) {
+                setSiteSync("error: " + ((x.j && x.j.error) || ""));
+                alert((x.j && x.j.error) || "No se pudo publicar");
+                return;
+              }
+              if (x.j.drafts) saveDrafts(x.j.drafts);
+              setSiteSync(x.j.message || "publicado");
+              alert(x.j.message || "Publicado");
+              render();
+            })
+            .catch((e) => {
+              setSiteSync("error de red");
+              alert(e.message || String(e));
+            });
+        });
+      }
+      if (window.StudioSiteSave) {
+        StudioSiteSave.load("drafts")
+          .then((x) => {
+            if (!(x && x.ok && x.j && x.j.data)) {
+              setSiteSync("borradores: local");
+              return;
+            }
+            const remote = x.j.data;
+            const local = drafts();
+            const merged = {
+              version: 1,
+              events: [...(remote.events || []), ...(local.events || [])],
+              people: [...(remote.people || []), ...(local.people || [])],
+              works: [...(remote.works || []), ...(local.works || [])],
+              issued: { ...(remote.issued || {}), ...(local.issued || {}) },
+              verso: { ...(remote.verso || {}), ...(local.verso || {}) },
+              updated: new Date().toISOString(),
+            };
+            // de-dupe events by JSON string
+            const seen = new Set();
+            merged.events = merged.events.filter((e) => {
+              const k = JSON.stringify(e);
+              if (seen.has(k)) return false;
+              seen.add(k);
+              return true;
+            });
+            localStorage.setItem(DRAFT_KEY, JSON.stringify(merged));
+            setSiteSync("borradores sincronizados");
+            render();
+          })
+          .catch(() => setSiteSync("borradores: local"));
+      }
+    })();
+
     window.addEventListener("hashchange", render);
     if (!location.hash) location.hash = "catalogo";
     else render();
