@@ -7,8 +7,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#d8d4cc",
-  "theme_color": "#241f1a",
+  "background_color": "#eef1ee",
+  "theme_color": "#1a2e26",
   "lang": "es",
   "dir": "ltr",
   "categories": ["business", "productivity"],
@@ -34,18 +34,18 @@
   ],
   "shortcuts": [
     {
-      "name": "Catálogo",
-      "short_name": "Catálogo",
-      "description": "Abrir el catálogo del estudio",
-      "url": "./index.html#catalogo",
+      "name": "Libro del estudio",
+      "short_name": "Libro",
+      "description": "Abrir el catálogo y movimiento",
+      "url": "./libro.html#catalogo",
       "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Preparativos Cosas",
+      "name": "Hub Cosas",
       "short_name": "Cosas",
-      "description": "Hub Stillness & Refractions / Cosas Ecuador 2026",
-      "url": "./index.html#preparativos",
-      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+      "description": "Stillness & Refractions / Cosas Ecuador 2026",
+      "url": "./fairs/casas-ecuador-2026/",
+      "icons": [{ "src": "./fairs/casas-ecuador-2026/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Factura Cosas",

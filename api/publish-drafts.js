@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const LEDGER_REL = "data/ledger.json";
 const INJECT_PAIRS = [
-  ["index.template.html", "index.html"],
+  ["libro.template.html", "libro.html"],
   ["certificado.template.html", "certificado.html"],
   ["carta.template.html", "carta.html"],
   ["carta-presentacion.template.html", "carta-presentacion.html"],

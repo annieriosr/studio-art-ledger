@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, '..');
 
 const ledger = fs.readFileSync(path.join(root, 'data', 'ledger.json'), 'utf-8');
 const pairs = [
-  ['index.template.html', 'index.html'],
+  ['libro.template.html', 'libro.html'],
   ['certificado.template.html', 'certificado.html'],
   ['carta.template.html', 'carta.html'],
   ['carta-presentacion.template.html', 'carta-presentacion.html'],
