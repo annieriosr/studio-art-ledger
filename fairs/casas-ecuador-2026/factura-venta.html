@@ -3,142 +3,125 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#241f1a" />
+  <meta name="theme-color" content="#1a2420" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Cosas bills" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="application-name" content="Cosas bills" />
-  <meta name="description" content="Facturas de venta / sale bills — Stillness & Refractions, Cosas Ecuador 2026." />
+  <meta name="description" content="Facturas de venta — Stillness & Refractions, Cosas Ecuador 2026." />
   <title>Factura de venta · Cosas Ecuador 2026 · Annie Ríos</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <link rel="apple-touch-icon" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #f4f2ee;
-      --ink: #241f1a;
-      --ink-soft: #5c574f;
-      --rule: #c4bfb4;
-      --mark: #3d5a45;
-      --mark-bg: #e6ebe4;
-      --warn: #7a4e2d;
-      --sheet: #faf8f4;
+      --ink: #15201c;
+      --ink-soft: #4a5a54;
+      --paper: #eef1ee;
+      --mist: #d5ddd8;
+      --leaf: #2f4a3c;
+      --leaf-deep: #1a2e26;
+      --rule: #b7c2bb;
+      --mark: #2f4a3c;
+      --mark-bg: #e4ebe6;
+      --sheet: #f7f9f7;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
-      background: #d8d4cc;
+      background:
+        radial-gradient(900px 480px at 8% -8%, #e4ebe6 0%, transparent 55%),
+        radial-gradient(700px 420px at 100% 0%, #dce5df 0%, transparent 50%),
+        var(--mist);
       color: var(--ink);
-      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
       font-weight: 400;
     }
-    body { min-height: 100vh; padding: 20px 12px 72px; padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
-    .wrap { max-width: 1180px; margin: 0 auto; }
-    .install-note {
-      margin-top: 12px; padding: 10px 12px; background: var(--mark-bg);
-      border: 1px solid var(--mark); color: var(--mark); font-size: 13px; line-height: 1.5;
+    body {
+      min-height: 100vh;
+      padding: 16px 12px 120px;
+      padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
     }
-    .install-note strong { color: var(--ink); font-weight: 600; }
-    .install-note ol { margin: 6px 0 0 1.1em; }
-    .install-note li { margin: 2px 0; }
-    .nav-row { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-bottom: 14px; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .nav-row { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-bottom: 12px; }
     .back {
-      font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft);
+      font-size: 13px; letter-spacing: 0.02em; color: var(--ink-soft);
       text-decoration: none; border-bottom: 1px solid transparent;
     }
     .back:hover { border-bottom-color: var(--rule); color: var(--ink); }
-    header {
+    header.page-head {
       background: var(--paper);
-      padding: 22px 24px 18px;
-      margin-bottom: 12px;
-      border-left: 1px solid var(--rule);
+      padding: 18px 18px 14px;
+      margin-bottom: 10px;
+      border-left: 3px solid var(--leaf);
     }
     .artist {
-      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--ink-soft); margin-bottom: 8px;
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 6px;
     }
-    h1 { font-size: 26px; font-weight: 400; font-style: italic; line-height: 1.2; margin-bottom: 8px; }
-    .lede { font-size: 15px; line-height: 1.5; color: var(--ink-soft); max-width: 70ch; }
-    .meta-line { margin-top: 10px; font-size: 13px; letter-spacing: 0.05em; color: var(--ink-soft); }
-    .save-note {
-      margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule);
-      font-size: 13px; line-height: 1.45; color: var(--ink-soft);
+    h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 26px; font-weight: 400; font-style: italic;
+      line-height: 1.2; margin-bottom: 6px;
     }
-    .toolbar {
-      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-      background: var(--paper); padding: 10px 12px; margin-bottom: 12px;
-      border-left: 1px solid var(--rule);
+    .lede { font-size: 15px; line-height: 1.45; color: var(--ink-soft); max-width: 48ch; }
+    .meta-line { margin-top: 8px; font-size: 12px; color: var(--ink-soft); }
+    .sync-line { margin-top: 8px; font-size: 12px; color: var(--ink-soft); }
+    .sync-line strong { color: var(--ink); font-weight: 600; }
+    details.soft {
+      margin-top: 10px; font-size: 13px; color: var(--ink-soft);
     }
-    .btn {
-      font-family: inherit; font-size: 13px; letter-spacing: 0.03em;
-      background: transparent; border: 1px solid var(--rule); color: var(--ink);
-      padding: 6px 12px; cursor: pointer; text-decoration: none; display: inline-block;
+    details.soft summary {
+      cursor: pointer; list-style: none; color: var(--leaf);
+      font-weight: 600;
     }
-    .btn:hover, .btn.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .btn-solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    details.soft summary::-webkit-details-marker { display: none; }
+    details.soft[open] summary { margin-bottom: 6px; }
+    details.soft ol { margin: 4px 0 0 1.1em; }
+    details.soft li { margin: 2px 0; }
+    .token-gate {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      background: var(--mark-bg);
+      border: 1px solid var(--rule);
+    }
+    .token-gate.show { display: block; }
+    .token-gate .field { color: var(--ink-soft); }
     .toast {
-      display: none; position: sticky; top: 8px; z-index: 5;
-      background: var(--mark-bg); color: var(--mark); border: 1px solid var(--mark);
+      display: none; position: sticky; top: 8px; z-index: 6;
+      background: var(--mark-bg); color: var(--leaf-deep); border: 1px solid var(--leaf);
       padding: 8px 12px; margin-bottom: 10px; font-size: 13px;
     }
     .toast.show { display: block; }
+    .path-hint {
+      font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--ink-soft); margin: 0 0 10px;
+    }
     .layout {
       display: grid;
-      grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
-      gap: 14px;
+      grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+      gap: 12px;
       align-items: start;
-    }
-    @media (max-width: 920px) {
-      .layout { grid-template-columns: 1fr; }
-      .toolbar {
-        position: sticky;
-        top: 0;
-        z-index: 4;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        padding: 10px;
-        background: rgba(244, 242, 238, 0.96);
-        backdrop-filter: blur(6px);
-      }
-      .toolbar .btn-solid { grid-column: 1 / -1; }
-      .sheet { width: 100%; min-height: 0; padding: 18px 16px 22px; }
-      .sheet .cols, .sign-row { grid-template-columns: 1fr; gap: 14px; }
-      input, select, textarea, .btn { font-size: 16px; } /* avoid iOS zoom */
-      .btn {
-        padding: 12px 10px;
-        min-height: 48px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 100%;
-      }
-      header { padding: 18px 16px 14px; }
-      h1 { font-size: 22px; }
-      .install-note { font-size: 13px; }
-      .install-note ol { padding-left: 1.1em; }
-      .preview-wrap {
-        margin: 0 -4px;
-        border: 1px solid var(--rule);
-        background: #fff;
-      }
-      .sheet { transform-origin: top left; }
     }
     .panel {
       background: var(--paper);
-      padding: 16px 16px 14px;
-      border-left: 1px solid var(--rule);
+      padding: 16px 14px 14px;
+      border-left: 3px solid var(--leaf);
     }
     .panel h2 {
-      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: lowercase; margin: 16px 0 10px;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 15px; font-weight: 600; font-style: italic;
+      margin: 18px 0 10px;
     }
-    .panel h2:first-child { margin-top: 0; }
+    .panel h2:first-child, .panel .path-hint + h2 { margin-top: 0; }
+    .step-num {
+      display: inline-block; width: 1.4em; color: var(--leaf); font-style: normal;
+      font-family: "Source Sans 3", sans-serif; font-size: 12px; letter-spacing: 0.06em;
+    }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
     .grid .full { grid-column: 1 / -1; }
     @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
@@ -147,13 +130,32 @@
       text-transform: uppercase; color: var(--ink-soft); margin-bottom: 3px;
     }
     input, select, textarea {
-      width: 100%; font-family: inherit; font-size: 14px; padding: 7px 8px;
+      width: 100%; font-family: inherit; font-size: 16px; padding: 10px 10px;
       border: 1px solid var(--rule); background: #fff; color: var(--ink);
+      border-radius: 2px;
     }
     textarea { resize: vertical; min-height: 56px; line-height: 1.4; }
     .hint { font-size: 12px; color: var(--ink-soft); margin-top: 4px; line-height: 1.4; }
-    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .preview-wrap { overflow: auto; }
+    details.more {
+      margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 10px;
+    }
+    details.more > summary {
+      cursor: pointer; font-size: 14px; font-weight: 600; color: var(--leaf);
+      list-style: none;
+    }
+    details.more > summary::-webkit-details-marker { display: none; }
+    details.more[open] > summary { margin-bottom: 10px; }
+    details.more h2 { margin-top: 14px; }
+    .preview-label {
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-soft); margin: 0 0 8px;
+    }
+    .preview-wrap {
+      overflow: auto;
+      background: var(--paper);
+      padding: 10px;
+      border-left: 3px solid var(--rule);
+    }
     .sheet {
       width: 210mm;
       min-height: 297mm;
@@ -162,84 +164,97 @@
       background: var(--sheet);
       color: var(--ink);
       padding: 16mm 16mm 18mm;
-      box-shadow: 0 1px 0 rgba(36,31,26,0.06);
+      box-shadow: 0 1px 0 rgba(21,32,28,0.06);
+      font-family: "Fraunces", Georgia, serif;
     }
     .sheet .mast {
       display: flex; justify-content: space-between; align-items: flex-start;
-      gap: 16px; padding-bottom: 8px; margin-bottom: 14px;
+      gap: 16px; padding-bottom: 8px; margin-bottom: 12px;
       border-bottom: 1px solid var(--ink);
     }
     .sheet .studio-name {
-      font-size: 13pt; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 13pt; letter-spacing: 0.12em; text-transform: uppercase;
     }
     .sheet .studio-meta {
-      margin-top: 6px; font-size: 9.5pt; line-height: 1.55; color: var(--ink-soft);
+      margin-top: 6px; font-size: 9.5pt; line-height: 1.5; color: var(--ink-soft);
+      font-family: "Source Sans 3", sans-serif;
     }
     .sheet .doc-mark {
-      text-align: right; font-size: 9.5pt; line-height: 1.5; color: var(--ink-soft);
+      text-align: right; font-size: 9.5pt; line-height: 1.45; color: var(--ink-soft);
+      font-family: "Source Sans 3", sans-serif;
     }
     .sheet .doc-mark strong {
       display: block; font-size: 12pt; font-weight: 600; color: var(--ink);
       letter-spacing: 0.04em; margin-bottom: 4px;
+      font-family: "Fraunces", Georgia, serif;
     }
     .sheet h3 {
-      font-size: 16pt; font-weight: 400; font-style: italic;
-      margin: 4px 0 16px;
+      font-size: 15pt; font-weight: 400; font-style: italic;
+      margin: 2px 0 14px;
     }
     .sheet .bilingual {
+      font-family: "Source Sans 3", sans-serif;
       font-size: 9pt; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-soft); margin-bottom: 18px;
+      color: var(--ink-soft); margin-bottom: 10px;
     }
     .sheet .cols {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 16px;
+      font-family: "Source Sans 3", sans-serif;
     }
     .sheet .block-label {
       font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--ink-soft); margin-bottom: 6px;
     }
-    .sheet .block-body { font-size: 10.5pt; line-height: 1.55; }
-    .sheet .block-body .name { font-size: 12pt; font-style: italic; }
+    .sheet .block-body { font-size: 10.5pt; line-height: 1.5; }
+    .sheet .block-body .name {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 12pt; font-style: italic;
+    }
     .facts {
-      width: 100%; border-collapse: collapse; margin: 8px 0 18px;
-      font-size: 10.5pt;
+      width: 100%; border-collapse: collapse; margin: 6px 0 14px;
+      font-size: 10.5pt; font-family: "Source Sans 3", sans-serif;
     }
     .facts th, .facts td {
       text-align: left; vertical-align: top;
-      padding: 8px 0; border-bottom: 1px solid var(--rule);
+      padding: 7px 0; border-bottom: 1px solid var(--rule);
     }
     .facts th {
-      width: 34%; font-weight: 600; font-size: 9pt;
-      letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+      width: 32%; font-weight: 600; font-size: 9pt;
+      letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft);
     }
     .price-box {
       display: flex; justify-content: space-between; align-items: baseline;
-      gap: 12px; padding: 12px 0; margin: 8px 0 18px;
+      gap: 12px; padding: 12px 0; margin: 6px 0 14px;
       border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
     }
     .price-box .label {
-      font-size: 9pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 9pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft);
     }
     .price-box .amount { font-size: 18pt; font-style: italic; }
     .attest {
-      font-size: 10pt; line-height: 1.6; margin-bottom: 22px;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 10pt; line-height: 1.55; margin-bottom: 20px;
     }
     .sign-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;
+      font-family: "Source Sans 3", sans-serif;
     }
     .sign-line {
       border-top: 1px solid var(--ink); padding-top: 8px;
-      font-size: 9.5pt; line-height: 1.45; color: var(--ink-soft);
+      font-size: 9.5pt; line-height: 1.4; color: var(--ink-soft);
     }
     .foot-note {
-      margin-top: 28px; font-size: 8.5pt; line-height: 1.5; color: var(--ink-soft);
+      margin-top: 22px; font-size: 8pt; line-height: 1.45; color: var(--ink-soft);
+      font-family: "Source Sans 3", sans-serif;
     }
     .drafts {
-      margin-top: 12px; background: var(--paper); padding: 14px 16px;
-      border-left: 1px solid var(--rule);
+      margin-top: 12px; background: var(--paper); padding: 14px 14px;
+      border-left: 3px solid var(--rule);
     }
     .drafts h2 {
-      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: lowercase; margin-bottom: 10px;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 15px; font-weight: 600; font-style: italic; margin-bottom: 8px;
     }
     .draft-list { display: flex; flex-direction: column; gap: 8px; }
     .draft-item {
@@ -249,120 +264,117 @@
     .draft-item:last-child { border-bottom: none; }
     .draft-meta { font-size: 14px; line-height: 1.4; }
     .draft-meta span { color: var(--ink-soft); font-size: 12px; }
-    footer {
-      margin-top: 18px; font-size: 13px; line-height: 1.5; color: var(--ink-soft); padding: 0 2px;
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .btn {
+      font-family: inherit; font-size: 14px; letter-spacing: 0.02em;
+      background: transparent; border: 1px solid var(--rule); color: var(--ink);
+      padding: 10px 14px; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      text-align: center; min-height: 44px;
     }
-    footer a { color: inherit; }
+    .btn:hover, .btn.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .btn-solid { background: var(--leaf); color: #f4f7f5; border-color: var(--leaf); }
+    .btn-solid:hover { background: var(--leaf-deep); border-color: var(--leaf-deep); }
+    .btn-quiet { color: var(--ink-soft); border-color: transparent; background: transparent; min-height: 40px; padding: 8px 10px; font-size: 13px; }
+    .btn-quiet:hover { color: var(--ink); background: rgba(47,74,60,0.06); border-color: transparent; }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .action-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 8;
+      background: rgba(238, 241, 238, 0.96);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--rule);
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    }
+    .action-bar-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .action-bar .btn-solid { grid-column: 1 / -1; }
+    .action-bar .secondary-row {
+      grid-column: 1 / -1;
+      display: flex; flex-wrap: wrap; gap: 4px 6px; justify-content: center;
+    }
+    @media (min-width: 721px) {
+      .action-bar-inner {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: stretch;
+      }
+      .action-bar .btn-solid { grid-column: auto; }
+      .action-bar .secondary-row { grid-column: 1 / -1; justify-content: flex-start; }
+      body { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
+    }
+    @media (max-width: 920px) {
+      .layout { grid-template-columns: 1fr; }
+      .sheet { width: 100%; min-height: 0; padding: 18px 16px 22px; }
+      .sheet .cols, .sign-row { grid-template-columns: 1fr; gap: 14px; }
+      header.page-head { padding: 16px 14px 12px; }
+      h1 { font-size: 22px; }
+    }
+    footer.page-foot {
+      margin-top: 16px; font-size: 12px; line-height: 1.5; color: var(--ink-soft); padding: 0 2px;
+    }
+    footer.page-foot a { color: inherit; }
     @media print {
       body { background: #fff; padding: 0; }
       .no-print { display: none !important; }
       .layout { display: block; }
-      .preview-wrap { overflow: visible; }
-      .sheet {
-        width: auto; min-height: auto; margin: 0; box-shadow: none;
-        padding: 12mm 14mm;
-      }
+      .preview-wrap { overflow: visible; background: transparent; border: 0; padding: 0; }
+      .sheet { width: auto; min-height: auto; margin: 0; box-shadow: none; padding: 12mm 14mm; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="nav-row no-print">
-      <a class="back" href="index.html">← Preparativos Cosas</a>
+      <a class="back" href="index.html">← Cosas</a>
       <a class="back" href="price-list-three.html">Lista 3 obras</a>
-      <a class="back" href="price-list.html">Lista completa</a>
-      <a class="back" href="../../libro.html#preparativos">Libro · Preparativos</a>
+      <a class="back" href="../../libro.html#preparativos">Libro</a>
     </div>
 
-    <header class="no-print">
+    <header class="page-head no-print">
       <p class="artist">Annie Ríos · Cosas Ecuador 2026</p>
-      <h1>Factura de venta / Invoice</h1>
-      <p class="lede">
-        Generá una factura / certificado de venta para obras de
-        <em>Stillness &amp; Refractions</em> (Casas Project GYE, Booth #16).
-        Editá en el sitio, imprimí o guardá PDF desde el navegador, y enviá por email o WhatsApp.
-        No inventa RUC/tax ID ni datos bancarios: esos campos quedan editables en blanco.
-      </p>
-      <p class="meta-line">Stillness &amp; Refractions · Booth #16 · Guayaquil · Nov 2026 · USD</p>
-      <p class="save-note">
-        <strong>Se guarda en el sitio</strong> (no solo en este teléfono): cada cambio se auto-guarda en el servidor.
-        <strong>Confirmar venta</strong> marca la obra como vendida en el libro del estudio (catálogo, movimiento, factura).
-        Estado: <span id="syncStatus">conectando…</span>
-      </p>
-      <div class="grid" style="margin-top:12px;max-width:520px">
-        <div class="full">
-          <label class="field" for="studioToken">Clave de guardado del estudio</label>
-          <input id="studioToken" type="password" autocomplete="current-password" placeholder="La misma LEDGER_WRITE_TOKEN del servidor" />
-          <p class="hint">Obligatoria en el sitio en vivo (Vercel). En local puede quedar vacía. Se guarda solo en este dispositivo.</p>
-        </div>
+      <h1>Factura de venta</h1>
+      <p class="lede">Elegí la obra, datos del comprador y enviá o guardá.</p>
+      <p class="meta-line">Booth #16 · Guayaquil · USD</p>
+      <p class="sync-line">Estado: <span id="syncStatus">conectando…</span></p>
+      <div id="tokenGate" class="token-gate" aria-live="polite">
+        <label class="field" for="studioToken">Clave de guardado</label>
+        <input id="studioToken" type="password" autocomplete="current-password" placeholder="Clave del estudio" />
+        <p class="hint">Solo para guardar o confirmar en el sitio. Queda en este teléfono.</p>
       </div>
-      <div class="install-note" id="installNote">
-        <strong>Instalar en el teléfono (app)</strong> — abrí esta misma URL en Safari (iPhone) o Chrome (Android):
+      <details class="soft">
+        <summary>Instalar en el teléfono</summary>
         <ol>
-          <li><strong>iPhone:</strong> Share / Compartir → <em>Add to Home Screen</em> / Agregar a pantalla de inicio → nombre <em>Cosas bills</em>.</li>
-          <li><strong>Android:</strong> menú ⋮ → <em>Install app</em> / Instalar aplicación (o Agregar a la pantalla principal).</li>
+          <li><strong>iPhone:</strong> Compartir → Agregar a pantalla de inicio.</li>
+          <li><strong>Android:</strong> menú ⋮ → Instalar aplicación.</li>
         </ol>
-        Luego abrís el ícono, llenás el comprador en la feria y mandás por Email o WhatsApp.
-      </div>
+      </details>
     </header>
 
     <div id="toast" class="toast no-print" role="status"></div>
 
-    <div class="toolbar no-print">
-      <button type="button" class="btn btn-solid" id="btnConfirmSale">Confirmar venta → libro</button>
-      <button type="button" class="btn" id="btnPrint">Imprimir / PDF</button>
-      <button type="button" class="btn" id="btnNew">Nueva factura</button>
-      <button type="button" class="btn" id="btnSaveDraft">Guardar ahora</button>
-      <button type="button" class="btn" id="btnExport">Exportar JSON</button>
-      <button type="button" class="btn" id="btnImport">Importar JSON</button>
-      <input type="file" id="impFile" accept="application/json,.json" hidden />
-      <a class="btn" id="btnMailto" href="#">Email comprador + Annie</a>
-      <a class="btn" id="btnWhatsApp" href="#" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
-
     <div class="layout">
       <aside class="panel no-print" id="formPanel">
-        <h2>Obra</h2>
+        <p class="path-hint">Obra → comprador → precio → enviar</p>
+
+        <h2><span class="step-num">1</span> Obra</h2>
         <div class="grid">
           <div class="full">
-            <label class="field" for="workId">Obra (lista Cosas)</label>
+            <label class="field" for="workId">Obra</label>
             <select id="workId"></select>
-            <p class="hint">Incluye las 3 obras destacadas + el resto de la lista de precios Cosas.</p>
           </div>
           <div class="full">
-            <label class="field" for="workTitle">Título</label>
-            <input id="workTitle" />
-          </div>
-          <div>
-            <label class="field" for="inventoryId">Inventory ID</label>
-            <input id="inventoryId" />
-          </div>
-          <div>
-            <label class="field" for="workYear">Año</label>
-            <input id="workYear" />
-          </div>
-          <div class="full">
-            <label class="field" for="workMedium">Medio / materials</label>
-            <input id="workMedium" />
-          </div>
-          <div>
-            <label class="field" for="workDims">Dimensiones</label>
-            <input id="workDims" placeholder="h × w cm" />
-          </div>
-          <div>
             <label class="field" for="salePrice">Precio USD</label>
             <input id="salePrice" inputmode="decimal" />
           </div>
-          <div class="full">
-            <label class="field" for="workNotes">Notas de la obra (opcional)</label>
-            <textarea id="workNotes" rows="2"></textarea>
-          </div>
         </div>
 
-        <h2>Comprador</h2>
+        <h2><span class="step-num">2</span> Comprador</h2>
         <div class="grid">
           <div class="full">
-            <label class="field" for="buyerName">Nombre completo</label>
+            <label class="field" for="buyerName">Nombre</label>
             <input id="buyerName" autocomplete="name" />
           </div>
           <div>
@@ -373,167 +385,219 @@
             <label class="field" for="buyerPhone">Teléfono</label>
             <input id="buyerPhone" placeholder="+593…" autocomplete="tel" />
           </div>
-          <div>
-            <label class="field" for="buyerTaxId">ID / tax ID / RUC (opcional)</label>
-            <input id="buyerTaxId" />
-          </div>
-          <div>
-            <label class="field" for="buyerCountry">País</label>
-            <input id="buyerCountry" value="Ecuador" />
-          </div>
-          <div class="full">
-            <label class="field" for="buyerAddress">Dirección (opcional)</label>
-            <textarea id="buyerAddress" rows="2"></textarea>
-          </div>
         </div>
 
-        <h2>Venta</h2>
-        <div class="grid">
-          <div>
-            <label class="field" for="invoiceNumber">Nº factura / bill</label>
-            <input id="invoiceNumber" />
-          </div>
-          <div>
-            <label class="field" for="saleDate">Fecha</label>
-            <input id="saleDate" type="date" />
-          </div>
-          <div class="full">
-            <label class="field" for="exhibition">Contexto de exposición</label>
-            <input id="exhibition" />
-          </div>
-          <div>
-            <label class="field" for="paymentMethod">Método de pago</label>
-            <input id="paymentMethod" value="Cuanto / transferencia" />
-          </div>
-          <div>
-            <label class="field" for="currency">Moneda</label>
-            <input id="currency" value="USD" />
-          </div>
-          <div class="full">
-            <label class="field" for="paymentLink">Link de pago (Cuanto, editable)</label>
-            <input id="paymentLink" placeholder="https://www.cuanto.app/…" />
-          </div>
-          <div class="full">
-            <label class="field" for="saleNotes">Notas de venta / entrega (opcional)</label>
-            <textarea id="saleNotes" rows="2"></textarea>
-          </div>
-        </div>
+        <details class="more" id="moreDetails">
+          <summary>Más detalles</summary>
 
-        <h2>Vendedor (estudio)</h2>
-        <div class="grid">
-          <div class="full">
-            <label class="field" for="sellerName">Nombre / studio</label>
-            <input id="sellerName" />
+          <h2>Obra (detalle)</h2>
+          <div class="grid">
+            <div class="full">
+              <label class="field" for="workTitle">Título</label>
+              <input id="workTitle" />
+            </div>
+            <div>
+              <label class="field" for="inventoryId">ID</label>
+              <input id="inventoryId" />
+            </div>
+            <div>
+              <label class="field" for="workYear">Año</label>
+              <input id="workYear" />
+            </div>
+            <div class="full">
+              <label class="field" for="workMedium">Medio</label>
+              <input id="workMedium" />
+            </div>
+            <div>
+              <label class="field" for="workDims">Dimensiones</label>
+              <input id="workDims" placeholder="h × w cm" />
+            </div>
+            <div class="full">
+              <label class="field" for="workNotes">Notas obra</label>
+              <textarea id="workNotes" rows="2"></textarea>
+            </div>
           </div>
-          <div>
-            <label class="field" for="sellerLocation">Ubicación</label>
-            <input id="sellerLocation" />
-          </div>
-          <div>
-            <label class="field" for="sellerEmail">Email</label>
-            <input id="sellerEmail" type="email" />
-          </div>
-          <div>
-            <label class="field" for="sellerPhone">Teléfono</label>
-            <input id="sellerPhone" />
-          </div>
-          <div>
-            <label class="field" for="sellerWeb">Web</label>
-            <input id="sellerWeb" />
-          </div>
-          <div class="full">
-            <label class="field" for="sellerTaxId">Tax ID / RUC del estudio (editable, vacío)</label>
-            <input id="sellerTaxId" placeholder="Completar si se necesita" />
-          </div>
-          <div class="full">
-            <label class="field" for="sellerBank">Datos bancarios (editable, vacío — no inventados)</label>
-            <textarea id="sellerBank" rows="2" placeholder="Banco, cuenta, SWIFT… solo si Annie los completa"></textarea>
-          </div>
-        </div>
 
-        <div class="row-actions">
-          <button type="button" class="btn btn-solid" id="btnApply">Actualizar vista</button>
-          <button type="button" class="btn" id="btnRegenNumber">Nuevo número</button>
-        </div>
+          <h2>Comprador (extra)</h2>
+          <div class="grid">
+            <div>
+              <label class="field" for="buyerTaxId">ID / RUC</label>
+              <input id="buyerTaxId" />
+            </div>
+            <div>
+              <label class="field" for="buyerCountry">País</label>
+              <input id="buyerCountry" value="Ecuador" />
+            </div>
+            <div class="full">
+              <label class="field" for="buyerAddress">Dirección</label>
+              <textarea id="buyerAddress" rows="2"></textarea>
+            </div>
+          </div>
+
+          <h2>Venta</h2>
+          <div class="grid">
+            <div>
+              <label class="field" for="invoiceNumber">Nº factura</label>
+              <input id="invoiceNumber" />
+            </div>
+            <div>
+              <label class="field" for="saleDate">Fecha</label>
+              <input id="saleDate" type="date" />
+            </div>
+            <div class="full">
+              <label class="field" for="exhibition">Exposición</label>
+              <input id="exhibition" />
+            </div>
+            <div>
+              <label class="field" for="paymentMethod">Pago</label>
+              <input id="paymentMethod" value="Cuanto / transferencia" />
+            </div>
+            <div>
+              <label class="field" for="currency">Moneda</label>
+              <input id="currency" value="USD" />
+            </div>
+            <div class="full">
+              <label class="field" for="paymentLink">Link Cuanto</label>
+              <input id="paymentLink" placeholder="https://www.cuanto.app/…" />
+            </div>
+            <div class="full">
+              <label class="field" for="saleNotes">Notas venta</label>
+              <textarea id="saleNotes" rows="2"></textarea>
+            </div>
+          </div>
+
+          <h2>Vendedor / banco</h2>
+          <div class="grid">
+            <div class="full">
+              <label class="field" for="sellerName">Nombre</label>
+              <input id="sellerName" />
+            </div>
+            <div>
+              <label class="field" for="sellerLocation">Ubicación</label>
+              <input id="sellerLocation" />
+            </div>
+            <div>
+              <label class="field" for="sellerEmail">Email</label>
+              <input id="sellerEmail" type="email" />
+            </div>
+            <div>
+              <label class="field" for="sellerPhone">Teléfono</label>
+              <input id="sellerPhone" />
+            </div>
+            <div>
+              <label class="field" for="sellerWeb">Web</label>
+              <input id="sellerWeb" />
+            </div>
+            <div class="full">
+              <label class="field" for="sellerTaxId">Tax ID / RUC</label>
+              <input id="sellerTaxId" placeholder="Solo si hace falta" />
+            </div>
+            <div class="full">
+              <label class="field" for="sellerBank">Banco</label>
+              <textarea id="sellerBank" rows="2" placeholder="Banco, cuenta, SWIFT…"></textarea>
+            </div>
+          </div>
+
+          <div class="row-actions">
+            <button type="button" class="btn btn-quiet" id="btnRegenNumber">Nuevo número</button>
+            <button type="button" class="btn btn-quiet" id="btnExport">Exportar JSON</button>
+            <button type="button" class="btn btn-quiet" id="btnImport">Importar JSON</button>
+            <input type="file" id="impFile" accept="application/json,.json" hidden />
+          </div>
+        </details>
       </aside>
 
-      <div class="preview-wrap">
-        <article class="sheet" id="sheet" aria-label="Factura de venta">
-          <div class="mast">
-            <div>
-              <div class="studio-name" id="pSellerName">Annie Ríos</div>
-              <div class="studio-meta" id="pSellerMeta"></div>
+      <div>
+        <p class="preview-label no-print"><span class="step-num" style="width:auto;margin-right:4px">3</span> Vista previa</p>
+        <div class="preview-wrap">
+          <article class="sheet" id="sheet" aria-label="Factura de venta">
+            <div class="mast">
+              <div>
+                <div class="studio-name" id="pSellerName">Annie Ríos</div>
+                <div class="studio-meta" id="pSellerMeta"></div>
+              </div>
+              <div class="doc-mark">
+                <strong id="pInvoiceNumber">—</strong>
+                <div id="pSaleDate">—</div>
+                <div>USD</div>
+              </div>
             </div>
-            <div class="doc-mark">
-              <strong id="pInvoiceNumber">—</strong>
-              <div id="pSaleDate">—</div>
-              <div>USD</div>
+
+            <p class="bilingual">Factura de venta · Invoice</p>
+            <h3>Comprobante de venta</h3>
+
+            <div class="cols">
+              <div>
+                <div class="block-label">Vendedor</div>
+                <div class="block-body" id="pSellerBlock"></div>
+              </div>
+              <div>
+                <div class="block-label">Comprador</div>
+                <div class="block-body" id="pBuyerBlock"></div>
+              </div>
             </div>
-          </div>
 
-          <p class="bilingual">Invoice · Factura de venta · Certificate of sale</p>
-          <h3>Proof of sale / Comprobante de venta de obra</h3>
+            <table class="facts">
+              <tr><th>Obra</th><td id="pWorkTitle">—</td></tr>
+              <tr><th>ID</th><td id="pInventoryId">—</td></tr>
+              <tr><th>Año</th><td id="pWorkYear">—</td></tr>
+              <tr><th>Medio</th><td id="pWorkMedium">—</td></tr>
+              <tr><th>Medidas</th><td id="pWorkDims">—</td></tr>
+              <tr><th>Exposición</th><td id="pExhibition">—</td></tr>
+              <tr><th>Pago</th><td id="pPayment">—</td></tr>
+              <tr><th>Notas</th><td id="pNotes">—</td></tr>
+            </table>
 
-          <div class="cols">
-            <div>
-              <div class="block-label">Seller / Vendedor</div>
-              <div class="block-body" id="pSellerBlock"></div>
+            <div class="price-box">
+              <div class="label">Precio</div>
+              <div class="amount" id="pPrice">$ —</div>
             </div>
-            <div>
-              <div class="block-label">Buyer / Comprador</div>
-              <div class="block-body" id="pBuyerBlock"></div>
+
+            <p class="attest" id="pAttest"></p>
+
+            <div class="sign-row">
+              <div class="sign-line">
+                Firma vendedor<br />
+                Annie Ríos
+              </div>
+              <div class="sign-line">
+                Acuse comprador<br />
+                <span id="pBuyerSignName">—</span>
+              </div>
             </div>
-          </div>
 
-          <table class="facts">
-            <tr><th>Work / Obra</th><td id="pWorkTitle">—</td></tr>
-            <tr><th>Inventory ID</th><td id="pInventoryId">—</td></tr>
-            <tr><th>Year / Año</th><td id="pWorkYear">—</td></tr>
-            <tr><th>Medium</th><td id="pWorkMedium">—</td></tr>
-            <tr><th>Dimensions</th><td id="pWorkDims">—</td></tr>
-            <tr><th>Exhibition</th><td id="pExhibition">—</td></tr>
-            <tr><th>Payment</th><td id="pPayment">—</td></tr>
-            <tr><th>Notes</th><td id="pNotes">—</td></tr>
-          </table>
-
-          <div class="price-box">
-            <div class="label">Sale price / Precio de venta</div>
-            <div class="amount" id="pPrice">$ —</div>
-          </div>
-
-          <p class="attest" id="pAttest"></p>
-
-          <div class="sign-row">
-            <div class="sign-line">
-              Seller signature / Firma del vendedor<br />
-              Annie Ríos
-            </div>
-            <div class="sign-line">
-              Buyer acknowledgment / Acuse del comprador<br />
-              <span id="pBuyerSignName">—</span>
-            </div>
-          </div>
-
-          <p class="foot-note">
-            This document is issued as a studio invoice / certificate of sale for payment processors and banks.
-            It is not legal advice and does not replace tax filings required in the buyer’s or seller’s jurisdiction.
-            Documento emitido por el estudio como factura / certificado de venta. No constituye asesoría legal ni tributaria.
-          </p>
-        </article>
+            <p class="foot-note">
+              Factura / certificado de venta del estudio. No reemplaza declaraciones tributarias.
+              Studio invoice / certificate of sale — not tax advice.
+            </p>
+          </article>
+        </div>
       </div>
     </div>
 
     <section class="drafts no-print">
-      <h2>Facturas en el sitio</h2>
-      <p class="hint" style="margin-bottom:10px">Lista del servidor cuando hay clave de guardado; si no, muestra borradores de este dispositivo. Al confirmar venta, la obra queda vendida en el catálogo.</p>
+      <h2>Facturas guardadas</h2>
+      <p class="hint" style="margin-bottom:10px">Borradores de este dispositivo o del sitio.</p>
       <div class="draft-list" id="draftList"></div>
     </section>
 
-    <footer class="no-print">
-      Archivo: <code>fairs/casas-ecuador-2026/factura-venta.html</code>.
-      Volver al <a href="index.html">hub Cosas</a>
-      o a <a href="../../libro.html#preparativos">Preparativos</a>.
+    <footer class="page-foot no-print">
+      <a href="index.html">Hub Cosas</a> ·
+      <a href="../../libro.html#preparativos">Preparativos</a>
     </footer>
+  </div>
+
+  <div class="action-bar no-print" id="actionBar">
+    <div class="action-bar-inner">
+      <a class="btn btn-solid" id="btnMailto" href="#">Email</a>
+      <a class="btn btn-solid" id="btnWhatsApp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <button type="button" class="btn btn-solid" id="btnSaveDraft">Guardar</button>
+      <button type="button" class="btn" id="btnConfirmSale">Confirmar venta</button>
+      <div class="secondary-row">
+        <button type="button" class="btn btn-quiet" id="btnPrint">Imprimir / PDF</button>
+        <button type="button" class="btn btn-quiet" id="btnNew">Nueva</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -554,6 +618,7 @@
   var personId = "";
   var ready = false;
   var lastSavedJson = "";
+  var dirty = false;
 
   var WORKS = [
     {
@@ -778,7 +843,6 @@
     try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
   }
 
-  /** Keep a local drafts list so the UI still lists bills when the site API is unavailable. */
   function upsertLocalDraft(bill) {
     if (!bill) return;
     var store = loadStore();
@@ -804,7 +868,36 @@
 
   function getToken() {
     var el = document.getElementById("studioToken");
-    return (el && el.value) || "";
+    var v = (el && el.value) || "";
+    if (v) return v;
+    try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; }
+  }
+
+  function revealTokenGate(focus) {
+    var gate = document.getElementById("tokenGate");
+    if (!gate) return;
+    gate.classList.add("show");
+    if (focus) {
+      var el = document.getElementById("studioToken");
+      if (el) {
+        try { el.focus(); } catch (e) {}
+        try { gate.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e2) {}
+      }
+    }
+  }
+
+  function markDirty() {
+    if (!ready) return;
+    dirty = true;
+    if (!getToken()) revealTokenGate(false);
+  }
+
+  function ensureTokenForWrite() {
+    var t = getToken();
+    if (t) return true;
+    revealTokenGate(true);
+    toast("Ingresá la clave de guardado para continuar");
+    return false;
   }
 
   function setSync(msg) {
@@ -855,11 +948,7 @@
     document.getElementById("workYear").value = String(w.year || "");
     document.getElementById("workMedium").value = w.medium || "";
     document.getElementById("workDims").value = w.dims || "";
-    if (forcePrice || !document.getElementById("salePrice").value) {
-      document.getElementById("salePrice").value = String(w.price);
-    } else {
-      document.getElementById("salePrice").value = String(w.price);
-    }
+    document.getElementById("salePrice").value = String(w.price);
     document.getElementById("paymentLink").value = w.cuanto || "";
     document.getElementById("workNotes").value = w.note || "";
   }
@@ -871,7 +960,7 @@
       var tag = w.featured ? " ★" : "";
       var sold = soldIds[w.id] ? " · VENDIDA" : "";
       return '<option value="' + esc(w.id) + '">' +
-        esc(w.title) + " — " + esc(w.id) + " — $" + money(w.price) + tag + sold +
+        esc(w.title) + " — $" + money(w.price) + tag + sold +
         "</option>";
     }).join("");
     if (cur) sel.value = cur;
@@ -901,7 +990,7 @@
       esc(s.sellerPhone || ""),
       esc(s.sellerWeb || "")
     ];
-    if (s.sellerTaxId) sellerBits.push("Tax ID / RUC: " + esc(s.sellerTaxId));
+    if (s.sellerTaxId) sellerBits.push("RUC: " + esc(s.sellerTaxId));
     if (s.sellerBank) sellerBits.push(esc(s.sellerBank));
     document.getElementById("pSellerBlock").innerHTML = sellerBits.filter(Boolean).join("<br>");
 
@@ -912,7 +1001,7 @@
       esc(s.buyerCountry || ""),
       esc(s.buyerAddress || "")
     ];
-    if (s.buyerTaxId) buyerBits.push("ID / tax ID: " + esc(s.buyerTaxId));
+    if (s.buyerTaxId) buyerBits.push("ID: " + esc(s.buyerTaxId));
     document.getElementById("pBuyerBlock").innerHTML = buyerBits.filter(Boolean).join("<br>");
     document.getElementById("pBuyerSignName").textContent = s.buyerName || "—";
 
@@ -932,14 +1021,10 @@
     document.getElementById("pPrice").textContent = "$ " + money(s.salePrice || 0) + " " + (s.currency || "USD");
 
     document.getElementById("pAttest").textContent =
-      "I, " + (s.sellerName || "Annie Ríos") +
-      ", confirm the sale of the artwork listed above to " +
-      (s.buyerName || "[buyer]") +
-      " for the stated price in " + (s.currency || "USD") +
-      ", in connection with the exhibition " +
-      (s.exhibition || "Stillness & Refractions") +
-      ". Title and possession of the work transfer according to the payment and delivery terms agreed by the parties. " +
-      "Confirmo la venta de la obra arriba descrita al comprador indicado, por el precio en USD indicado, en el marco de la exposición Cosas Ecuador 2026.";
+      "Confirmo la venta de «" + (s.workTitle || "la obra") +
+      "» a " + (s.buyerName || "[comprador]") +
+      " por $ " + money(s.salePrice || 0) + " " + (s.currency || "USD") +
+      ". / I confirm sale of the work above to the buyer named for the stated price.";
 
     updateShareLinks(s);
     persistCurrent(s);
@@ -988,8 +1073,13 @@
       if (manual) scheduleServerSave();
       return Promise.resolve();
     }
+    if (manual && !ensureTokenForWrite()) {
+      upsertLocalDraft(s);
+      renderDrafts();
+      return Promise.resolve();
+    }
     saving = true;
-    setSync("guardando en el sitio…");
+    setSync("guardando…");
     return fetch(API_SALES, {
       method: "POST",
       headers: apiHeaders(),
@@ -1002,8 +1092,11 @@
           upsertLocalDraft(s);
           renderDrafts();
           var err = (x.j && x.j.error) || ("HTTP " + x.status);
+          if (x.status === 401 || /token|clave|unauthorized/i.test(String(err))) {
+            revealTokenGate(true);
+          }
           setSync("no guardó en sitio: " + err);
-          if (manual) toast("Borrador en este teléfono · sitio: " + err);
+          if (manual) toast("Guardado en el teléfono · sitio: " + err);
           return;
         }
         if (x.j.record) {
@@ -1016,40 +1109,46 @@
         }
         applyServerStore(x.j.store, x.j.soldWorkIds);
         lastSavedJson = JSON.stringify(readForm());
-        setSync("guardado en el sitio · " + stamp().replace("T", " ").slice(0, 19));
-        if (manual) toast("Guardado en el sitio (" + (s.invoiceNumber || "") + ")");
+        dirty = false;
+        setSync("guardado · " + stamp().replace("T", " ").slice(0, 19));
+        if (manual) toast("Guardado (" + (s.invoiceNumber || "") + ")");
       })
       .catch(function (e) {
         saving = false;
         upsertLocalDraft(s);
         renderDrafts();
-        setSync("sin conexión al API — solo caché local");
-        if (manual) toast("Borrador en este teléfono · sin API: " + (e.message || e));
+        setSync("sin conexión — solo teléfono");
+        if (manual) toast("Guardado en el teléfono · sin API");
       });
   }
 
   function confirmSaleOnSite() {
     var s = readForm();
     if (!s.buyerName || !String(s.buyerName).trim()) {
-      alert("Completá el nombre del comprador antes de confirmar la venta.");
+      alert("Completá el nombre del comprador.");
       return;
     }
     if (!s.inventoryId && !s.workId) {
-      alert("Falta el inventory ID de la obra.");
+      alert("Falta el ID de la obra.");
       return;
     }
-    if (!confirm("¿Confirmar venta de «" + (s.workTitle || s.inventoryId) + "» a " + s.buyerName + "?\n\nEsto marca la obra como VENDIDA en el libro del estudio (catálogo + movimiento + factura).")) return;
-    setSync("confirmando venta en el libro…");
+    if (!ensureTokenForWrite()) return;
+    if (!confirm("¿Confirmar venta de «" + (s.workTitle || s.inventoryId) + "» a " + s.buyerName + "?\n\nMarca la obra como VENDIDA en el libro.")) return;
+    setSync("confirmando…");
     fetch(API_CONFIRM, {
       method: "POST",
       headers: apiHeaders(),
       body: JSON.stringify({ bill: s })
     })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); })
       .then(function (x) {
         if (!x.ok || !x.j.ok) {
-          setSync("error al confirmar: " + ((x.j && x.j.error) || ""));
-          alert((x.j && x.j.error) || "No se pudo confirmar");
+          var err = (x.j && x.j.error) || "";
+          if (x.status === 401 || /token|clave|unauthorized/i.test(String(err))) {
+            revealTokenGate(true);
+          }
+          setSync("error al confirmar: " + err);
+          alert(err || "No se pudo confirmar");
           return;
         }
         billStatus = "sold";
@@ -1059,31 +1158,31 @@
           writeForm(Object.assign(readForm(), x.j.record, { status: "sold", personId: personId }));
         }
         applyServerStore(x.j.store, x.j.soldWorkIds);
-        setSync("vendida en el libro · redespliegue ~1 min");
-        toast(x.j.message || "Venta confirmada en el libro");
+        setSync("vendida en el libro");
+        toast(x.j.message || "Venta confirmada");
         renderPreview();
       })
       .catch(function (e) {
-        setSync("error de red al confirmar");
+        setSync("error de red");
         alert(e.message || String(e));
       });
   }
 
   function refreshFromServer() {
-    setSync("cargando del sitio…");
+    setSync("cargando…");
     return fetch(API_SALES, { headers: apiHeaders(), cache: "no-store" })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (x) {
         if (!x.ok || !x.j.ok) {
-          setSync("API no disponible — usá clave / env vars en Vercel");
+          setSync("API no disponible");
           return null;
         }
         applyServerStore(x.j.store, x.j.soldWorkIds);
-        setSync("sincronizado · " + ((x.j.store && x.j.store.sales && x.j.store.sales.length) || 0) + " facturas");
+        setSync("ok · " + ((x.j.store && x.j.store.sales && x.j.store.sales.length) || 0) + " facturas");
         return x.j.store;
       })
       .catch(function () {
-        setSync("sin API — caché local solamente");
+        setSync("sin API — solo teléfono");
         return null;
       });
   }
@@ -1104,22 +1203,20 @@
     var linesMsg = [
       "Hola" + (s.buyerName ? " " + s.buyerName : "") + ",",
       "",
-      "Te envío la factura / certificate of sale de la obra:",
+      "Te envío la factura de la obra:",
       (s.workTitle || "—") + " (" + (s.inventoryId || "—") + ")",
       "Precio: $ " + money(s.salePrice || 0) + " " + (s.currency || "USD"),
-      "Factura: " + (s.invoiceNumber || "—") + " · Fecha: " + (s.saleDate || "—"),
-      "Exposición: Stillness & Refractions · Cosas Ecuador 2026 · Booth #16 · Guayaquil",
+      "Factura: " + (s.invoiceNumber || "—") + " · " + (s.saleDate || "—"),
+      "Cosas Ecuador 2026 · Booth #16",
       ""
     ];
     if (s.paymentLink) {
-      linesMsg.push("Pago (Cuanto): " + s.paymentLink);
+      linesMsg.push("Pago: " + s.paymentLink);
       linesMsg.push("");
     }
     linesMsg.push(
-      "Abrí / imprimí la factura aquí:",
+      "Factura:",
       billUrl(),
-      "",
-      "También podés usar Imprimir → Guardar como PDF en el navegador.",
       "",
       "— " + (s.sellerName || "Annie Ríos"),
       s.sellerEmail || ANNIE_EMAIL,
@@ -1131,7 +1228,7 @@
   }
 
   function updateShareLinks(s) {
-    var subject = "Factura / Invoice " + (s.invoiceNumber || "") + " — " +
+    var subject = "Factura " + (s.invoiceNumber || "") + " — " +
       (s.workTitle || "obra") + " · Annie Ríos";
     var body = messageBody(s);
     var to = [];
@@ -1166,7 +1263,7 @@
       list = local.drafts || [];
     }
     if (!list.length) {
-      box.innerHTML = '<p class="hint">Todavía no hay borradores. Usá «Guardar borrador» — queda en este dispositivo y, con la clave de estudio, también en el sitio.</p>';
+      box.innerHTML = '<p class="hint">Todavía no hay facturas. Guardá una para verla aquí.</p>';
       return;
     }
     box.innerHTML = list.slice().reverse().map(function (d) {
@@ -1175,7 +1272,7 @@
       return (
         '<div class="draft-item" data-id="' + esc(id) + '">' +
           '<div class="draft-meta">' +
-            '<strong>' + esc(d.invoiceNumber || "sin número") + "</strong> · " +
+            '<strong>' + esc(d.invoiceNumber || "sin nº") + "</strong> · " +
             esc(st) + " · " +
             esc(d.workTitle || "—") + " · $" + money(d.salePrice || 0) +
             "<br><span>" + esc(d.buyerName || "sin comprador") + " · " + esc(d.updated || "") + "</span>" +
@@ -1215,7 +1312,7 @@
     writeForm(s);
     renderPreview();
     renderDrafts();
-    toast("Borrador guardado en este teléfono…");
+    toast("Guardado en el teléfono…");
     serverSave(true);
   }
 
@@ -1234,21 +1331,22 @@
 
   document.getElementById("workId").addEventListener("change", function () {
     applyWork(this.value, true);
+    markDirty();
     renderPreview();
   });
 
   FIELDS.forEach(function (k) {
     var el = document.getElementById(k);
     if (!el) return;
-    el.addEventListener("input", function () { renderPreview(); });
-    el.addEventListener("change", function () { renderPreview(); });
+    el.addEventListener("input", function () { markDirty(); renderPreview(); });
+    el.addEventListener("change", function () { markDirty(); renderPreview(); });
   });
 
-  document.getElementById("btnApply").onclick = function () { renderPreview(); toast("Vista actualizada"); };
   document.getElementById("btnRegenNumber").onclick = function () {
     ensureInvoiceNumber(true);
+    markDirty();
     renderPreview();
-    toast("Nuevo número asignado");
+    toast("Nuevo número");
   };
   document.getElementById("btnPrint").onclick = function () {
     renderPreview();
@@ -1256,7 +1354,7 @@
   };
   document.getElementById("btnConfirmSale").onclick = confirmSaleOnSite;
   document.getElementById("btnNew").onclick = function () {
-    if (!confirm("¿Empezar una factura nueva? La actual ya debería estar auto-guardada en el sitio.")) return;
+    if (!confirm("¿Nueva factura?")) return;
     var store = loadStore();
     var fresh = emptyState();
     billStatus = "draft";
@@ -1270,16 +1368,22 @@
     writeForm(fresh);
     applyWork(fresh.workId, true);
     document.getElementById("invoiceNumber").value = fresh.invoiceNumber;
+    dirty = false;
     renderPreview();
-    serverSave(true);
     toast("Nueva factura");
   };
   document.getElementById("btnSaveDraft").onclick = saveDraft;
-  document.getElementById("studioToken").value = (function () {
-    try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; }
+
+  (function initToken() {
+    var el = document.getElementById("studioToken");
+    var saved = "";
+    try { saved = localStorage.getItem(TOKEN_KEY) || ""; } catch (e) {}
+    if (el) el.value = saved;
+    // Keep gate hidden on load even if token is already stored.
   })();
   document.getElementById("studioToken").addEventListener("change", function () {
     try { localStorage.setItem(TOKEN_KEY, this.value || ""); } catch (e) {}
+    try { localStorage.setItem("studioLedgerWriteToken-v1", this.value || ""); } catch (e2) {}
     refreshFromServer();
   });
   document.getElementById("btnExport").onclick = function () {
@@ -1301,7 +1405,7 @@
       var next = null;
       try { next = JSON.parse(String(reader.result || "")); } catch (e) { next = null; }
       if (!next || typeof next !== "object") {
-        alert("Ese archivo no es un JSON válido de facturas.");
+        alert("JSON no válido.");
         return;
       }
       var store = loadStore();
@@ -1346,7 +1450,6 @@
     try {
       var q = new URLSearchParams(location.search || "");
       var id = q.get("id") || q.get("work") || "";
-      // fair list still labels Point of Incidence as AR-ND-010
       if (id === "AR-ND-010") id = "AR-2025-009";
       return id;
     } catch (e) {
@@ -1366,7 +1469,7 @@
       writeForm(freshQ);
       applyWork(qid, true);
       document.getElementById("invoiceNumber").value = freshQ.invoiceNumber;
-      toast("Obra lista para facturar: " + (findWork(qid).title || qid));
+      toast("Obra: " + (findWork(qid).title || qid));
     } else if (store.current) {
       writeForm(store.current);
     } else {
@@ -1396,7 +1499,6 @@
           renderPreview();
         }
       } else if (remote && fromDeepLink) {
-        // Keep deep-linked work; optionally resume open draft for same inventory id
         var same = null;
         (remote.sales || []).forEach(function (s) {
           if ((s.inventoryId || s.workId) === qid && s.status !== "sold") same = s;
@@ -1407,6 +1509,7 @@
         }
       }
       lastSavedJson = JSON.stringify(readForm());
+      dirty = false;
       ready = true;
     });
   }
