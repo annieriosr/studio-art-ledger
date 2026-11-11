@@ -83,8 +83,9 @@ summary{cursor:pointer;padding:6px 12px;color:var(--mute);font-size:13px}
 <input id="impFile" type="file" accept="application/json,.json" hidden>
 <button class="btn" id="rst">Reset to published plan</button>
 </div>
-<p class="note">Default data is the published Cosas Ecuador booth plan (suppliers, quotes, statuses). Your edits then save in <strong>this browser only</strong>. Download a JSON backup after big updates, or use Reset to published plan / Import backup if needed. Open each task's details to add the supplier, contact, quote, due date and notes. Tick "Free / sponsored" when a supplier is giving it to you in exchange for being part of the project.</p>
+<p class="note">Edits <strong>auto-save to the live site</strong> (and this browser). Studio save key (same as bills · <code>LEDGER_WRITE_TOKEN</code>): <input id="studioToken" type="password" placeholder="Save key" style="margin:4px 0;padding:6px 8px;border:1px solid #ccc;font:inherit;max-width:240px"> · <span id="siteSync">…</span>. Download JSON backup still available. Open task details for supplier / quote / notes. Tick "Free / sponsored" when a supplier sponsors the item.</p>
 </main>
+<script src="site-save.js"></script>
 <script>
 var ST=["To do","Contacted","Quoted","Confirmed","Done"];
 var CATS=["Build & install","Suppliers & quotes","Artworks & framing","Digital & audio","Print","Booth day"];
@@ -627,7 +628,17 @@ var before=JSON.stringify(next);
 S=next;
 if(before!==JSON.stringify(S))save();
 }
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function setSiteSync(m){var e=document.getElementById("siteSync");if(e)e.textContent=m}
+function save(){
+try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+if(window.StudioSiteSave&&S){
+setSiteSync("saving to site…");
+StudioSiteSave.saveDebounced("booth",S,2000).then(function(x){
+if(x&&x.ok)setSiteSync("saved on site");
+else setSiteSync("site: "+((x&&x.j&&x.j.error)||(x&&x.error)||"check save key"));
+});
+}
+}
 function downloadBackup(){
 var blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});
 var a=document.createElement("a");
@@ -712,7 +723,27 @@ vC.addEventListener('input',function(e){var d=e.target.dataset;if(d.cid){S.tasks
 vC.addEventListener('click',function(e){var d=e.target.dataset;if(e.target.id==='xadd'){var n=document.getElementById('xn').value.trim(),a=document.getElementById('xa').value;if(!n)return;S.extras.push({id:'x'+(S.next++),n:n,a:a});save();renderCosts()}else if(d.xdel){S.extras=S.extras.filter(function(x){return x.id!==d.xdel});save();renderCosts()}});
 function show(v){document.getElementById('vT').hidden=v!=='T';vC.hidden=v!=='C';document.getElementById('tabT').classList.toggle('on',v==='T');document.getElementById('tabC').classList.toggle('on',v==='C');if(v==='C')renderCosts();else render()}
 document.getElementById('tabT').onclick=function(){show('T')};document.getElementById('tabC').onclick=function(){show('C')};
-load();render();
+(function(){
+var tok=document.getElementById("studioToken");
+if(tok&&window.StudioSiteSave){
+tok.value=StudioSiteSave.getToken()||"";
+tok.onchange=function(){StudioSiteSave.setToken(tok.value||"");setSiteSync("key saved on this device")};
+}
+load();
+render();
+if(window.StudioSiteSave){
+StudioSiteSave.load("booth").then(function(x){
+if(!(x&&x.ok&&x.j&&x.j.data)){setSiteSync("using local / published seed");return}
+var remote=normalize(x.j.data);
+if(!remote||isBlankSeed(remote)){setSiteSync("site empty — using seed");return}
+S=remote;
+try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+render();
+if(!document.getElementById("vC").hidden)renderCosts();
+setSiteSync("synced from site");
+}).catch(function(){setSiteSync("offline — local only")});
+}
+})();
 </script>
 </body>
 </html>

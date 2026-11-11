@@ -151,11 +151,10 @@
       </p>
       <p class="meta-line">Inauguración 12 nov 2026 · exposición 12–22 nov · Casas Project GYE · Booth #16 · Batán Business Park · semilla en <code>invitados-inauguracion.json</code></p>
       <p class="save-note">
-        <strong>Cómo guardar:</strong> los cambios se guardan solos en <em>este navegador</em> (localStorage).
-        Tras actualizar estados, pulsa <strong>Guardar para commit</strong> (o Descargar respaldo) e importa ese JSON
-        en otra máquina / tras un deploy. Para dejarlo permanente en el repo: descarga
-        <code>invitados-inauguracion.json</code> y haz commit del archivo.
-        Importar restaura un respaldo completo.
+        <strong>Cómo guardar:</strong> los cambios se auto-guardan en el <em>sitio</em> (servidor) y en este navegador.
+        Estado: <span id="siteSync">…</span><br />
+        Clave de estudio (misma que facturas · Vercel <code>LEDGER_WRITE_TOKEN</code>):
+        <input id="studioToken" type="password" autocomplete="current-password" style="margin-top:6px;width:100%;max-width:320px;padding:7px 8px;border:1px solid var(--rule);font:inherit" placeholder="Clave de guardado" />
       </p>
     </header>
 
@@ -197,7 +196,8 @@
     </footer>
   </div>
 
-<script>
+  <script src="site-save.js"></script>
+  <script>
 (function () {
   var KEY = "cosasOutreach.v1";
   var JSON_FILE = "invitados-inauguracion.json";
@@ -292,8 +292,20 @@
     };
   }
 
+  function setSiteSync(msg) {
+    var el = document.getElementById("siteSync");
+    if (el) el.textContent = msg;
+  }
+
   function save() {
     try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+    if (window.StudioSiteSave && S) {
+      setSiteSync("guardando en el sitio…");
+      StudioSiteSave.saveDebounced("outreach", S, 2000).then(function (x) {
+        if (x && x.ok) setSiteSync("guardado en el sitio");
+        else setSiteSync("sitio: " + ((x && x.j && x.j.error) || (x && x.error) || "error — revisá la clave"));
+      });
+    }
   }
 
   function loadLocal() {
@@ -632,22 +644,42 @@
 
   function boot() {
     renderFilters();
+    var tok = document.getElementById("studioToken");
+    if (tok && window.StudioSiteSave) {
+      tok.value = StudioSiteSave.getToken() || "";
+      tok.addEventListener("change", function () {
+        StudioSiteSave.setToken(tok.value || "");
+        setSiteSync("clave guardada en este dispositivo");
+      });
+    }
     var local = loadLocal();
-    fetchSeed().then(function (seed) {
-      if (local) S = mergeSeed(local, seed);
+    function finish(seed, remote) {
+      if (remote && remote.people && remote.people.length) {
+        S = local ? mergeSeed(remote, local) : remote;
+        if (seed) S = mergeSeed(S, seed);
+      } else if (local) S = mergeSeed(local, seed);
       else if (seed) S = seed;
       else {
         S = normalize({ version: 1, nextId: 1000, people: [] });
         toast("Sin semilla JSON — añade personas o importa un respaldo");
       }
-      if (!local) save();
-      else save();
+      try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
       render();
+      setSiteSync(remote ? "sincronizado desde el sitio" : "usando semilla / local");
+    }
+    var seedP = fetchSeed();
+    var remoteP = window.StudioSiteSave
+      ? StudioSiteSave.load("outreach").then(function (x) {
+          return x.ok && x.j && x.j.data ? normalize(x.j.data) : null;
+        }).catch(function () { return null; })
+      : Promise.resolve(null);
+    Promise.all([seedP, remoteP]).then(function (pair) {
+      finish(pair[0], pair[1]);
     });
   }
 
   boot();
 })();
-</script>
+  </script>
 </body>
 </html>

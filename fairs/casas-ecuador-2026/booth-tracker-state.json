@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "updated": null,
+  "note": "Populated when Annie saves the booth tracker on the live site. Until then the HTML public seed is used.",
+  "tasks": [],
+  "next": 1000,
+  "extras": [],
+  "budget": ""
+}
