@@ -81,9 +81,19 @@
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover, .btn-solid {
-      background: var(--ink);
-      color: var(--paper);
+    .btn:hover {
+      background: rgba(36, 31, 26, 0.06);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .btn-solid {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn-solid:hover {
+      background: rgba(36, 31, 26, 0.06);
+      color: var(--ink);
       border-color: var(--ink);
     }
     h2 {
@@ -142,8 +152,8 @@
       padding: 4px 10px;
     }
     .presets .btn.active {
-      background: var(--ink);
-      color: var(--paper);
+      background: rgba(36, 31, 26, 0.08);
+      color: var(--ink);
       border-color: var(--ink);
     }
     .filter-actions {

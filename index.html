@@ -79,9 +79,9 @@
       font-family: inherit;
       font-size: 16px;
       letter-spacing: 0.04em;
-      background: var(--ink);
+      background: transparent;
       border: 1px solid var(--ink);
-      color: var(--paper);
+      color: var(--ink);
       padding: 14px 16px;
       min-height: 52px;
       display: flex;
@@ -91,9 +91,10 @@
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
-    .create-toggle:hover { background: #1a1612; }
+    .create-toggle:hover { background: rgba(36, 31, 26, 0.06); }
     .create-toggle[aria-expanded="true"] {
       border-bottom-color: transparent;
+      background: var(--paper);
     }
     .create-chevron {
       font-style: normal;
@@ -152,10 +153,10 @@
       text-decoration: none;
     }
     .card a:hover .title { border-bottom: 1px solid var(--ink); }
-    .card a.btn { color: var(--ink); }
+    .card a.btn,
     .card a.btn-solid,
     .card a.btn:hover {
-      color: var(--paper);
+      color: var(--ink);
     }
     .eyebrow {
       font-size: 11px;
@@ -199,9 +200,19 @@
       -webkit-tap-highlight-color: transparent;
       cursor: pointer;
     }
-    .btn:hover, .btn-solid {
-      background: var(--ink);
-      color: var(--paper);
+    .btn:hover {
+      background: rgba(36, 31, 26, 0.06);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .btn-solid {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn-solid:hover {
+      background: rgba(36, 31, 26, 0.06);
+      color: var(--ink);
       border-color: var(--ink);
     }
     .link-list {

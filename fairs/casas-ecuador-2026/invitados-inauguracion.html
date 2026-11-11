@@ -65,8 +65,24 @@
       background: transparent; border: 1px solid var(--rule); color: var(--ink);
       padding: 6px 12px; cursor: pointer; text-decoration: none; display: inline-block;
     }
-    .btn:hover, .btn.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .btn-solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .btn:hover {
+      background: rgba(36, 31, 26, 0.06);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .btn.on, .btn-solid {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn.on {
+      background: rgba(36, 31, 26, 0.08);
+    }
+    .btn-solid:hover {
+      background: rgba(36, 31, 26, 0.06);
+      color: var(--ink);
+      border-color: var(--ink);
+    }
     .toolbar select, .toolbar input[type="search"] {
       font-family: inherit; font-size: 13px; padding: 6px 8px;
       border: 1px solid var(--rule); background: #fff; color: var(--ink); min-width: 0;
