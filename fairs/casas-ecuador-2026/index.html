@@ -2,8 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#241f1a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Cosas bills" />
+  <meta name="application-name" content="Cosas bills" />
   <title>Cosas Ecuador 2026 — preparativos · Annie Ríos</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
@@ -128,10 +135,15 @@
       <h1>Cosas Ecuador 2026 — preparativos</h1>
       <p class="lede">
         Un solo lugar para <em>Stillness &amp; Refractions</em> (Booth #16, Guayaquil):
-        precios, impresión 12×18″, booth tracker, renders, cotización, contactos,
+        precios, factura de venta, impresión 12×18″, booth tracker, renders, cotización, contactos,
         outreach de inauguración, fichas de obra y README.
       </p>
       <p class="meta-line">Stillness &amp; Refractions · Booth #16 · Casas Project GYE · Batán Business Park · 12–22 nov 2026</p>
+      <p class="lede" style="margin-top:14px">
+        <strong style="color:var(--ink);font-weight:600">App en el teléfono:</strong>
+        instalá <a href="factura-venta.html">Cosas bills</a> (PWA) — iPhone: Share → Add to Home Screen;
+        Android: menú → Install app. Arranca en la factura de venta.
+      </p>
     </header>
 
     <h2>Listas de precios e impresión</h2>
@@ -150,6 +162,14 @@
       <p class="note">Una tira 297×95&nbsp;mm: A Gift of an Abundant Life ($4,400) · What Remains Below ($2,200) · I Still Can See a Refraction ($600). Precios Annie; enlaces Cuanto pendientes de mint.</p>
       <p class="file">price-list-three.html</p>
       <div class="actions"><a class="btn btn-solid" href="price-list-three.html">Abrir</a></div>
+    </article>
+
+    <article class="card">
+      <p class="eyebrow">Ventas · Invoice / factura</p>
+      <p class="title"><a href="factura-venta.html">Factura de venta / certificate of sale</a></p>
+      <p class="note">Generá facturas editables para compradores (Gift $4,400 · What Remains $2,200 · Refraction $600 + resto de la lista Cosas). Vista imprimible / PDF, mailto a comprador + annieabstracts@gmail.com, WhatsApp, localStorage + Export/Import JSON. PWA: instalable en el teléfono (Cosas bills).</p>
+      <p class="file">factura-venta.html · manifest.webmanifest · sw-cosas-bills.js</p>
+      <div class="actions"><a class="btn btn-solid" href="factura-venta.html">Abrir / instalar</a></div>
     </article>
 
     <article class="card">
@@ -300,5 +320,12 @@
       o al <a href="../../index.html">libro del estudio</a>.
     </footer>
   </div>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw-cosas-bills.js", { scope: "./" }).catch(function () {});
+      });
+    }
+  </script>
 </body>
 </html>
