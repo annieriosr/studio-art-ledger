@@ -94,13 +94,40 @@
     }
     @media (max-width: 920px) {
       .layout { grid-template-columns: 1fr; }
-      .toolbar { position: sticky; top: 0; z-index: 4; }
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 4;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 10px;
+        background: rgba(244, 242, 238, 0.96);
+        backdrop-filter: blur(6px);
+      }
+      .toolbar .btn-solid { grid-column: 1 / -1; }
       .sheet { width: 100%; min-height: 0; padding: 18px 16px 22px; }
       .sheet .cols, .sign-row { grid-template-columns: 1fr; gap: 14px; }
       input, select, textarea, .btn { font-size: 16px; } /* avoid iOS zoom */
-      .btn { padding: 10px 14px; min-height: 44px; }
+      .btn {
+        padding: 12px 10px;
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+      }
       header { padding: 18px 16px 14px; }
       h1 { font-size: 22px; }
+      .install-note { font-size: 13px; }
+      .install-note ol { padding-left: 1.1em; }
+      .preview-wrap {
+        margin: 0 -4px;
+        border: 1px solid var(--rule);
+        background: #fff;
+      }
+      .sheet { transform-origin: top left; }
     }
     .panel {
       background: var(--paper);

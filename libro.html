@@ -32,7 +32,13 @@
       font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
       font-weight: 400;
     }
-    body { min-height: 100vh; padding: 32px 16px 80px; }
+    body {
+      min-height: 100vh;
+      padding: 32px 16px calc(80px + env(safe-area-inset-bottom, 0px));
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-top: max(24px, env(safe-area-inset-top, 0px));
+    }
     .wrap { max-width: 920px; margin: 0 auto; }
     header { margin-bottom: 28px; }
     h1 {
@@ -43,6 +49,26 @@
       margin-bottom: 8px;
     }
     .lede { font-size: 16px; line-height: 1.5; color: var(--ink-soft); max-width: 62ch; }
+    .studio-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .studio-tools label {
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+    #studioToken {
+      padding: 10px 12px;
+      border: 1px solid var(--rule);
+      font: inherit;
+      font-size: 16px;
+      min-height: 44px;
+      width: min(100%, 280px);
+      background: #fff;
+    }
     .stats {
       display: flex;
       gap: 28px;
@@ -70,6 +96,8 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
     }
     nav button[aria-pressed="true"], .btn-solid {
       background: var(--ink);
@@ -194,6 +222,68 @@
     .install-note ol { margin: 8px 0 0 1.2em; }
     .install-note li { margin: 4px 0; }
     .install-actions { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    @media (max-width: 720px) {
+      body { padding-top: max(16px, env(safe-area-inset-top, 0px)); }
+      h1 { font-size: 24px; }
+      .lede-long { display: none; }
+      .install-note { font-size: 13px; padding: 10px 12px; }
+      .studio-tools { flex-direction: column; align-items: stretch; gap: 10px; }
+      .studio-tools .btn, #btnPublishDrafts { width: 100%; min-height: 48px; font-size: 15px; padding: 12px 14px; text-align: center; }
+      #studioToken { width: 100%; max-width: none; }
+      .stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 16px;
+        margin: 16px 0 18px;
+        padding-bottom: 16px;
+      }
+      .stat b { font-size: 20px; }
+      nav {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        padding: 4px 2px 14px;
+        margin: 0 -4px 18px;
+        border-bottom: 1px solid var(--rule);
+      }
+      nav button {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        min-height: 44px;
+        padding: 10px 14px;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+      .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .filter-bar select {
+        max-width: none;
+        width: 100%;
+        min-height: 44px;
+        font-size: 16px;
+        padding: 10px 12px;
+      }
+      .filter-bar .btn-reset { min-height: 44px; width: 100%; }
+      .card { padding: 16px 16px 14px; }
+      .actions .btn, .card .btn {
+        min-height: 44px;
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+      .form input, .form select {
+        width: 100%;
+        min-height: 44px;
+        font-size: 16px;
+      }
+      table.log { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .back { min-height: 44px; padding: 10px 0; }
+    }
   </style>
 </head>
 <body>
@@ -201,13 +291,16 @@
     <header>
       <p class="lede" style="margin-bottom:10px"><a href="index.html" style="color:inherit">← Portal Annie Ríos</a></p>
       <h1>Libro del estudio</h1>
-      <p class="lede">Tres libros, no una hoja. El catálogo dice qué es cada obra. El movimiento dice dónde ha estado — la ubicación es la última línea. Los documentos se emiten desde esos dos. Las personas son un cuarto libro. Los teléfonos no están aquí.</p>
+      <p class="lede lede-long">Tres libros, no una hoja. El catálogo dice qué es cada obra. El movimiento dice dónde ha estado — la ubicación es la última línea. Los documentos se emiten desde esos dos. Las personas son un cuarto libro. Los teléfonos no están aquí.</p>
       <p class="lede" style="margin-top:12px;font-size:14px">
-        Borradores (ventas, verso, etc.) se auto-guardan en el <strong style="color:var(--ink);font-weight:600">sitio</strong>.
-        Clave: <input id="studioToken" type="password" placeholder="LEDGER_WRITE_TOKEN" style="padding:6px 8px;border:1px solid var(--rule);font:inherit;max-width:200px" />
-        <button type="button" class="btn" id="btnPublishDrafts" style="margin-left:6px">Publicar borradores al libro</button>
-        <span id="siteSync" style="margin-left:8px;color:var(--ink-soft)"></span>
+        Borradores se auto-guardan en el <strong style="color:var(--ink);font-weight:600">sitio</strong>.
       </p>
+      <div class="studio-tools">
+        <label for="studioToken">Clave de guardado</label>
+        <input id="studioToken" type="password" placeholder="LEDGER_WRITE_TOKEN" autocomplete="current-password" />
+        <button type="button" class="btn" id="btnPublishDrafts">Publicar borradores al libro</button>
+        <span id="siteSync" style="color:var(--ink-soft)"></span>
+      </div>
       <div class="install-note" id="installNote">
         <strong>Portal más simple:</strong> la entrada principal es
         <a href="index.html">index.html</a> (Annie Ríos → libro / Cosas / factura).

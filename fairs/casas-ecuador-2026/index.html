@@ -28,7 +28,13 @@
       font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
       font-weight: 400;
     }
-    body { min-height: 100vh; padding: 32px 16px 80px; }
+    body {
+      min-height: 100vh;
+      padding: 32px 16px calc(80px + env(safe-area-inset-bottom, 0px));
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-top: max(24px, env(safe-area-inset-top, 0px));
+    }
     .wrap { max-width: 720px; margin: 0 auto; }
     header { margin-bottom: 28px; padding-bottom: 22px; border-bottom: 1px solid var(--rule); }
     .back {
@@ -39,6 +45,8 @@
       text-decoration: none;
       margin-bottom: 18px;
       border-bottom: 1px solid transparent;
+      min-height: 40px;
+      padding: 8px 0;
     }
     .back:hover { border-bottom-color: var(--rule); color: var(--ink); }
     h1 {
@@ -110,7 +118,11 @@
       color: var(--ink);
       padding: 6px 12px;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn:hover, .btn-solid {
       background: var(--ink);
@@ -136,6 +148,21 @@
       color: var(--ink-soft);
     }
     footer a { color: inherit; }
+    @media (max-width: 640px) {
+      body { padding-top: max(16px, env(safe-area-inset-top, 0px)); }
+      h1 { font-size: 24px; }
+      .card { padding: 16px 16px 14px; }
+      .actions { gap: 10px; }
+      .actions .btn {
+        flex: 1 1 100%;
+        min-height: 48px;
+        font-size: 15px;
+        padding: 12px 14px;
+      }
+      .btn-bill { width: 100%; min-height: 52px; font-size: 16px; }
+      .file { font-size: 11px; opacity: 0.85; }
+      header .back { display: inline-block; margin-right: 10px; }
+    }
   </style>
 </head>
 <body>
