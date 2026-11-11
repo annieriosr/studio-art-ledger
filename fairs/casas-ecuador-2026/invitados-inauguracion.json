@@ -4,9 +4,9 @@
   "show": "Stillness & Refractions",
   "booth": "#16",
   "city": "Guayaquil",
-  "updated": "2026-11-09",
-  "note": "Seed + outreach state. Edit in the tracker page, then Download / Guardar para commit and commit this file. Phones from Annie are marked source=annie; public handles/emails marked source=public. Blank means unknown — never invent.",
-  "nextId": 40,
+  "updated": "2026-11-11",
+  "note": "Seed + outreach state. Edit in the tracker page, then Download / Guardar para commit and commit this file. Phones from Annie are marked source=annie; public handles/emails marked source=public. Blank means unknown — never invent. 2026-11-11: expanded ~12 mid-tier Guayaquil/Ecuador contacts; prior original seed marked Contactado after Annie confirmed she already reached that list; new rows stay Pendiente.",
+  "nextId": 43,
   "people": [
     {
       "id": "p1",
@@ -19,7 +19,7 @@
       "phone": "+593 99 960 9410",
       "channel": "email",
       "draft": "Hola David, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "public · dpmgallery.com",
@@ -57,7 +57,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Eliana, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "public · eacheve.com",
@@ -76,7 +76,7 @@
       "phone": "",
       "channel": "instagram",
       "draft": "Hola, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Fundadores históricos: Juan Carlos Vargas, David Orbea, Leonardo Moyano, Tyrone Luna (prensa). Espacio físico cerró; confirmar canal digital vigente antes de contactar.",
       "sources": {
         "instagram": "",
@@ -95,7 +95,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Mauricio, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Alt. email institucional: info@nasal.pe · Tel. sede GYE público: +593 4 4619 971 (no celular personal).",
       "sources": {
         "instagram": "public · nasal.pe / Art of NOMA",
@@ -171,7 +171,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Lupe, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Completar email/IG cuando Annie tenga el dato.",
       "sources": {
         "instagram": "",
@@ -190,7 +190,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Eduardo, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "",
@@ -209,7 +209,7 @@
       "phone": "",
       "channel": "instagram",
       "draft": "Hola Oswaldo, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Handle citado en loimposible.net; confirmar perfil activo antes de DM.",
       "sources": {
         "instagram": "public · loimposible.net (perfil autor)",
@@ -228,7 +228,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Alexandra, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "",
@@ -247,7 +247,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Carolina, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "",
@@ -266,7 +266,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Jorge, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Email institucional UArtes (uartes.edu.ec).",
       "sources": {
         "instagram": "",
@@ -285,7 +285,7 @@
       "phone": "",
       "channel": "instagram",
       "draft": "Hola Ivanna, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "IG listado en eacheve.com/contacto.",
       "sources": {
         "instagram": "public · eacheve.com",
@@ -304,7 +304,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Juan Felipe, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Email MAAC institucional (prensa Expreso); confirmar canal personal.",
       "sources": {
         "instagram": "",
@@ -323,7 +323,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Hugo, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "public · @maacec (cuenta institucional MAAC)",
@@ -342,7 +342,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola equipo MAAC, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Mid-level: no solo dirección. Email de propuestas expuesto en prensa.",
       "sources": {
         "instagram": "public · @maacec",
@@ -361,7 +361,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Dra. Rizzo, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Completar canal CCENG cuando Annie tenga el correo directo.",
       "sources": {
         "instagram": "",
@@ -380,7 +380,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Daniel, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "",
@@ -399,7 +399,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "public · directorios / @museonahimisaias",
@@ -418,7 +418,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Completar contacto público cuando Annie lo tenga.",
       "sources": {
         "instagram": "",
@@ -437,7 +437,7 @@
       "phone": "",
       "channel": "instagram",
       "draft": "Hola Mz14, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "public · mz14.uartes.edu.ec",
@@ -456,7 +456,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola Decanato, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "",
       "sources": {
         "instagram": "",
@@ -475,7 +475,7 @@
       "phone": "",
       "channel": "instagram",
       "draft": "Hola Eacheve, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Complementa a Eliana e Ivanna; útil para corrida institucional.",
       "sources": {
         "instagram": "public · eacheve.com",
@@ -494,7 +494,7 @@
       "phone": "",
       "channel": "instagram",
       "draft": "Hola Martina, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Listada en eacheve.com/contacto — estrato mid-level comunicación.",
       "sources": {
         "instagram": "public · eacheve.com (vía @eacheve)",
@@ -513,7 +513,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Galería histórica Guayaquil. Completar contacto cuando Annie lo confirme — no inventar handle.",
       "sources": {
         "instagram": "",
@@ -532,7 +532,7 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Slot de estrato; Annie puede clonar/añadir nombres concretos.",
       "sources": {
         "instagram": "public · vía Mz14",
@@ -551,7 +551,7 @@
       "phone": "+593 99 409 0999",
       "channel": "whatsapp",
       "draft": "Hola Colecciona, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Pedir shortlist nominal a Colecciona / Diana; teléfono es de la consultora, no de cada estudio.",
       "sources": {
         "instagram": "",
@@ -570,11 +570,239 @@
       "phone": "",
       "channel": "email",
       "draft": "Hola, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
-      "status": 0,
+      "status": 1,
       "notes": "Completar nombres de reporteros del estudio — no inventar.",
       "sources": {
         "instagram": "",
         "email": "",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p31",
+      "name": "Giuliana Vargas Cesa",
+      "role": "Directora",
+      "org": "Casa del Barrio",
+      "stratum": "galerista",
+      "instagram": "@casadelbarrio_gye",
+      "email": "casadelbarriogye@gmail.com",
+      "phone": "+593 95 887 4046",
+      "channel": "instagram",
+      "draft": "Hola Giuliana, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Galería contemporánea GYE/Samborondón (La Moderna); Pinta Miami; cerca de Batán. Prioridad local.",
+      "sources": {
+        "instagram": "public · Instagram / prensa Fulgor 2025 · @casadelbarrio_gye",
+        "email": "public · Pinta Miami 2023 gallery listing (casadelbarriogye@gmail.com)",
+        "phone": "public · Pinta Miami 2023 gallery listing (+593 958874046)"
+      }
+    },
+    {
+      "id": "p32",
+      "name": "Javier Jara",
+      "role": "Director",
+      "org": "Arte Guayaquil",
+      "stratum": "galerista",
+      "instagram": "",
+      "email": "info@arteguayaquil.com",
+      "phone": "+593 99 108 5190",
+      "channel": "email",
+      "draft": "Hola Javier, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Galería comercial GYE (hogar/oficina + abstracto contemporáneo). Encaje Cosas/Casas. IG no verificado públicamente — dejar blank.",
+      "sources": {
+        "instagram": "",
+        "email": "public · arteguayaquil.com/contactos",
+        "phone": "public · arteguayaquil.com/contactos (+593991085190)"
+      }
+    },
+    {
+      "id": "p33",
+      "name": "Gabriela Moyano",
+      "role": "Directora",
+      "org": "+ARTE galería",
+      "stratum": "galerista",
+      "instagram": "@masartegaleria",
+      "email": "masartegaleriataller@gmail.com",
+      "phone": "+593 99 938 7176",
+      "channel": "email",
+      "draft": "Hola Gabriela, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Galería contemporánea Quito; ferias Pinta Lima. Mid-tier comercial regional.",
+      "sources": {
+        "instagram": "public · galeriamasarte.com / Pinta · @masartegaleria",
+        "email": "public · Pinta / galeriamasarte.com · masartegaleriataller@gmail.com",
+        "phone": "public · Pinta gallery listing (+593999387176)"
+      }
+    },
+    {
+      "id": "p34",
+      "name": "N24 Galería de Arte",
+      "role": "Dirección / programación",
+      "org": "N24 Galería de Arte (La Floresta, Quito)",
+      "stratum": "galerista",
+      "instagram": "@n24galeria",
+      "email": "n24galeria@gmail.com",
+      "phone": "+593 2 252 9996",
+      "channel": "instagram",
+      "draft": "Hola N24, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Espacio contemporáneo Quito (hereda El Conteiner / El Pobre Diablo). Buen fit mid-career / debate local.",
+      "sources": {
+        "instagram": "public · n24galeria.com/contacto · @n24galeria",
+        "email": "public · n24galeria.com/contacto · n24galeria@gmail.com",
+        "phone": "public · n24galeria.com/contacto · +593 2 252-9996"
+      }
+    },
+    {
+      "id": "p35",
+      "name": "Francisco Suárez",
+      "role": "Director / co-fundador",
+      "org": "No Lugar – Arte Contemporáneo",
+      "stratum": "emergente",
+      "instagram": "@nolugar_ac",
+      "email": "no.lugar.galeria@gmail.com",
+      "phone": "+593 99 280 8062",
+      "channel": "instagram",
+      "draft": "Hola Francisco, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Residencias + galería contemporánea Quito; red con escena GYE (Violenta, +ARTE). Canal org.",
+      "sources": {
+        "instagram": "public · nolugar.org (exposiciones) · @nolugar_ac",
+        "email": "public · nolugar.org/quienes-somos · no.lugar.galeria@gmail.com",
+        "phone": "public · nolugar.org · +593-992808062"
+      }
+    },
+    {
+      "id": "p36",
+      "name": "Paulina León",
+      "role": "Coordinadora FLACSO Cultura / Arte Actual",
+      "org": "Arte Actual FLACSO",
+      "stratum": "curador",
+      "instagram": "@arteactualflacso",
+      "email": "pleon@flacso.edu.ec",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola Paulina, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Curadora/gestora institucional Quito; alt. institucional arteactual@flacso.edu.ec. Tel. sede (02) 2946800 ext. 2040 (no celular).",
+      "sources": {
+        "instagram": "public · arteactual.ec / Imginn · @arteactualflacso",
+        "email": "public · arteactual.ec/contacto · pleon@flacso.edu.ec",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p37",
+      "name": "Ana Rosa Valdez",
+      "role": "Crítica / curadora / directora editorial",
+      "org": "Paralaje.xyz / UArtes",
+      "stratum": "curador",
+      "instagram": "@paralaje.xyz",
+      "email": "paralajexyz@gmail.com",
+      "phone": "",
+      "channel": "email",
+      "draft": "Hola Ana Rosa, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Circuito crítico Ecuador; vínculo GYE vía UArtes / Mz14 / MAAC. Misma plataforma que Kronfle escribe.",
+      "sources": {
+        "instagram": "public · paralaje.xyz / LinkedIn org · @paralaje.xyz",
+        "email": "public · paralaje.xyz · paralajexyz@gmail.com",
+        "phone": ""
+      }
+    },
+    {
+      "id": "p38",
+      "name": "Centro de Arte Contemporáneo Quito",
+      "role": "Institución / programación",
+      "org": "CAC — Fundación Museos de la Ciudad",
+      "stratum": "institucion",
+      "instagram": "@centroartequito",
+      "email": "centroarteq@gmail.com",
+      "phone": "+593 2 394 6990",
+      "channel": "instagram",
+      "draft": "Hola CAC, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Principal institución contemporánea Quito. Alt. comunicación FMC: comunicacion@fmcquito.gob.ec.",
+      "sources": {
+        "instagram": "public · Facebook/FMC · @centroartequito",
+        "email": "public · Facebook CAC / Quito Informa · centroarteq@gmail.com",
+        "phone": "public · fundacionmuseosquito.gob.ec · +593 2 394 6990"
+      }
+    },
+    {
+      "id": "p39",
+      "name": "Hernán Pacurucu Cárdenas",
+      "role": "Director ejecutivo",
+      "org": "Fundación Municipal Bienal de Cuenca",
+      "stratum": "institucion",
+      "instagram": "@bienaldecuenca",
+      "email": "comunicacion@bienaldecuenca.org",
+      "phone": "+593 7 2831 778",
+      "channel": "email",
+      "draft": "Hola Hernán, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Bienal institucional más visible del país; canal vía comunicación oficial (no email personal público).",
+      "sources": {
+        "instagram": "public · bienaldecuenca.org / LinkedIn · @bienaldecuenca",
+        "email": "public · Biennial Foundation / LinkedIn · comunicacion@bienaldecuenca.org",
+        "phone": "public · bienaldecuenca.org · +593 7 2831 778"
+      }
+    },
+    {
+      "id": "p40",
+      "name": "Alianza Francesa Guayaquil (Cultura)",
+      "role": "Programación cultural / exposiciones",
+      "org": "Alianza Francesa de Guayaquil",
+      "stratum": "institucion",
+      "instagram": "@afguayaquil",
+      "email": "info@afguayaquil.org.ec",
+      "phone": "+593 99 780 7922",
+      "channel": "instagram",
+      "draft": "Hola Alianza, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Sede Samborondón cercana a Batán; agenda de exposiciones locales. WhatsApp público de sedes.",
+      "sources": {
+        "instagram": "public · afguayaquil.org.ec · @afguayaquil",
+        "email": "public · afguayaquil.org.ec contacto · info@afguayaquil.org.ec",
+        "phone": "public · afguayaquil.org.ec · WhatsApp sedes 0997807922"
+      }
+    },
+    {
+      "id": "p41",
+      "name": "Revista Cosas Ecuador / Casas Project",
+      "role": "Organización feria / prensa diseño",
+      "org": "Grupo Cosas / Revista Casas",
+      "stratum": "aliado",
+      "instagram": "@cosasecuador",
+      "email": "info@cosas.com.ec",
+      "phone": "+593 99 963 1448",
+      "channel": "email",
+      "draft": "Hola Cosas, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Organizadores Casas Project GYE — pueden empujar RSVPs de coleccionistas/interioristas del fair. Alt. tel. 099 138 3427. IG alt. @casasecuador.",
+      "sources": {
+        "instagram": "public · Instagram org · @cosasecuador",
+        "email": "public · revistacasas.com.ec / Cosas contact · info@cosas.com.ec",
+        "phone": "public · revistacasas.com.ec comercial · 099 963 1448"
+      }
+    },
+    {
+      "id": "p42",
+      "name": "Unidad Técnica de Patrimonio Cultural GYE",
+      "role": "Dirección / Museo Municipal",
+      "org": "Municipio de Guayaquil — Patrimonio Cultural",
+      "stratum": "institucion",
+      "instagram": "@patrimonioculturalgye",
+      "email": "alunaf@guayaquil.gob.ec",
+      "phone": "",
+      "channel": "instagram",
+      "draft": "Hola Patrimonio, ¿cómo estás?\n\nSoy Annie Ríos, artista basada en Panamá. Estaré exponiendo mis obras en Casas Project GYE, del 12 al 22 de noviembre, y me encantaría invitarte a la inauguración de Stillness & Refractions, mi booth #16 en Batán Business Park, este 12 de noviembre.\n\n¡Me encantaría contar contigo! Confírmame tu asistencia para incluirte en mi lista de cortesías. \nRSVP",
+      "status": 0,
+      "notes": "Canal institucional Museo Municipal / salas de arte contemporáneo. Tel. guianza público 042 594800 ext. 7325 (no celular personal).",
+      "sources": {
+        "instagram": "public · guayaquil.gob.ec avisos · @patrimonioculturalgye",
+        "email": "public · guayaquil.gob.ec solicitud espacios Museo Municipal · alunaf@guayaquil.gob.ec",
         "phone": ""
       }
     }
