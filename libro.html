@@ -3976,10 +3976,17 @@
       { id: "gaps", label: "Por confirmar" },
     ];
 
+    const HASH_ALIASES = {
+      exposiciones: "preparativos",
+      coleccionistas: "personas",
+      disponibles: "disponibles",
+    };
+
     function parseHash() {
       const h = (location.hash || "#catalogo").slice(1);
       if (h.startsWith("obra/")) return { view: "obra", id: decodeURIComponent(h.slice(5)) };
-      return { view: h || "catalogo", id: null };
+      const raw = h || "catalogo";
+      return { view: HASH_ALIASES[raw] || raw, id: null };
     }
 
     function go(view, id) {
@@ -4203,6 +4210,19 @@
     // ── Filter state ──────────────────────────────────────────────────────────
     let F = { collection: '', year: '', exhibition: '', status: '' };
 
+    function readFiltersFromUrl() {
+      const q = new URLSearchParams(location.search);
+      const status = q.get("status") || "";
+      if (status === "studio" || status === "collector") F.status = status;
+      const collection = q.get("collection");
+      const year = q.get("year");
+      const exhibition = q.get("exhibition");
+      if (collection) F.collection = collection;
+      if (year) F.year = year;
+      if (exhibition) F.exhibition = exhibition;
+    }
+    readFiltersFromUrl();
+
     function applyFilters(works) {
       return works.filter((w) => {
         if (F.collection && (w.collection || '') !== F.collection) return false;
@@ -4309,6 +4329,17 @@
             ${d.notes ? `<p class="notes">${esc(d.notes)}</p>` : ""}
           </article>`;
         }).join("");
+        return;
+      }
+      if (view === "disponibles") {
+        const filtersDivAvail = document.getElementById("filters");
+        if (filtersDivAvail) filtersDivAvail.innerHTML = "";
+        const available = LEDGER.works.filter((w) => custody(w.id).kind === "studio");
+        main.innerHTML = `<h2>Obras disponibles</h2>
+          <p class="notes">Última línea en el estudio — listas para mostrar o vender. No es un estado aparte: sale del movimiento.</p>` +
+          (available.length
+            ? available.map((w) => card(w, { compact: true })).join("")
+            : `<p class="notes">Ninguna obra con última línea en el estudio.</p>`);
         return;
       }
       if (view === "preparativos") {
