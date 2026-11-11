@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#ebe4d8" />
+  <meta name="theme-color" content="#241f1a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Libro estudio" />
@@ -16,416 +16,436 @@
   <link rel="apple-touch-icon" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Manrope:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #1b1916;
-      --ink-soft: #5c564e;
-      --paper: #f2ece3;
-      --paper-deep: #e6ddd0;
-      --mist: #d8d0c4;
-      --accent: #1f4f55;
-      --accent-deep: #16383c;
-      --rule: #c9bfb1;
-      --hero-wash: linear-gradient(
-        115deg,
-        rgba(242, 236, 227, 0.94) 0%,
-        rgba(242, 236, 227, 0.78) 28%,
-        rgba(242, 236, 227, 0.28) 58%,
-        rgba(242, 236, 227, 0.04) 78%,
-        transparent 100%
-      );
-      --hero-floor: linear-gradient(
-        180deg,
-        transparent 42%,
-        rgba(27, 25, 22, 0.08) 78%,
-        rgba(27, 25, 22, 0.18) 100%
-      );
+      --paper: #f4f2ee;
+      --ink: #241f1a;
+      --ink-soft: #5c574f;
+      --rule: #c4bfb4;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html, body {
+      background: #d8d4cc;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+    }
     body {
       min-height: 100vh;
-      color: var(--ink);
-      font-family: "Manrope", "Segoe UI", sans-serif;
-      font-weight: 400;
-      background:
-        radial-gradient(900px 480px at 0% 0%, rgba(31, 79, 85, 0.07) 0%, transparent 55%),
-        radial-gradient(700px 420px at 100% 12%, rgba(140, 92, 48, 0.06) 0%, transparent 50%),
-        linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
-      padding-bottom: env(safe-area-inset-bottom, 0);
+      padding: 32px 16px calc(80px + env(safe-area-inset-bottom, 0px));
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-top: max(24px, env(safe-area-inset-top, 0px));
     }
-    a { color: inherit; }
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: grid;
-      align-items: end;
-      overflow: hidden;
-      isolation: isolate;
-    }
-    .hero-media {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      overflow: hidden;
-    }
-    .hero-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 42%;
-      transform: scale(1.08);
-      will-change: transform;
-      animation: drift 22s ease-in-out infinite alternate;
-    }
-    .hero-scrim {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: var(--hero-wash), var(--hero-floor);
-      pointer-events: none;
-    }
-    .hero-grain {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      opacity: 0.18;
-      pointer-events: none;
-      mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-      animation: grain 8s steps(2) infinite;
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(1120px, calc(100% - 2.75rem));
-      margin: 0 auto;
-      padding:
-        calc(clamp(4.5rem, 12vh, 7rem) + env(safe-area-inset-top, 0px))
-        max(0px, env(safe-area-inset-right, 0px))
-        calc(clamp(2.6rem, 6.5vh, 4.2rem) + env(safe-area-inset-bottom, 0px))
-        max(0px, env(safe-area-inset-left, 0px));
+    .wrap { max-width: 720px; margin: 0 auto; }
+    header {
+      margin-bottom: 28px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--rule);
     }
     .brand {
-      font-family: "Syne", "Avenir Next", sans-serif;
-      font-weight: 800;
-      font-size: clamp(3.1rem, 9vw, 6.4rem);
-      line-height: 0.9;
-      letter-spacing: -0.045em;
-      max-width: 9ch;
-      margin-bottom: 0.85rem;
-      color: var(--ink);
-      animation: rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
     }
-    .headline {
-      font-family: "Fraunces", Georgia, serif;
-      font-optical-sizing: auto;
+    h1 {
+      font-size: 28px;
       font-weight: 400;
       font-style: italic;
-      font-size: clamp(1.35rem, 2.8vw, 1.95rem);
       line-height: 1.2;
-      max-width: 18ch;
-      margin-bottom: 0.75rem;
-      color: var(--accent-deep);
-      animation: rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+      margin-bottom: 8px;
     }
-    .support {
-      font-size: clamp(1.02rem, 1.7vw, 1.18rem);
-      line-height: 1.45;
-      max-width: 34ch;
+    .lede {
+      font-size: 16px;
+      line-height: 1.5;
       color: var(--ink-soft);
-      margin-bottom: 1.7rem;
-      animation: rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+      max-width: 58ch;
     }
-    .cta-row {
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      margin: 28px 0 12px;
+    }
+    .card {
+      background: var(--paper);
+      padding: 16px 20px 14px;
+      margin-bottom: 8px;
+      border-left: 1px solid var(--rule);
+    }
+    .card a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card a:hover .title { border-bottom: 1px solid var(--ink); }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+    .title {
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      display: inline;
+      border-bottom: 1px solid transparent;
+    }
+    .note {
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+    .actions {
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      animation: rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both;
+      gap: 8px;
     }
-    .cta {
+    .btn {
+      font-family: inherit;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      padding: 6px 12px;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
-      padding: 0.9rem 1.35rem;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.01em;
-      border: 1.5px solid transparent;
-      border-radius: 2px;
-      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+      min-height: 40px;
       -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
     }
-    .cta:hover { transform: translateY(-2px); }
-    .cta:active { transform: translateY(0); }
-    .cta-primary {
+    .btn:hover, .btn-solid {
       background: var(--ink);
       color: var(--paper);
-    }
-    .cta-primary:hover { background: var(--accent-deep); }
-    .cta-secondary {
-      background: rgba(242, 236, 227, 0.55);
-      color: var(--ink);
-      border-color: rgba(27, 25, 22, 0.28);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-    .cta-secondary:hover {
       border-color: var(--ink);
-      background: rgba(242, 236, 227, 0.88);
     }
-    .scroll-hint {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      margin-top: 1.65rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      text-decoration: none;
-      width: fit-content;
-      animation: rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.48s both, nudge 2.6s ease-in-out 1.2s infinite;
-    }
-    .scroll-hint::after {
-      content: "";
-      width: 0.45rem;
-      height: 0.45rem;
-      border-right: 1.5px solid currentColor;
-      border-bottom: 1.5px solid currentColor;
-      transform: rotate(45deg) translateY(-1px);
-      opacity: 0.75;
-    }
-    main {
-      width: min(1120px, calc(100% - 2.75rem));
-      margin: 0 auto;
-      padding: clamp(3rem, 8vw, 5rem) 0 4rem;
-    }
-    .section {
-      margin-bottom: clamp(2.8rem, 7vw, 4.2rem);
-    }
-    .section h2 {
-      font-family: "Syne", "Avenir Next", sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.55rem, 3vw, 2.05rem);
-      letter-spacing: -0.03em;
-      margin-bottom: 0.45rem;
-    }
-    .section-lede {
-      color: var(--ink-soft);
-      font-size: 1.05rem;
-      line-height: 1.45;
-      max-width: 48ch;
-      margin-bottom: 1.4rem;
-    }
-    .routes {
-      display: grid;
-      gap: 0;
+    .link-list {
+      list-style: none;
       border-top: 1px solid var(--rule);
     }
-    .route {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) auto;
-      gap: 0.85rem 1.25rem;
-      align-items: baseline;
-      padding: 1.2rem 0.15rem;
+    .link-list li {
       border-bottom: 1px solid var(--rule);
+    }
+    .link-list a {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.35rem 1rem;
+      padding: 12px 2px;
       text-decoration: none;
-      transition: background 0.2s ease, padding-left 0.2s ease;
+      color: inherit;
+      min-height: 48px;
     }
-    .route:hover {
-      background: rgba(31, 79, 85, 0.05);
-      padding-left: 0.35rem;
+    .link-list a:hover .link-name {
+      border-bottom-color: var(--ink);
     }
-    .route-name {
-      font-family: "Syne", "Avenir Next", sans-serif;
-      font-size: 1.18rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--accent-deep);
+    .link-name {
+      font-size: 17px;
+      font-style: italic;
+      border-bottom: 1px solid transparent;
     }
-    .route-copy {
+    .link-meta {
+      font-size: 13px;
       color: var(--ink-soft);
-      font-size: 0.98rem;
-      line-height: 1.4;
-    }
-    .route-go {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      white-space: nowrap;
+      flex: 1 1 12rem;
     }
     .install {
-      padding: 1.35rem 0 0.2rem;
-      border-top: 1px solid var(--rule);
-    }
-    .install p {
-      color: var(--ink-soft);
-      max-width: 52ch;
-      line-height: 1.45;
-      margin-top: 0.4rem;
+      margin-top: 8px;
     }
     .install ol {
-      margin: 0.85rem 0 0 1.15rem;
+      margin: 10px 0 0 1.15rem;
       color: var(--ink-soft);
+      font-size: 14px;
       line-height: 1.5;
     }
     footer {
-      width: min(1120px, calc(100% - 2.75rem));
-      margin: 0 auto 2.5rem;
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+      font-size: 13px;
+      line-height: 1.5;
       color: var(--ink-soft);
-      font-size: 0.92rem;
     }
-    footer a { text-decoration: underline; text-underline-offset: 2px; }
-    @keyframes drift {
-      from { transform: scale(1.08) translate3d(0, 0, 0); }
-      to { transform: scale(1.14) translate3d(-1.8%, -1.2%, 0); }
-    }
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: none; }
-    }
-    @keyframes nudge {
-      0%, 100% { transform: translateY(0); opacity: 0.65; }
-      50% { transform: translateY(4px); opacity: 1; }
-    }
-    @keyframes grain {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-1.5%, 1%); }
-    }
-    @media (max-width: 760px) {
-      .hero-inner {
-        width: min(1120px, calc(100% - 1.75rem));
-        padding-top: calc(3.4rem + env(safe-area-inset-top, 0px));
-        padding-bottom: calc(2.1rem + env(safe-area-inset-bottom, 0px));
+    footer a { color: inherit; }
+    @media (max-width: 640px) {
+      body { padding-top: max(16px, env(safe-area-inset-top, 0px)); }
+      h1 { font-size: 24px; }
+      .card { padding: 14px 14px 12px; }
+      .actions { gap: 10px; }
+      .actions .btn {
+        flex: 1 1 100%;
+        min-height: 48px;
+        font-size: 15px;
+        padding: 12px 14px;
       }
-      main, footer { width: min(1120px, calc(100% - 1.75rem)); }
-      .brand {
-        max-width: none;
-        font-size: clamp(2.85rem, 14vw, 3.75rem);
-      }
-      .headline { max-width: 14ch; }
-      .support { margin-bottom: 1.35rem; max-width: 28ch; }
-      .cta-row {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.65rem;
-      }
-      .cta { width: 100%; }
-      .scroll-hint { margin-top: 1.25rem; }
-      .route {
-        grid-template-columns: 1fr;
-        gap: 0.35rem;
-        padding: 1.15rem 0.1rem;
-        min-height: 72px;
-      }
-      .route-name { font-size: 1.22rem; }
-      .route-go { margin-top: 0.15rem; }
-      .hero-scrim {
-        background:
-          linear-gradient(
-            180deg,
-            rgba(242, 236, 227, 0.2) 0%,
-            rgba(242, 236, 227, 0.45) 38%,
-            rgba(242, 236, 227, 0.92) 72%,
-            rgba(236, 229, 218, 0.97) 100%
-          );
-      }
-      .hero-media img { object-position: 58% 38%; }
-      .install .cta { width: 100%; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-media img,
-      .brand,
-      .headline,
-      .support,
-      .cta-row,
-      .scroll-hint,
-      .hero-grain {
-        animation: none !important;
-      }
-      .hero-media img { transform: none; }
+      .link-list a { flex-direction: column; align-items: flex-start; gap: 2px; }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-media" aria-hidden="true">
-      <img src="portal-hero.jpg" alt="" width="1600" height="1000" fetchpriority="high" />
-    </div>
-    <div class="hero-scrim" aria-hidden="true"></div>
-    <div class="hero-grain" aria-hidden="true"></div>
-    <div class="hero-inner">
-      <h1 class="brand">Annie Ríos</h1>
-      <p class="headline">Libro del estudio</p>
-      <p class="support">Catálogo, Cosas Ecuador y las herramientas del día a día — un solo umbral al estudio.</p>
-      <div class="cta-row">
-        <a class="cta cta-primary" href="libro.html">Entrar al libro</a>
-        <a class="cta cta-secondary" href="fairs/casas-ecuador-2026/">Cosas Ecuador</a>
-      </div>
-      <a class="scroll-hint" href="#destinos">Ver destinos</a>
-    </div>
-  </header>
+  <div class="wrap">
+    <header>
+      <p class="brand">Annie Ríos</p>
+      <h1>Libro del estudio</h1>
+      <p class="lede">
+        Índice del sitio: catálogo, Cosas Ecuador y herramientas del día a día.
+        Mismo estilo que el libro — sin fotos, solo enlaces.
+      </p>
+    </header>
 
-  <main>
-    <section class="section" id="destinos">
-      <h2>Adónde ir</h2>
-      <p class="section-lede">Tres entradas principales. El resto son atajos para la feria.</p>
-      <div class="routes">
-        <a class="route" href="libro.html">
-          <span class="route-name">Libro del estudio</span>
-          <span class="route-copy">Catálogo, movimiento, documentos, personas y borradores del estudio.</span>
-          <span class="route-go">Abrir</span>
-        </a>
-        <a class="route" href="fairs/casas-ecuador-2026/">
-          <span class="route-name">Hub Cosas Ecuador</span>
-          <span class="route-copy">Stillness &amp; Refractions · Booth #16 — precios, booth, outreach, fichas.</span>
-          <span class="route-go">Abrir</span>
-        </a>
-        <a class="route" href="fairs/casas-ecuador-2026/factura-venta.html">
-          <span class="route-name">Factura de venta</span>
-          <span class="route-copy">Elegí obra, llená comprador, imprimí / PDF, email o WhatsApp. Confirmar marca vendida.</span>
-          <span class="route-go">Facturar</span>
-        </a>
-        <a class="route" href="fairs/casas-ecuador-2026/Booth%20tracker%20%C2%B7%20Casajet%20_%20Cosas.html">
-          <span class="route-name">Booth tracker</span>
-          <span class="route-copy">Tareas, proveedores y presupuesto del stand — se guarda en el sitio.</span>
-          <span class="route-go">Abrir</span>
-        </a>
-        <a class="route" href="fairs/casas-ecuador-2026/invitados-inauguracion.html">
-          <span class="route-name">Outreach inauguración</span>
-          <span class="route-copy">Invitados, estados (confirmado / contactado) y notas de la apertura.</span>
-          <span class="route-go">Abrir</span>
-        </a>
+    <h2>estudio</h2>
+    <article class="card">
+      <p class="eyebrow">Principal</p>
+      <p class="title"><a href="libro.html">Libro del estudio</a></p>
+      <p class="note">Catálogo, movimiento, documentos, personas y borradores.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="libro.html">Abrir libro</a>
+        <a class="btn" href="libro.html#preparativos">Preparativos</a>
       </div>
-    </section>
+    </article>
+    <ul class="link-list">
+      <li>
+        <a href="certificado.html">
+          <span class="link-name">Certificado</span>
+          <span class="link-meta">Plantilla · ?id=AR-…</span>
+        </a>
+      </li>
+      <li>
+        <a href="tarjeta-exposicion.html">
+          <span class="link-name">Tarjeta de exposición</span>
+          <span class="link-meta">Plantilla · ?id=AR-…</span>
+        </a>
+      </li>
+      <li>
+        <a href="carta.html">
+          <span class="link-name">Nota de convivir</span>
+          <span class="link-meta">Plantilla · ?id=AR-…</span>
+        </a>
+      </li>
+      <li>
+        <a href="carta-presentacion.html">
+          <span class="link-name">Carta de la autora</span>
+          <span class="link-meta">Plantilla · ?id=AR-…</span>
+        </a>
+      </li>
+      <li>
+        <a href="papeles/1-Libro-del-estudio.html">
+          <span class="link-name">Papeles</span>
+          <span class="link-meta">Atajo al libro · carpeta papeles/</span>
+        </a>
+      </li>
+    </ul>
 
-    <section class="section install" id="instalar">
-      <h2>En el teléfono</h2>
-      <p>Agregá este portal a la pantalla de inicio para abrirlo como app.</p>
+    <h2>cosas ecuador 2026</h2>
+    <article class="card">
+      <p class="eyebrow">Hub · Booth #16</p>
+      <p class="title"><a href="fairs/casas-ecuador-2026/">Hub Cosas Ecuador</a></p>
+      <p class="note">Stillness &amp; Refractions — precios, booth, outreach, fichas y README.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="fairs/casas-ecuador-2026/">Abrir hub</a>
+        <a class="btn" href="fairs/casas-ecuador-2026/factura-venta.html">Factura / bills</a>
+      </div>
+    </article>
+    <ul class="link-list">
+      <li>
+        <a href="fairs/casas-ecuador-2026/factura-venta.html">
+          <span class="link-name">Factura de venta</span>
+          <span class="link-meta">Bill · PDF · WhatsApp · marcar vendida</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/Booth%20tracker%20%C2%B7%20Casajet%20_%20Cosas.html">
+          <span class="link-name">Booth tracker</span>
+          <span class="link-meta">Tareas, proveedores, presupuesto</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/invitados-inauguracion.html">
+          <span class="link-name">Outreach inauguración</span>
+          <span class="link-meta">Invitados y estados</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/contactos.html">
+          <span class="link-name">Contactos</span>
+          <span class="link-meta">Circuito Guayaquil</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/price-list.html">
+          <span class="link-name">Lista de precios</span>
+          <span class="link-meta">8 obras · A4</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/price-list-three.html">
+          <span class="link-name">Lista de precios — tres obras</span>
+          <span class="link-meta">Abundant Life · What Remains · Refraction</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/price-list-print-12x18.html">
+          <span class="link-name">Impresión 12×18″</span>
+          <span class="link-meta">HTML duplex</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/price-list-print-12x18.pdf">
+          <span class="link-name">Impresión 12×18″ PDF</span>
+          <span class="link-meta">Listo para imprenta</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/booth-render-3d.html">
+          <span class="link-name">Render 3D del booth</span>
+          <span class="link-meta">Vista interactiva</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/booth-render-overview.pdf">
+          <span class="link-name">Booth overview PDF</span>
+          <span class="link-meta">Render estático</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/booth-render-three-views.pdf">
+          <span class="link-name">Booth tres vistas PDF</span>
+          <span class="link-meta">Render estático</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/cotizacion-mano-de-obra.html">
+          <span class="link-name">Cotización de mano de obra</span>
+          <span class="link-meta">Presupuesto stand</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/README.md">
+          <span class="link-name">README del fair</span>
+          <span class="link-meta">Índice y fechas</span>
+        </a>
+      </li>
+    </ul>
+
+    <h2>fichas · tarjetas · certificados (cosas)</h2>
+    <ul class="link-list">
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/a-gift-of-an-abundant-life.html">
+          <span class="link-name">A Gift of an Abundant Life</span>
+          <span class="link-meta">Ficha · AR-2026-008</span>
+        </a>
+      </li>
+      <li>
+        <a href="tarjeta-exposicion.html?id=AR-2026-008">
+          <span class="link-name">Tarjeta — Abundant Life</span>
+          <span class="link-meta">AR-2026-008</span>
+        </a>
+      </li>
+      <li>
+        <a href="certificado.html?id=AR-2026-008">
+          <span class="link-name">Certificado — Abundant Life</span>
+          <span class="link-meta">AR-2026-008</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/what-remains-below.html">
+          <span class="link-name">What Remains Below</span>
+          <span class="link-meta">Ficha · AR-2026-001</span>
+        </a>
+      </li>
+      <li>
+        <a href="tarjeta-exposicion.html?id=AR-2026-001">
+          <span class="link-name">Tarjeta — What Remains Below</span>
+          <span class="link-meta">AR-2026-001</span>
+        </a>
+      </li>
+      <li>
+        <a href="certificado.html?id=AR-2026-001">
+          <span class="link-name">Certificado — What Remains Below</span>
+          <span class="link-meta">AR-2026-001</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/i-still-can-see-a-refraction.html">
+          <span class="link-name">I Still Can See a Refraction</span>
+          <span class="link-meta">Ficha · AR-2026-010</span>
+        </a>
+      </li>
+      <li>
+        <a href="tarjeta-exposicion.html?id=AR-2026-010">
+          <span class="link-name">Tarjeta — Refraction</span>
+          <span class="link-meta">AR-2026-010</span>
+        </a>
+      </li>
+      <li>
+        <a href="certificado.html?id=AR-2026-010">
+          <span class="link-name">Certificado — Refraction</span>
+          <span class="link-meta">AR-2026-010</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/all-the-ways-we-shine.html">
+          <span class="link-name">All the Ways We Shine</span>
+          <span class="link-meta">Ficha · AR-2025-001</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/feel-my-love.html">
+          <span class="link-name">Feel My Love</span>
+          <span class="link-meta">Ficha · AR-2026-007</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/point-of-incidence.html">
+          <span class="link-name">Point of Incidence</span>
+          <span class="link-meta">Ficha · AR-2025-009</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/the-inbetween-space.html">
+          <span class="link-name">The InBetween Space</span>
+          <span class="link-meta">Ficha · AR-2025-003</span>
+        </a>
+      </li>
+      <li>
+        <a href="fairs/casas-ecuador-2026/works/red-thread.html">
+          <span class="link-name">Red Thread</span>
+          <span class="link-meta">Ficha · AR-2022-001</span>
+        </a>
+      </li>
+    </ul>
+
+    <h2>en el teléfono</h2>
+    <article class="card install" id="instalar">
+      <p class="title">Instalar portal</p>
+      <p class="note">Agregá esta página a la pantalla de inicio para abrirla como app.</p>
       <ol>
         <li><strong>iPhone (Safari):</strong> Compartir → Agregar a pantalla de inicio → <em>Libro estudio</em>.</li>
         <li><strong>Android (Chrome):</strong> menú ⋮ → Instalar aplicación.</li>
       </ol>
-      <div class="cta-row" style="margin-top:1.1rem">
-        <button type="button" class="cta cta-primary" id="btnInstallApp" hidden>Instalar Libro estudio</button>
-        <span id="installStatus" style="align-self:center;color:var(--ink-soft);font-size:0.95rem"></span>
+      <div class="actions" style="margin-top:12px">
+        <button type="button" class="btn btn-solid" id="btnInstallApp" hidden>Instalar Libro estudio</button>
+        <span id="installStatus" style="align-self:center;color:var(--ink-soft);font-size:14px"></span>
       </div>
-    </section>
-  </main>
+    </article>
 
-  <footer>
-    Estudio Annie Ríos ·
-    <a href="libro.html">libro</a> ·
-    <a href="fairs/casas-ecuador-2026/">Cosas 2026</a>
-  </footer>
+    <footer>
+      Estudio Annie Ríos ·
+      <a href="libro.html">libro</a> ·
+      <a href="fairs/casas-ecuador-2026/">Cosas 2026</a>
+    </footer>
+  </div>
 
   <script>
     (function () {
