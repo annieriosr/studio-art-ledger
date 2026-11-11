@@ -498,7 +498,7 @@
 
     <section class="drafts no-print">
       <h2>Facturas en el sitio</h2>
-      <p class="hint" style="margin-bottom:10px">Lista compartida (servidor). Al confirmar venta, la obra queda vendida en el catálogo.</p>
+      <p class="hint" style="margin-bottom:10px">Lista del servidor cuando hay clave de guardado; si no, muestra borradores de este dispositivo. Al confirmar venta, la obra queda vendida en el catálogo.</p>
       <div class="draft-list" id="draftList"></div>
     </section>
 
@@ -670,7 +670,7 @@
     el.textContent = msg;
     el.classList.add("show");
     clearTimeout(toast._t);
-    toast._t = setTimeout(function () { el.classList.remove("show"); }, 2800);
+    toast._t = setTimeout(function () { el.classList.remove("show"); }, 4200);
   }
 
   function stamp() {
@@ -749,6 +749,30 @@
 
   function saveStore(store) {
     try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+  }
+
+  /** Keep a local drafts list so the UI still lists bills when the site API is unavailable. */
+  function upsertLocalDraft(bill) {
+    if (!bill) return;
+    var store = loadStore();
+    var record = Object.assign({}, bill, {
+      id: bill.id || bill.draftId || ("d" + Date.now()),
+      draftId: bill.draftId || bill.id || ("d" + Date.now()),
+      updated: bill.updated || stamp(),
+      status: bill.status || "draft"
+    });
+    if (!Array.isArray(store.drafts)) store.drafts = [];
+    var idx = -1;
+    for (var i = 0; i < store.drafts.length; i++) {
+      var id = store.drafts[i].id || store.drafts[i].draftId;
+      if (id && id === record.id) { idx = i; break; }
+    }
+    if (idx >= 0) store.drafts[idx] = Object.assign({}, store.drafts[idx], record);
+    else store.drafts.push(record);
+    store.current = record;
+    store.seq = Math.max(store.seq || 1, serverStore.seq || 1);
+    saveStore(store);
+    return record;
   }
 
   function getToken() {
@@ -948,14 +972,20 @@
       .then(function (x) {
         saving = false;
         if (!x.ok || !x.j.ok) {
-          setSync("no guardó en sitio: " + ((x.j && x.j.error) || x.status));
-          if (manual) toast("Error al guardar: " + ((x.j && x.j.error) || x.status));
+          upsertLocalDraft(s);
+          renderDrafts();
+          var err = (x.j && x.j.error) || ("HTTP " + x.status);
+          setSync("no guardó en sitio: " + err);
+          if (manual) toast("Borrador en este teléfono · sitio: " + err);
           return;
         }
         if (x.j.record) {
           state.draftId = x.j.record.id || x.j.record.draftId || state.draftId;
           billStatus = x.j.record.status || billStatus;
           personId = x.j.record.personId || personId;
+          upsertLocalDraft(x.j.record);
+        } else {
+          upsertLocalDraft(s);
         }
         applyServerStore(x.j.store, x.j.soldWorkIds);
         lastSavedJson = JSON.stringify(readForm());
@@ -964,8 +994,10 @@
       })
       .catch(function (e) {
         saving = false;
+        upsertLocalDraft(s);
+        renderDrafts();
         setSync("sin conexión al API — solo caché local");
-        if (manual) toast("Sin API: " + (e.message || e));
+        if (manual) toast("Borrador en este teléfono · sin API: " + (e.message || e));
       });
   }
 
@@ -1107,7 +1139,7 @@
       list = local.drafts || [];
     }
     if (!list.length) {
-      box.innerHTML = '<p class="hint">Todavía no hay facturas en el sitio.</p>';
+      box.innerHTML = '<p class="hint">Todavía no hay borradores. Usá «Guardar borrador» — queda en este dispositivo y, con la clave de estudio, también en el sitio.</p>';
       return;
     }
     box.innerHTML = list.slice().reverse().map(function (d) {
@@ -1150,11 +1182,13 @@
     }
     if (!s.draftId) s.draftId = "d" + Date.now();
     state.draftId = s.draftId;
-    var store = loadStore();
-    store.current = s;
-    saveStore(store);
+    s.status = billStatus || "draft";
+    s.updated = stamp();
+    upsertLocalDraft(s);
     writeForm(s);
     renderPreview();
+    renderDrafts();
+    toast("Borrador guardado en este teléfono…");
     serverSave(true);
   }
 
