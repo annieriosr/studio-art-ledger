@@ -40,7 +40,7 @@
     }
     .wrap { max-width: 720px; margin: 0 auto; }
     header {
-      margin-bottom: 28px;
+      margin-bottom: 22px;
       padding-bottom: 22px;
       border-bottom: 1px solid var(--rule);
     }
@@ -70,6 +70,76 @@
       letter-spacing: 0.12em;
       text-transform: lowercase;
       margin: 28px 0 12px;
+    }
+    .create {
+      margin-bottom: 8px;
+    }
+    .create-toggle {
+      width: 100%;
+      font-family: inherit;
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      color: var(--paper);
+      padding: 14px 16px;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .create-toggle:hover { background: #1a1612; }
+    .create-toggle[aria-expanded="true"] {
+      border-bottom-color: transparent;
+    }
+    .create-chevron {
+      font-style: normal;
+      font-size: 14px;
+      opacity: 0.75;
+      transition: transform 0.2s ease;
+    }
+    .create-toggle[aria-expanded="true"] .create-chevron {
+      transform: rotate(180deg);
+    }
+    .create-panel {
+      display: none;
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      border-top: none;
+      padding: 4px 0 6px;
+    }
+    .create-panel.is-open { display: block; }
+    .create-panel a {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.25rem 1rem;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: inherit;
+      min-height: 48px;
+    }
+    .create-panel a:hover .create-name {
+      border-bottom-color: var(--ink);
+    }
+    .create-name {
+      font-size: 17px;
+      font-style: italic;
+      border-bottom: 1px solid transparent;
+    }
+    .create-meta {
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+    .create-hint {
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--ink-soft);
     }
     .card {
       background: var(--paper);
@@ -195,6 +265,7 @@
         padding: 12px 14px;
       }
       .link-list a { flex-direction: column; align-items: flex-start; gap: 2px; }
+      .create-panel a { flex-direction: column; align-items: flex-start; gap: 2px; }
     }
   </style>
 </head>
@@ -208,6 +279,38 @@
       </p>
     </header>
 
+    <div class="create" id="crear">
+      <button
+        type="button"
+        class="create-toggle"
+        id="btnCrear"
+        aria-expanded="false"
+        aria-controls="crearPanel"
+      >
+        <span>Crear</span>
+        <span class="create-chevron" aria-hidden="true">▾</span>
+      </button>
+      <div class="create-panel" id="crearPanel" role="region" aria-label="Plantillas de documentos" hidden>
+        <a href="certificado.html">
+          <span class="create-name">Certificado</span>
+          <span class="create-meta">Plantilla · ?id=AR-…</span>
+        </a>
+        <a href="tarjeta-exposicion.html">
+          <span class="create-name">Tarjeta de exposición</span>
+          <span class="create-meta">Plantilla · ?id=AR-…</span>
+        </a>
+        <a href="carta.html">
+          <span class="create-name">Nota de convivir</span>
+          <span class="create-meta">Plantilla · ?id=AR-…</span>
+        </a>
+        <a href="carta-presentacion.html">
+          <span class="create-name">Carta de la autora</span>
+          <span class="create-meta">Plantilla · ?id=AR-…</span>
+        </a>
+      </div>
+      <p class="create-hint">Plantillas en blanco. Abrí una y pasá <code>?id=AR-…</code> si ya tenés el número.</p>
+    </div>
+
     <h2>estudio</h2>
     <article class="card">
       <p class="eyebrow">Principal</p>
@@ -216,40 +319,9 @@
       <div class="actions">
         <a class="btn btn-solid" href="libro.html">Abrir libro</a>
         <a class="btn" href="libro.html#preparativos">Preparativos</a>
+        <a class="btn" href="papeles/1-Libro-del-estudio.html">Papeles</a>
       </div>
     </article>
-    <ul class="link-list">
-      <li>
-        <a href="certificado.html">
-          <span class="link-name">Certificado</span>
-          <span class="link-meta">Plantilla · ?id=AR-…</span>
-        </a>
-      </li>
-      <li>
-        <a href="tarjeta-exposicion.html">
-          <span class="link-name">Tarjeta de exposición</span>
-          <span class="link-meta">Plantilla · ?id=AR-…</span>
-        </a>
-      </li>
-      <li>
-        <a href="carta.html">
-          <span class="link-name">Nota de convivir</span>
-          <span class="link-meta">Plantilla · ?id=AR-…</span>
-        </a>
-      </li>
-      <li>
-        <a href="carta-presentacion.html">
-          <span class="link-name">Carta de la autora</span>
-          <span class="link-meta">Plantilla · ?id=AR-…</span>
-        </a>
-      </li>
-      <li>
-        <a href="papeles/1-Libro-del-estudio.html">
-          <span class="link-name">Papeles</span>
-          <span class="link-meta">Atajo al libro · carpeta papeles/</span>
-        </a>
-      </li>
-    </ul>
 
     <h2>cosas ecuador 2026</h2>
     <article class="card">
@@ -342,24 +414,12 @@
       </li>
     </ul>
 
-    <h2>fichas · tarjetas · certificados (cosas)</h2>
+    <h2>fichas (cosas)</h2>
     <ul class="link-list">
       <li>
         <a href="fairs/casas-ecuador-2026/works/a-gift-of-an-abundant-life.html">
           <span class="link-name">A Gift of an Abundant Life</span>
           <span class="link-meta">Ficha · AR-2026-008</span>
-        </a>
-      </li>
-      <li>
-        <a href="tarjeta-exposicion.html?id=AR-2026-008">
-          <span class="link-name">Tarjeta — Abundant Life</span>
-          <span class="link-meta">AR-2026-008</span>
-        </a>
-      </li>
-      <li>
-        <a href="certificado.html?id=AR-2026-008">
-          <span class="link-name">Certificado — Abundant Life</span>
-          <span class="link-meta">AR-2026-008</span>
         </a>
       </li>
       <li>
@@ -369,33 +429,9 @@
         </a>
       </li>
       <li>
-        <a href="tarjeta-exposicion.html?id=AR-2026-001">
-          <span class="link-name">Tarjeta — What Remains Below</span>
-          <span class="link-meta">AR-2026-001</span>
-        </a>
-      </li>
-      <li>
-        <a href="certificado.html?id=AR-2026-001">
-          <span class="link-name">Certificado — What Remains Below</span>
-          <span class="link-meta">AR-2026-001</span>
-        </a>
-      </li>
-      <li>
         <a href="fairs/casas-ecuador-2026/works/i-still-can-see-a-refraction.html">
           <span class="link-name">I Still Can See a Refraction</span>
           <span class="link-meta">Ficha · AR-2026-010</span>
-        </a>
-      </li>
-      <li>
-        <a href="tarjeta-exposicion.html?id=AR-2026-010">
-          <span class="link-name">Tarjeta — Refraction</span>
-          <span class="link-meta">AR-2026-010</span>
-        </a>
-      </li>
-      <li>
-        <a href="certificado.html?id=AR-2026-010">
-          <span class="link-name">Certificado — Refraction</span>
-          <span class="link-meta">AR-2026-010</span>
         </a>
       </li>
       <li>
@@ -447,12 +483,30 @@
     <footer>
       Estudio Annie Ríos ·
       <a href="libro.html">libro</a> ·
-      <a href="fairs/casas-ecuador-2026/">Cosas 2026</a>
+      <a href="fairs/casas-ecuador-2026/">Cosas 2026</a> ·
+      <a href="#crear">Crear</a>
     </footer>
   </div>
 
   <script>
     (function () {
+      var btnCrear = document.getElementById("btnCrear");
+      var panel = document.getElementById("crearPanel");
+      if (btnCrear && panel) {
+        function setOpen(open) {
+          btnCrear.setAttribute("aria-expanded", open ? "true" : "false");
+          panel.classList.toggle("is-open", open);
+          panel.hidden = !open;
+        }
+        btnCrear.addEventListener("click", function () {
+          setOpen(btnCrear.getAttribute("aria-expanded") !== "true");
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setOpen(false);
+        });
+        if (location.hash === "#crear") setOpen(true);
+      }
+
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
           navigator.serviceWorker.register("./sw-ledger.js", { scope: "./" }).catch(function () {});
