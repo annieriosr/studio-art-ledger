@@ -1,5 +1,5 @@
 /* Libro del estudio — light offline shell for Annie's phone home screen */
-const CACHE = "studio-ledger-v2";
+const CACHE = "studio-ledger-v3";
 const PRECACHE = [
   "./",
   "./index.html",
