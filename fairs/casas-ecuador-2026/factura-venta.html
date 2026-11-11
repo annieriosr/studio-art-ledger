@@ -1281,10 +1281,32 @@
     });
   }
 
+  function workIdFromQuery() {
+    try {
+      var q = new URLSearchParams(location.search || "");
+      var id = q.get("id") || q.get("work") || "";
+      // fair list still labels Point of Incidence as AR-ND-010
+      if (id === "AR-ND-010") id = "AR-2025-009";
+      return id;
+    } catch (e) {
+      return "";
+    }
+  }
+
   function boot() {
     fillWorkSelect();
     var store = loadStore();
-    if (store.current) {
+    var qid = workIdFromQuery();
+    var fromDeepLink = !!(qid && findWork(qid));
+    if (fromDeepLink) {
+      var freshQ = emptyState();
+      freshQ.draftId = "d" + Date.now();
+      freshQ.invoiceNumber = nextInvoiceNumber(store);
+      writeForm(freshQ);
+      applyWork(qid, true);
+      document.getElementById("invoiceNumber").value = freshQ.invoiceNumber;
+      toast("Obra lista para facturar: " + (findWork(qid).title || qid));
+    } else if (store.current) {
       writeForm(store.current);
     } else {
       var fresh = emptyState();
@@ -1298,7 +1320,7 @@
     renderDrafts();
     registerPwa();
     refreshFromServer().then(function (remote) {
-      if (remote) {
+      if (remote && !fromDeepLink) {
         var curId = state.draftId;
         var match = null;
         (remote.sales || []).forEach(function (s) {
@@ -1310,6 +1332,16 @@
         } else if (!store.current && remote.sales && remote.sales.length) {
           var last = remote.sales[remote.sales.length - 1];
           writeForm(last);
+          renderPreview();
+        }
+      } else if (remote && fromDeepLink) {
+        // Keep deep-linked work; optionally resume open draft for same inventory id
+        var same = null;
+        (remote.sales || []).forEach(function (s) {
+          if ((s.inventoryId || s.workId) === qid && s.status !== "sold") same = s;
+        });
+        if (same) {
+          writeForm(same);
           renderPreview();
         }
       }

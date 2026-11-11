@@ -117,6 +117,16 @@
       color: var(--paper);
       border-color: var(--ink);
     }
+    .btn-bill {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      font-size: 14px;
+      padding: 10px 14px;
+      min-height: 44px;
+      letter-spacing: 0.06em;
+    }
+    .btn-bill:hover { background: #3a332c; }
     footer {
       margin-top: 36px;
       padding-top: 18px;
@@ -240,11 +250,13 @@
     </article>
 
     <h2>Fichas de obra</h2>
+    <p class="lede" style="margin-bottom:14px">En cada obra: tocá <strong style="color:var(--ink);font-weight:600">Factura / Bill</strong> para abrir la venta con esa pieza ya seleccionada.</p>
 
     <article class="card">
       <p class="title"><a href="works/all-the-ways-we-shine.html">All the Ways We Shine</a></p>
-      <p class="note">AR-2025-001 · pieza central suspendida</p>
+      <p class="note">AR-2025-001 · pieza central suspendida · $2,500</p>
       <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2025-001">Factura / Bill</a>
         <a class="btn" href="works/all-the-ways-we-shine.html">Ficha</a>
         <a class="btn" href="../../tarjeta-exposicion.html?id=AR-2025-001">Tarjeta</a>
         <a class="btn" href="../../certificado.html?id=AR-2025-001">Certificado</a>
@@ -252,16 +264,18 @@
     </article>
     <article class="card">
       <p class="title"><a href="../../tarjeta-exposicion.html?id=AR-2025-002">Be the Light</a></p>
-      <p class="note">AR-2025-002 · tarjeta de exposición</p>
+      <p class="note">AR-2025-002 · tarjeta de exposición · $2,500</p>
       <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2025-002">Factura / Bill</a>
         <a class="btn" href="../../tarjeta-exposicion.html?id=AR-2025-002">Tarjeta</a>
         <a class="btn" href="../../certificado.html?id=AR-2025-002">Certificado</a>
       </div>
     </article>
     <article class="card">
       <p class="title"><a href="works/a-gift-of-an-abundant-life.html">A Gift of an Abundant Life</a></p>
-      <p class="note">AR-2026-008 · 236 × 140 cm</p>
+      <p class="note">AR-2026-008 · 236 × 140 cm · $4,400</p>
       <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2026-008">Factura / Bill</a>
         <a class="btn" href="works/a-gift-of-an-abundant-life.html">Ficha</a>
         <a class="btn" href="../../tarjeta-exposicion.html?id=AR-2026-008">Tarjeta</a>
         <a class="btn" href="../../certificado.html?id=AR-2026-008">Certificado</a>
@@ -269,8 +283,9 @@
     </article>
     <article class="card">
       <p class="title"><a href="works/what-remains-below.html">What Remains Below</a></p>
-      <p class="note">AR-2026-001 · 197 × 156 cm</p>
+      <p class="note">AR-2026-001 · 197 × 156 cm · $2,200</p>
       <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2026-001">Factura / Bill</a>
         <a class="btn" href="works/what-remains-below.html">Ficha</a>
         <a class="btn" href="../../tarjeta-exposicion.html?id=AR-2026-001">Tarjeta</a>
         <a class="btn" href="../../certificado.html?id=AR-2026-001">Certificado</a>
@@ -278,8 +293,9 @@
     </article>
     <article class="card">
       <p class="title"><a href="works/i-still-can-see-a-refraction.html">I Still Can See a Refraction</a></p>
-      <p class="note">AR-2026-010 · 114 × 90 cm</p>
+      <p class="note">AR-2026-010 · 114 × 90 cm · $600</p>
       <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2026-010">Factura / Bill</a>
         <a class="btn" href="works/i-still-can-see-a-refraction.html">Ficha</a>
         <a class="btn" href="../../tarjeta-exposicion.html?id=AR-2026-010">Tarjeta</a>
         <a class="btn" href="../../certificado.html?id=AR-2026-010">Certificado</a>
@@ -287,23 +303,35 @@
     </article>
     <article class="card">
       <p class="title"><a href="works/feel-my-love.html">Feel My Love</a></p>
-      <p class="note">AR-2026-007 · pared del fondo</p>
-      <div class="actions"><a class="btn" href="works/feel-my-love.html">Abrir</a></div>
+      <p class="note">AR-2026-007 · pared del fondo · $2,200</p>
+      <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2026-007">Factura / Bill</a>
+        <a class="btn" href="works/feel-my-love.html">Ficha</a>
+      </div>
     </article>
     <article class="card">
       <p class="title"><a href="works/point-of-incidence.html">Point of Incidence</a></p>
-      <p class="note">AR-ND-010 · pared izquierda</p>
-      <div class="actions"><a class="btn" href="works/point-of-incidence.html">Abrir</a></div>
+      <p class="note">AR-2025-009 (lista feria AR-ND-010) · pared izquierda · $700</p>
+      <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2025-009">Factura / Bill</a>
+        <a class="btn" href="works/point-of-incidence.html">Ficha</a>
+      </div>
     </article>
     <article class="card">
       <p class="title"><a href="works/the-inbetween-space.html">The InBetween Space</a></p>
-      <p class="note">AR-2025-003 · pared derecha</p>
-      <div class="actions"><a class="btn" href="works/the-inbetween-space.html">Abrir</a></div>
+      <p class="note">AR-2025-003 · pared derecha · $600</p>
+      <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2025-003">Factura / Bill</a>
+        <a class="btn" href="works/the-inbetween-space.html">Ficha</a>
+      </div>
     </article>
     <article class="card">
       <p class="title"><a href="works/red-thread.html">Red Thread</a></p>
-      <p class="note">AR-2022-001 · obra adicional</p>
-      <div class="actions"><a class="btn" href="works/red-thread.html">Abrir</a></div>
+      <p class="note">AR-2022-001 · obra adicional · $450</p>
+      <div class="actions">
+        <a class="btn btn-bill" href="factura-venta.html?id=AR-2022-001">Factura / Bill</a>
+        <a class="btn" href="works/red-thread.html">Ficha</a>
+      </div>
     </article>
 
     <h2>Índice del folder</h2>

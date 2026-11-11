@@ -8,7 +8,7 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 
 **Outreach inauguración (tracker):** [`invitados-inauguracion.html`](./invitados-inauguracion.html) + seed/state [`invitados-inauguracion.json`](./invitados-inauguracion.json). localStorage + Export/Import; use **Guardar para commit** to download the JSON and commit it so state survives deploys.
 
-**Factura de venta / invoice:** [`factura-venta.html`](./factura-venta.html) — editable sale bills for Cosas price-list works (incl. Gift $4,400 · What Remains $2,200 · Refraction $600). Print/PDF, mailto to buyer + `annieabstracts@gmail.com`, WhatsApp (`wa.me`), localStorage + Export/Import JSON.
+**Factura de venta / invoice:** [`factura-venta.html`](./factura-venta.html) — editable sale bills for Cosas price-list works (incl. Gift $4,400 · What Remains $2,200 · Refraction $600). Print/PDF, mailto to buyer + `annieabstracts@gmail.com`, WhatsApp (`wa.me`), site auto-save + Export/Import JSON. Deep link: `factura-venta.html?id=AR-…`. Each hub work card and work ficha has a **Factura / Bill** button.
 
 **Phone app (PWA):** open the factura URL on the phone → iPhone Safari Share → Add to Home Screen, or Android Chrome Install app. Manifest [`manifest.webmanifest`](./manifest.webmanifest) (`Cosas bills`), icons + [`sw-cosas-bills.js`](./sw-cosas-bills.js). `start_url` = factura page; hub also registers the same SW.
 
