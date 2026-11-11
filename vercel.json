@@ -4,6 +4,13 @@
   "installCommand": "npm install --omit=dev",
   "rewrites": [
     { "source": "/api/sales", "destination": "/api/sales" },
-    { "source": "/api/confirm-sale", "destination": "/api/confirm-sale" }
-  ]
+    { "source": "/api/confirm-sale", "destination": "/api/confirm-sale" },
+    { "source": "/api/site-state", "destination": "/api/site-state" },
+    { "source": "/api/publish-drafts", "destination": "/api/publish-drafts" }
+  ],
+  "functions": {
+    "api/**/*.js": {
+      "includeFiles": "{data/**,fairs/casas-ecuador-2026/**/*.json,*.template.html,lib/**}"
+    }
+  }
 }
