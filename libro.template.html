@@ -100,9 +100,17 @@
       -webkit-tap-highlight-color: transparent;
     }
     nav button[aria-pressed="true"], .btn-solid {
-      background: var(--ink);
-      color: var(--paper);
+      background: transparent;
+      color: var(--ink);
       border-color: var(--ink);
+    }
+    nav button[aria-pressed="true"] {
+      background: rgba(36, 31, 26, 0.08);
+    }
+    .btn-solid:hover, nav button:hover {
+      background: rgba(36, 31, 26, 0.06);
+      border-color: var(--ink);
+      color: var(--ink);
     }
     .card {
       background: var(--paper);

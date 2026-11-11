@@ -124,21 +124,34 @@
       min-height: 40px;
       -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover, .btn-solid {
-      background: var(--ink);
-      color: var(--paper);
+    .btn:hover {
+      background: rgba(36, 31, 26, 0.06);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .btn-solid {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn-solid:hover {
+      background: rgba(36, 31, 26, 0.06);
+      color: var(--ink);
       border-color: var(--ink);
     }
     .btn-bill {
-      background: var(--ink);
-      color: var(--paper);
+      background: transparent;
+      color: var(--ink);
       border-color: var(--ink);
       font-size: 14px;
       padding: 10px 14px;
       min-height: 44px;
       letter-spacing: 0.06em;
     }
-    .btn-bill:hover { background: #3a332c; }
+    .btn-bill:hover {
+      background: rgba(36, 31, 26, 0.06);
+      color: var(--ink);
+    }
     footer {
       margin-top: 36px;
       padding-top: 18px;
