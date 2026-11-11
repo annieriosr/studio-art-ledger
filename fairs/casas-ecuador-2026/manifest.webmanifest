@@ -1,0 +1,51 @@
+{
+  "name": "Cosas bills — Stillness sales",
+  "short_name": "Cosas bills",
+  "description": "Facturas de venta / sale bills for Annie Ríos at Stillness & Refractions (Cosas Ecuador 2026, Booth #16).",
+  "id": "/fairs/casas-ecuador-2026/factura-venta.html",
+  "start_url": "./factura-venta.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#d8d4cc",
+  "theme_color": "#241f1a",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nueva factura",
+      "short_name": "Factura",
+      "description": "Abrir el generador de facturas de venta",
+      "url": "./factura-venta.html",
+      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hub Cosas",
+      "short_name": "Hub",
+      "description": "Preparativos Cosas Ecuador 2026",
+      "url": "./index.html",
+      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

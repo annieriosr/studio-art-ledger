@@ -10,6 +10,8 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 
 **Factura de venta / invoice:** [`factura-venta.html`](./factura-venta.html) — editable sale bills for Cosas price-list works (incl. Gift $4,400 · What Remains $2,200 · Refraction $600). Print/PDF, mailto to buyer + `annieabstracts@gmail.com`, WhatsApp (`wa.me`), localStorage + Export/Import JSON.
 
+**Phone app (PWA):** open the factura URL on the phone → iPhone Safari Share → Add to Home Screen, or Android Chrome Install app. Manifest [`manifest.webmanifest`](./manifest.webmanifest) (`Cosas bills`), icons + [`sw-cosas-bills.js`](./sw-cosas-bills.js). `start_url` = factura page; hub also registers the same SW.
+
 ## Works exhibited
 
 | ID | Title | Medium | Dimensions | Placement |
@@ -38,7 +40,8 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 | **booth-render-three-views.pdf** | A4 landscape PDF — 3 pages: frontal · right wall · left wall. |
 | **price-list.html** | Price list vouchers (booth triptych + additional works). Prices link to Cuanto (USD). |
 | **price-list-three.html** | Three-work price strip: AR-2026-008 ($4,400) · AR-2026-001 ($2,200) · AR-2026-010 ($600). Cuanto links pending. |
-| **factura-venta.html** | Sale invoice / factura / certificate of sale. Select work, edit buyer & sale fields, print/PDF, email + WhatsApp. |
+| **factura-venta.html** | Sale invoice / factura / certificate of sale. Select work, edit buyer & sale fields, print/PDF, email + WhatsApp. Installable PWA (**Cosas bills**). |
+| **manifest.webmanifest** · **sw-cosas-bills.js** · **icon-*.png** | PWA shell for phone home-screen install (start at factura). |
 | **price-list-print-12x18.html** | Print-shop form — Papel satinado **12×18″**, duplex. |
 | **price-list-print-12x18.pdf** | Same 12×18″ duplex layout for the shop. |
 | **PRINT-12x18.md** | Short instructions for the print shop. |
