@@ -257,7 +257,18 @@
         No inventa RUC/tax ID ni datos bancarios: esos campos quedan editables en blanco.
       </p>
       <p class="meta-line">Stillness &amp; Refractions · Booth #16 · Guayaquil · Nov 2026 · USD</p>
-      <p class="save-note">Borradores en <strong>localStorage</strong>. Usá Exportar / Importar JSON para respaldar o pasar de máquina.</p>
+      <p class="save-note">
+        <strong>Se guarda en el sitio</strong> (no solo en este teléfono): cada cambio se auto-guarda en el servidor.
+        <strong>Confirmar venta</strong> marca la obra como vendida en el libro del estudio (catálogo, movimiento, factura).
+        Estado: <span id="syncStatus">conectando…</span>
+      </p>
+      <div class="grid" style="margin-top:12px;max-width:520px">
+        <div class="full">
+          <label class="field" for="studioToken">Clave de guardado del estudio</label>
+          <input id="studioToken" type="password" autocomplete="current-password" placeholder="La misma LEDGER_WRITE_TOKEN del servidor" />
+          <p class="hint">Obligatoria en el sitio en vivo (Vercel). En local puede quedar vacía. Se guarda solo en este dispositivo.</p>
+        </div>
+      </div>
       <div class="install-note" id="installNote">
         <strong>Instalar en el teléfono (app)</strong> — abrí esta misma URL en Safari (iPhone) o Chrome (Android):
         <ol>
@@ -271,9 +282,10 @@
     <div id="toast" class="toast no-print" role="status"></div>
 
     <div class="toolbar no-print">
-      <button type="button" class="btn btn-solid" id="btnPrint">Imprimir / PDF</button>
+      <button type="button" class="btn btn-solid" id="btnConfirmSale">Confirmar venta → libro</button>
+      <button type="button" class="btn" id="btnPrint">Imprimir / PDF</button>
       <button type="button" class="btn" id="btnNew">Nueva factura</button>
-      <button type="button" class="btn" id="btnSaveDraft">Guardar borrador</button>
+      <button type="button" class="btn" id="btnSaveDraft">Guardar ahora</button>
       <button type="button" class="btn" id="btnExport">Exportar JSON</button>
       <button type="button" class="btn" id="btnImport">Importar JSON</button>
       <input type="file" id="impFile" accept="application/json,.json" hidden />
@@ -485,7 +497,8 @@
     </div>
 
     <section class="drafts no-print">
-      <h2>Borradores guardados en este navegador</h2>
+      <h2>Facturas en el sitio</h2>
+      <p class="hint" style="margin-bottom:10px">Lista compartida (servidor). Al confirmar venta, la obra queda vendida en el catálogo.</p>
       <div class="draft-list" id="draftList"></div>
     </section>
 
@@ -501,8 +514,19 @@
   "use strict";
 
   var KEY = "cosasSaleInvoice-v1";
+  var TOKEN_KEY = "cosasSaleInvoice-token-v1";
   var LIVE_PATH = "https://studio-art-ledger.vercel.app/fairs/casas-ecuador-2026/factura-venta.html";
   var ANNIE_EMAIL = "annieabstracts@gmail.com";
+  var API_SALES = "/api/sales";
+  var API_CONFIRM = "/api/confirm-sale";
+  var serverStore = { version: 1, seq: 1, sales: [] };
+  var soldIds = {};
+  var saveTimer = null;
+  var saving = false;
+  var billStatus = "draft";
+  var personId = "";
+  var ready = false;
+  var lastSavedJson = "";
 
   var WORKS = [
     {
@@ -669,7 +693,7 @@
   }
 
   function nextInvoiceNumber(store) {
-    var seq = (store && store.seq) || 1;
+    var seq = Math.max((store && store.seq) || 1, serverStore.seq || 1);
     var y = new Date().getFullYear();
     return "AR-CE-" + y + "-" + String(seq).padStart(3, "0");
   }
@@ -727,6 +751,23 @@
     try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
   }
 
+  function getToken() {
+    var el = document.getElementById("studioToken");
+    return (el && el.value) || "";
+  }
+
+  function setSync(msg) {
+    var el = document.getElementById("syncStatus");
+    if (el) el.textContent = msg;
+  }
+
+  function apiHeaders() {
+    var h = { "Content-Type": "application/json" };
+    var t = getToken();
+    if (t) h["X-Ledger-Token"] = t;
+    return h;
+  }
+
   function readForm() {
     var o = {};
     FIELDS.forEach(function (k) {
@@ -734,11 +775,15 @@
       o[k] = el ? el.value : "";
     });
     o.draftId = state.draftId;
+    o.status = billStatus || "draft";
+    o.personId = personId || "";
     return o;
   }
 
   function writeForm(o) {
     state = Object.assign(emptyState(), o || {});
+    billStatus = state.status || "draft";
+    personId = state.personId || "";
     FIELDS.forEach(function (k) {
       var el = document.getElementById(k);
       if (el) el.value = state[k] == null ? "" : state[k];
@@ -770,12 +815,15 @@
 
   function fillWorkSelect() {
     var sel = document.getElementById("workId");
+    var cur = sel.value;
     sel.innerHTML = WORKS.map(function (w) {
       var tag = w.featured ? " ★" : "";
+      var sold = soldIds[w.id] ? " · VENDIDA" : "";
       return '<option value="' + esc(w.id) + '">' +
-        esc(w.title) + " — " + esc(w.id) + " — $" + money(w.price) + tag +
+        esc(w.title) + " — " + esc(w.id) + " — $" + money(w.price) + tag + sold +
         "</option>";
     }).join("");
+    if (cur) sel.value = cur;
   }
 
   function lines(arr) {
@@ -844,12 +892,141 @@
 
     updateShareLinks(s);
     persistCurrent(s);
+    scheduleServerSave();
   }
 
   function persistCurrent(s) {
     var store = loadStore();
     store.current = s;
+    store.seq = Math.max(store.seq || 1, serverStore.seq || 1);
     saveStore(store);
+  }
+
+  function scheduleServerSave() {
+    if (!ready) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () { serverSave(false); }, 2500);
+  }
+
+  function applyServerStore(store, sold) {
+    serverStore = store || serverStore;
+    soldIds = {};
+    (sold || []).forEach(function (id) { soldIds[id] = true; });
+    (serverStore.sales || []).forEach(function (s) {
+      if (s.status === "sold" && (s.inventoryId || s.workId)) {
+        soldIds[s.inventoryId || s.workId] = true;
+      }
+    });
+    fillWorkSelect();
+    renderDrafts();
+  }
+
+  function serverSave(manual) {
+    var s = readForm();
+    if (!s.invoiceNumber) {
+      ensureInvoiceNumber(false);
+      s = readForm();
+    }
+    if (!s.draftId) {
+      s.draftId = "d" + Date.now();
+      state.draftId = s.draftId;
+    }
+    var payload = JSON.stringify(s);
+    if (!manual && payload === lastSavedJson) return Promise.resolve();
+    if (saving) {
+      if (manual) scheduleServerSave();
+      return Promise.resolve();
+    }
+    saving = true;
+    setSync("guardando en el sitio…");
+    return fetch(API_SALES, {
+      method: "POST",
+      headers: apiHeaders(),
+      body: JSON.stringify({ bill: s })
+    })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); })
+      .then(function (x) {
+        saving = false;
+        if (!x.ok || !x.j.ok) {
+          setSync("no guardó en sitio: " + ((x.j && x.j.error) || x.status));
+          if (manual) toast("Error al guardar: " + ((x.j && x.j.error) || x.status));
+          return;
+        }
+        if (x.j.record) {
+          state.draftId = x.j.record.id || x.j.record.draftId || state.draftId;
+          billStatus = x.j.record.status || billStatus;
+          personId = x.j.record.personId || personId;
+        }
+        applyServerStore(x.j.store, x.j.soldWorkIds);
+        lastSavedJson = JSON.stringify(readForm());
+        setSync("guardado en el sitio · " + stamp().replace("T", " ").slice(0, 19));
+        if (manual) toast("Guardado en el sitio (" + (s.invoiceNumber || "") + ")");
+      })
+      .catch(function (e) {
+        saving = false;
+        setSync("sin conexión al API — solo caché local");
+        if (manual) toast("Sin API: " + (e.message || e));
+      });
+  }
+
+  function confirmSaleOnSite() {
+    var s = readForm();
+    if (!s.buyerName || !String(s.buyerName).trim()) {
+      alert("Completá el nombre del comprador antes de confirmar la venta.");
+      return;
+    }
+    if (!s.inventoryId && !s.workId) {
+      alert("Falta el inventory ID de la obra.");
+      return;
+    }
+    if (!confirm("¿Confirmar venta de «" + (s.workTitle || s.inventoryId) + "» a " + s.buyerName + "?\n\nEsto marca la obra como VENDIDA en el libro del estudio (catálogo + movimiento + factura).")) return;
+    setSync("confirmando venta en el libro…");
+    fetch(API_CONFIRM, {
+      method: "POST",
+      headers: apiHeaders(),
+      body: JSON.stringify({ bill: s })
+    })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (x) {
+        if (!x.ok || !x.j.ok) {
+          setSync("error al confirmar: " + ((x.j && x.j.error) || ""));
+          alert((x.j && x.j.error) || "No se pudo confirmar");
+          return;
+        }
+        billStatus = "sold";
+        personId = x.j.personId || personId;
+        if (x.j.record) {
+          state.draftId = x.j.record.id || state.draftId;
+          writeForm(Object.assign(readForm(), x.j.record, { status: "sold", personId: personId }));
+        }
+        applyServerStore(x.j.store, x.j.soldWorkIds);
+        setSync("vendida en el libro · redespliegue ~1 min");
+        toast(x.j.message || "Venta confirmada en el libro");
+        renderPreview();
+      })
+      .catch(function (e) {
+        setSync("error de red al confirmar");
+        alert(e.message || String(e));
+      });
+  }
+
+  function refreshFromServer() {
+    setSync("cargando del sitio…");
+    return fetch(API_SALES, { headers: apiHeaders(), cache: "no-store" })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (x) {
+        if (!x.ok || !x.j.ok) {
+          setSync("API no disponible — usá clave / env vars en Vercel");
+          return null;
+        }
+        applyServerStore(x.j.store, x.j.soldWorkIds);
+        setSync("sincronizado · " + ((x.j.store && x.j.store.sales && x.j.store.sales.length) || 0) + " facturas");
+        return x.j.store;
+      })
+      .catch(function () {
+        setSync("sin API — caché local solamente");
+        return null;
+      });
   }
 
   function phoneDigits(phone) {
@@ -923,23 +1100,29 @@
   }
 
   function renderDrafts() {
-    var store = loadStore();
     var box = document.getElementById("draftList");
-    if (!store.drafts.length) {
-      box.innerHTML = '<p class="hint">Todavía no hay borradores guardados.</p>';
+    var list = (serverStore.sales || []).slice();
+    if (!list.length) {
+      var local = loadStore();
+      list = local.drafts || [];
+    }
+    if (!list.length) {
+      box.innerHTML = '<p class="hint">Todavía no hay facturas en el sitio.</p>';
       return;
     }
-    box.innerHTML = store.drafts.slice().reverse().map(function (d) {
+    box.innerHTML = list.slice().reverse().map(function (d) {
+      var id = d.id || d.draftId;
+      var st = d.status === "sold" ? "VENDIDA" : "borrador";
       return (
-        '<div class="draft-item" data-id="' + esc(d.id) + '">' +
+        '<div class="draft-item" data-id="' + esc(id) + '">' +
           '<div class="draft-meta">' +
             '<strong>' + esc(d.invoiceNumber || "sin número") + "</strong> · " +
+            esc(st) + " · " +
             esc(d.workTitle || "—") + " · $" + money(d.salePrice || 0) +
             "<br><span>" + esc(d.buyerName || "sin comprador") + " · " + esc(d.updated || "") + "</span>" +
           "</div>" +
           '<div class="row-actions">' +
             '<button type="button" class="btn" data-a="load">Abrir</button>' +
-            '<button type="button" class="btn" data-a="del">Borrar</button>' +
           "</div>" +
         "</div>"
       );
@@ -952,7 +1135,8 @@
     if (!current || bump) {
       document.getElementById("invoiceNumber").value = nextInvoiceNumber(store);
       if (bump) {
-        store.seq = (store.seq || 1) + 1;
+        store.seq = Math.max(store.seq || 1, serverStore.seq || 1) + 1;
+        serverStore.seq = store.seq;
         saveStore(store);
       }
     }
@@ -964,28 +1148,14 @@
       ensureInvoiceNumber(true);
       s = readForm();
     }
+    if (!s.draftId) s.draftId = "d" + Date.now();
+    state.draftId = s.draftId;
     var store = loadStore();
-    var id = s.draftId || ("d" + Date.now());
-    s.draftId = id;
-    s.updated = stamp();
-    var found = false;
-    store.drafts = store.drafts.map(function (d) {
-      if (d.id === id) { found = true; return Object.assign({}, s, { id: id }); }
-      return d;
-    });
-    if (!found) store.drafts.push(Object.assign({}, s, { id: id }));
-    var m = String(s.invoiceNumber || "").match(/AR-CE-\d{4}-(\d+)/);
-    if (m) {
-      var n = parseInt(m[1], 10);
-      if (n >= (store.seq || 1)) store.seq = n + 1;
-    }
     store.current = s;
     saveStore(store);
-    state.draftId = id;
     writeForm(s);
     renderPreview();
-    renderDrafts();
-    toast("Borrador guardado (" + s.invoiceNumber + ")");
+    serverSave(true);
   }
 
   function downloadJson(filename, obj) {
@@ -1023,21 +1193,34 @@
     renderPreview();
     window.print();
   };
+  document.getElementById("btnConfirmSale").onclick = confirmSaleOnSite;
   document.getElementById("btnNew").onclick = function () {
-    if (!confirm("¿Empezar una factura nueva? El borrador actual queda en localStorage si ya lo guardaste.")) return;
+    if (!confirm("¿Empezar una factura nueva? La actual ya debería estar auto-guardada en el sitio.")) return;
     var store = loadStore();
     var fresh = emptyState();
+    billStatus = "draft";
+    personId = "";
     fresh.invoiceNumber = nextInvoiceNumber(store);
-    store.seq = (store.seq || 1) + 1;
+    fresh.draftId = "d" + Date.now();
+    store.seq = Math.max(store.seq || 1, serverStore.seq || 1) + 1;
+    serverStore.seq = store.seq;
     store.current = fresh;
     saveStore(store);
     writeForm(fresh);
     applyWork(fresh.workId, true);
     document.getElementById("invoiceNumber").value = fresh.invoiceNumber;
     renderPreview();
+    serverSave(true);
     toast("Nueva factura");
   };
   document.getElementById("btnSaveDraft").onclick = saveDraft;
+  document.getElementById("studioToken").value = (function () {
+    try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; }
+  })();
+  document.getElementById("studioToken").addEventListener("change", function () {
+    try { localStorage.setItem(TOKEN_KEY, this.value || ""); } catch (e) {}
+    refreshFromServer();
+  });
   document.getElementById("btnExport").onclick = function () {
     var store = loadStore();
     store.current = readForm();
@@ -1080,21 +1263,15 @@
     var item = btn.closest(".draft-item");
     if (!item) return;
     var id = item.dataset.id;
-    var store = loadStore();
-    if (btn.dataset.a === "load") {
-      var d = null;
-      for (var i = 0; i < store.drafts.length; i++) if (store.drafts[i].id === id) d = store.drafts[i];
-      if (!d) return;
-      writeForm(d);
-      renderPreview();
-      toast("Borrador abierto");
-    } else if (btn.dataset.a === "del") {
-      if (!confirm("¿Borrar este borrador?")) return;
-      store.drafts = store.drafts.filter(function (x) { return x.id !== id; });
-      saveStore(store);
-      renderDrafts();
-      toast("Borrador borrado");
+    var d = null;
+    var list = serverStore.sales && serverStore.sales.length ? serverStore.sales : (loadStore().drafts || []);
+    for (var i = 0; i < list.length; i++) {
+      if ((list[i].id || list[i].draftId) === id) d = list[i];
     }
+    if (!d) return;
+    writeForm(d);
+    renderPreview();
+    toast(d.status === "sold" ? "Venta abierta" : "Factura abierta");
   });
 
   function registerPwa() {
@@ -1111,6 +1288,7 @@
       writeForm(store.current);
     } else {
       var fresh = emptyState();
+      fresh.draftId = "d" + Date.now();
       fresh.invoiceNumber = nextInvoiceNumber(store);
       writeForm(fresh);
       applyWork(fresh.workId, true);
@@ -1119,6 +1297,25 @@
     renderPreview();
     renderDrafts();
     registerPwa();
+    refreshFromServer().then(function (remote) {
+      if (remote) {
+        var curId = state.draftId;
+        var match = null;
+        (remote.sales || []).forEach(function (s) {
+          if ((s.id || s.draftId) === curId) match = s;
+        });
+        if (match) {
+          writeForm(match);
+          renderPreview();
+        } else if (!store.current && remote.sales && remote.sales.length) {
+          var last = remote.sales[remote.sales.length - 1];
+          writeForm(last);
+          renderPreview();
+        }
+      }
+      lastSavedJson = JSON.stringify(readForm());
+      ready = true;
+    });
   }
 
   boot();

@@ -1,6 +1,9 @@
 {
   "framework": null,
   "buildCommand": "",
-  "outputDirectory": ".",
-  "installCommand": ""
+  "installCommand": "npm install --omit=dev",
+  "rewrites": [
+    { "source": "/api/sales", "destination": "/api/sales" },
+    { "source": "/api/confirm-sale", "destination": "/api/confirm-sale" }
+  ]
 }
