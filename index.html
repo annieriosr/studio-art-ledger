@@ -2,8 +2,18 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#241f1a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Libro estudio" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="Libro estudio" />
+  <meta name="description" content="Libro del estudio — catálogo, movimiento, documentos y personas de Annie Ríos." />
   <title>Libro del estudio — Annie Ríos</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
@@ -170,6 +180,20 @@
     .filter-bar .btn-reset:hover { border-color: var(--ink); color: var(--ink); }
     .filter-count { font-size: 13px; color: var(--ink-soft); margin-left: 4px; }
     footer a { color: inherit; }
+    .install-note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      max-width: 62ch;
+    }
+    .install-note strong { color: var(--ink); font-weight: 600; }
+    .install-note ol { margin: 8px 0 0 1.2em; }
+    .install-note li { margin: 4px 0; }
+    .install-actions { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   </style>
 </head>
 <body>
@@ -183,6 +207,17 @@
         <button type="button" class="btn" id="btnPublishDrafts" style="margin-left:6px">Publicar borradores al libro</button>
         <span id="siteSync" style="margin-left:8px;color:var(--ink-soft)"></span>
       </p>
+      <div class="install-note" id="installNote">
+        <strong>Agregar a la pantalla de inicio</strong> — abrí este libro en el teléfono (Safari en iPhone, Chrome en Android):
+        <ol>
+          <li><strong>iPhone:</strong> Compartir → <em>Agregar a pantalla de inicio</em> → nombre <em>Libro estudio</em>.</li>
+          <li><strong>Android:</strong> menú ⋮ → <em>Instalar aplicación</em> / Agregar a la pantalla principal.</li>
+        </ol>
+        <div class="install-actions">
+          <button type="button" class="btn btn-solid" id="btnInstallApp" hidden>Instalar Libro estudio</button>
+          <span id="installStatus" style="font-size:13px"></span>
+        </div>
+      </div>
     </header>
     <div class="stats" id="stats"></div>
     <nav id="nav"></nav>
@@ -4373,6 +4408,39 @@
           })
           .catch(() => setSiteSync("borradores: local"));
       }
+    })();
+
+    (function registerLedgerPwa() {
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("./sw-ledger.js", { scope: "./" }).catch(function () {});
+        });
+      }
+      var deferred = null;
+      var btn = document.getElementById("btnInstallApp");
+      var status = document.getElementById("installStatus");
+      window.addEventListener("beforeinstallprompt", function (e) {
+        e.preventDefault();
+        deferred = e;
+        if (btn) btn.hidden = false;
+        if (status) status.textContent = "Listo para instalar en este Android / Chrome.";
+      });
+      window.addEventListener("appinstalled", function () {
+        deferred = null;
+        if (btn) btn.hidden = true;
+        if (status) status.textContent = "Instalado en la pantalla de inicio.";
+      });
+      if (btn) {
+        btn.addEventListener("click", function () {
+          if (!deferred) return;
+          deferred.prompt();
+          deferred.userChoice.finally(function () { deferred = null; btn.hidden = true; });
+        });
+      }
+      var standalone =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true;
+      if (standalone && status) status.textContent = "Abierto como app desde la pantalla de inicio.";
     })();
 
     window.addEventListener("hashchange", render);
