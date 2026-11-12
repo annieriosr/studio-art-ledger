@@ -1,100 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>A Gift of an Abundant Life — Annie Ríos</title>
-<meta name="description" content="A Gift of an Abundant Life, 2026. Diluted acrylic on canvas, oak frame. 236 × 140 cm. Annie Ríos. Cosas Ecuador 2026.">
+<meta name="description" content="A Gift of an Abundant Life (AR-2026-008). Acrílico diluido sobre lienzo, marco de roble. 236 × 140 cm. Cosas Ecuador 2026.">
+<meta name="theme-color" content="#f4f2ee">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#111;--soft:#666;--rule:#ddd;--bg:#fff}
-body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+:root{
+  --paper:#f4f2ee;
+  --ink:#241f1a;
+  --ink-soft:#5c574f;
+  --rule:#c4bfb4;
+  --hero:#ebe7e0;
+}
+html,body{
+  background:#d8d4cc;
+  color:var(--ink);
+  font-family:"Ibarra Real Nova",Palatino,"Times New Roman",serif;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  min-height:100vh;
+  padding-bottom:calc(88px + env(safe-area-inset-bottom,0px));
+}
 a{color:inherit}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;border-bottom:1px solid var(--rule)}
-.nav-artist{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
-.nav-back{font-size:11px;letter-spacing:.08em;color:var(--soft);text-decoration:none}
-.nav-back:hover{color:var(--ink)}
-.hero{width:100%;max-height:88vh;overflow:hidden;background:#f4f2ee;display:flex;align-items:center;justify-content:center;min-height:240px}
-.hero img{width:100%;max-height:88vh;object-fit:contain;display:block}
-.hero-empty{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);padding:48px}
-.wrap{max-width:960px;margin:0 auto;padding:48px 32px 80px;display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start}
-@media(max-width:720px){.wrap{grid-template-columns:1fr;gap:36px;padding:32px 20px 60px}}
-.info-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
-h1{font-size:28px;font-weight:300;font-style:italic;line-height:1.2;margin-bottom:4px}
-.year{font-size:13px;color:var(--soft);margin-bottom:20px}
-.spec-table{width:100%;border-collapse:collapse;margin:20px 0 28px}
-.spec-table td{padding:9px 0;border-bottom:1px solid var(--rule);font-size:13px;vertical-align:top;line-height:1.5}
-.spec-table td:first-child{width:110px;color:var(--soft);font-size:12px;letter-spacing:.02em}
-.inquire{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:#111;color:#fff;padding:12px 28px;text-decoration:none;margin-top:8px}
-.inquire:hover{background:#333}
-.sidebar{padding-top:4px}
-.thumb-box{width:100%;background:#f4f2ee;margin-bottom:20px;overflow:hidden;min-height:120px;display:flex;align-items:center;justify-content:center}
-.thumb-box img{width:100%;display:block;object-fit:contain}
-.qr-block{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid var(--rule);margin-bottom:20px}
-.qr-block img{width:56px;height:56px;flex-shrink:0}
-.qr-text{font-size:10px;line-height:1.6;color:var(--soft)}
-.exhibition{margin-top:32px;padding-top:20px;border-top:1px solid var(--rule)}
-.exhibition-title{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
-.exhibition-name{font-size:14px;font-weight:400;margin-bottom:2px}
-.exhibition-detail{font-size:12px;color:var(--soft)}
-.actions{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.btn{font:12px/1.2 inherit;letter-spacing:.06em;border:1px solid #111;color:#111;background:transparent;padding:10px 14px;text-decoration:none;display:inline-block;min-height:44px;box-sizing:border-box}
-.btn-bill{background:#111;color:#fff;border-color:#111;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 18px}
-.btn-bill:hover{background:#333;color:#fff}
-.btn{font-size:12px;letter-spacing:.08em;border:1px solid var(--rule);padding:8px 14px;text-decoration:none;display:inline-block}
-.btn:hover{border-color:var(--ink)}
-
+.shell{max-width:720px;margin:0 auto;background:var(--paper);min-height:100vh}
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 20px;
+  padding-top:max(16px,env(safe-area-inset-top,0px));
+  border-bottom:1px solid var(--rule);
+  gap:12px;
+}
+.nav-artist{font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.nav-meta{font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-align:right}
+.hero{
+  width:100%;background:var(--hero);
+  min-height:42vh;max-height:70vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.hero img{
+  width:100%;height:100%;max-height:70vh;
+  object-fit:contain;display:block;
+}
+.hero-empty{
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);padding:48px 24px;text-align:center;
+}
+.main{padding:28px 20px 36px}
+.reg{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:8px;
+}
+h1{
+  font-size:clamp(26px,7vw,34px);
+  font-weight:400;font-style:italic;line-height:1.15;
+  margin-bottom:6px;
+}
+.year{font-size:15px;color:var(--ink-soft);margin-bottom:22px}
+.spec{width:100%;border-collapse:collapse;margin-bottom:22px}
+.spec td{
+  padding:11px 0;border-bottom:1px solid var(--rule);
+  font-size:15px;vertical-align:top;line-height:1.45;
+}
+.spec td:first-child{
+  width:34%;color:var(--ink-soft);font-size:13px;letter-spacing:.03em;
+  padding-right:12px;
+}
+.price{
+  font-size:22px;font-style:italic;letter-spacing:.02em;
+  margin:4px 0 6px;
+}
+.price-note{font-size:13px;color:var(--ink-soft);margin-bottom:24px}
+.cta-row{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.btn{
+  display:flex;align-items:center;justify-content:center;
+  min-height:52px;padding:14px 18px;
+  font-family:inherit;font-size:16px;letter-spacing:.06em;
+  text-decoration:none;text-align:center;
+  border:1px solid var(--ink);color:var(--ink);background:transparent;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:hover,.btn:focus-visible{
+  background:rgba(36,31,26,.06);outline:none;
+}
+.btn-secondary{border-color:var(--rule);color:var(--ink-soft);font-size:15px;min-height:48px}
+.btn-secondary:hover{border-color:var(--ink);color:var(--ink)}
+.exhibition{
+  margin-top:8px;padding-top:20px;border-top:1px solid var(--rule);
+}
+.exhibition-label{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:6px;
+}
+.exhibition-name{font-size:16px;margin-bottom:4px}
+.exhibition-detail{font-size:14px;color:var(--ink-soft);line-height:1.5}
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:rgba(244,242,238,.96);
+  border-top:1px solid var(--rule);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));
+  backdrop-filter:blur(8px);
+}
+.sticky-inner{max-width:720px;margin:0 auto}
+.sticky-cta .btn{width:100%}
+@media(min-width:720px){
+  body{padding:24px 16px 40px;padding-bottom:40px}
+  .shell{box-shadow:0 1px 0 rgba(36,31,26,.06)}
+  .main{padding:36px 40px 48px}
+  .cta-row{flex-direction:row;flex-wrap:wrap}
+  .cta-row .btn{flex:1 1 220px}
+  .sticky-cta{display:none}
+  body{padding-bottom:40px}
+}
 </style>
 </head>
 <body>
+<div class="shell">
+  <nav class="nav" aria-label="Cabecera">
+    <span class="nav-artist">Annie Ríos</span>
+    <span class="nav-meta">Cosas Ecuador · Booth #16</span>
+  </nav>
 
-<nav class="nav">
-  <span class="nav-artist">Annie Ríos</span>
-  <a class="nav-back" href="../index.html">← Cosas Ecuador 2026</a>
-</nav>
+  <div class="hero">
+    <img
+      src="../../../photos/AR-2026-008/front.jpg"
+      alt="A Gift of an Abundant Life"
+      onerror="this.remove();this.parentElement.insertAdjacentHTML('beforeend','<div class=\'hero-empty\'>Imagen próximamente</div>')"
+    >
+  </div>
 
-<div class="hero">
-  <img src="../../../photos/AR-2026-008/front.jpg" alt="A Gift of an Abundant Life">
-</div>
-
-<div class="wrap">
-
-  <div class="main">
-    <p class="info-label">AR-2026-008</p>
+  <main class="main">
+    <p class="reg">AR-2026-008 · Obra</p>
     <h1>A Gift of an Abundant Life</h1>
     <p class="year">2026</p>
 
-    <table class="spec-table">
-      <tr><td>Medium</td><td>Diluted acrylic on canvas, oak frame</td></tr>
-      <tr><td>Dimensions</td><td>236 × 140 cm</td></tr>
-      <tr><td>Year</td><td>2026</td></tr>
-      <tr><td>Exhibition</td><td>Cosas Ecuador 2026, Guayaquil<br>Nov 5–15, 2026 · Booth #16</td></tr>
+    <table class="spec">
+      <tr><td>Técnica</td><td>Acrílico diluido sobre lienzo, marco de roble</td></tr>
+      <tr><td>Medidas</td><td>236 × 140 cm</td></tr>
+      <tr><td>Año</td><td>2026</td></tr>
+      <tr><td>Exposición</td><td>Stillness &amp; Refractions · Cosas Ecuador 2026, Guayaquil<br>12–22 nov 2026 · Booth #16</td></tr>
     </table>
-    <a class="inquire" href="mailto:annieabstracts@gmail.com?subject=Inquiry%20—%20A%20Gift%20of%20an%20Abundant%20Life">Inquire</a>
-    <div class="actions">
-      <a class="btn btn-bill" href="../factura-venta.html?id=AR-2026-008">Factura / Bill</a>
-      <a class="btn" href="../../../tarjeta-exposicion.html?id=AR-2026-008">Tarjeta de exposición</a>
-      <a class="btn" href="../../../certificado.html?id=AR-2026-008">Certificado</a>
+
+    <p class="price">USD 4,400</p>
+    <p class="price-note">Precio de lista · consultas de compra bienvenidas</p>
+
+    <div class="cta-row">
+      <a class="btn"
+         href="https://wa.me/50763578064?text=Hola%20Annie%2C%20me%20interesa%20la%20obra%20%22A%20Gift%20of%20an%20Abundant%20Life%22%20(AR-2026-008).%20%C2%BFPodemos%20hablar%20de%20compra%3F">
+        Consultar / Comprar · WhatsApp
+      </a>
+      <a class="btn btn-secondary"
+         href="mailto:annieabstracts@gmail.com?subject=Consulta%20%E2%80%94%20A%20Gift%20of%20an%20Abundant%20Life%20(AR-2026-008)&body=Hola%20Annie%2C%0A%0AMe%20interesa%20la%20obra%20A%20Gift%20of%20an%20Abundant%20Life%20(AR-2026-008).%0A%0A">
+        Escribir por correo
+      </a>
     </div>
 
-    <div class="exhibition" style="margin-top:48px">
-      <p class="exhibition-title">Exhibition</p>
+    <div class="exhibition">
+      <p class="exhibition-label">Exposición</p>
       <p class="exhibition-name">Stillness &amp; Refractions</p>
-      <p class="exhibition-detail">Cosas Ecuador · Booth #16 · Guayaquil · Nov 5–15, 2026</p>
+      <p class="exhibition-detail">Cosas Ecuador · Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil · 12–22 nov 2026</p>
     </div>
-  </div>
-
-  <div class="sidebar">
-    <div class="thumb-box">
-      <img src="../../../photos/AR-2026-008/front.jpg" alt="A Gift of an Abundant Life">
-    </div>
-    <div class="qr-block">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0AQAAAAAVtjufAAABwUlEQVR4nNWYsZEcQQwDe1TvNzO4/MO6DDARQMb+Gyq9JdGQaNLAsgAMWNxTvqv749s2/Hv9c87MzGVm7hw458wivi3A3DcQ79PYwv+AI5e8xuvIC47bvKWva7zhffMXOL/XBwBDmFMu81dzfotfphzjvKEDZU/f0wP+0rrgewuftm2TNpU2tm329J17zoFzIHK4zKr/GSMvhMMpgWYNnxZpjDaApe7xQ1NSKTEtGOIivoaCprFadvXNm0y4lyEXYGZPXwqVSGMLCXaPnx/AJNCRIYXc2csHaooQq8TQLPJPA7Wfvk9JWfUnKNLQNInZ5P/T/8/QCW2ru/5H1Zoqwa7iN4bUJoTSuJsPj+Op+RRhWd+HkzwsYSWb+I2kpU8CBbOYb6fzBhgzuQw9Aov7Ma1JNdEQ2c1nmrSkz+5Nya6+ic+aF2hMVt+vNQXwmd66mm80kAa/Im5z/g+4FIYCEV5wu3ZfUBSTptUSgM35Cxy4nN6cYOZm8T4654yCvRE+qdr0T8WgpsFt/4gCpGgMsIj/8fWZeeENTC+zlz9f99HA+xbIc8Ps3i/MG4/XG65/Puc3VUBoqOZ5x4v8n//8/8BPF9WNACBkmEoAAAAASUVORK5CYII=" alt="QR code">
-      <div class="qr-text">Scan to view<br>this work online<br><strong>studio-art-ledger.vercel.app</strong></div>
-    </div>
-  </div>
-
+  </main>
 </div>
 
+<div class="sticky-cta" aria-label="Acción de compra">
+  <div class="sticky-inner">
+    <a class="btn"
+       href="https://wa.me/50763578064?text=Hola%20Annie%2C%20me%20interesa%20la%20obra%20%22A%20Gift%20of%20an%20Abundant%20Life%22%20(AR-2026-008).%20%C2%BFPodemos%20hablar%20de%20compra%3F">
+      Consultar / Comprar
+    </a>
+  </div>
+</div>
 </body>
 </html>

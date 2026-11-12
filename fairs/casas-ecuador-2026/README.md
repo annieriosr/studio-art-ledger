@@ -33,9 +33,17 @@ Production needs Vercel env `LEDGER_WRITE_TOKEN` + `LEDGER_GITHUB_TOKEN` (see ro
 | AR-ND-010 | Point of Incidence | Acrylic on canvas, oak frame | 94 × 114 cm | Left wall |
 | AR-2025-003 | The InBetween Space | Acrylic on canvas, oak frame | 94 × 114 cm | Right wall |
 
-**Tarjetas de exposición (print):** `tarjeta-exposicion.html?id=AR-…` — QR codes for Gift / What Remains / I Still Can See point at the live Vercel work pages under `works/`.
+**Páginas de invitados (QR / scan):** the three tarjeta QR destinations under `works/` are guest-facing Spanish pages — work info + **Consultar / Comprar** (WhatsApp + email). No factura, certificado, or booth admin on those pages.
 
-**Certificados de autenticidad (print):** `certificado.html?id=AR-…` — same three works; ledger `documents` entries (`coa-AR-…`) + hub / ficha links.
+| ID | Guest URL (stable for printed QR) |
+|---|---|
+| AR-2026-008 | [`works/a-gift-of-an-abundant-life.html`](./works/a-gift-of-an-abundant-life.html) |
+| AR-2026-001 | [`works/what-remains-below.html`](./works/what-remains-below.html) |
+| AR-2026-010 | [`works/i-still-can-see-a-refraction.html`](./works/i-still-can-see-a-refraction.html) |
+
+**Tarjetas de exposición (print):** `tarjeta-exposicion.html?id=AR-…` — QR codes for Gift / What Remains / I Still Can See point at those guest pages (same paths as above).
+
+**Certificados de autenticidad (print):** `certificado.html?id=AR-…` — studio-only; same three works; ledger `documents` entries (`coa-AR-…`) + hub links.
 
 ## Files
 
