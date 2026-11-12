@@ -111,6 +111,19 @@ h1{
 }
 .sticky-inner{max-width:720px;margin:0 auto}
 .sticky-cta .btn{width:100%}
+
+.essay{
+  margin:28px 0 8px;padding-top:20px;border-top:1px solid var(--rule);
+}
+.essay-label{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:14px;
+}
+.essay p{
+  font-size:15px;line-height:1.6;margin-bottom:14px;
+  max-width:38em;
+}
+.essay p:last-child{margin-bottom:0}
 @media(min-width:720px){
   body{padding:24px 16px 40px;padding-bottom:40px}
   .shell{box-shadow:0 1px 0 rgba(36,31,26,.06)}
@@ -130,7 +143,11 @@ h1{
   </nav>
 
   <div class="hero">
-    <div class="hero-empty">Imagen próximamente</div>
+    <img
+      src="../../../photos/AR-2026-010/front.jpg"
+      alt="I Still Can See a Refraction"
+      onerror="this.remove();this.parentElement.insertAdjacentHTML('beforeend','<div class=\'hero-empty\'>Imagen próximamente</div>')"
+    >
   </div>
 
   <main class="main">
@@ -158,6 +175,15 @@ h1{
         Escribir por correo
       </a>
     </div>
+
+
+    <section class="essay" aria-labelledby="texto-curatorial">
+      <h2 class="essay-label" id="texto-curatorial">Texto curatorial</h2>
+      <p>La luz no se comporta de manera aislada. Lo que percibimos de ella depende de las condiciones en que se encuentra y de los materiales que atraviesa. Aunque siempre está presente, nunca es la misma. Se desvía, fragmenta, mezcla entre colores y materiales. De este proceso físico parte la práctica de Ríos.</p>
+      <p>¿Qué permanece de una estructura cuando las condiciones que la atraviesan la transforman? Lo que la luz hace al cruzar un medio, una vida lo hace al paso del tiempo. Ríos investiga la luz como un símbolo variable. Observar le ofrece una posibilidad de cuestionamiento desde la perspectiva de cambio, en cómo lo emocional, situacional, geográfico cambia, paralelamente a la luz.</p>
+      <p>Trabaja con una técnica propia: el aplanamiento cromático. Las obras geométricas muestran más estructura. Las expresivas muestran qué ocurre cuando esa estructura se altera o se convierte en algo que no se había previsto. Cada obra es expresión y confrontación. Obliga a reconsiderar lo hecho, a transformar y volver a mirar.</p>
+      <p>Las obras reunidas bajo Stillness and Refractions sostienen esa tensión sin resolverla en una sola forma de pintar. Dejan abierta una pregunta que excede a la pintura: ¿qué ocurre cuando dejamos de entender la transformación como la pérdida de una forma y empezamos a reconocerla como la posibilidad de que aparezcan otras?</p>
+    </section>
 
     <div class="exhibition">
       <p class="exhibition-label">Exposición</p>
