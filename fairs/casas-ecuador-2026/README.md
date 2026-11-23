@@ -8,7 +8,7 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 
 **Outreach inauguración (tracker):** [`invitados-inauguracion.html`](./invitados-inauguracion.html) + seed/state [`invitados-inauguracion.json`](./invitados-inauguracion.json). localStorage + Export/Import; use **Guardar para commit** to download the JSON and commit it so state survives deploys.
 
-**Seguimiento post-evento:** [`seguimiento-post-evento.html`](./seguimiento-post-evento.html) + seed [`seguimiento-post-evento.json`](./seguimiento-post-evento.json). Two buckets (caliente / red), statuses, WhatsApp templates, sales rules panel. localStorage key `cosasFollowup.v1`; optional site sync via `/api/site-state?key=followup`.
+**Seguimiento post-evento:** [`seguimiento-post-evento.html`](./seguimiento-post-evento.html) + seed [`seguimiento-post-evento.json`](./seguimiento-post-evento.json). Two buckets (caliente / red), statuses, WhatsApp templates (caliente · red · propuesta), and an in-page **Reglas / sales ground truth** panel (timing, service tone, warm next-step, networking + value, proposals, stop/log). localStorage key `cosasFollowup.v1`; optional site sync via `/api/site-state?key=followup`.
 
 **Factura de venta / invoice:** [`factura-venta.html`](./factura-venta.html) — editable sale bills for Cosas price-list works (incl. Gift $4,400 · What Remains $2,200 · Refraction $600). Print/PDF, mailto to buyer + `annieabstracts@gmail.com`, WhatsApp (`wa.me`), site auto-save + Export/Import JSON. Deep link: `factura-venta.html?id=AR-…`. Each hub work card and work ficha has a **Factura / Bill** button.
 
