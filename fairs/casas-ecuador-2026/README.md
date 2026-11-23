@@ -8,6 +8,8 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 
 **Outreach inauguración (tracker):** [`invitados-inauguracion.html`](./invitados-inauguracion.html) + seed/state [`invitados-inauguracion.json`](./invitados-inauguracion.json). localStorage + Export/Import; use **Guardar para commit** to download the JSON and commit it so state survives deploys.
 
+**Seguimiento post-evento:** [`seguimiento-post-evento.html`](./seguimiento-post-evento.html) + seed [`seguimiento-post-evento.json`](./seguimiento-post-evento.json). Two buckets (caliente / red), statuses, WhatsApp templates, sales rules panel. localStorage key `cosasFollowup.v1`; optional site sync via `/api/site-state?key=followup`.
+
 **Factura de venta / invoice:** [`factura-venta.html`](./factura-venta.html) — editable sale bills for Cosas price-list works (incl. Gift $4,400 · What Remains $2,200 · Refraction $600). Print/PDF, mailto to buyer + `annieabstracts@gmail.com`, WhatsApp (`wa.me`), site auto-save + Export/Import JSON. Deep link: `factura-venta.html?id=AR-…`. Each hub work card and work ficha has a **Factura / Bill** button.
 
 **Phone app (PWA):** open the factura URL on the phone → iPhone Safari Share → Add to Home Screen, or Android Chrome Install app. Manifest [`manifest.webmanifest`](./manifest.webmanifest) (`Cosas bills`), icons + [`sw-cosas-bills.js`](./sw-cosas-bills.js). `start_url` = factura page; hub also registers the same SW.
@@ -15,6 +17,7 @@ Booth #16 · Casas Project GYE · Batán Business Park · Guayaquil, Ecuador · 
 **Site-wide save (not local-only):** one studio save key (`LEDGER_WRITE_TOKEN`) syncs:
 - Bills → `/api/sales` + `data/cosas-sales.json` (confirm → ledger sold)
 - Outreach → `/api/site-state?key=outreach` → `invitados-inauguracion.json`
+- Seguimiento post-evento → `/api/site-state?key=followup` → `seguimiento-post-evento.json`
 - Booth tracker → `/api/site-state?key=booth` → `booth-tracker-state.json`
 - Catalogue drafts → `/api/site-state?key=drafts` → `data/ledger-drafts.json`; **Publicar borradores al libro** → `/api/publish-drafts`
 
@@ -65,6 +68,8 @@ Production needs Vercel env `LEDGER_WRITE_TOKEN` + `LEDGER_GITHUB_TOKEN` (see ro
 | **contactos.html** | Guayaquil / Ecuador art-world contact list. Phones where known. Printable. |
 | **invitados-inauguracion.html** | Inauguration outreach tracker (strata, channel, draft, status, notes). Persistence: localStorage + Export/Import JSON. |
 | **invitados-inauguracion.json** | Seed + durable outreach state. Download via “Guardar para commit” and commit to persist across machines/deploys. |
+| **seguimiento-post-evento.html** | Post-show follow-up network (caliente / red buckets, statuses, templates, rules). localStorage `cosasFollowup.v1` + Export/Import. |
+| **seguimiento-post-evento.json** | Seed + durable follow-up state. Download via “Guardar para commit” and commit to persist. |
 | **works/** | Per-work info pages for the booth. |
 
 ## Key dates

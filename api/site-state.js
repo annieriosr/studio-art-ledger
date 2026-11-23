@@ -56,7 +56,7 @@ export default async function handler(req, res) {
       const body = await readJson(req);
       const key = body.key || queryKey(req);
       if (!key) {
-        send(res, 400, { ok: false, error: "Missing key (outreach|booth|drafts|sales)" });
+        send(res, 400, { ok: false, error: "Missing key (outreach|followup|booth|drafts|sales)" });
         return;
       }
       const result = await saveDataset(key, body.data);
