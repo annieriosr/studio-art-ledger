@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "fair": "Cosas Ecuador 2026",
+  "show": "Stillness & Refractions",
+  "booth": "#16",
+  "city": "Guayaquil",
+  "updated": "",
+  "note": "Seguimiento post-evento. Semilla vacía con filas de ejemplo (estructura). Completá nombre, teléfono y notas. Bucket caliente = ya hablaste / pendiente confirmar. Bucket red = nice to meet you. Persistencia: localStorage cosasFollowup.v1 + Guardar para commit.",
+  "nextId": 1003,
+  "people": [
+    {
+      "id": "fu-1001",
+      "name": "",
+      "org": "",
+      "bucket": "caliente",
+      "phone": "",
+      "email": "",
+      "instagram": "",
+      "status": 0,
+      "lastContact": "",
+      "nextAction": "Confirmar interés / visita",
+      "notes": "Ejemplo · pendiente confirmación — reemplazá con un contacto real del booth.",
+      "pieceInterest": "",
+      "draft": ""
+    },
+    {
+      "id": "fu-1002",
+      "name": "",
+      "org": "",
+      "bucket": "red",
+      "phone": "",
+      "email": "",
+      "instagram": "",
+      "status": 0,
+      "lastContact": "",
+      "nextAction": "Mensaje corto de reconexión",
+      "notes": "Ejemplo · red / nice to meet you — reemplazá con alguien que conociste en Cosas.",
+      "pieceInterest": "",
+      "draft": ""
+    }
+  ]
+}

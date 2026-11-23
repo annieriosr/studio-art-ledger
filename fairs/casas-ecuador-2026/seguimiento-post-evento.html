@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Seguimiento post-evento · Cosas Ecuador 2026 · Annie Ríos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4f2ee;
+      --ink: #241f1a;
+      --ink-soft: #5c574f;
+      --rule: #c4bfb4;
+      --mark: #3d5a45;
+      --mark-bg: #e6ebe4;
+      --warn: #7a4e2d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #d8d4cc;
+      color: var(--ink);
+      font-family: "Ibarra Real Nova", Palatino, "Times New Roman", serif;
+      font-weight: 400;
+    }
+    body {
+      min-height: 100vh;
+      padding: 24px 14px calc(80px + env(safe-area-inset-bottom, 0px));
+      padding-left: max(14px, env(safe-area-inset-left, 0px));
+      padding-right: max(14px, env(safe-area-inset-right, 0px));
+    }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    header {
+      background: var(--paper);
+      padding: 28px 28px 22px;
+      margin-bottom: 14px;
+      border-left: 1px solid var(--rule);
+    }
+    .nav-row { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-bottom: 16px; }
+    .back {
+      font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft);
+      text-decoration: none; border-bottom: 1px solid transparent;
+    }
+    .back:hover { border-bottom-color: var(--rule); color: var(--ink); }
+    .artist {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 8px;
+    }
+    h1 { font-size: 26px; font-weight: 400; font-style: italic; line-height: 1.2; margin-bottom: 8px; }
+    .lede { font-size: 15px; line-height: 1.5; color: var(--ink-soft); max-width: 62ch; }
+    .meta-line { margin-top: 10px; font-size: 13px; letter-spacing: 0.05em; color: var(--ink-soft); }
+    .save-note {
+      margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule);
+      font-size: 13px; line-height: 1.5; color: var(--ink-soft);
+    }
+    .save-note strong { color: var(--ink); font-weight: 600; }
+    .panel {
+      background: var(--paper);
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      border-left: 1px solid var(--rule);
+    }
+    .panel h2 {
+      font-size: 13px; letter-spacing: 0.12em; text-transform: lowercase;
+      margin-bottom: 10px; font-weight: 600;
+    }
+    .panel p, .panel li { font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+    .panel ul { margin: 8px 0 0 1.2em; }
+    .panel li { margin-bottom: 4px; }
+    .panel strong { color: var(--ink); font-weight: 600; }
+    .panel a { color: inherit; }
+    .panel-toggle {
+      width: 100%; text-align: left; font-family: inherit;
+      background: transparent; border: none; color: var(--ink);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      padding: 0; margin-bottom: 0;
+    }
+    .panel-toggle .chev { color: var(--ink-soft); font-size: 12px; }
+    .panel-body { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+    .panel-body[hidden] { display: none; }
+    .tpl-grid { display: grid; gap: 12px; margin-top: 10px; }
+    .tpl-block {
+      border: 1px solid var(--rule); padding: 12px 14px; background: #fff;
+    }
+    .tpl-block h3 {
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 8px; font-weight: 600;
+    }
+    .tpl-block pre {
+      white-space: pre-wrap; font-family: inherit; font-size: 14px;
+      line-height: 1.45; color: var(--ink); margin-bottom: 10px;
+    }
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      background: var(--paper); padding: 12px 14px; margin-bottom: 10px;
+      border-left: 1px solid var(--rule);
+    }
+    .btn {
+      font-family: inherit; font-size: 13px; letter-spacing: 0.03em;
+      background: transparent; border: 1px solid var(--rule); color: var(--ink);
+      padding: 6px 12px; cursor: pointer; text-decoration: none; display: inline-flex;
+      align-items: center; justify-content: center; min-height: 40px;
+    }
+    .btn:hover {
+      background: rgba(36, 31, 26, 0.06);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .btn.on, .btn-solid {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn.on { background: rgba(36, 31, 26, 0.08); }
+    .btn-solid:hover {
+      background: rgba(36, 31, 26, 0.06);
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .bucket-bar {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      background: var(--paper); padding: 12px 14px; margin-bottom: 10px;
+      border-left: 1px solid var(--rule);
+    }
+    .toolbar select, .toolbar input[type="search"] {
+      font-family: inherit; font-size: 13px; padding: 6px 8px;
+      border: 1px solid var(--rule); background: #fff; color: var(--ink); min-width: 0;
+    }
+    .toolbar input[type="search"] { flex: 1 1 160px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+    .stat {
+      background: var(--paper); padding: 10px 14px; min-width: 88px;
+      border-left: 1px solid var(--rule);
+    }
+    .stat b { display: block; font-size: 18px; font-weight: 400; font-style: italic; }
+    .stat span { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+    .toast {
+      display: none; position: sticky; top: 8px; z-index: 5;
+      background: var(--mark-bg); color: var(--mark); border: 1px solid var(--mark);
+      padding: 8px 12px; margin-bottom: 10px; font-size: 13px;
+    }
+    .toast.show { display: block; }
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .card {
+      background: var(--paper); padding: 16px 18px 14px;
+      border-left: 1px solid var(--rule);
+    }
+    .card-top {
+      display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline;
+      justify-content: space-between; margin-bottom: 6px;
+    }
+    .name { font-size: 18px; font-style: italic; font-weight: 400; }
+    .badge {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-soft); border: 1px solid var(--rule); padding: 2px 8px;
+    }
+    .badge.caliente { border-color: var(--warn); color: var(--warn); }
+    .badge.red { border-color: var(--mark); color: var(--mark); }
+    .role { font-size: 14px; color: var(--ink-soft); line-height: 1.4; margin-bottom: 10px; }
+    .grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px;
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      header { padding: 18px 16px 16px; }
+      h1 { font-size: 22px; }
+      .toolbar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .toolbar select, .toolbar input[type="search"], .toolbar .btn {
+        width: 100%;
+        min-height: 44px;
+        font-size: 16px;
+      }
+      .toolbar input[type="search"] { grid-column: 1 / -1; }
+      .bucket-bar .btn { flex: 1 1 calc(50% - 4px); min-height: 44px; }
+      .btn {
+        min-height: 44px;
+        padding: 10px 12px;
+      }
+      .nav-row { gap: 8px 12px; }
+      .back { min-height: 40px; padding: 8px 0; }
+      input, select, textarea { font-size: 16px; min-height: 44px; }
+      #studioToken { width: 100% !important; max-width: none !important; min-height: 44px; font-size: 16px; }
+    }
+    label.field {
+      display: block; font-size: 11px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-soft); margin-bottom: 3px;
+    }
+    .field-wrap { min-width: 0; }
+    .field-wrap.full { grid-column: 1 / -1; }
+    input, select, textarea {
+      width: 100%; font-family: inherit; font-size: 14px; padding: 7px 8px;
+      border: 1px solid var(--rule); background: #fff; color: var(--ink);
+    }
+    textarea { resize: vertical; min-height: 72px; line-height: 1.4; }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .add-box {
+      background: var(--paper); padding: 16px 18px; margin-top: 14px;
+      border-left: 1px solid var(--rule);
+    }
+    .add-box h2 { font-size: 13px; letter-spacing: 0.12em; text-transform: lowercase; margin-bottom: 10px; }
+    footer {
+      margin-top: 24px; font-size: 13px; line-height: 1.5; color: var(--ink-soft);
+      padding: 0 4px;
+    }
+    footer code { font-size: 12px; }
+    footer a { color: inherit; }
+    .empty {
+      background: var(--paper); padding: 20px 18px; color: var(--ink-soft);
+      border-left: 1px solid var(--rule); font-size: 15px; line-height: 1.5;
+    }
+    @media print {
+      .toolbar, .nav-row, .row-actions, .add-box, .toast, .bucket-bar { display: none !important; }
+      body { background: #fff; padding: 0; }
+      .card { break-inside: avoid; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="nav-row">
+        <a class="back" href="index.html">← Preparativos Cosas</a>
+        <a class="back" href="invitados-inauguracion.html">Outreach inauguración</a>
+        <a class="back" href="contactos.html">Contactos (lista)</a>
+        <a class="back" href="../../libro.html#preparativos">Libro · Preparativos</a>
+      </div>
+      <p class="artist">Annie Ríos · Cosas Ecuador 2026</p>
+      <h1>Seguimiento post-evento</h1>
+      <p class="lede">
+        Red de follow-up después de <em>Stillness &amp; Refractions</em> (Booth #16).
+        Dos cubetas: <strong style="color:var(--ink);font-weight:600">caliente / pendiente confirmación</strong>
+        (ya hablaron; aún no dijeron no) y <strong style="color:var(--ink);font-weight:600">red / nice to meet you</strong>
+        (contacto ligero tras conocerse en la feria). Tono: servicio útil, no pedirle — recordarles lo que ya quieren.
+      </p>
+      <p class="meta-line">Exposición 12–22 nov 2026 · Casas Project GYE · WhatsApp estudio +34 622907643 · semilla <code>seguimiento-post-evento.json</code></p>
+      <p class="save-note">
+        <strong>Cómo guardar:</strong> auto-guarda en este navegador (<code>cosasFollowup.v1</code>) y en el sitio si hay clave.
+        Estado: <span id="siteSync">…</span><br />
+        Clave de estudio (misma que facturas · Vercel <code>LEDGER_WRITE_TOKEN</code>):
+        <input id="studioToken" type="password" autocomplete="current-password" style="margin-top:6px;width:100%;max-width:320px;padding:7px 8px;border:1px solid var(--rule);font:inherit" placeholder="Clave de guardado" />
+      </p>
+    </header>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <section class="panel" id="rulesPanel">
+      <button type="button" class="panel-toggle" id="btnRules" aria-expanded="true" aria-controls="rulesBody">
+        <h2 style="margin:0">Reglas / sales ground truth</h2>
+        <span class="chev" id="rulesChev">▴</span>
+      </button>
+      <div class="panel-body" id="rulesBody">
+        <p><strong>Cuándo:</strong> primer toque en 24–48&nbsp;h tras la conversación o el cierre de feria. Segundo toque a los 5–7 días si no hubo respuesta. Tercer toque solo si hay señal clara (vista, pregunta de precio, “te escribo”).</p>
+        <ul>
+          <li><strong>Máximo 2–3 toques</strong> por persona. Después: archivar como sin respuesta — no insistir.</li>
+          <li><strong>No mendigar.</strong> El mensaje ofrece valor: disponibilidad, visita, ficha, obra aún disponible, gracias por el encuentro.</li>
+          <li><strong>Tono:</strong> cálido, seguro, de servicio. Remiten a algo que ya quieren — no a una petición tuya.</li>
+          <li><strong>Si dijeron no:</strong> agradecer y cerrar. No reabrir.</li>
+          <li><strong>Caliente:</strong> confirmar el siguiente paso concreto (visita, reserva, envío de ficha, pago).</li>
+          <li><strong>Red:</strong> un solo mensaje corto de reconexión; dejar la puerta abierta sin presión.</li>
+          <li><strong>Canal preferido:</strong> WhatsApp estudio <a href="https://wa.me/34622907643">+34 622907643</a> · <code>wa.me/34622907643</code></li>
+        </ul>
+        <p style="margin-top:10px">Pre-feria / invitados: usá el <a href="invitados-inauguracion.html">tracker de inauguración</a> (no duplicar aquí).</p>
+      </div>
+    </section>
+
+    <section class="panel" id="tplPanel">
+      <button type="button" class="panel-toggle" id="btnTpl" aria-expanded="false" aria-controls="tplBody">
+        <h2 style="margin:0">Plantillas WhatsApp (español)</h2>
+        <span class="chev" id="tplChev">▾</span>
+      </button>
+      <div class="panel-body" id="tplBody" hidden>
+        <p>Copiá y personalizá. El botón <em>Usar plantilla</em> en cada contacto rellena el borrador con su nombre.</p>
+        <div class="tpl-grid">
+          <div class="tpl-block">
+            <h3>1 · Pendiente confirmación (caliente)</h3>
+            <pre id="tplCaliente">Hola {nombre},
+
+Fue un gusto hablar en Cosas / Stillness &amp; Refractions (Booth #16). Te escribo para retomar lo que comentamos: {siguiente} sigue disponible y puedo coordinar visita o enviarte la ficha con calma.
+
+Cuando te venga bien, confirmame el siguiente paso. Estoy en WhatsApp: +34 622907643
+
+Annie Ríos</pre>
+            <button type="button" class="btn" data-copy="tplCaliente">Copiar plantilla</button>
+          </div>
+          <div class="tpl-block">
+            <h3>2 · Red / nice to meet you</h3>
+            <pre id="tplRed">Hola {nombre},
+
+Qué gusto conocerte en Cosas Ecuador. Si te interesa seguir la conversación o ver alguna pieza con más calma, estoy disponible por WhatsApp: +34 622907643
+
+Un abrazo,
+Annie Ríos · Stillness &amp; Refractions</pre>
+            <button type="button" class="btn" data-copy="tplRed">Copiar plantilla</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bucket-bar" role="tablist" aria-label="Cubeta">
+      <button type="button" class="btn on" data-bucket="" id="bAll">Todas</button>
+      <button type="button" class="btn" data-bucket="caliente" id="bCaliente">Caliente / pendiente</button>
+      <button type="button" class="btn" data-bucket="red" id="bRed">Red / nice to meet</button>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" class="btn btn-solid" id="btnSaveCommit">Guardar para commit</button>
+      <button type="button" class="btn" id="btnExport">Descargar respaldo</button>
+      <button type="button" class="btn" id="btnImport">Importar respaldo</button>
+      <input id="impFile" type="file" accept="application/json,.json" hidden />
+      <button type="button" class="btn" id="btnReloadSeed">Recargar semilla</button>
+      <button type="button" class="btn" id="btnReset">Resetear a semilla</button>
+      <select id="fStatus" aria-label="Filtrar estado"><option value="">Todos los estados</option></select>
+      <input type="search" id="fSearch" placeholder="Buscar nombre / org / notas…" />
+    </div>
+
+    <div class="stats" id="stats"></div>
+    <div class="list" id="list"></div>
+
+    <section class="add-box">
+      <h2>Añadir contacto</h2>
+      <div class="grid">
+        <div class="field-wrap"><label class="field">Nombre</label><input id="newName" /></div>
+        <div class="field-wrap"><label class="field">Cubeta</label>
+          <select id="newBucket">
+            <option value="caliente">Caliente / pendiente confirmación</option>
+            <option value="red">Red / nice to meet you</option>
+          </select>
+        </div>
+        <div class="field-wrap"><label class="field">Organización</label><input id="newOrg" /></div>
+        <div class="field-wrap"><label class="field">Teléfono (WhatsApp)</label><input id="newPhone" inputmode="tel" placeholder="+593…" /></div>
+      </div>
+      <div class="row-actions">
+        <button type="button" class="btn btn-solid" id="btnAdd">Añadir</button>
+      </div>
+    </section>
+
+    <footer>
+      Persistencia: <code>localStorage</code> key <code>cosasFollowup.v1</code> · semilla <code>seguimiento-post-evento.json</code>.
+      Inauguración pre-feria: <a href="invitados-inauguracion.html">invitados-inauguracion.html</a>.
+      Carpeta: <code>fairs/casas-ecuador-2026/</code>.
+    </footer>
+  </div>
+
+  <script src="site-save.js"></script>
+  <script>
+(function () {
+  var KEY = "cosasFollowup.v1";
+  var JSON_FILE = "seguimiento-post-evento.json";
+  var WA_STUDIO = "34622907643";
+  var ST = [
+    "Pendiente confirmación",
+    "Follow-up enviado",
+    "Respondió",
+    "Vendido / cerrado",
+    "Sin respuesta"
+  ];
+  var BUCKETS = {
+    caliente: "Caliente / pendiente",
+    red: "Red / nice to meet"
+  };
+  var S = null;
+  var filterBucket = "";
+  var filterStatus = "";
+  var filterQ = "";
+
+  var TPL_CALIENTE =
+    "Hola {nombre},\n\n" +
+    "Fue un gusto hablar en Cosas / Stillness & Refractions (Booth #16). Te escribo para retomar lo que comentamos: {siguiente} sigue disponible y puedo coordinar visita o enviarte la ficha con calma.\n\n" +
+    "Cuando te venga bien, confirmame el siguiente paso. Estoy en WhatsApp: +34 622907643\n\n" +
+    "Annie Ríos";
+
+  var TPL_RED =
+    "Hola {nombre},\n\n" +
+    "Qué gusto conocerte en Cosas Ecuador. Si te interesa seguir la conversación o ver alguna pieza con más calma, estoy disponible por WhatsApp: +34 622907643\n\n" +
+    "Un abrazo,\n" +
+    "Annie Ríos · Stillness & Refractions";
+
+  function esc(x) {
+    return String(x == null ? "" : x).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function toast(msg) {
+    var t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toast._tm);
+    toast._tm = setTimeout(function () { t.classList.remove("show"); }, 2800);
+  }
+
+  function blankPerson() {
+    return {
+      id: "",
+      name: "",
+      org: "",
+      bucket: "caliente",
+      phone: "",
+      email: "",
+      instagram: "",
+      status: 0,
+      lastContact: "",
+      nextAction: "",
+      notes: "",
+      pieceInterest: "",
+      draft: ""
+    };
+  }
+
+  function normalizePerson(p) {
+    var b = blankPerson();
+    if (!p || typeof p !== "object") return null;
+    b.id = String(p.id || "");
+    b.name = String(p.name || "");
+    b.org = String(p.org || "");
+    b.bucket = p.bucket === "red" ? "red" : "caliente";
+    b.phone = String(p.phone || "");
+    b.email = String(p.email || "");
+    b.instagram = String(p.instagram || "");
+    b.status = Math.max(0, Math.min(4, +p.status || 0));
+    b.lastContact = String(p.lastContact || "");
+    b.nextAction = String(p.nextAction || "");
+    b.notes = String(p.notes || "");
+    b.pieceInterest = String(p.pieceInterest || "");
+    b.draft = String(p.draft || "");
+    // Keep placeholder rows (empty name) from seed so Annie sees structure
+    if (!b.name && !b.id) return null;
+    return b;
+  }
+
+  function normalize(state) {
+    if (!state || !Array.isArray(state.people)) return null;
+    var people = [];
+    state.people.forEach(function (p) {
+      var n = normalizePerson(p);
+      if (n) people.push(n);
+    });
+    return {
+      version: 1,
+      fair: state.fair || "Cosas Ecuador 2026",
+      show: state.show || "Stillness & Refractions",
+      booth: state.booth || "#16",
+      city: state.city || "Guayaquil",
+      updated: state.updated || "",
+      note: state.note || "",
+      nextId: state.nextId || 1000,
+      people: people
+    };
+  }
+
+  function setSiteSync(msg) {
+    var el = document.getElementById("siteSync");
+    if (el) el.textContent = msg;
+  }
+
+  function save() {
+    if (S) S.updated = new Date().toISOString();
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+    if (window.StudioSiteSave && S) {
+      setSiteSync("guardando en el sitio…");
+      StudioSiteSave.saveDebounced("followup", S, 2000).then(function (x) {
+        if (x && x.ok) setSiteSync("guardado en el sitio");
+        else setSiteSync("sitio: " + ((x && x.j && x.j.error) || (x && x.error) || "solo local — revisá la clave"));
+      });
+    } else {
+      setSiteSync("guardado en este navegador");
+    }
+  }
+
+  function loadLocal() {
+    var raw = null, parsed = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) { raw = null; }
+    if (!raw) return null;
+    try { parsed = JSON.parse(raw); } catch (e) { return null; }
+    return normalize(parsed);
+  }
+
+  function mergeSeed(saved, seed) {
+    if (!seed) return saved;
+    if (!saved) return seed;
+    var byId = {};
+    saved.people.forEach(function (p) { byId[p.id] = p; });
+    seed.people.forEach(function (sp) {
+      if (!byId[sp.id]) {
+        saved.people.push(sp);
+        byId[sp.id] = sp;
+      } else {
+        var cur = byId[sp.id];
+        ["phone", "email", "instagram", "org", "bucket", "nextAction", "pieceInterest"].forEach(function (k) {
+          if (!cur[k] && sp[k]) cur[k] = sp[k];
+        });
+        if (!cur.draft && sp.draft) cur.draft = sp.draft;
+        if (!cur.notes && sp.notes) cur.notes = sp.notes;
+      }
+    });
+    if (seed.nextId && seed.nextId > saved.nextId) saved.nextId = seed.nextId;
+    return saved;
+  }
+
+  function fetchSeed() {
+    return fetch(JSON_FILE + "?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error("no json"); return r.json(); })
+      .then(function (j) { return normalize(j); })
+      .catch(function () { return null; });
+  }
+
+  function greetingName(name) {
+    var who = String(name || "").trim();
+    if (!who) return "";
+    if (/^Dra?\.\s+/i.test(who)) {
+      var titleBits = who.split(/\s+/);
+      return titleBits[0] + " " + titleBits[titleBits.length - 1];
+    }
+    return who.split(/\s+/)[0].replace(/[.,]$/, "");
+  }
+
+  function fillTemplate(tpl, person) {
+    var who = greetingName(person.name) || (person.name || "").trim() || "";
+    var next = (person.pieceInterest || person.nextAction || "la obra que vimos").trim();
+    return tpl
+      .replace(/\{nombre\}/g, who || "")
+      .replace(/\{siguiente\}/g, next)
+      .replace(/^Hola ,/, "Hola,")
+      .replace(/^Hola \n/, "Hola,\n");
+  }
+
+  function defaultDraft(person) {
+    var tpl = person.bucket === "red" ? TPL_RED : TPL_CALIENTE;
+    return fillTemplate(tpl, person);
+  }
+
+  function phoneDigits(phone) {
+    var d = String(phone || "").replace(/\D/g, "");
+    if (!d) return "";
+    if (d.indexOf("00") === 0) d = d.slice(2);
+    return d;
+  }
+
+  function waLink(phone, text) {
+    var d = phoneDigits(phone);
+    var base = d ? ("https://wa.me/" + d) : ("https://wa.me/" + WA_STUDIO);
+    if (text) base += "?text=" + encodeURIComponent(text);
+    return base;
+  }
+
+  function downloadJson(filename, obj) {
+    var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  function stamp() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  function todayISO() {
+    return stamp();
+  }
+
+  function filtered() {
+    return S.people.filter(function (p) {
+      if (filterBucket && p.bucket !== filterBucket) return false;
+      if (filterStatus !== "" && String(p.status) !== String(filterStatus)) return false;
+      if (filterQ) {
+        var q = filterQ.toLowerCase();
+        var hay = [p.name, p.org, p.notes, p.nextAction, p.pieceInterest, p.phone, p.email].join(" ").toLowerCase();
+        if (hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderStats() {
+    var all = S.people;
+    var nCal = all.filter(function (p) { return p.bucket === "caliente"; }).length;
+    var nRed = all.filter(function (p) { return p.bucket === "red"; }).length;
+    var nPend = all.filter(function (p) { return p.status === 0; }).length;
+    var nSent = all.filter(function (p) { return p.status === 1; }).length;
+    var nDone = all.filter(function (p) { return p.status === 3; }).length;
+    document.getElementById("stats").innerHTML =
+      '<div class="stat"><b>' + all.length + '</b><span>Total</span></div>' +
+      '<div class="stat"><b>' + nCal + '</b><span>Caliente</span></div>' +
+      '<div class="stat"><b>' + nRed + '</b><span>Red</span></div>' +
+      '<div class="stat"><b>' + nPend + '</b><span>Pendiente</span></div>' +
+      '<div class="stat"><b>' + nSent + '</b><span>Enviado</span></div>' +
+      '<div class="stat"><b>' + nDone + '</b><span>Cerrado</span></div>';
+  }
+
+  function findPerson(id) {
+    for (var i = 0; i < S.people.length; i++) {
+      if (S.people[i].id === id) return S.people[i];
+    }
+    return null;
+  }
+
+  function renderList() {
+    var rows = filtered();
+    var list = document.getElementById("list");
+    if (!rows.length) {
+      list.innerHTML = '<div class="empty">Ningún contacto con estos filtros. Añadí alguien abajo o cambiá la cubeta.</div>';
+      return;
+    }
+    list.innerHTML = rows.map(function (p) {
+      var displayName = p.name || "(sin nombre — completá)";
+      var statusOpts = ST.map(function (label, i) {
+        return '<option value="' + i + '"' + (p.status === i ? " selected" : "") + ">" + esc(label) + "</option>";
+      }).join("");
+      var bucketOpts =
+        '<option value="caliente"' + (p.bucket === "caliente" ? " selected" : "") + ">Caliente / pendiente</option>" +
+        '<option value="red"' + (p.bucket === "red" ? " selected" : "") + ">Red / nice to meet</option>";
+      return (
+        '<article class="card" data-id="' + esc(p.id) + '">' +
+          '<div class="card-top">' +
+            '<span class="name">' + esc(displayName) + '</span>' +
+            '<span class="badge ' + esc(p.bucket) + '">' + esc(BUCKETS[p.bucket] || p.bucket) + '</span>' +
+          '</div>' +
+          (p.org ? '<p class="role">' + esc(p.org) + '</p>' : '') +
+          '<div class="grid">' +
+            '<div class="field-wrap"><label class="field">Nombre</label>' +
+              '<input data-k="name" value="' + esc(p.name) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Cubeta</label>' +
+              '<select data-k="bucket">' + bucketOpts + '</select></div>' +
+            '<div class="field-wrap"><label class="field">Organización</label>' +
+              '<input data-k="org" value="' + esc(p.org) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Teléfono</label>' +
+              '<input data-k="phone" value="' + esc(p.phone) + '" inputmode="tel" /></div>' +
+            '<div class="field-wrap"><label class="field">Email</label>' +
+              '<input data-k="email" value="' + esc(p.email) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Instagram</label>' +
+              '<input data-k="instagram" value="' + esc(p.instagram) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Estado</label>' +
+              '<select data-k="status">' + statusOpts + '</select></div>' +
+            '<div class="field-wrap"><label class="field">Último contacto</label>' +
+              '<input data-k="lastContact" type="date" value="' + esc(p.lastContact) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Próxima acción</label>' +
+              '<input data-k="nextAction" value="' + esc(p.nextAction) + '" /></div>' +
+            '<div class="field-wrap"><label class="field">Obra / interés</label>' +
+              '<input data-k="pieceInterest" value="' + esc(p.pieceInterest) + '" placeholder="ej. What Remains Below" /></div>' +
+            '<div class="field-wrap full"><label class="field">Notas</label>' +
+              '<textarea data-k="notes" rows="2">' + esc(p.notes) + '</textarea></div>' +
+            '<div class="field-wrap full"><label class="field">Borrador de mensaje</label>' +
+              '<textarea data-k="draft" rows="5">' + esc(p.draft) + '</textarea></div>' +
+          '</div>' +
+          '<div class="row-actions">' +
+            '<button type="button" class="btn" data-act="tpl">Usar plantilla</button>' +
+            '<button type="button" class="btn" data-act="copy">Copiar mensaje</button>' +
+            '<a class="btn btn-solid" data-act="wa" href="' + esc(waLink(p.phone, p.draft || defaultDraft(p))) + '" target="_blank" rel="noopener">Abrir WhatsApp</a>' +
+            '<button type="button" class="btn" data-act="sent">Marcar enviado</button>' +
+            '<button type="button" class="btn" data-act="del">Eliminar</button>' +
+          '</div>' +
+        '</article>'
+      );
+    }).join("");
+  }
+
+  function render() {
+    if (!S) return;
+    renderStats();
+    renderList();
+  }
+
+  function bindList() {
+    var list = document.getElementById("list");
+    list.addEventListener("change", function (ev) {
+      var el = ev.target;
+      var card = el.closest(".card");
+      if (!card || !el.getAttribute("data-k")) return;
+      var p = findPerson(card.getAttribute("data-id"));
+      if (!p) return;
+      var k = el.getAttribute("data-k");
+      if (k === "status") p.status = +el.value;
+      else p[k] = el.value;
+      save();
+      if (k === "bucket" || k === "status" || k === "name") render();
+      else if (k === "phone" || k === "draft") {
+        var a = card.querySelector('[data-act="wa"]');
+        if (a) a.href = waLink(p.phone, p.draft || defaultDraft(p));
+      }
+    });
+    list.addEventListener("input", function (ev) {
+      var el = ev.target;
+      var card = el.closest(".card");
+      if (!card || !el.getAttribute("data-k")) return;
+      var p = findPerson(card.getAttribute("data-id"));
+      if (!p) return;
+      var k = el.getAttribute("data-k");
+      if (k === "status") return;
+      p[k] = el.value;
+      clearTimeout(bindList._tm);
+      bindList._tm = setTimeout(function () {
+        save();
+        if (k === "phone" || k === "draft") {
+          var a = card.querySelector('[data-act="wa"]');
+          if (a) a.href = waLink(p.phone, p.draft || defaultDraft(p));
+        }
+      }, 400);
+    });
+    list.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("[data-act]");
+      if (!btn) return;
+      var card = btn.closest(".card");
+      if (!card) return;
+      var p = findPerson(card.getAttribute("data-id"));
+      if (!p) return;
+      var act = btn.getAttribute("data-act");
+      if (act === "tpl") {
+        p.draft = defaultDraft(p);
+        save();
+        render();
+        toast("Plantilla aplicada");
+      } else if (act === "copy") {
+        var text = p.draft || defaultDraft(p);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { toast("Mensaje copiado"); });
+        } else {
+          toast("Copiá manualmente el borrador");
+        }
+      } else if (act === "sent") {
+        p.status = 1;
+        p.lastContact = todayISO();
+        if (!p.nextAction) p.nextAction = "Esperar respuesta (5–7 días)";
+        save();
+        render();
+        toast("Marcado: follow-up enviado");
+      } else if (act === "del") {
+        if (!confirm("¿Eliminar este contacto?")) return;
+        S.people = S.people.filter(function (x) { return x.id !== p.id; });
+        save();
+        render();
+        toast("Eliminado");
+      }
+    });
+  }
+
+  function setupFilters() {
+    var sel = document.getElementById("fStatus");
+    ST.forEach(function (label, i) {
+      var o = document.createElement("option");
+      o.value = String(i);
+      o.textContent = label;
+      sel.appendChild(o);
+    });
+    sel.addEventListener("change", function () {
+      filterStatus = sel.value;
+      render();
+    });
+    document.getElementById("fSearch").addEventListener("input", function () {
+      filterQ = this.value.trim();
+      render();
+    });
+    document.querySelectorAll(".bucket-bar [data-bucket]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        filterBucket = btn.getAttribute("data-bucket") || "";
+        document.querySelectorAll(".bucket-bar [data-bucket]").forEach(function (b) {
+          b.classList.toggle("on", b === btn);
+        });
+        render();
+      });
+    });
+  }
+
+  function setupPanels() {
+    function toggle(btnId, bodyId, chevId) {
+      var btn = document.getElementById(btnId);
+      var body = document.getElementById(bodyId);
+      var chev = document.getElementById(chevId);
+      btn.addEventListener("click", function () {
+        var open = body.hasAttribute("hidden");
+        if (open) body.removeAttribute("hidden");
+        else body.setAttribute("hidden", "");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (chev) chev.textContent = open ? "▴" : "▾";
+      });
+    }
+    toggle("btnRules", "rulesBody", "rulesChev");
+    toggle("btnTpl", "tplBody", "tplChev");
+    document.querySelectorAll("[data-copy]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-copy");
+        var el = document.getElementById(id);
+        var text = el ? el.textContent : "";
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { toast("Plantilla copiada"); });
+        }
+      });
+    });
+  }
+
+  function setupToolbar() {
+    document.getElementById("btnSaveCommit").onclick = function () {
+      downloadJson(JSON_FILE, S);
+      toast("Descargá y commitá " + JSON_FILE);
+    };
+    document.getElementById("btnExport").onclick = function () {
+      downloadJson("seguimiento-post-evento-backup-" + stamp() + ".json", S);
+      toast("Respaldo descargado");
+    };
+    document.getElementById("btnImport").onclick = function () {
+      document.getElementById("impFile").click();
+    };
+    document.getElementById("impFile").onchange = function () {
+      var f = this.files && this.files[0];
+      if (!f) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        try {
+          var n = normalize(JSON.parse(reader.result));
+          if (!n) throw new Error("bad");
+          S = n;
+          save();
+          render();
+          toast("Importado");
+        } catch (e) {
+          toast("JSON inválido");
+        }
+      };
+      reader.readAsText(f);
+      this.value = "";
+    };
+    document.getElementById("btnReloadSeed").onclick = function () {
+      fetchSeed().then(function (seed) {
+        if (!seed) { toast("No se pudo cargar la semilla"); return; }
+        S = mergeSeed(S, seed);
+        save();
+        render();
+        toast("Semilla fusionada (sin pisar estados)");
+      });
+    };
+    document.getElementById("btnReset").onclick = function () {
+      if (!confirm("¿Resetear a la semilla del repo? Se pierden ediciones locales.")) return;
+      fetchSeed().then(function (seed) {
+        if (!seed) { toast("No se pudo cargar la semilla"); return; }
+        try { localStorage.removeItem(KEY); } catch (e) {}
+        S = seed;
+        save();
+        render();
+        toast("Reseteado a semilla");
+      });
+    };
+    document.getElementById("btnAdd").onclick = function () {
+      var name = document.getElementById("newName").value.trim();
+      if (!name) { toast("Escribí un nombre"); return; }
+      var p = blankPerson();
+      p.id = "fu-" + (S.nextId++);
+      p.name = name;
+      p.org = document.getElementById("newOrg").value.trim();
+      p.phone = document.getElementById("newPhone").value.trim();
+      p.bucket = document.getElementById("newBucket").value === "red" ? "red" : "caliente";
+      p.nextAction = p.bucket === "caliente" ? "Confirmar interés / visita" : "Mensaje corto de reconexión";
+      p.draft = defaultDraft(p);
+      S.people.unshift(p);
+      document.getElementById("newName").value = "";
+      document.getElementById("newOrg").value = "";
+      document.getElementById("newPhone").value = "";
+      save();
+      render();
+      toast("Añadido");
+    };
+  }
+
+  function setupToken() {
+    var inp = document.getElementById("studioToken");
+    if (window.StudioSiteSave) {
+      inp.value = StudioSiteSave.getToken() || "";
+      inp.addEventListener("change", function () {
+        StudioSiteSave.setToken(inp.value || "");
+        toast("Clave guardada en este navegador");
+      });
+    }
+  }
+
+  function boot() {
+    setupFilters();
+    setupPanels();
+    setupToolbar();
+    setupToken();
+    bindList();
+
+    var local = loadLocal();
+    var siteP = (window.StudioSiteSave)
+      ? StudioSiteSave.load("followup").then(function (x) {
+          if (x && x.ok && x.j && x.j.data) return normalize(x.j.data);
+          return null;
+        }).catch(function () { return null; })
+      : Promise.resolve(null);
+
+    Promise.all([fetchSeed(), siteP]).then(function (pair) {
+      var seed = pair[0];
+      var site = pair[1];
+      S = mergeSeed(mergeSeed(local, site), seed);
+      if (!S) {
+        S = normalize({
+          version: 1,
+          nextId: 1000,
+          people: [],
+          note: "Lista vacía — añadí contactos."
+        });
+      }
+      if (!local && !site) setSiteSync("semilla del repo · sin ediciones locales");
+      else if (site) setSiteSync("cargado desde sitio (+ local)");
+      else setSiteSync("cargado desde este navegador");
+      save();
+      render();
+    });
+  }
+
+  boot();
+})();
+  </script>
+</body>
+</html>
